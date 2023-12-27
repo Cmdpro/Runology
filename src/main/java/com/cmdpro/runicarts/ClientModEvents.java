@@ -1,9 +1,11 @@
 package com.cmdpro.runicarts;
 
+import com.cmdpro.runicarts.init.BlockEntityInit;
 import com.cmdpro.runicarts.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runicarts.moddata.ClientPlayerData;
 import com.cmdpro.runicarts.networking.ModMessages;
 import com.cmdpro.runicarts.networking.packet.PlayerUnlockEntryC2SPacket;
+import com.cmdpro.runicarts.renderers.RunicWorkbenchRenderer;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
@@ -23,13 +25,9 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = RunicArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientModEvents {
-    public static final IGuiOverlay HUD = ModHud::drawHUD;
-    @SubscribeEvent
-    public static void renderHUD(RegisterGuiOverlaysEvent event) {
-        event.registerAboveAll("mod_hud", HUD);
-    }
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(BlockEntityInit.RUNICWORKBENCH.get(), RunicWorkbenchRenderer::new);
     }
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {

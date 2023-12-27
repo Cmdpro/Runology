@@ -1,12 +1,9 @@
 package com.cmdpro.runicarts.block.entity;
 
 import com.cmdpro.runicarts.init.BlockEntityInit;
-import com.cmdpro.runicarts.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -17,9 +14,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -36,9 +33,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.List;
 
-public class DivinationTableBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
+public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private float souls;
 
@@ -58,23 +54,22 @@ public class DivinationTableBlockEntity extends BlockEntity implements MenuProvi
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 80;
-    public DivinationTableBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityInit.DIVINATIONTABLE.get(), pos, state);
+    public RunicWorkbenchBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityInit.RUNICWORKBENCH.get(), pos, state);
         item = ItemStack.EMPTY;
-        linked = new ArrayList<>();
         this.data = new ContainerData() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return DivinationTableBlockEntity.this.progress;
-                    case 1: return DivinationTableBlockEntity.this.maxProgress;
+                    case 0: return RunicWorkbenchBlockEntity.this.progress;
+                    case 1: return RunicWorkbenchBlockEntity.this.maxProgress;
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: DivinationTableBlockEntity.this.progress = value; break;
-                    case 1: DivinationTableBlockEntity.this.maxProgress = value; break;
+                    case 0: RunicWorkbenchBlockEntity.this.progress = value; break;
+                    case 1: RunicWorkbenchBlockEntity.this.maxProgress = value; break;
                 }
             }
 
@@ -129,6 +124,10 @@ public class DivinationTableBlockEntity extends BlockEntity implements MenuProvi
         }
         return inventory;
     }
+    public static InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
+                                        Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
     @Override
     public void onLoad() {
         super.onLoad();
@@ -139,7 +138,7 @@ public class DivinationTableBlockEntity extends BlockEntity implements MenuProvi
         super.invalidateCaps();
         lazyItemHandler.invalidate();
     }
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, DivinationTableBlockEntity pBlockEntity) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RunicWorkbenchBlockEntity pBlockEntity) {
         if (!pLevel.isClientSide()) {
 
         }
@@ -178,7 +177,7 @@ public class DivinationTableBlockEntity extends BlockEntity implements MenuProvi
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
         return null;//new DivinationTableMenu(pContainerId, pInventory, this, this.data);
     }
-    private static boolean hasNotReachedStackLimit(DivinationTableBlockEntity entity) {
+    private static boolean hasNotReachedStackLimit(RunicWorkbenchBlockEntity entity) {
         return entity.itemHandler.getStackInSlot(2).getCount() < entity.itemHandler.getStackInSlot(2).getMaxStackSize();
     }
 }

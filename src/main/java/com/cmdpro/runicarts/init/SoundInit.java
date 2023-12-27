@@ -14,9 +14,7 @@ public class SoundInit {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, RunicArts.MOD_ID);
 
-    public static RegistryObject<SoundEvent> SOULKEEPERPHASE1 = registerSoundEvent("soulkeeperphase1");
-    public static RegistryObject<SoundEvent> SOULKEEPERPHASE2 = registerSoundEvent("soulkeeperphase2");
-    public static RegistryObject<SoundEvent> CRYSTALSOULS = registerSoundEvent("crystalsouls");
+    //public static RegistryObject<SoundEvent> SOULKEEPERPHASE1 = registerSoundEvent("soulkeeperphase1");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

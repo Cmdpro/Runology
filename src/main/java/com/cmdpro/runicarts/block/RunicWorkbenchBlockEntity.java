@@ -1,6 +1,5 @@
 package com.cmdpro.runicarts.block;
 
-import com.cmdpro.runicarts.block.entity.DivinationTableBlockEntity;
 import com.cmdpro.runicarts.init.BlockEntityInit;
 import com.cmdpro.runicarts.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -23,8 +22,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class DivinationTable extends BaseEntityBlock {
-    public DivinationTable(Properties properties) {
+public class RunicWorkbenchBlockEntity extends BaseEntityBlock {
+    public RunicWorkbenchBlockEntity(Properties properties) {
         super(properties);
     }
 
@@ -44,14 +43,14 @@ public class DivinationTable extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new DivinationTableBlockEntity(pPos, pState);
+        return new com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity(pPos, pState);
     }
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof DivinationTableBlockEntity) {
-                ((DivinationTableBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) {
+                ((com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -60,12 +59,12 @@ public class DivinationTable extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.COPPERGAUNTLET.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.COPPERGAUNTLET.get())) {
-                return InteractionResult.sidedSuccess(pLevel.isClientSide());
-            }
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof DivinationTableBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (DivinationTableBlockEntity)entity, pPos);
+            if(entity instanceof com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) {
+                if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.COPPERGAUNTLET.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.COPPERGAUNTLET.get())) {
+                    return com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+                }
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity)entity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -76,7 +75,7 @@ public class DivinationTable extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, BlockEntityInit.DIVINATIONTABLE.get(),
-                DivinationTableBlockEntity::tick);
+        return createTickerHelper(pBlockEntityType, BlockEntityInit.RUNICWORKBENCH.get(),
+                com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity::tick);
     }
 }

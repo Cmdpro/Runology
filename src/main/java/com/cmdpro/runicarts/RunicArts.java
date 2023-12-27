@@ -75,7 +75,7 @@ public class RunicArts
         CreativeModeTabInit.register(bus);
         ParticleInit.register(bus);
         AttributeInit.ATTRIBUTES.register(bus);
-        SoulcasterEffectInit.SOULCASTER_EFFECTS.register(bus);
+        RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
         GeckoLib.initialize();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

@@ -15,14 +15,11 @@ public class CreativeModeTabInit {
             RunicArts.MOD_ID);
 
     public static RegistryObject<CreativeModeTab> ITEMS = CREATIVE_MODE_TABS.register("runicarts_items", () ->
-            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.SOULMETAL.get()))
+            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.COPPERGAUNTLET.get()))
                     .title(Component.translatable("creativemodetab.runicarts_items")).build());
     public static RegistryObject<CreativeModeTab> BLOCKS = CREATIVE_MODE_TABS.register("runicarts_blocks", () ->
-            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.SOULPOINT_ITEM.get()))
+            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.DIVINATIONTABLE_ITEM.get()))
                     .title(Component.translatable("creativemodetab.runicarts_blocks")).build());
-    public static RegistryObject<CreativeModeTab> FULLCRYSTALS = CREATIVE_MODE_TABS.register("runicarts_fullcrystals", () ->
-            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.FULLSOULCRYSTAL.get()))
-                    .title(Component.translatable("creativemodetab.runicarts_fullcrystals")).build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

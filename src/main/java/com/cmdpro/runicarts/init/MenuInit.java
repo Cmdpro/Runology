@@ -13,9 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class MenuInit {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, RunicArts.MOD_ID);
-    public static final RegistryObject<MenuType<SoulShaperMenu>> SOULSHAPER_MENU = MENUS.register("soulshaper_menu", () -> new MenuType(SoulShaperMenu::new, FeatureFlags.DEFAULT_FLAGS));
-    public static final RegistryObject<MenuType<SoulcastersTableMenu>> SOULCASTERSTABLE_MENU = MENUS.register("soulcasterstable_menu", () -> new MenuType(SoulcastersTableMenu::new, FeatureFlags.DEFAULT_FLAGS));
-    public static final RegistryObject<MenuType<DivinationTableMenu>> DIVINATIONTABLE_MENU = registerMenuType(DivinationTableMenu::new, "divinationtable_menu");
+    //public static final RegistryObject<MenuType<DivinationTableMenu>> DIVINATIONTABLE_MENU = registerMenuType(DivinationTableMenu::new, "divinationtable_menu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

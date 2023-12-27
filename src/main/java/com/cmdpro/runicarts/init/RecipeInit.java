@@ -16,10 +16,6 @@ public class RecipeInit {
             RECIPES.register("shapedlockedrecipe", () -> ShapedLockedRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeSerializer<ShapelessLockedRecipe>> LOCKED_SHAPELESS_SERIALIZER =
             RECIPES.register("shapelesslockedrecipe", () -> ShapelessLockedRecipe.Serializer.INSTANCE);
-    public static final RegistryObject<RecipeSerializer<SoulShaperRecipe>> SOUL_SHAPER =
-            RECIPES.register("soulshaper", () -> SoulShaperRecipe.Serializer.INSTANCE);
-    public static final RegistryObject<RecipeSerializer<SoulAltarRecipe>> SOUL_ALTAR =
-            RECIPES.register("soulaltar", () -> SoulAltarRecipe.Serializer.INSTANCE);
     public static void register(IEventBus eventBus) {
         RECIPES.register(eventBus);
     }
