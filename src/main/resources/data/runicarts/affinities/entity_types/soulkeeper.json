@@ -1,8 +1,0 @@
-{
-  "type": "entity_type",
-  "target": "runicarts:soulkeeper",
-  "values": {
-    "infernal": 40,
-    "hallowed": 10
-  }
-}

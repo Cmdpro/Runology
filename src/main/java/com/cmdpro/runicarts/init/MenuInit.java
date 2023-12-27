@@ -1,14 +1,6 @@
 package com.cmdpro.runicarts.init;
 
 import com.cmdpro.runicarts.RunicArts;
-import com.cmdpro.runicarts.block.SoulcastersTable;
-import com.cmdpro.runicarts.screen.DivinationTableMenu;
-import com.cmdpro.runicarts.screen.SoulShaperMenu;
-import com.cmdpro.runicarts.screen.SoulcastersTableMenu;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.MenuAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;

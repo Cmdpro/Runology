@@ -1,8 +1,6 @@
 package com.cmdpro.runicarts.integration;
 
-import com.cmdpro.runicarts.recipe.SoulAltarRecipe;
 import com.google.gson.JsonObject;
-import com.klikli_dev.modonomicon.api.ModonomiconConstants.Data.Page;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.page.BookRecipePage;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 public class BookAltarRecipePage extends BookRecipePage<Recipe<?>> {

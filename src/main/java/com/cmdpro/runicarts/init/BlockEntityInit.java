@@ -2,9 +2,6 @@ package com.cmdpro.runicarts.init;
 
 import com.cmdpro.runicarts.RunicArts;
 import com.cmdpro.runicarts.block.entity.DivinationTableBlockEntity;
-import com.cmdpro.runicarts.block.entity.SoulAltarBlockEntity;
-import com.cmdpro.runicarts.block.entity.SoulPointBlockEntity;
-import com.cmdpro.runicarts.block.entity.SpiritTankBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

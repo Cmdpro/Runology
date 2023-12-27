@@ -1,15 +1,8 @@
 package com.cmdpro.runicarts.init;
 
 import com.cmdpro.runicarts.RunicArts;
-import com.cmdpro.runicarts.api.Wand;
-import com.cmdpro.runicarts.item.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.RecordItem;
-import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

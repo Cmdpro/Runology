@@ -3,8 +3,6 @@ package com.cmdpro.runicarts.init;
 import com.cmdpro.runicarts.RunicArts;
 import com.cmdpro.runicarts.recipe.ShapedLockedRecipe;
 import com.cmdpro.runicarts.recipe.ShapelessLockedRecipe;
-import com.cmdpro.runicarts.recipe.SoulAltarRecipe;
-import com.cmdpro.runicarts.recipe.SoulShaperRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

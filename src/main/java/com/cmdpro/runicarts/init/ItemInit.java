@@ -1,8 +1,6 @@
 package com.cmdpro.runicarts.init;
 
 import com.cmdpro.runicarts.RunicArts;
-import com.cmdpro.runicarts.api.SoulGem;
-import com.cmdpro.runicarts.api.Wand;
 import com.cmdpro.runicarts.item.*;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;

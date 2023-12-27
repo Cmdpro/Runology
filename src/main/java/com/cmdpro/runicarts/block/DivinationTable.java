@@ -1,7 +1,6 @@
 package com.cmdpro.runicarts.block;
 
 import com.cmdpro.runicarts.block.entity.DivinationTableBlockEntity;
-import com.cmdpro.runicarts.block.entity.SoulAltarBlockEntity;
 import com.cmdpro.runicarts.init.BlockEntityInit;
 import com.cmdpro.runicarts.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -61,8 +60,8 @@ public class DivinationTable extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.SOULLINKER.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.SOULLINKER.get())) {
-                return InteractionResult.FAIL;
+            if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.COPPERGAUNTLET.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.COPPERGAUNTLET.get())) {
+                return InteractionResult.sidedSuccess(pLevel.isClientSide());
             }
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof DivinationTableBlockEntity) {

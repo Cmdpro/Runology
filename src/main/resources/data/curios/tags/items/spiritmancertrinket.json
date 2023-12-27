@@ -1,9 +1,5 @@
 {
   "replace": false,
   "values": [
-    "runicarts:soulbarrier",
-    "runicarts:soulorb",
-    "runicarts:soultransformer",
-    "runicarts:soulbooster"
   ]
 }

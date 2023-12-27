@@ -3,8 +3,7 @@ package com.cmdpro.runicarts;
 import com.cmdpro.runicarts.init.*;
 import com.cmdpro.runicarts.integration.BookAltarRecipePage;
 import com.cmdpro.runicarts.integration.RunicArtsModonomiconConstants;
-import com.cmdpro.runicarts.integration.bookconditions.BookAncientKnowledgeCondition;
-import com.cmdpro.runicarts.integration.bookconditions.BookKnowledgeCondition;
+import com.cmdpro.runicarts.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runicarts.networking.ModMessages;
 import com.google.common.collect.ImmutableList;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
@@ -84,8 +83,7 @@ public class RunicArts
         random = RandomSource.create();
         //modLoadingContext.registerConfig(ModConfig.Type.COMMON, RunicArtsConfig.COMMON_SPEC, "runicarts.toml");
 
-        LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "knowledge"), BookKnowledgeCondition::fromJson, BookKnowledgeCondition::fromNetwork);
-        LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "ancientknowledge"), BookAncientKnowledgeCondition::fromJson, BookAncientKnowledgeCondition::fromNetwork);
+        LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "knowledge"), BookRunicKnowledgeCondition::fromJson, BookRunicKnowledgeCondition::fromNetwork);
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
@@ -97,41 +95,14 @@ public class RunicArts
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
 
         }
-        setupSoulCrystalEntities();
-        if (event.getTabKey() == CreativeModeTabInit.FULLCRYSTALS.getKey()) {
-            for (EntityType<? extends LivingEntity> i : RunicArts.soulCrystalEntities) {
-                ItemStack stack = new ItemStack(ItemInit.FULLSOULCRYSTAL.get());
-                CompoundTag tag = stack.getOrCreateTag();
-                tag.put("entitydata", new CompoundTag());
-                tag.putString("entitytype", ForgeRegistries.ENTITY_TYPES.getKey(i).toString());
-                event.accept(stack);
-            }
-        }
     }
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
         ModMessages.register();
         event.enqueueWork(ModCriteriaTriggers::register);
-        LoaderRegistry.registerPredicate(new ResourceLocation("runicarts:airorfire"), (getter, pos, state) -> state.isAir() || state.is(Blocks.SOUL_FIRE) || state.is(Blocks.FIRE));
         LoaderRegistry.registerPredicate(new ResourceLocation("runicarts:empty"), (getter, pos, state) -> !state.isSolid());
         LoaderRegistry.registerPageLoader(RunicArtsModonomiconConstants.Page.ALTAR_RECIPE, BookAltarRecipePage::fromJson, BookAltarRecipePage::fromNetwork);
-    }
-    private void complete(final FMLLoadCompleteEvent event)
-    {
-        setupSoulCrystalEntities();
-    }
-    public void setupSoulCrystalEntities() {
-        if (soulCrystalEntities.isEmpty()) {
-            soulCrystalEntities = ImmutableList.copyOf(
-                    ForgeRegistries.ENTITY_TYPES.getValues().stream()
-                            .filter(DefaultAttributes::hasSupplier)
-                            .map(entityType -> (EntityType<? extends LivingEntity>) entityType)
-                            .filter((i) -> !i.getTags().toList().contains(Tags.EntityTypes.BOSSES))
-                            .filter((i) -> !i.getDescriptionId().equals("entity.minecraft.player"))
-                            .filter((i) -> !i.getDescriptionId().equals("entity.minecraft.warden"))
-                            .collect(Collectors.toList()));
-        }
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

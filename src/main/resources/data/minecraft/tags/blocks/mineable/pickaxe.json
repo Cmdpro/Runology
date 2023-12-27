@@ -1,11 +1,6 @@
 {
 	"replace": false,
 	"values": [
-		"runicarts:soulaltar",
-		"runicarts:soulcasterstable",
-		"runicarts:soulpoint",
-		"runicarts:soulshaper",
-		"runicarts:spirittank",
 		"runicarts:divinationtable"
 	]
 }

@@ -1,7 +1,5 @@
 package com.cmdpro.runicarts.init;
 
-import com.cmdpro.runicarts.criteriatriggers.KillSoulKeeperTrigger;
-import com.cmdpro.runicarts.criteriatriggers.SpawnSoulKeeperTrigger;
 import net.minecraft.advancements.CriteriaTriggers;
 
 public class ModCriteriaTriggers {

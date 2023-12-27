@@ -37,11 +37,6 @@ public class ModMessages {
                 .encoder(PlayerUnlockEntryC2SPacket::toBytes)
                 .consumerMainThread(PlayerUnlockEntryC2SPacket::handle)
                 .add();
-        net.messageBuilder(PlayerDoubleJumpC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(PlayerDoubleJumpC2SPacket::new)
-                .encoder(PlayerDoubleJumpC2SPacket::toBytes)
-                .consumerMainThread(PlayerDoubleJumpC2SPacket::handle)
-                .add();
 
     }
     public static <MSG> void sendToServer(MSG message) {

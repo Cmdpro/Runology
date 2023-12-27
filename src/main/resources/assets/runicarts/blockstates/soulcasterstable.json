@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "runicarts:block/soulcasterstable" },
-    "facing=east": { "model": "runicarts:block/soulcasterstable", "y": 90 },
-    "facing=south": { "model": "runicarts:block/soulcasterstable", "y": 180 },
-    "facing=west": { "model": "runicarts:block/soulcasterstable", "y": 270 }
-  }
-}

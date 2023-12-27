@@ -3,7 +3,6 @@ package com.cmdpro.runicarts.integration;
 import com.cmdpro.runicarts.RunicArts;
 import com.cmdpro.runicarts.init.BlockInit;
 import com.cmdpro.runicarts.init.ItemInit;
-import com.cmdpro.runicarts.recipe.SoulAltarRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
