@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:soulcasting/soulcasterscrystals",
+  "input": [
+    {
+      "item": "runicarts:soulcrystal"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    }
+  ],
+  "output": {
+    "item": "runicarts:endercrystal",
+    "count": 1
+  }
+}

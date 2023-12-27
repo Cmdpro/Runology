@@ -1,0 +1,23 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:equipment/purgatoryarmor",
+  "input": [
+    {
+      "item": "runicarts:purgatoryingot"
+    },
+    {
+      "item": "runicarts:purgatoryingot"
+    },
+    {
+      "item": "runicarts:purgatoryingot"
+    },
+    {
+      "item": "runicarts:purgatoryingot"
+    }
+  ],
+  "output": {
+    "item": "runicarts:purgatoryboots",
+    "count": 1
+  }
+}

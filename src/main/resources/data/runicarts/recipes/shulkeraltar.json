@@ -1,0 +1,24 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:arcane/endmobs",
+  "input": [
+    {
+      "item": "minecraft:shulker_shell"
+    },
+    {
+      "item": "minecraft:shulker_shell"
+    },
+    {
+      "item": "minecraft:shulker_shell"
+    }
+  ],
+  "output": {
+    "item": "runicarts:fullsoulcrystal",
+    "count": 1,
+    "nbt": {
+      "entitytype": "minecraft:shulker",
+      "entitynbt": {}
+    }
+  }
+}

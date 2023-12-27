@@ -1,0 +1,24 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:arcane/nightmobs",
+  "input": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    }
+  ],
+  "output": {
+    "item": "runicarts:fullsoulcrystal",
+    "count": 1,
+    "nbt": {
+      "entitytype": "minecraft:creeper",
+      "entitynbt": {}
+    }
+  }
+}

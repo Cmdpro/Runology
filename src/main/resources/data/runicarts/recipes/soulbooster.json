@@ -1,0 +1,21 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:equipment/soulbooster",
+  "pattern": [
+    "a a",
+    "bab",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "runicarts:spirittank"
+    }
+  },
+  "result": {
+    "item": "runicarts:soulbooster"
+  }
+}

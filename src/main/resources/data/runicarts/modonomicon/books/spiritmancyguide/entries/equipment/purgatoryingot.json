@@ -1,0 +1,20 @@
+{
+  "category": "runicarts:equipment",
+  "description": "",
+  "hide_while_locked": true,
+  "icon": "runicarts:purgatoryingot",
+  "name": "book.runicarts.runicartsguide.multiuse.purgatoryingot.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.runicarts.runicartsguide.multiuse.purgatoryingot.page1.title",
+      "text": "book.runicarts.runicartsguide.multiuse.purgatoryingot.page1.text"
+    }
+  ],
+  "x": 0,
+  "y": 2,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "runicarts:soulkeeperkill"
+  }
+}

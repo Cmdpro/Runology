@@ -1,0 +1,25 @@
+{
+  "category": "runicarts:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulmetaldagger",
+  "name": "book.runicarts.runicartsguide.basics.soulmetaldagger.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:soulmetaldagger",
+      "title1": "book.runicarts.runicartsguide.basics.soulmetaldagger.page1.title",
+      "text": "book.runicarts.runicartsguide.basics.soulmetaldagger.page1.text"
+    }
+  ],
+  "x": 0,
+  "y": -2,
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:basics/studying",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ]
+}

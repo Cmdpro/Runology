@@ -1,0 +1,8 @@
+{
+  "type": "item",
+  "set": {
+    "infernal": 10,
+    "earth": 10
+  },
+  "target": "runicarts:soulmetal"
+}

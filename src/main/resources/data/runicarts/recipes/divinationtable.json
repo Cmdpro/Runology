@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bbb",
+    "aAa",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:light_blue_wool"
+    },
+    "A": {
+      "item": "runicarts:soulcrystal"
+    },
+    "b": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:divinationtable"
+  }
+}

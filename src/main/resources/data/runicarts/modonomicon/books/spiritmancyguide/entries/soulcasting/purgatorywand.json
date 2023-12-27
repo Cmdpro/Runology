@@ -1,0 +1,29 @@
+{
+  "category": "runicarts:soulcasting",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:purgatorywand",
+  "name": "book.runicarts.runicartsguide.soulcasting.purgatorywand.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:purgatorywand",
+      "title1": "book.runicarts.runicartsguide.soulcasting.purgatorywand.page1.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.purgatorywand.page1.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:soulcasting/purgatoryingot",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 5,
+  "y": 3,
+  "condition": {
+    "type": "runicarts:ancientknowledge",
+    "advancement": "runicarts:soulkeeperkill"
+  }
+}

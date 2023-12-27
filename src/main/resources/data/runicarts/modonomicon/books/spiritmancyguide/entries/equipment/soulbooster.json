@@ -1,0 +1,20 @@
+{
+  "category": "runicarts:equipment",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulbooster",
+  "name": "book.runicarts.runicartsguide.equipment.soulbooster.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:soulbooster",
+      "title1": "book.runicarts.runicartsguide.equipment.soulbooster.page1.title",
+      "text": "book.runicarts.runicartsguide.equipment.soulbooster.page1.text"
+    }
+  ],
+  "x": -1,
+  "y": -1,
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/soulaltar",
+  "pattern": [
+    " a ",
+    "AbA",
+    "bbb"
+  ],
+  "key": {
+    "a": {
+      "item": "runicarts:soulcrystal"
+    },
+    "A": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:soulaltar",
+    "count": 1
+  }
+}

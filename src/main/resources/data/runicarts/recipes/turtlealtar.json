@@ -1,0 +1,24 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:arcane/seamobs",
+  "input": [
+    {
+      "item": "minecraft:scute"
+    },
+    {
+      "item": "minecraft:scute"
+    },
+    {
+      "item": "minecraft:scute"
+    }
+  ],
+  "output": {
+    "item": "runicarts:fullsoulcrystal",
+    "count": 1,
+    "nbt": {
+      "entitytype": "minecraft:turtle",
+      "entitynbt": {}
+    }
+  }
+}

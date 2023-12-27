@@ -1,0 +1,18 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:equipment/soultransformer",
+  "pattern": [
+    "a a",
+    "aaa",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:soultransformer"
+  }
+}

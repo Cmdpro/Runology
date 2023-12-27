@@ -1,0 +1,20 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:equipment/purgatorysword",
+  "input": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "runicarts:purgatoryingot"
+    },
+    {
+      "item": "runicarts:purgatoryingot"
+    }
+  ],
+  "output": {
+    "item": "runicarts:purgatorysword",
+    "count": 1
+  }
+}

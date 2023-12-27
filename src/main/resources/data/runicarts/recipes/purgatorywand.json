@@ -1,0 +1,18 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:soulcasting/purgatorywand",
+  "pattern": [
+    "  a",
+    " a ",
+    "a  "
+  ],
+  "key": {
+    "a": {
+      "item": "runicarts:purgatoryingot"
+    }
+  },
+  "result": {
+    "item": "runicarts:purgatorywand"
+  }
+}

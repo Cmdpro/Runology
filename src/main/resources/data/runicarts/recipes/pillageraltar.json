@@ -1,0 +1,24 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:arcane/sentientmobs",
+  "input": [
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:emerald"
+    }
+  ],
+  "output": {
+    "item": "runicarts:fullsoulcrystal",
+    "count": 1,
+    "nbt": {
+      "entitytype": "minecraft:pillager",
+      "entitynbt": {}
+    }
+  }
+}

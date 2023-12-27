@@ -1,0 +1,42 @@
+{
+  "category": "runicarts:arcane",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulcrystal",
+  "name": "book.runicarts.runicartsguide.arcane.nethermobs.name",
+  "pages": [
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:witherskeletonaltar",
+      "title1": "book.runicarts.runicartsguide.arcane.nethermobs.page1.title",
+      "text": "book.runicarts.runicartsguide.arcane.nethermobs.page1.text",
+      "recipe_id_2": "runicarts:blazealtar",
+      "title2": "book.runicarts.runicartsguide.arcane.nethermobs.page1.title2"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:ghastaltar",
+      "title1": "book.runicarts.runicartsguide.arcane.nethermobs.page2.title"
+    }
+  ],
+  "x": 0,
+  "y": 5,
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:arcane/seamobs",
+      "line_enabled": true,
+      "line_reversed": false
+    },
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:arcane/nightmobs",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runicarts:knowledge",
+    "advancement_id": "runicarts:netherexperience"
+  }
+}

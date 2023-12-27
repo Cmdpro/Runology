@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:basics/alternatealloyrecipes",
+  "input": [
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "output": {
+    "item": "runicarts:soulcrystal",
+    "count": 2
+  }
+}

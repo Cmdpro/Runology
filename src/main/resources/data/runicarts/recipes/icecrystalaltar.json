@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:soulcasting/soulcasterscrystals",
+  "input": [
+    {
+      "item": "runicarts:soulcrystal"
+    },
+    {
+      "item": "minecraft:ice"
+    }
+  ],
+  "output": {
+    "item": "runicarts:icecrystal",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:basics/alternatealloyrecipes",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "output": {
+    "item": "runicarts:soulmetal",
+    "count": 2
+  }
+}

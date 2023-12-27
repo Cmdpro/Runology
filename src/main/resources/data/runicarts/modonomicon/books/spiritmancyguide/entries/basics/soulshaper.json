@@ -1,0 +1,28 @@
+{
+  "category": "runicarts:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulshaper",
+  "name": "book.runicarts.runicartsguide.basics.soulshaper.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:soulshaper",
+      "title1": "book.runicarts.runicartsguide.basics.soulshaper.page1.title",
+      "text": "book.runicarts.runicartsguide.basics.soulshaper.page1.text"
+    }
+  ],
+  "x": 4,
+  "y": 2,
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:basics/soulaltar",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

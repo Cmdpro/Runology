@@ -1,0 +1,20 @@
+{
+  "category": "runicarts:equipment",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulbarrier",
+  "name": "book.runicarts.runicartsguide.equipment.soulbarrier.name",
+  "pages": [
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:soulbarrier",
+      "title1": "book.runicarts.runicartsguide.equipment.soulbarrier.page1.title",
+      "text": "book.runicarts.runicartsguide.equipment.soulbarrier.page1.text"
+    }
+  ],
+  "x": -1,
+  "y": 1,
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

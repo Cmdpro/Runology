@@ -1,0 +1,18 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:soulcasting/soulmetalwand",
+  "pattern": [
+    "  a",
+    " a ",
+    "a  "
+  ],
+  "key": {
+    "a": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:soulmetalwand"
+  }
+}

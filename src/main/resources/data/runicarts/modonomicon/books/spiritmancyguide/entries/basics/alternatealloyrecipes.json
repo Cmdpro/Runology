@@ -1,0 +1,34 @@
+{
+  "category": "runicarts:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulcrystal",
+  "name": "book.runicarts.runicartsguide.basics.alternatealloyrecipes.name",
+  "pages": [
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:soulmetalaltar",
+      "title1": "book.runicarts.runicartsguide.basics.alternatealloyrecipes.page1.title",
+      "text": "book.runicarts.runicartsguide.basics.alternatealloyrecipes.page1.text"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:soulcrystalaltar",
+      "title1": "book.runicarts.runicartsguide.basics.alternatealloyrecipes.page2.title",
+      "text": "book.runicarts.runicartsguide.basics.alternatealloyrecipes.page2.text"
+    }
+  ],
+  "x": 6,
+  "y": 4,
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:basics/soulfocus",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

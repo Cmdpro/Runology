@@ -1,0 +1,20 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/soulmetaldagger",
+  "pattern": [
+    "A",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:copper_ingot"
+    },
+    "A": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:soulmetaldagger"
+  }
+}

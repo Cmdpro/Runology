@@ -1,0 +1,24 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:arcane/nightmobs",
+  "input": [
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "output": {
+    "item": "runicarts:fullsoulcrystal",
+    "count": 1,
+    "nbt": {
+      "entitytype": "minecraft:spider",
+      "entitynbt": {}
+    }
+  }
+}

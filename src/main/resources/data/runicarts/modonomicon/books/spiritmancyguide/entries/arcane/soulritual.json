@@ -1,0 +1,29 @@
+{
+  "category": "runicarts:arcane",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "minecraft:deepslate_bricks",
+  "name": "book.runicarts.runicartsguide.arcane.soulritual.name",
+  "pages": [
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.runicarts.runicartsguide.arcane.soulritual.page1.title",
+      "multiblock_id": "runicarts:soulritual"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:echosoil",
+      "text": "book.runicarts.runicartsguide.arcane.soulritual.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.runicarts.runicartsguide.arcane.soulritual.page3.text"
+    }
+  ],
+  "condition": {
+    "type": "runicarts:ancientknowledge",
+    "advancement_id": "minecraft:story/enter_the_end"
+  },
+  "x": 0,
+  "y": -1
+}

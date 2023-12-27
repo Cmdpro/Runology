@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:soulcasting/soulcasterscrystals",
+  "input": [
+    {
+      "item": "runicarts:soulcrystal"
+    },
+    {
+      "item": "minecraft:flint_and_steel"
+    }
+  ],
+  "output": {
+    "item": "runicarts:flamecrystal",
+    "count": 1
+  }
+}

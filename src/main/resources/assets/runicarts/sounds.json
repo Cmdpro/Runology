@@ -1,0 +1,20 @@
+{
+  "soulkeeperphase1": {
+    "sounds": [
+      "runicarts:soulkeeperphase1"
+    ],
+    "stream": true
+  },
+  "soulkeeperphase2": {
+    "sounds": [
+      "runicarts:soulkeeperphase2"
+    ],
+    "stream": true
+  },
+  "crystalsouls": {
+    "sounds": [
+      "runicarts:crystalsouls"
+    ],
+    "stream": true
+  }
+}

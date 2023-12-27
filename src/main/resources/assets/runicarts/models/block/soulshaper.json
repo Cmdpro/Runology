@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "runicarts:block/soulshaper_side",
+    "north": "runicarts:block/soulshaper_side",
+    "south": "runicarts:block/soulshaper_side",
+    "east": "runicarts:block/soulshaper_side",
+    "west": "runicarts:block/soulshaper_side",
+    "up": "runicarts:block/soulshaper_top",
+    "down": "runicarts:block/soulshaper_bottom"
+  }
+}

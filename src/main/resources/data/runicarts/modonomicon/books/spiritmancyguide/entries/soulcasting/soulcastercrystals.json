@@ -1,0 +1,58 @@
+{
+  "category": "runicarts:soulcasting",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulcrystal",
+  "name": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.name",
+  "pages": [
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:flamecrystalaltar",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page1.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page1.text"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:icecrystalaltar",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page2.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page2.text"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:deathcrystalaltar",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page3.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page3.text"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:lifecrystalaltar",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page4.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page4.text"
+    },
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:endercrystalaltar",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page5.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page5.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:soulcrystal",
+      "title1": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page6.title",
+      "text": "book.runicarts.runicartsguide.soulcasting.soulcastercrystals.page6.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:soulcasting/soulcasterstable",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": -2,
+  "y": 0,
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

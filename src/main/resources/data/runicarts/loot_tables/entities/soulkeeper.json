@@ -1,0 +1,43 @@
+{
+	"type": "minecraft:entity",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "runicarts:purgatoryingot",
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 15,
+								"max": 25
+							}
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"name": "runicarts:thesoulsscreammusicdisc",
+					"conditions": [
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 0.25
+						}
+					]
+				},
+				{
+					"type": "minecraft:item",
+					"name": "runicarts:thesoulsrevengemusicdisc",
+					"conditions": [
+						{
+							"condition": "minecraft:random_chance",
+							"chance": 0.25
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "runicarts:shapelesslockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/alloys",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "result": {
+    "item": "runicarts:soulmetal",
+    "count": 1
+  }
+}

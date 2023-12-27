@@ -1,0 +1,20 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:equipment/soulbarrier",
+  "input": [
+    {
+      "item": "minecraft:shield"
+    },
+    {
+      "item": "runicarts:soulmetal"
+    },
+    {
+      "item": "minecraft:shield"
+    }
+  ],
+  "output": {
+    "item": "runicarts:soulbarrier",
+    "count": 1
+  }
+}

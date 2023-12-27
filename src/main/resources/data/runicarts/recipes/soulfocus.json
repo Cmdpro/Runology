@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:shapelesslockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/soulfocus",
+  "ingredients": [
+    {
+      "item": "runicarts:soulmetal"
+    },
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "result": {
+    "item": "runicarts:soulfocus",
+    "count": 1
+  }
+}

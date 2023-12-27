@@ -1,0 +1,17 @@
+{
+  "type": "runicarts:soulaltar",
+  "locked": true,
+  "entry": "runicarts:soulcasting/soulcasterscrystals",
+  "input": [
+    {
+      "item": "runicarts:soulcrystal"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "output": {
+    "item": "runicarts:lifecrystal",
+    "count": 1
+  }
+}

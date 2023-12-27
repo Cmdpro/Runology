@@ -1,0 +1,28 @@
+{
+  "type": "runicarts:shapedlockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/spirittank",
+  "pattern": [
+    "bBb",
+    "AaA",
+    "bBb"
+  ],
+  "key": {
+    "a": {
+      "item": "runicarts:soulcrystal"
+    },
+    "A": {
+      "item": "minecraft:glass"
+    },
+    "b": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "runicarts:soulmetal"
+    }
+  },
+  "result": {
+    "item": "runicarts:spirittank",
+    "count": 1
+  }
+}

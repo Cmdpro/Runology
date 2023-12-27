@@ -1,0 +1,20 @@
+{
+  "category": "runicarts:equipment",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:soulorb",
+  "name": "book.runicarts.runicartsguide.equipment.soulorb.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runicarts:soulorb",
+      "title1": "book.runicarts.runicartsguide.equipment.soulorb.page1.title",
+      "text": "book.runicarts.runicartsguide.equipment.soulorb.page1.text"
+    }
+  ],
+  "x": 1,
+  "y": 1,
+  "condition": {
+    "type": "runicarts:knowledge"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "runicarts:echosoil"
+    },
+    "title": {
+      "translate": "advancements.runicarts.soulkeeperspawn.title"
+    },
+    "description": {
+      "translate": "advancements.runicarts.soulkeeperspawn.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "runicarts:runicarts",
+  "criteria": {
+    "requirement": {
+      "trigger": "runicarts:spawnsoulkeeper"
+    }
+  }
+}

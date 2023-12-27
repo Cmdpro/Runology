@@ -1,0 +1,29 @@
+{
+  "category": "runicarts:equipment",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:purgatorydagger",
+  "name": "book.runicarts.runicartsguide.equipment.purgatorydagger.name",
+  "pages": [
+    {
+      "type": "runicarts:altar_recipe",
+      "recipe_id_1": "runicarts:purgatorydagger",
+      "title1": "book.runicarts.runicartsguide.equipment.purgatorydagger.page1.title",
+      "text": "book.runicarts.runicartsguide.equipment.purgatorydagger.page1.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runicarts:equipment/purgatoryingot",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 1,
+  "y": 3,
+  "condition": {
+    "type": "runicarts:ancientknowledge",
+    "advancement": "runicarts:soulkeeperkill"
+  }
+}

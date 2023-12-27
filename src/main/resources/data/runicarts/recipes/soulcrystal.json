@@ -1,0 +1,26 @@
+{
+  "type": "runicarts:shapelesslockedrecipe",
+  "locked": true,
+  "entry": "runicarts:basics/alloys",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "result": {
+    "item": "runicarts:soulcrystal",
+    "count": 1
+  }
+}
