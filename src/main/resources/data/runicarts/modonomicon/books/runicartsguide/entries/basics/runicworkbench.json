@@ -1,0 +1,15 @@
+{
+  "category": "runicarts:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runicarts:runicworkbench",
+  "name": "book.runicarts.runicartsguide.basics.runicworkbench.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.runicarts.runicartsguide.basics.runicworkbench.page1.text"
+    }
+  ],
+  "x": 0,
+  "y": 0
+}

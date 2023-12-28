@@ -18,7 +18,7 @@ public class CreativeModeTabInit {
             CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.COPPERGAUNTLET.get()))
                     .title(Component.translatable("creativemodetab.runicarts_items")).build());
     public static RegistryObject<CreativeModeTab> BLOCKS = CREATIVE_MODE_TABS.register("runicarts_blocks", () ->
-            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.DIVINATIONTABLE_ITEM.get()))
+            CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.RUNICWORKBENCHITEM.get()))
                     .title(Component.translatable("creativemodetab.runicarts_blocks")).build());
 
     public static void register(IEventBus eventBus) {

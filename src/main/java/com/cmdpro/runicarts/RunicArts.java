@@ -1,7 +1,6 @@
 package com.cmdpro.runicarts;
 
 import com.cmdpro.runicarts.init.*;
-import com.cmdpro.runicarts.integration.BookAltarRecipePage;
 import com.cmdpro.runicarts.integration.RunicArtsModonomiconConstants;
 import com.cmdpro.runicarts.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runicarts.networking.ModMessages;
@@ -9,19 +8,14 @@ import com.google.common.collect.ImmutableList;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,12 +23,10 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import software.bernie.geckolib.GeckoLib;
 
@@ -91,9 +83,14 @@ public class RunicArts
         }
         if (event.getTabKey() == CreativeModeTabInit.ITEMS.getKey()) {
             event.accept(ItemInit.COPPERGAUNTLET);
+            event.accept(ItemInit.BLANKRUNE);
+            event.accept(ItemInit.EARTHRUNE);
+            event.accept(ItemInit.AIRRUNE);
+            event.accept(ItemInit.WATERRUNE);
+            event.accept(ItemInit.FIRERUNE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
-
+            event.accept(ItemInit.RUNICWORKBENCHITEM);
         }
     }
     private void setup(final FMLCommonSetupEvent event)
@@ -102,7 +99,7 @@ public class RunicArts
         ModMessages.register();
         event.enqueueWork(ModCriteriaTriggers::register);
         LoaderRegistry.registerPredicate(new ResourceLocation("runicarts:empty"), (getter, pos, state) -> !state.isSolid());
-        LoaderRegistry.registerPageLoader(RunicArtsModonomiconConstants.Page.ALTAR_RECIPE, BookAltarRecipePage::fromJson, BookAltarRecipePage::fromNetwork);
+        //LoaderRegistry.registerPageLoader(RunicArtsModonomiconConstants.Page.ALTAR_RECIPE, BookAltarRecipePage::fromJson, BookAltarRecipePage::fromNetwork);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

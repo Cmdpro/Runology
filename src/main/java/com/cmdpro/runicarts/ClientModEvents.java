@@ -1,17 +1,21 @@
 package com.cmdpro.runicarts;
 
 import com.cmdpro.runicarts.init.BlockEntityInit;
+import com.cmdpro.runicarts.init.MenuInit;
 import com.cmdpro.runicarts.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runicarts.moddata.ClientPlayerData;
 import com.cmdpro.runicarts.networking.ModMessages;
 import com.cmdpro.runicarts.networking.packet.PlayerUnlockEntryC2SPacket;
 import com.cmdpro.runicarts.renderers.RunicWorkbenchRenderer;
+import com.cmdpro.runicarts.screen.RunicWorkbenchMenu;
+import com.cmdpro.runicarts.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -51,6 +55,7 @@ public class ClientModEvents {
                 }
             }
         });
+        MenuScreens.register(MenuInit.RUNICWORKBENCHMENU.get(), RunicWorkbenchScreen::new);
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {

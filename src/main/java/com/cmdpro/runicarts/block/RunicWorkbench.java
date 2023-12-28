@@ -1,5 +1,6 @@
 package com.cmdpro.runicarts.block;
 
+import com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity;
 import com.cmdpro.runicarts.init.BlockEntityInit;
 import com.cmdpro.runicarts.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -22,8 +23,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class RunicWorkbenchBlockEntity extends BaseEntityBlock {
-    public RunicWorkbenchBlockEntity(Properties properties) {
+public class RunicWorkbench extends BaseEntityBlock {
+    public RunicWorkbench(Properties properties) {
         super(properties);
     }
 
@@ -43,14 +44,14 @@ public class RunicWorkbenchBlockEntity extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity(pPos, pState);
+        return new RunicWorkbenchBlockEntity(pPos, pState);
     }
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) {
-                ((com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) blockEntity).drops();
+            if (blockEntity instanceof RunicWorkbenchBlockEntity) {
+                ((RunicWorkbenchBlockEntity) blockEntity).drops();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -60,11 +61,15 @@ public class RunicWorkbenchBlockEntity extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity) {
+            if(entity instanceof RunicWorkbenchBlockEntity ent) {
                 if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.COPPERGAUNTLET.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.COPPERGAUNTLET.get())) {
-                    return com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+                    return RunicWorkbenchBlockEntity.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
                 }
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity)entity, pPos);
+                if (pPlayer.isShiftKeyDown()) {
+                    ent.getRunicEnergy().clear();
+                } else {
+                    NetworkHooks.openScreen(((ServerPlayer) pPlayer), (RunicWorkbenchBlockEntity) entity, pPos);
+                }
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -76,6 +81,6 @@ public class RunicWorkbenchBlockEntity extends BaseEntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, BlockEntityInit.RUNICWORKBENCH.get(),
-                com.cmdpro.runicarts.block.entity.RunicWorkbenchBlockEntity::tick);
+                RunicWorkbenchBlockEntity::tick);
     }
 }

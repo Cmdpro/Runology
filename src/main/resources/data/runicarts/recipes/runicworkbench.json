@@ -1,0 +1,31 @@
+{
+  "type": "runicarts:shapedrunicrecipe",
+  "entry": "runicarts:basics/runicworkbench",
+  "runicenergy": [
+    {
+      "type": "runicarts:water",
+      "amount": 20
+    },
+    {
+      "type": "runicarts:air",
+      "amount": 10
+    },
+    {
+      "type": "runicarts:fire",
+      "amount": 30
+    }
+  ],
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:barrier"
+    }
+  },
+  "result": {
+    "item": "runicarts:runicworkbench"
+  }
+}

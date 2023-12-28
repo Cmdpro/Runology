@@ -14,10 +14,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class DivinationTableItem extends BlockItem implements GeoItem {
+public class RunicWorkbenchItem extends BlockItem implements GeoItem {
     public AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-    public DivinationTableItem(Block block, Properties settings) {
+    public RunicWorkbenchItem(Block block, Properties settings) {
         super(block, settings);
     }
 

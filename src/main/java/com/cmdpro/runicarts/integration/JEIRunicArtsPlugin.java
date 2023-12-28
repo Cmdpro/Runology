@@ -23,26 +23,21 @@ public class JEIRunicArtsPlugin implements IModPlugin {
     }
 
     public static IJeiRuntime runTime;
-    public static final RecipeType soulAltarCategory = RecipeType.create(RunicArts.MOD_ID, SoulAltarRecipe.Type.ID, SoulAltarRecipe.class);
+    //public static final RecipeType soulAltarCategory = RecipeType.create(RunicArts.MOD_ID, SoulAltarRecipe.Type.ID, SoulAltarRecipe.class);
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new SoulAltarRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        //registration.addRecipeCategories(new SoulAltarRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<SoulAltarRecipe> recipes = rm.getAllRecipesFor(SoulAltarRecipe.Type.INSTANCE);
-        registration.addRecipes(soulAltarCategory, recipes);
-    }
-
-    @Override
-    public void registerItemSubtypes(ISubtypeRegistration registration) {
-        registration.useNbtForSubtypes(ItemInit.FULLSOULCRYSTAL.get());
+        //List<SoulAltarRecipe> recipes = rm.getAllRecipesFor(SoulAltarRecipe.Type.INSTANCE);
+        //registration.addRecipes(soulAltarCategory, recipes);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(BlockInit.SOULALTAR.get()), soulAltarCategory);
+        //registration.addRecipeCatalyst(new ItemStack(BlockInit.SOULALTAR.get()), soulAltarCategory);
     }
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {

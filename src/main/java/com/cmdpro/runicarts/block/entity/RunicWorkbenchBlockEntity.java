@@ -1,18 +1,38 @@
 package com.cmdpro.runicarts.block.entity;
 
+import com.cmdpro.runicarts.RunicArts;
+import com.cmdpro.runicarts.api.IRunicEnergyContainer;
+import com.cmdpro.runicarts.api.RuneItem;
 import com.cmdpro.runicarts.init.BlockEntityInit;
+import com.cmdpro.runicarts.init.RecipeInit;
+import com.cmdpro.runicarts.recipe.IRunicRecipe;
+import com.cmdpro.runicarts.recipe.NonMenuCraftingContainer;
+import com.cmdpro.runicarts.screen.RunicWorkbenchMenu;
+import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import mezz.jei.api.constants.RecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,16 +52,28 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 
-public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
+public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity, IRunicEnergyContainer {
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     private float souls;
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(10) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            if (slot == 10) {
+                return false;
+            }
+            if (slot == 0) {
+                return stack.getItem() instanceof RuneItem;
+            }
+            return super.isItemValid(slot, stack);
         }
     };
     public void drops() {
@@ -51,32 +83,9 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     }
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    protected final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 80;
     public RunicWorkbenchBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityInit.RUNICWORKBENCH.get(), pos, state);
         item = ItemStack.EMPTY;
-        this.data = new ContainerData() {
-            public int get(int index) {
-                switch (index) {
-                    case 0: return RunicWorkbenchBlockEntity.this.progress;
-                    case 1: return RunicWorkbenchBlockEntity.this.maxProgress;
-                    default: return 0;
-                }
-            }
-
-            public void set(int index, int value) {
-                switch(index) {
-                    case 0: RunicWorkbenchBlockEntity.this.progress = value; break;
-                    case 1: RunicWorkbenchBlockEntity.this.maxProgress = value; break;
-                }
-            }
-
-            public int getCount() {
-                return 2;
-            }
-        };
     }
     @Nonnull
     @Override
@@ -98,23 +107,59 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket pkt){
         CompoundTag tag = pkt.getTag();
+        getRunicEnergy().clear();
+        for (Tag i : (ListTag)tag.get("runicEnergy")) {
+            getRunicEnergy().put(((CompoundTag)i).getString("key"), ((CompoundTag)i).getFloat("value"));
+        }
+        runicEnergyCost.clear();
+        for (Tag i : (ListTag)tag.get("runicEnergyCost")) {
+            runicEnergyCost.put(((CompoundTag)i).getString("key"), ((CompoundTag)i).getFloat("value"));
+        }
         item = ItemStack.of(tag.getCompound("item"));
     }
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag tag = new CompoundTag();
+        ListTag tag2 = new ListTag();
+        for (Map.Entry<String, Float> i : getRunicEnergy().entrySet()) {
+            CompoundTag tag3 = new CompoundTag();
+            tag3.putString("key", i.getKey());
+            tag3.putFloat("value", i.getValue());
+            tag2.add(tag3);
+        }
+        tag.put("runicEnergy", tag2);
+        ListTag tag4 = new ListTag();
+        for (Map.Entry<String, Float> i : runicEnergyCost.entrySet()) {
+            CompoundTag tag3 = new CompoundTag();
+            tag3.putString("key", i.getKey());
+            tag3.putFloat("value", i.getValue());
+            tag4.add(tag3);
+        }
+        tag.put("runicEnergyCost", tag4);
         tag.put("item", item.save(new CompoundTag()));
         return tag;
     }
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
+        ListTag tag2 = new ListTag();
+        for (Map.Entry<String, Float> i : getRunicEnergy().entrySet()) {
+            CompoundTag tag3 = new CompoundTag();
+            tag3.putString("key", i.getKey());
+            tag3.putFloat("value", i.getValue());
+            tag2.add(tag3);
+        }
+        tag.put("runicEnergy", tag2);
         super.saveAdditional(tag);
     }
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+        getRunicEnergy().clear();
+        for (Tag i : (ListTag)nbt.get("runicEnergy")) {
+            getRunicEnergy().put(((CompoundTag)i).getString("key"), ((CompoundTag)i).getFloat("value"));
+        }
     }
     public ItemStack item;
     public SimpleContainer getInv() {
@@ -124,8 +169,28 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
         }
         return inventory;
     }
+    public CraftingContainer getCraftingInv() {
+        List<ItemStack> items = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            items.add(itemHandler.getStackInSlot(i));
+        }
+        CraftingContainer inventory = new NonMenuCraftingContainer(items, 3, 3);
+        return inventory;
+    }
     public static InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                         Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if (blockEntity instanceof RunicWorkbenchBlockEntity ent) {
+            if (ent.recipe != null) {
+                for (int i = 1; i < 10; i++) {
+                    ent.itemHandler.getStackInSlot(i).shrink(1);
+                }
+                ItemStack stack = ent.recipe.assemble(ent.getCraftingInv(), pLevel.registryAccess());
+                ItemEntity entity = new ItemEntity(pLevel, (float)pPos.getX()+0.5f, (float)pPos.getY()+1f, (float)pPos.getZ()+0.5f, stack);
+                pLevel.addFreshEntity(entity);
+                pLevel.playSound(null, pPos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 2, 1);
+            }
+        }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
     @Override
@@ -138,10 +203,62 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
         super.invalidateCaps();
         lazyItemHandler.invalidate();
     }
+    public float getTotalRunicEnergy() {
+        float energy = 0;
+        for (Map.Entry<String, Float> i : runicEnergy.entrySet()) {
+            energy += i.getValue();
+        }
+        return energy;
+    }
+    public IRunicRecipe recipe;
+    public boolean enoughRunicEnergy;
+    public Map<String, Float> runicEnergyCost = new HashMap<>();
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RunicWorkbenchBlockEntity pBlockEntity) {
         if (!pLevel.isClientSide()) {
-
+            if (pBlockEntity.itemHandler.getStackInSlot(0).getItem() instanceof RuneItem rune && !pBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
+                if (pBlockEntity.getTotalRunicEnergy()+50 <= 1000) {
+                    pBlockEntity.addRunicEnergy(rune.runicEnergyType.toString(), 50);
+                    pBlockEntity.itemHandler.getStackInSlot(0).shrink(1);
+                }
+            }
+            Optional<IRunicRecipe> recipe = pLevel.getRecipeManager().getRecipeFor(RecipeInit.RUNICCRAFTING.get(), pBlockEntity.getCraftingInv(), pLevel);
+            if (recipe.isPresent()) {
+                pBlockEntity.recipe = recipe.get();
+                pBlockEntity.runicEnergyCost = recipe.get().getRunicEnergyCost();
+                pBlockEntity.item = recipe.get().getResultItem(pLevel.registryAccess());
+                boolean enoughEnergy = true;
+                for (Map.Entry<String, Float> i : recipe.get().getRunicEnergyCost().entrySet()) {
+                    if (pBlockEntity.getRunicEnergy().containsKey(i.getKey())) {
+                        if (pBlockEntity.getRunicEnergy().get(i.getKey()) < i.getValue()) {
+                            enoughEnergy = false;
+                            break;
+                        }
+                    } else {
+                        enoughEnergy = false;
+                        break;
+                    }
+                }
+                pBlockEntity.enoughRunicEnergy = enoughEnergy;
+            } else {
+                pBlockEntity.recipe = null;
+                pBlockEntity.runicEnergyCost.clear();
+                pBlockEntity.item = ItemStack.EMPTY;
+            }
+            pBlockEntity.updateBlock();
         }
+    }
+    public boolean playerHasNeededEntry(Player player) {
+        if (recipe != null) {
+            ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).readEntries;
+            for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
+                for (ResourceLocation o : i.getValue()) {
+                    if (o.toString().equals(recipe.getEntry())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     protected void updateBlock() {
         BlockState blockState = level.getBlockState(this.getBlockPos());
@@ -169,15 +286,20 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.runicarts.divinationtable");
+        return Component.translatable("block.runicarts.runicworkbench");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return null;//new DivinationTableMenu(pContainerId, pInventory, this, this.data);
+        return new RunicWorkbenchMenu(pContainerId, pInventory, this);
     }
     private static boolean hasNotReachedStackLimit(RunicWorkbenchBlockEntity entity) {
         return entity.itemHandler.getStackInSlot(2).getCount() < entity.itemHandler.getStackInSlot(2).getMaxStackSize();
+    }
+    Map<String, Float> runicEnergy = new HashMap<>();
+    @Override
+    public Map<String, Float> getRunicEnergy() {
+        return runicEnergy;
     }
 }
