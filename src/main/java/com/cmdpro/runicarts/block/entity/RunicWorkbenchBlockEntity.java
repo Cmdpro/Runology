@@ -182,13 +182,21 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof RunicWorkbenchBlockEntity ent) {
             if (ent.recipe != null) {
-                for (int i = 1; i < 10; i++) {
-                    ent.itemHandler.getStackInSlot(i).shrink(1);
+                if (ent.enoughRunicEnergy) {
+                    if (ent.playerHasNeededEntry(pPlayer)) {
+                        for (int i = 1; i < 10; i++) {
+                            ent.itemHandler.getStackInSlot(i).shrink(1);
+                        }
+                        ItemStack stack = ent.recipe.assemble(ent.getCraftingInv(), pLevel.registryAccess());
+                        ItemEntity entity = new ItemEntity(pLevel, (float) pPos.getX() + 0.5f, (float) pPos.getY() + 1f, (float) pPos.getZ() + 0.5f, stack);
+                        pLevel.addFreshEntity(entity);
+                        pLevel.playSound(null, pPos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 2, 1);
+                    } else {
+                        pPlayer.sendSystemMessage(Component.translatable("block.runicarts.runicworkbench.dontknowhow"));
+                    }
+                } else {
+                    pPlayer.sendSystemMessage(Component.translatable("block.runicarts.runicworkbench.notenoughenergy"));
                 }
-                ItemStack stack = ent.recipe.assemble(ent.getCraftingInv(), pLevel.registryAccess());
-                ItemEntity entity = new ItemEntity(pLevel, (float)pPos.getX()+0.5f, (float)pPos.getY()+1f, (float)pPos.getZ()+0.5f, stack);
-                pLevel.addFreshEntity(entity);
-                pLevel.playSound(null, pPos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 2, 1);
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());

@@ -88,6 +88,10 @@ public class RunicArts
             event.accept(ItemInit.AIRRUNE);
             event.accept(ItemInit.WATERRUNE);
             event.accept(ItemInit.FIRERUNE);
+            event.accept(ItemInit.ENERGYRUNE);
+            event.accept(ItemInit.ICERUNE);
+            event.accept(ItemInit.VOIDRUNE);
+            event.accept(ItemInit.PLANTRUNE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

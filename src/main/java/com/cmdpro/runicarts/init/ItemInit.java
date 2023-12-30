@@ -20,6 +20,10 @@ public class ItemInit {
     public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "fire")));
     public static final RegistryObject<Item> WATERRUNE = register("waterrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "water")));
     public static final RegistryObject<Item> AIRRUNE = register("airrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "air")));
+    public static final RegistryObject<Item> ICERUNE = register("icerune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "ice")));
+    public static final RegistryObject<Item> ENERGYRUNE = register("energyrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "energy")));
+    public static final RegistryObject<Item> PLANTRUNE = register("plantrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "plant")));
+    public static final RegistryObject<Item> VOIDRUNE = register("voidrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "void")));
     private static <T extends Item> RegistryObject<T> register(final String name, final Supplier<T> item) {
         return ITEMS.register(name, item);
     }

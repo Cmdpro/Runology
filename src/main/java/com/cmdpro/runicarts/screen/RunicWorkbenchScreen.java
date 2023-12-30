@@ -36,6 +36,7 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        /*
         int y2 = y+69;
         int totalHeight = 0;
         for (Map.Entry<String, Float> i : menu.blockEntity.getRunicEnergy().entrySet()) {
@@ -48,7 +49,7 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
             RenderSystem.setShaderColor((float)color.getRed()/255f, (float)color.getGreen()/255f, (float)color.getBlue()/255f,1f);
             pGuiGraphics.fill(x + 9, y2 - height, x + 23, y2, 0xFFFFFFFF);
             y2 -= height;
-        }
+        }*/
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.25f);
         pGuiGraphics.renderItem(menu.blockEntity.item, x+124, y+35);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1F);
@@ -73,7 +74,7 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         }
         if (pMouseX >= x+8 && pMouseY >= y+17 && pMouseX <= x+23 && pMouseY <= y+32) {
             pGuiGraphics.renderTooltip(font, Component.translatable("container.runicarts.runicworkbench.runicenergyfull", menu.blockEntity.getTotalRunicEnergy(), 1000), pMouseX, pMouseY);
-        }
+        }/*
         int y2 = y+69;
         int totalHeight = 0;
         List<FormattedCharSequence> component = new ArrayList<>();
@@ -91,6 +92,6 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         }
         if (component != null) {
             pGuiGraphics.renderTooltip(font, component, pMouseX, pMouseY);
-        }
+        }*/
     }
 }

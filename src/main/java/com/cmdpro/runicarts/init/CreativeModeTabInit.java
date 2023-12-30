@@ -16,10 +16,10 @@ public class CreativeModeTabInit {
 
     public static RegistryObject<CreativeModeTab> ITEMS = CREATIVE_MODE_TABS.register("runicarts_items", () ->
             CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.COPPERGAUNTLET.get()))
-                    .title(Component.translatable("creativemodetab.runicarts_items")).build());
+                    .title(Component.translatable("creativemodetab.runicartsitems")).build());
     public static RegistryObject<CreativeModeTab> BLOCKS = CREATIVE_MODE_TABS.register("runicarts_blocks", () ->
             CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.RUNICWORKBENCHITEM.get()))
-                    .title(Component.translatable("creativemodetab.runicarts_blocks")).build());
+                    .title(Component.translatable("creativemodetab.runicartsblocks")).build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
