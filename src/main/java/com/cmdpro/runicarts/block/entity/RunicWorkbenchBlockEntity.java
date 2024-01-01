@@ -275,9 +275,9 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     }
     private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
         if (!item.isEmpty()) {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.divinationtable.studying", Animation.LoopType.LOOP));
+            event.getController().setAnimation(RawAnimation.begin().then("animation.runicworkbench.ready", Animation.LoopType.LOOP));
         } else {
-            event.getController().setAnimation(RawAnimation.begin().then("animation.divinationtable.idle", Animation.LoopType.LOOP));
+            event.getController().setAnimation(RawAnimation.begin().then("animation.runicworkbench.idle", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
     }

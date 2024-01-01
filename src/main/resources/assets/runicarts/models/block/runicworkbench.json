@@ -5,9 +5,6 @@
     64,
     64
   ],
-  "textures": {
-    "particle": "runicarts:block/divinationtable"
-  },
   "display": {
     "thirdperson_righthand": {
       "rotation": [

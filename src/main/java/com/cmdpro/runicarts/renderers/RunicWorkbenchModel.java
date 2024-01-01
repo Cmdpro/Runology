@@ -8,16 +8,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class RunicWorkbenchModel extends GeoModel<RunicWorkbenchBlockEntity> {
     @Override
     public ResourceLocation getModelResource(RunicWorkbenchBlockEntity object) {
-        return new ResourceLocation(RunicArts.MOD_ID, "geo/divinationtable.geo.json");
+        return new ResourceLocation(RunicArts.MOD_ID, "geo/runicworkbench.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(RunicWorkbenchBlockEntity object) {
-        return new ResourceLocation(RunicArts.MOD_ID, "textures/block/divinationtable.png");
+        return new ResourceLocation(RunicArts.MOD_ID, "textures/block/runicworkbench.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(RunicWorkbenchBlockEntity animatable) {
-        return new ResourceLocation(RunicArts.MOD_ID, "animations/divinationtable.animation.json");
+        return new ResourceLocation(RunicArts.MOD_ID, "animations/runicworkbench.animation.json");
     }
 }
