@@ -1,8 +1,8 @@
 {
   "item.runicarts.coppergauntlet": "Copper Gauntlet",
   "container.runicarts.runicworkbench": "Runic Workbench",
+  "container.runicarts.runicworkbench.runicenergyamount": "%1$s/%2$s %3$s",
   "container.runicarts.runicworkbench.runicenergycost": "%1$s %2$s",
-  "container.runicarts.runicworkbench.runicenergyfull": "%1$s/%2$s Total Runic Energy",
   "block.runicarts.runicworkbench": "Runic Workbench",
   "block.runicarts.runicworkbench.notenoughenergy": "The Runic Workbench does not have enough Runic Energy for the recipe you are trying to make!",
   "block.runicarts.runicworkbench.dontknowhow": "You do not know how to create the recipe in the Runic Workbench",

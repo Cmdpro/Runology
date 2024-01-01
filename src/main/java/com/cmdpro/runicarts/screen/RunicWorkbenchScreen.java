@@ -2,6 +2,7 @@ package com.cmdpro.runicarts.screen;
 
 import com.cmdpro.runicarts.RunicArts;
 import com.cmdpro.runicarts.api.RunicArtsUtil;
+import com.cmdpro.runicarts.api.RunicEnergyType;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -22,6 +23,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbenchMenu> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(RunicArts.MOD_ID, "textures/gui/runicworkbench.png");
@@ -36,20 +38,20 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
-        /*
-        int y2 = y+69;
-        int totalHeight = 0;
-        for (Map.Entry<String, Float> i : menu.blockEntity.getRunicEnergy().entrySet()) {
-            int height = (int)Math.ceil((1f/(float)menu.blockEntity.getRunicEnergy().keySet().size())*32f);
-            totalHeight += height;
-            if (totalHeight > 32) {
-                height -= totalHeight-32;
+        int x2 = x+7;
+        int y2 = y+36;
+        Map.Entry<String, Float>[] entrySet = menu.blockEntity.getRunicEnergy().entrySet().toArray(new Map.Entry[0]);
+        for (int i = 0; i < entrySet.length; i++) {
+            Map.Entry<String, Float> entry = entrySet[i];
+            RunicEnergyType type = RunicArtsUtil.RUNIC_ENERGY_TYPES_REGISTRY.get().getValue(ResourceLocation.tryParse(entry.getKey()));
+            RenderSystem.setShaderColor((float)type.color.getRed()/255f, (float)type.color.getGreen()/255f, (float)type.color.getBlue()/255f, 1.0F);
+            pGuiGraphics.blit(TEXTURE, x2, y2, 176, 0, 4, 4);
+            x2 += 7;
+            if (x2 > x+(7*3)) {
+                x2 -= 7*3;
+                y2 += 7;
             }
-            Color color = RunicArtsUtil.RUNIC_ENERGY_TYPES_REGISTRY.get().getValue(ResourceLocation.tryParse(i.getKey())).color;
-            RenderSystem.setShaderColor((float)color.getRed()/255f, (float)color.getGreen()/255f, (float)color.getBlue()/255f,1f);
-            pGuiGraphics.fill(x + 9, y2 - height, x + 23, y2, 0xFFFFFFFF);
-            y2 -= height;
-        }*/
+        }
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.25f);
         pGuiGraphics.renderItem(menu.blockEntity.item, x+124, y+35);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1F);
@@ -72,26 +74,23 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
                 pGuiGraphics.renderTooltip(font, tooltip, pMouseX, pMouseY);
             }
         }
-        if (pMouseX >= x+8 && pMouseY >= y+17 && pMouseX <= x+23 && pMouseY <= y+32) {
-            pGuiGraphics.renderTooltip(font, Component.translatable("container.runicarts.runicworkbench.runicenergyfull", menu.blockEntity.getTotalRunicEnergy(), 1000), pMouseX, pMouseY);
-        }/*
-        int y2 = y+69;
-        int totalHeight = 0;
         List<FormattedCharSequence> component = new ArrayList<>();
-        for (Map.Entry<String, Float> i : menu.blockEntity.getRunicEnergy().entrySet()) {
-            int height = (int)Math.ceil((1f/(float)menu.blockEntity.getRunicEnergy().keySet().size())*32f);
-            totalHeight += height;
-            if (totalHeight > 32) {
-                height -= totalHeight-32;
+        int x2 = x+7;
+        int y2 = y+36;
+        Map.Entry<String, Float>[] entrySet = menu.blockEntity.getRunicEnergy().entrySet().toArray(new Map.Entry[0]);
+        for (int i = 0; i < entrySet.length; i++) {
+            Map.Entry<String, Float> entry = entrySet[i];
+            if (pMouseX >= x2 && pMouseY >= y2 && pMouseX <= x2 + 4 && pMouseY <= y2+4) {
+                component.add(Component.translatable("container.runicarts.runicworkbench.runicenergyamount", entry.getValue(), 1000, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(entry.getKey())))).getVisualOrderText());
             }
-            if (pMouseX >= x + 9 && pMouseY >= y2 - height && pMouseX <= x + 23 && pMouseY <= y2) {
-                component.add(Component.translatable("container.runicarts.runicworkbench.runicenergycost", i.getValue(), Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(i.getKey())))).getVisualOrderText());
-                component.add(Component.translatable("container.runicarts.runicworkbench.runicenergyfull", menu.blockEntity.getTotalRunicEnergy(), 1000f).getVisualOrderText());
+            x2 += 7;
+            if (x2 > x+(7*3)) {
+                x2 -= 7*3;
+                y2 += 7;
             }
-            y2 -= height;
         }
         if (component != null) {
             pGuiGraphics.renderTooltip(font, component, pMouseX, pMouseY);
-        }*/
+        }
     }
 }

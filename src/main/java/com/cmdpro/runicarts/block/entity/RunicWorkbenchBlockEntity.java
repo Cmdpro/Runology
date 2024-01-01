@@ -224,7 +224,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RunicWorkbenchBlockEntity pBlockEntity) {
         if (!pLevel.isClientSide()) {
             if (pBlockEntity.itemHandler.getStackInSlot(0).getItem() instanceof RuneItem rune && !pBlockEntity.itemHandler.getStackInSlot(0).isEmpty()) {
-                if (pBlockEntity.getTotalRunicEnergy()+50 <= 1000) {
+                if (pBlockEntity.getRunicEnergy().getOrDefault(rune.runicEnergyType.toString(), 0f)+50 <= 1000) {
                     pBlockEntity.addRunicEnergy(rune.runicEnergyType.toString(), 50);
                     pBlockEntity.itemHandler.getStackInSlot(0).shrink(1);
                 }
