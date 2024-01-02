@@ -92,6 +92,10 @@ public class RunicArts
             event.accept(ItemInit.ICERUNE);
             event.accept(ItemInit.VOIDRUNE);
             event.accept(ItemInit.PLANTRUNE);
+            event.accept(ItemInit.EARTHPOWDER);
+            event.accept(ItemInit.WATERPOWDER);
+            event.accept(ItemInit.AIRRUNE);
+            event.accept(ItemInit.FIREPOWDER);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
