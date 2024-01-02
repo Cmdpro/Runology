@@ -94,11 +94,15 @@ public class RunicArts
             event.accept(ItemInit.PLANTRUNE);
             event.accept(ItemInit.EARTHPOWDER);
             event.accept(ItemInit.WATERPOWDER);
-            event.accept(ItemInit.AIRRUNE);
+            event.accept(ItemInit.AIRPOWDER);
             event.accept(ItemInit.FIREPOWDER);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
+            event.accept(BlockInit.EARTHORE);
+            event.accept(BlockInit.WATERORE);
+            event.accept(BlockInit.AIRORE);
+            event.accept(BlockInit.FIREORE);
         }
     }
     private void setup(final FMLCommonSetupEvent event)

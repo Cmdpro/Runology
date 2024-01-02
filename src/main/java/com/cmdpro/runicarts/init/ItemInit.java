@@ -16,10 +16,10 @@ public class ItemInit {
     public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new CopperGauntlet(new Item.Properties()));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "earth")));
-    public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "fire")));
-    public static final RegistryObject<Item> WATERRUNE = register("waterrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "water")));
-    public static final RegistryObject<Item> AIRRUNE = register("airrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "air")));
+    public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new EarthRune(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "earth")));
+    public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new FireRune(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "fire")));
+    public static final RegistryObject<Item> WATERRUNE = register("waterrune", () -> new WaterRune(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "water")));
+    public static final RegistryObject<Item> AIRRUNE = register("airrune", () -> new AirRune(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "air")));
     public static final RegistryObject<Item> ICERUNE = register("icerune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "ice")));
     public static final RegistryObject<Item> ENERGYRUNE = register("energyrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "energy")));
     public static final RegistryObject<Item> PLANTRUNE = register("plantrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(RunicArts.MOD_ID, "plant")));

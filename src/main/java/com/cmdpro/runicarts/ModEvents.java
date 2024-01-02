@@ -7,11 +7,14 @@ import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +24,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -31,6 +35,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.joml.Math;
 import top.theillusivec4.curios.api.CuriosCapability;
 
+import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -66,6 +71,30 @@ public class ModEvents {
 
                 data.updateData(event.player);
             });
+        }
+    }
+    @SubscribeEvent
+    public static void entityStrikedByLightning(EntityStruckByLightningEvent event) {
+        if (event.getEntity() instanceof ItemEntity entity) {
+            if (entity.getItem().is(ItemInit.FIRERUNE.get())) {
+                entity.playSound(SoundEvents.BEACON_POWER_SELECT);
+                entity.setInvulnerable(true);
+                entity.setItem(new ItemStack(ItemInit.ENERGYRUNE.get(), entity.getItem().getCount(), entity.getItem().getTag()));
+                ((ServerLevel)entity.level()).sendParticles(ParticleTypes.END_ROD, entity.position().x, entity.position().y, entity.position().z, 50, 0, 0, 0, 0.1);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void cropGrowEvent(BlockEvent.CropGrowEvent.Post event) {
+        if (!event.isCanceled()) {
+            List<ItemEntity> entities = event.getLevel().getEntitiesOfClass(ItemEntity.class, AABB.ofSize(event.getPos().getCenter(), 2, 2, 2));
+            for (ItemEntity i : entities) {
+                if (i.getItem().is(ItemInit.EARTHRUNE.get())) {
+                    i.playSound(SoundEvents.BEACON_POWER_SELECT);
+                    i.setItem(new ItemStack(ItemInit.PLANTRUNE.get(), i.getItem().getCount(), i.getItem().getTag()));
+                    ((ServerLevel)i.level()).sendParticles(ParticleTypes.END_ROD, i.position().x, i.position().y, i.position().z, 50, 0, 0, 0, 0.1);
+                }
+            }
         }
     }
     @SubscribeEvent

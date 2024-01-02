@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-
+    "runicarts:deepslateairore",
+    "runicarts:deepslatewaterore",
+    "runicarts:deepslatefireore",
+    "runicarts:deepslateearthore"
   ]
 }

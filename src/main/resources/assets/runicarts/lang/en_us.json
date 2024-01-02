@@ -17,6 +17,14 @@
   "item.runicarts.energyrune": "Energy Rune",
   "creativemodetab.runicartsblocks": "Runic Arts Blocks",
   "creativemodetab.runicartsitems": "Runic Arts Items",
+  "item.runicarts.firepowder": "Fire Powder",
+  "item.runicarts.waterpowder": "Water Powder",
+  "item.runicarts.earthpowder": "Earth Powder",
+  "item.runicarts.airpowder": "Air Powder",
+  "block.runicarts.deepslateearthore": "Deepslate Earth Ore",
+  "block.runicarts.deepslatefireore": "Deepslate Fire Ore",
+  "block.runicarts.deepslatewaterore": "Deepslate Water Ore",
+  "block.runicarts.deepslateairore": "Deepslate Air Ore",
 
   "curios.identifier.spiritmancertrinket": "Spiritmancer Trinket",
 

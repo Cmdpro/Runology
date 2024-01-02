@@ -5,6 +5,9 @@
     64,
     64
   ],
+  "textures": {
+    "particle": "runicarts:block/runicworkbench"
+  },
   "display": {
     "thirdperson_righthand": {
       "rotation": [
