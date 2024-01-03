@@ -22,7 +22,7 @@ public class RunicWorkbenchItem extends BlockItem implements GeoItem {
     }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
-        event.getController().setAnimation(RawAnimation.begin().then("animation.divinationtable.hand", Animation.LoopType.LOOP));
+        event.getController().setAnimation(RawAnimation.begin().then("animation.runicworkbench.hand", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 
