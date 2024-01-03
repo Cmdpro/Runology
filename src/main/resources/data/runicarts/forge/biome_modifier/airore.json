@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#is_overworld",
-  "features": "runicarts:airore",
-  "step": "underground_ores"
-}

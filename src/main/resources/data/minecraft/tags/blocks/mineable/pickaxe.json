@@ -1,10 +1,10 @@
 {
 	"replace": false,
 	"values": [
-		"runicarts:runicworkbench",
-		"runicarts:deepslateairore",
-		"runicarts:deepslatewaterore",
-		"runicarts:deepslatefireore",
-		"runicarts:deepslateearthore"
+		"runology:runicworkbench",
+		"runology:deepslateairore",
+		"runology:deepslatewaterore",
+		"runology:deepslatefireore",
+		"runology:deepslateearthore"
 	]
 }

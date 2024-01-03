@@ -1,0 +1,6 @@
+{
+  "name": "book.runology.runologyguide.name",
+  "creative_tab": "modonomicon:modonomicon",
+  "auto_add_read_conditions": true,
+  "model": "runology:runologyguideicon"
+}

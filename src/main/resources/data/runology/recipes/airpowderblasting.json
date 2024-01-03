@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "ingredient": {
+    "item": "runology:deepslateairore"
+  },
+  "result": "runology:airpowder"
+}
