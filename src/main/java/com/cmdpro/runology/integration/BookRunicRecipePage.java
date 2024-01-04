@@ -1,6 +1,6 @@
 package com.cmdpro.runology.integration;
 
-import com.cmdpro.spiritmancy.recipe.SoulAltarRecipe;
+import com.cmdpro.runology.init.RecipeInit;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.page.BookRecipePage;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 
 public class BookRunicRecipePage extends BookRecipePage<Recipe<?>> {
     public BookRunicRecipePage(BookTextHolder title1, ResourceLocation recipeId1, BookTextHolder title2, ResourceLocation recipeId2, BookTextHolder text, String anchor) {
-        super(SoulAltarRecipe.Type.INSTANCE, title1, recipeId1, title2, recipeId2, text, anchor);
+        super(RecipeInit.RUNICCRAFTING.get(), title1, recipeId1, title2, recipeId2, text, anchor);
     }
 
     public static BookRunicRecipePage fromJson(JsonObject json) {
@@ -45,6 +45,6 @@ public class BookRunicRecipePage extends BookRecipePage<Recipe<?>> {
 
     @Override
     public ResourceLocation getType() {
-        return SpiritmancyModonomiconConstants.Page.ALTAR_RECIPE;
+        return RunologyModonomiconConstants.Page.RUNICRECIPE;
     }
 }

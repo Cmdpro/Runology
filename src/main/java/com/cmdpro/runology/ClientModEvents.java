@@ -2,6 +2,9 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.MenuInit;
+import com.cmdpro.runology.integration.BookRunicRecipePage;
+import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
+import com.cmdpro.runology.integration.RunologyModonomiconConstants;
 import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
@@ -12,6 +15,7 @@ import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
 import net.minecraft.client.Minecraft;
@@ -56,6 +60,7 @@ public class ClientModEvents {
             }
         });
         MenuScreens.register(MenuInit.RUNICWORKBENCHMENU.get(), RunicWorkbenchScreen::new);
+        PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {

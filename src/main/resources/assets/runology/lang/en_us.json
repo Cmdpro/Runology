@@ -39,9 +39,10 @@
 
   "book.runology.runologyguide.name": "Runolograph",
   "book.runology.runologyguide.basics.name": "Basics",
-  "book.runology.runologyguide.soulcasting.name": "Soulcasting",
   "book.runology.runologyguide.equipment.name": "Equipment",
-  "book.runology.runologyguide.arcane.name": "Arcane",
+  "book.runology.runologyguide.purity.name": "Purity",
+  "book.runology.runologyguide.forgottenpractices.name": "Forgotten Practices",
+  "book.runology.runologyguide.runicmysteries.name": "Runic Mysteries",
 
   "book.runology.condition.runicknowledge.ln1": "Required Runic Knowledge : %1$s",
   "book.runology.condition.runicknowledge.ln2": "Your Runic Knowledge : %1$s",

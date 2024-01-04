@@ -1,6 +1,8 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.init.*;
+import com.cmdpro.runology.integration.BookRunicRecipePage;
+import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
 import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeCondition;
 import com.cmdpro.runology.networking.ModMessages;
@@ -111,7 +113,7 @@ public class Runology
         ModMessages.register();
         event.enqueueWork(ModCriteriaTriggers::register);
         LoaderRegistry.registerPredicate(new ResourceLocation("runology:empty"), (getter, pos, state) -> !state.isSolid());
-        //LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.ALTAR_RECIPE, BookAltarRecipePage::fromJson, BookAltarRecipePage::fromNetwork);
+        LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICRECIPE, BookRunicRecipePage::fromJson, BookRunicRecipePage::fromNetwork);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

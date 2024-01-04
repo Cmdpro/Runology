@@ -6,8 +6,8 @@
   "name": "book.runology.runologyguide.basics.runicworkbench.name",
   "pages": [
     {
-      "type": "modonomicon:text",
-      "text": "book.runology.runologyguide.basics.runicworkbench.page1.text"
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:testrecipe"
     }
   ],
   "x": 0,
