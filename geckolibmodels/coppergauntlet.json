@@ -2,18 +2,18 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "runology:item/coppergauntlet",
-		"particle": "runology:item/coppergauntlet"
+		"0": "runology:coppergauntlet",
+		"particle": "runology:coppergauntlet"
 	},
 	"elements": [
 		{
 			"from": [2, 0, 2],
-			"to": [14, 16, 14],
+			"to": [14, 19, 14],
 			"faces": {
-				"north": {"uv": [0, 0, 3, 4], "texture": "#0"},
-				"east": {"uv": [3, 0, 6, 4], "texture": "#0"},
-				"south": {"uv": [0, 4, 3, 8], "texture": "#0"},
-				"west": {"uv": [3, 4, 6, 8], "texture": "#0"},
+				"north": {"uv": [0, 0, 3, 4.75], "texture": "#0"},
+				"east": {"uv": [3, 0, 6, 4.75], "texture": "#0"},
+				"south": {"uv": [0, 4.75, 3, 9.5], "texture": "#0"},
+				"west": {"uv": [3, 4.75, 6, 9.5], "texture": "#0"},
 				"up": {"uv": [9, 3, 6, 0], "texture": "#0"},
 				"down": {"uv": [9, 3, 6, 6], "texture": "#0"}
 			}
@@ -22,22 +22,22 @@
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [-90, 0, 0],
-			"translation": [0, -2, 2.5],
+			"translation": [0, -2, 4],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"thirdperson_lefthand": {
 			"rotation": [-90, 0, 0],
-			"translation": [0, -2, 2.5],
+			"translation": [0, -2, 4],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_righthand": {
-			"rotation": [-82, 0, -10.75],
-			"translation": [-3.5, 1, 2.5],
+			"rotation": [-50.7, 16.69, -23.73],
+			"translation": [1.75, -2.25, -4.25],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [-82, 0, -10.75],
-			"translation": [-3.5, 1, 2.5],
+			"rotation": [-50.7, 16.69, -23.73],
+			"translation": [1.75, -2.25, -4.25],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"ground": {
@@ -45,7 +45,11 @@
 		},
 		"gui": {
 			"rotation": [42.16, -2.66, -44.43],
+			"translation": [-1, -0.5, 0],
 			"scale": [0.6, 0.6, 0.6]
+		},
+		"fixed": {
+			"translation": [0, -1.5, 0]
 		}
 	}
 }
