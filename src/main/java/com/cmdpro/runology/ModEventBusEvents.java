@@ -10,8 +10,12 @@ import com.cmdpro.runology.init.AttributeInit;
 import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -47,5 +51,19 @@ public class ModEventBusEvents {
                 .setName(new ResourceLocation(Runology.MOD_ID, "runicenergytypes")));
         RunologyUtil.INSTABILITY_EVENTS_REGISTRY = event.create(new RegistryBuilder<InstabilityEvent>()
                 .setName(new ResourceLocation(Runology.MOD_ID, "instabilityevents")));
+    }
+    @SubscribeEvent
+    public static void entitySpawnRestriction(SpawnPlacementRegisterEvent event) {
+
+        event.register(EntityInit.RUNICSCOUT.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Monster::checkMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(EntityInit.RUNICCONSTRUCT.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Monster::checkMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.REPLACE);
     }
 }
