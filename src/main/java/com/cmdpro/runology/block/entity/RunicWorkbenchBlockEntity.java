@@ -260,7 +260,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
             ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).readEntries;
             for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
                 for (ResourceLocation o : i.getValue()) {
-                    if (o.toString().equals(recipe.getEntry())) {
+                    if (o.equals(recipe.getEntry())) {
                         return true;
                     }
                 }

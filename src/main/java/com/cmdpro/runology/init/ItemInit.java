@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Runology.MOD_ID);
-    public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new CopperGauntlet(new Item.Properties()));
+    public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new CopperGauntlet(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new EarthRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "earth")));
@@ -28,6 +28,7 @@ public class ItemInit {
     public static final RegistryObject<Item> FIREPOWDER = register("firepowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WATERPOWDER = register("waterpowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> AIRPOWDER = register("airpowder", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> INSTABILITYRESONATOR = register("instabilityreader", () -> new InstabilityResonator(new Item.Properties().stacksTo(1)));
     private static <T extends Item> RegistryObject<T> register(final String name, final Supplier<T> item) {
         return ITEMS.register(name, item);
     }

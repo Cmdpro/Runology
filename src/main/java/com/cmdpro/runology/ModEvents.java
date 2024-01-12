@@ -1,14 +1,20 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.InstabilityEvent;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.*;
+import com.cmdpro.runology.moddata.ChunkModData;
+import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.cmdpro.runology.moddata.PlayerModData;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
 import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
+import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,6 +26,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.*;
@@ -36,9 +43,7 @@ import org.joml.Math;
 import top.theillusivec4.curios.api.CuriosCapability;
 
 import java.awt.event.ItemEvent;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentMap;
 
 @Mod.EventBusSubscriber(modid = Runology.MOD_ID)
@@ -49,6 +54,14 @@ public class ModEvents {
             if (!event.getObject().getCapability(PlayerModDataProvider.PLAYER_MODDATA).isPresent()) {
                 event.addCapability(new ResourceLocation(Runology.MOD_ID, "properties"), new PlayerModDataProvider());
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onAttachCapabilitiesChunk(AttachCapabilitiesEvent<LevelChunk> event) {
+        if (!event.getObject().getCapability(ChunkModDataProvider.CHUNK_MODDATA).isPresent()) {
+            ChunkModDataProvider prov = new ChunkModDataProvider();
+            event.addCapability(new ResourceLocation(Runology.MOD_ID, "properties"), prov);
+            prov.createChunkData().setChunk((event.getObject()));
         }
     }
     @SubscribeEvent
@@ -68,8 +81,35 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-
                 data.updateData(event.player);
+            });
+
+            event.player.level().getChunkAt(event.player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).ifPresent(data -> {
+                HashMap<ResourceLocation, InstabilityEvent> possibleEvents = new HashMap();
+                for (Map.Entry<ResourceKey<InstabilityEvent>, InstabilityEvent> i : RunologyUtil.INSTABILITY_EVENTS_REGISTRY.get().getEntries()) {
+                    if (data.getInstability() >= i.getValue().minInstability) {
+                        possibleEvents.put(i.getKey().location(), i.getValue());
+                    }
+                }
+                if (data.getInstability() > ChunkModData.MAX_INSTABILITY) {
+                    data.setInstability(ChunkModData.MAX_INSTABILITY);
+                }
+                if (data.getInstability() < 0) {
+                    data.setInstability(0);
+                }
+                if (possibleEvents.size() > 0) {
+                    event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data2 -> {
+                        data2.setInstabilityEventCooldown(data2.getInstabilityEventCooldown() + 1);
+                        if (data2.getInstabilityEventCooldown() > 6000 - (3000 * (data.getInstability() / ChunkModData.MAX_INSTABILITY))) {
+                            int rand = event.player.level().random.nextInt(0, possibleEvents.size());
+                            ResourceLocation key = possibleEvents.keySet().toArray(new ResourceLocation[0])[rand];
+                            InstabilityEvent instabilityevent = possibleEvents.get(key);
+                            instabilityevent.run.run(event.player, data.getChunk());
+                            data2.setInstabilityEventCooldown(0);
+                            ModCriteriaTriggers.INSTABILITY_EVENT.trigger((ServerPlayer)event.player, key);
+                        }
+                    });
+                }
             });
         }
     }

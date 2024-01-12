@@ -15,4 +15,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 public class EntityInit {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Runology.MOD_ID);
+    public static final RegistryObject<EntityType<RunicConstruct>> RUNICCONSTRUCT = ENTITY_TYPES.register("runicconstruct", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicConstruct>) RunicConstruct::new, MobCategory.MONSTER).sized(1.5f, 2.875f).build(Runology.MOD_ID + ":" + "runicconstruct"));
+    public static final RegistryObject<EntityType<RunicScout>> RUNICSCOUT = ENTITY_TYPES.register("runicscout", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicScout>) RunicScout::new, MobCategory.MONSTER).sized(0.625f, 0.75f).build(Runology.MOD_ID + ":" + "runicscout"));
 }

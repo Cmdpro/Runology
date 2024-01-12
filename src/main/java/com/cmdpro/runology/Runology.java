@@ -1,5 +1,6 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.InstabilityEvent;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
@@ -70,6 +71,7 @@ public class Runology
         ParticleInit.register(bus);
         AttributeInit.ATTRIBUTES.register(bus);
         RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
+        InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
         GeckoLib.initialize();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -105,6 +107,7 @@ public class Runology
             event.accept(BlockInit.WATERORE);
             event.accept(BlockInit.AIRORE);
             event.accept(BlockInit.FIREORE);
+            event.accept(BlockInit.SHATTERSTONE);
         }
     }
     private void setup(final FMLCommonSetupEvent event)

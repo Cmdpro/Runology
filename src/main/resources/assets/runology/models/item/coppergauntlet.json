@@ -2,8 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "runology:coppergauntlet",
-		"particle": "runology:coppergauntlet"
+		"0": "runology:item/coppergauntlet"
 	},
 	"elements": [
 		{

@@ -19,6 +19,8 @@ public class BlockInit {
     public static final DeferredRegister<Item> ITEMS = ItemInit.ITEMS;
     public static final RegistryObject<Block> RUNICWORKBENCH = registerBlock("runicworkbench",
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
+    public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> EARTHORE = register("deepslateearthore",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> AIRORE = register("deepslateairore",

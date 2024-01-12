@@ -1,0 +1,17 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "runology:item/instabilityreader1"
+    },
+    "overrides": [
+        { "predicate": { "runology:instability": 0 }, "model": "runology:item/instabilityreader" },
+        { "predicate": { "runology:instability": 125 }, "model": "runology:item/instabilityreader2" },
+        { "predicate": { "runology:instability": 250 }, "model": "runology:item/instabilityreader3" },
+        { "predicate": { "runology:instability": 375 }, "model": "runology:item/instabilityreader4" },
+        { "predicate": { "runology:instability": 500 }, "model": "runology:item/instabilityreader5" },
+        { "predicate": { "runology:instability": 625 }, "model": "runology:item/instabilityreader6" },
+        { "predicate": { "runology:instability": 750 }, "model": "runology:item/instabilityreader7" },
+        { "predicate": { "runology:instability": 875 }, "model": "runology:item/instabilityreader8" },
+        { "predicate": { "runology:instability": 1000 }, "model": "runology:item/instabilityreader9" }
+    ]
+}

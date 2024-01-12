@@ -1,6 +1,8 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.init.BlockEntityInit;
+import com.cmdpro.runology.init.EntityInit;
+import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.MenuInit;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
@@ -9,8 +11,9 @@ import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeConditio
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
+import com.cmdpro.runology.renderers.RunicConstructRenderer;
+import com.cmdpro.runology.renderers.RunicScoutRenderer;
 import com.cmdpro.runology.renderers.RunicWorkbenchRenderer;
-import com.cmdpro.runology.screen.RunicWorkbenchMenu;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
@@ -20,11 +23,12 @@ import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -61,6 +65,15 @@ public class ClientModEvents {
         });
         MenuScreens.register(MenuInit.RUNICWORKBENCHMENU.get(), RunicWorkbenchScreen::new);
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
+        EntityRenderers.register(EntityInit.RUNICCONSTRUCT.get(), RunicConstructRenderer::new);
+        EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);
+        event.enqueueWork(new Runnable() {
+            public void run() {
+                ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation("runology:instability"), (stack, level, entity, seed) -> {
+                    return ClientPlayerData.getPlayerChunkInstability();
+                });
+            }
+        });
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {

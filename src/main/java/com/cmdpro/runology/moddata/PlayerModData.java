@@ -22,6 +22,7 @@ public class PlayerModData {
     }
     private HashMap<ResourceLocation, List<ResourceLocation>> unlocked;
     private int runicKnowledge;
+    private int instabilityEventCooldown;
     public HashMap<ResourceLocation, List<ResourceLocation>> getUnlocked() {
         return unlocked;
     }
@@ -31,9 +32,21 @@ public class PlayerModData {
     public void setRunicKnowledge(int amount) {
         this.runicKnowledge = amount;
     }
+    public int getInstabilityEventCooldown() {
+        return instabilityEventCooldown;
+    }
+    public void setInstabilityEventCooldown(int amount) {
+        this.instabilityEventCooldown = amount;
+    }
 
     public void updateData(ServerPlayer player) {
-        ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(getRunicKnowledge()), (player));
+        if (player.level().getChunkAt(player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).isPresent()) {
+            player.level().getChunkAt(player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).ifPresent((data) -> {
+                ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(getRunicKnowledge(), data.getInstability()), (player));
+            });
+        } else {
+            ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(getRunicKnowledge(), 0), (player));
+        }
     }
     public void updateData(Player player) {
         updateData((ServerPlayer)player);

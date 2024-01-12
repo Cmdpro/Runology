@@ -1,8 +1,11 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.InstabilityEvent;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.RunicEnergyType;
 import com.cmdpro.runology.config.RunologyConfig;
+import com.cmdpro.runology.entity.RunicConstruct;
+import com.cmdpro.runology.entity.RunicScout;
 import com.cmdpro.runology.init.AttributeInit;
 import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +25,8 @@ import net.minecraftforge.registries.RegistryBuilder;
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
+        event.put(EntityInit.RUNICCONSTRUCT.get(), RunicConstruct.setAttributes());
+        event.put(EntityInit.RUNICSCOUT.get(), RunicScout.setAttributes());
     }
     @SubscribeEvent
     public static void onModConfigEvent(ModConfigEvent event) {
@@ -40,5 +45,7 @@ public class ModEventBusEvents {
     public static void registerRegistries(NewRegistryEvent event) {
         RunologyUtil.RUNIC_ENERGY_TYPES_REGISTRY = event.create(new RegistryBuilder<RunicEnergyType>()
                 .setName(new ResourceLocation(Runology.MOD_ID, "runicenergytypes")));
+        RunologyUtil.INSTABILITY_EVENTS_REGISTRY = event.create(new RegistryBuilder<InstabilityEvent>()
+                .setName(new ResourceLocation(Runology.MOD_ID, "instabilityevents")));
     }
 }

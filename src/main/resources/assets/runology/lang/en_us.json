@@ -25,8 +25,11 @@
   "block.runology.deepslatefireore": "Deepslate Fire Ore",
   "block.runology.deepslatewaterore": "Deepslate Water Ore",
   "block.runology.deepslateairore": "Deepslate Air Ore",
+  "entity.runology.runicconstruct": "Runic Construct",
+  "entity.runology.runicscout": "Runic Scout",
+  "item.runology.instabilityreader": "Instability Resonator",
 
-  "curios.identifier.spiritmancertrinket": "Spiritmancer Trinket",
+  "curios.identifier.runictrinket": "Runic Trinket",
 
   "rune.runology.fire": "Fire",
   "rune.runology.earth": "Earth",
@@ -37,7 +40,7 @@
   "rune.runology.void": "Void",
   "rune.runology.energy": "Energy",
 
-  "book.runology.runologyguide.name": "Runolograph",
+  "book.runology.runologyguide.name": "Runic Codex",
   "book.runology.runologyguide.basics.name": "Basics",
   "book.runology.runologyguide.equipment.name": "Equipment",
   "book.runology.runologyguide.purity.name": "Purity",
