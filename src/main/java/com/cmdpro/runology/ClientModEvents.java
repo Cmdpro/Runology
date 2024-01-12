@@ -1,9 +1,6 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.init.BlockEntityInit;
-import com.cmdpro.runology.init.EntityInit;
-import com.cmdpro.runology.init.ItemInit;
-import com.cmdpro.runology.init.MenuInit;
+import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
@@ -14,6 +11,7 @@ import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
 import com.cmdpro.runology.renderers.RunicConstructRenderer;
 import com.cmdpro.runology.renderers.RunicScoutRenderer;
 import com.cmdpro.runology.renderers.RunicWorkbenchRenderer;
+import com.cmdpro.runology.renderers.ShatterRealmEffects;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
@@ -23,23 +21,35 @@ import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientModEvents {
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICWORKBENCH.get(), RunicWorkbenchRenderer::new);
+    }
+    @SubscribeEvent
+    public static void onRegisterDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
+        registerDimensionEffects((dimension, effects) -> event.register(dimension.location(), effects)); //
+    }
+    public static void registerDimensionEffects(BiConsumer<ResourceKey<Level>, ShatterRealmEffects> consumer) {
+        consumer.accept(DimensionInit.SHATTERREALM, new ShatterRealmEffects());
     }
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {

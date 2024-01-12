@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "runology:block/shatterstonepillartop",
+    "side": "runology:block/shatterstonepillar"
+  }
+}

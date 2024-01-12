@@ -39,5 +39,19 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": []
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "runology:shatterleaf"
+    ],
+    []
+  ]
 }

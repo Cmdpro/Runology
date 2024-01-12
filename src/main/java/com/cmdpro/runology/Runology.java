@@ -18,6 +18,9 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -72,6 +75,7 @@ public class Runology
         AttributeInit.ATTRIBUTES.register(bus);
         RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
         InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
+        FeatureInit.register(bus);
         GeckoLib.initialize();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -108,7 +112,19 @@ public class Runology
             event.accept(BlockInit.AIRORE);
             event.accept(BlockInit.FIREORE);
             event.accept(BlockInit.SHATTERSTONE);
+            event.accept(BlockInit.SHATTERSTONEBRICKS);
+            event.accept(BlockInit.SHATTERSTONEBRICKSLAB);
+            event.accept(BlockInit.SHATTERSTONEPILLAR);
+            event.accept(BlockInit.SHATTERSTONEBRICKSTAIRS);
+            event.accept(BlockInit.SHATTERSTONEBRICKWALL);
+            event.accept(BlockInit.SHATTERSTONESLAB);
+            event.accept(BlockInit.SHATTERSTONESTAIRS);
+            event.accept(BlockInit.SHATTERSTONEWALL);
+            event.accept(BlockInit.CHISELEDSHATTERSTONEBRICKS);
+            event.accept(BlockInit.CRACKEDSHATTERSTONEBRICKS);
+            event.accept(BlockInit.SHATTERLEAF);
         }
+
     }
     private void setup(final FMLCommonSetupEvent event)
     {
@@ -117,6 +133,9 @@ public class Runology
         event.enqueueWork(ModCriteriaTriggers::register);
         LoaderRegistry.registerPredicate(new ResourceLocation("runology:empty"), (getter, pos, state) -> !state.isSolid());
         LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICRECIPE, BookRunicRecipePage::fromJson, BookRunicRecipePage::fromNetwork);
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockInit.SHATTERLEAF.getId(), BlockInit.POTTED_SHATTERLEAF);
+        });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)

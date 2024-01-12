@@ -5,6 +5,17 @@
 		"runology:deepslateairore",
 		"runology:deepslatewaterore",
 		"runology:deepslatefireore",
-		"runology:deepslateearthore"
+		"runology:deepslateearthore",
+		"runology:shatterstone",
+		"runology:shatterstonebricks",
+		"runology:shatterstonewall",
+		"runology:shatterstonestairs",
+		"runology:shatterstoneslab",
+		"runology:shatterstonebrickwall",
+		"runology:shatterstonebrickstairs",
+		"runology:shatterstonebrickslab",
+		"runology:crackedshatterstonebricks",
+		"runology:chiseledshatterstonebricks",
+		"runology:shatterstonepillar"
 	]
 }

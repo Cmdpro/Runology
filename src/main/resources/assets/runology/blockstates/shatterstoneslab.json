@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "runology:block/shatterstoneslab"
+    },
+    "type=double": {
+      "model": "runology:block/shatterstone"
+    },
+    "type=top": {
+      "model": "runology:block/shatterstonetop"
+    }
+  }
+}
