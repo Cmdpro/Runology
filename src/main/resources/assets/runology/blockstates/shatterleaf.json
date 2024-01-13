@@ -1,6 +1,15 @@
 {
   "variants": {
-    "": {
+    "age=0": {
+      "model": "runology:block/shatterleafempty"
+    },
+    "age=1": {
+      "model": "runology:block/shatterleafempty"
+    },
+    "age=2": {
+      "model": "runology:block/shatterleafempty"
+    },
+    "age=3": {
       "model": "runology:block/shatterleaf"
     }
   }

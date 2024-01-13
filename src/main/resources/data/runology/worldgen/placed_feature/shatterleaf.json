@@ -10,10 +10,45 @@
           "type": "minecraft:simple_block",
           "config": {
             "to_place": {
-              "type": "minecraft:simple_state_provider",
-              "state": {
-                "Name": "runology:shatterleaf"
-              }
+              "type": "minecraft:weighted_state_provider",
+              "entries": [
+                {
+                  "weight": 10,
+                  "data": {
+                    "Name": "runology:shatterleaf",
+                    "Properties": {
+                      "age": "3"
+                    }
+                  }
+                },
+                {
+                  "weight": 7,
+                  "data": {
+                    "Name": "runology:shatterleaf",
+                    "Properties": {
+                      "age": "2"
+                    }
+                  }
+                },
+                {
+                  "weight": 4,
+                  "data": {
+                    "Name": "runology:shatterleaf",
+                    "Properties": {
+                      "age": "1"
+                    }
+                  }
+                },
+                {
+                  "weight": 1,
+                  "data": {
+                    "Name": "runology:shatterleaf",
+                    "Properties": {
+                      "age": "0"
+                    }
+                  }
+                }
+              ]
             }
           }
         },

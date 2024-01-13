@@ -52,7 +52,7 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERLEAF = register("shatterleaf",
             () -> new Shatterleaf(() -> MobEffects.BLINDNESS, 5,
-                    BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission()), (object) -> () -> new BlockItem(object.get(), new Item.Properties()));
+                    BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission().lightLevel(Shatterleaf.LIGHT_EMISSION)), (object) -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> POTTED_SHATTERLEAF = BLOCKS.register("pottedshatterleaf",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), BlockInit.SHATTERLEAF,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
