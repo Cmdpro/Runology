@@ -109,5 +109,4 @@ public class Shatterleaf extends FlowerBlock implements BonemealableBlock {
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return pState.is(BlockInit.SHATTERSTONE.get());
     }
-
 }
