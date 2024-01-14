@@ -62,12 +62,12 @@ A magic mod about manipulating souls
 #    versionRange="[21.0,)"
 #    ordering="NONE"
 #    side="BOTH"
-#[[dependencies.runology]]
-#    modId="geckolib"
-#    mandatory=true
-#    versionRange="[4.1.2,)"
-#    ordering="NONE"
-#    side="BOTH"
+[[dependencies.runology]]
+    modId="geckolib"
+    mandatory=true
+    versionRange="[4.1.2,)"
+    ordering="NONE"
+    side="BOTH"
 [[dependencies.runology]]
     modId="modonomicon"
     mandatory=true

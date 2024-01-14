@@ -7,7 +7,7 @@
       "model": "runology:block/shatterstone"
     },
     "type=top": {
-      "model": "runology:block/shatterstonetop"
+      "model": "runology:block/shatterstoneslabtop"
     }
   }
 }

@@ -21,6 +21,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.structure.structures.EndCityStructure;
+import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -75,6 +77,7 @@ public class Runology
         AttributeInit.ATTRIBUTES.register(bus);
         RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
         InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
+        StructureInit.register(bus);
         FeatureInit.register(bus);
         GeckoLib.initialize();
         // Register ourselves for server and other game events we are interested in
@@ -87,7 +90,8 @@ public class Runology
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-
+            event.accept(ItemInit.RUNICCONSTRUCTSPAWNEGG);
+            event.accept(ItemInit.RUNICSCOUTSPAWNEGG);
         }
         if (event.getTabKey() == CreativeModeTabInit.ITEMS.getKey()) {
             event.accept(ItemInit.COPPERGAUNTLET);
@@ -104,6 +108,7 @@ public class Runology
             event.accept(ItemInit.WATERPOWDER);
             event.accept(ItemInit.AIRPOWDER);
             event.accept(ItemInit.FIREPOWDER);
+            event.accept(ItemInit.SHATTERBERRIES);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

@@ -1,0 +1,11 @@
+{
+  "type": "runology:shatterrealmstructure",
+  "biomes": "runology:shatterrealm",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "start_pool": "runology:spawnerstructure",
+  "size": 1,
+  "max_distance_from_center": 80,
+  "use_expansion_hack": false
+}

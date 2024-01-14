@@ -46,11 +46,14 @@
     [],
     [],
     [],
-    [],
+    [
+      "runology:mysteriumore"
+    ],
     [],
     [],
     [
-      "runology:shatterleaf"
+      "runology:shatterleaf",
+      "runology:shattertree"
     ],
     []
   ]

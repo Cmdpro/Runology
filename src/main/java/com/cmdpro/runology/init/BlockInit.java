@@ -50,6 +50,8 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> FIREORE = register("deepslatefireore",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> MYSTERIUMORE = register("mysteriumore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERLEAF = register("shatterleaf",
             () -> new Shatterleaf(() -> MobEffects.BLINDNESS, 5,
                     BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission().lightLevel(Shatterleaf.LIGHT_EMISSION)), (object) -> () -> new BlockItem(object.get(), new Item.Properties()));

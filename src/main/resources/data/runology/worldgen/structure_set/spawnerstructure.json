@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "runology:spawnerstructure",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1005468508,
+    "spacing": 20,
+    "separation": 10
+  }
+}
