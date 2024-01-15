@@ -41,6 +41,12 @@
   "block.runology.crackedshatterstonebricks": "Cracked Shatterstone Bricks",
   "block.runology.shatterleaf": "Shatterleaf",
   "item.runology.shatterberries": "Shatterberries",
+  "item.runology.runicconstructspawnegg": "Runic Construct Spawn Egg",
+  "item.runology.runicscoutspawnegg": "Runic Scout Spawn Egg",
+  "block.runology.mysteriumore": "Mysterium Ore",
+  "block.runology.mysteriumblock": "Block of Mysterium",
+  "item.runology.rawmysterium": "Raw Mysterium",
+  "item.runology.mysteriumingot": "Mysterium Ingot",
 
   "curios.identifier.runictrinket": "Runic Trinket",
 
