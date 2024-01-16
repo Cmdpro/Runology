@@ -47,6 +47,11 @@
   "block.runology.mysteriumblock": "Block of Mysterium",
   "item.runology.rawmysterium": "Raw Mysterium",
   "item.runology.mysteriumingot": "Mysterium Ingot",
+  "item.runology.mysteriumnugget": "Mysterium Nugget",
+  "block.runology.rawmysteriumblock": "Block of Raw Mysterium",
+  "block.runology.shattercrystal": "Shattercrystal",
+  "block.runology.shatterwood": "Petrified Shatterwood",
+  "block.runology.voidglass": "Void Glass",
 
   "curios.identifier.runictrinket": "Runic Trinket",
 

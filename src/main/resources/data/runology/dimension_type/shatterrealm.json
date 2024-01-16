@@ -14,7 +14,7 @@
   "effects": "runology:shatterrealm",
   "infiniburn": "#minecraft:infiniburn_end",
   "min_y": 0,
-  "height": 256,
+  "height": 320,
   "monster_spawn_light_level": {
     "type": "minecraft:uniform",
     "value": {

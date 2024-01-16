@@ -1,0 +1,18 @@
+{
+  "type": "runology:shapelessrunicrecipe",
+  "entry": "runology:basics/runicworkbench",
+  "runicenergy": [
+    {
+      "type": "runology:void",
+      "amount": 10
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "result": {
+    "item": "runology:voidglass"
+  }
+}

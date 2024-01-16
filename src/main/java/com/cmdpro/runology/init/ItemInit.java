@@ -18,6 +18,7 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Runology.MOD_ID);
     public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new CopperGauntlet(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
+    public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new EarthRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "earth")));
     public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new FireRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "fire")));
@@ -35,6 +36,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SHATTERBERRIES = register("shatterberries", () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build())));
     public static final RegistryObject<Item> RAWMYSTERIUM = register("rawmysterium", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MYSTERIUMINGOT = register("mysteriumingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> MYSTERIUMNUGGET = register("mysteriumnugget", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> RUNICCONSTRUCTSPAWNEGG = register("runicconstructspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICCONSTRUCT, 0x000000, 0xaa00aa, new Item.Properties()));
     public static final RegistryObject<Item> RUNICSCOUTSPAWNEGG = register("runicscoutspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICSCOUT, 0x000000, 0xaa00aa, new Item.Properties()));

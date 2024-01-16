@@ -2,6 +2,7 @@ package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
+import com.cmdpro.runology.block.entity.VoidGlassBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,9 +13,13 @@ public class BlockEntityInit {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Runology.MOD_ID);
     public static final RegistryObject<BlockEntityType<RunicWorkbenchBlockEntity>> RUNICWORKBENCH =
-            BLOCK_ENTITIES.register("runicworkbench_block_entity", () ->
+            BLOCK_ENTITIES.register("runicworkbenchblockentity", () ->
                     BlockEntityType.Builder.of(RunicWorkbenchBlockEntity::new,
                             BlockInit.RUNICWORKBENCH.get()).build(null));
+    public static final RegistryObject<BlockEntityType<VoidGlassBlockEntity>> VOIDGLASS =
+            BLOCK_ENTITIES.register("voidglassblockentity", () ->
+                    BlockEntityType.Builder.of(VoidGlassBlockEntity::new,
+                            BlockInit.VOIDGLASS.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

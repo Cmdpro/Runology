@@ -2,6 +2,7 @@ package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.*;
+import com.cmdpro.runology.item.VoidGlassItem;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,6 +23,10 @@ public class BlockInit {
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> VOIDGLASS = registerBlock("voidglass",
+            () -> new VoidGlass(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+    public static final RegistryObject<Block> SHATTERWOOD = register("shatterwood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).lightLevel((state) -> 0)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEBRICKS = register("shatterstonebricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICKS)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEPILLAR = register("shatterstonepillar",
@@ -54,6 +59,10 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE).lightLevel((state) -> 5)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> MYSTERIUMBLOCK = register("mysteriumblock",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).lightLevel((state) -> 10)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> RAWMYSTERIUMBLOCK = register("rawmysteriumblock",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK).lightLevel((state) -> 10)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> SHATTERCRYSTAL = register("shattercrystal",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).lightLevel((state) -> 10)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERLEAF = register("shatterleaf",
             () -> new Shatterleaf(() -> MobEffects.BLINDNESS, 5,
                     BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission().lightLevel(Shatterleaf.LIGHT_EMISSION)), (object) -> () -> new BlockItem(object.get(), new Item.Properties()));

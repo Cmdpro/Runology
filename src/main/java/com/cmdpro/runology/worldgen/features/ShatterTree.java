@@ -28,11 +28,7 @@ public class ShatterTree extends Feature {
             return false;
         }
         for (int i = 0; i < 64; i++) {
-            if (!pContext.level().isEmptyBlock(pContext.origin().offset(0, -i, 0))) {
-                if (!pContext.level().getBlockState(pContext.origin().offset(0, -i, 0)).is(BlockInit.SHATTERSTONE.get())) {
-                    reachedBottom = false;
-                    break;
-                }
+            if (pContext.level().getBlockState(pContext.origin().offset(0, -i, 0)).is(BlockInit.SHATTERSTONE.get())) {
                 reachedBottom = true;
                 pos = pContext.origin().offset(0, (-i)+1, 0);
                 break;
@@ -43,7 +39,7 @@ public class ShatterTree extends Feature {
         }
         int height = pContext.random().nextInt(7, 10);
         for (int i = 0; i < height; i++) {
-            this.setBlock(pContext.level(), pos.offset(0, i, 0), BlockInit.SHATTERSTONE.get().defaultBlockState());
+            this.setBlock(pContext.level(), pos.offset(0, i, 0), BlockInit.SHATTERWOOD.get().defaultBlockState());
         }
         int branchAmount = pContext.random().nextInt(4, height-2);
         List<Integer> branchesList = new ArrayList<>();
@@ -58,9 +54,9 @@ public class ShatterTree extends Feature {
             float yoffset = 0;
             for (int o = 0; o < length; o++) {
                 yoffset += 0.5f+(0.5*(o/length));
-                this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*o), i+(int)yoffset, (int)(Math.cos(dir)*o)), BlockInit.SHATTERSTONE.get().defaultBlockState());
+                this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*o), i+(int)yoffset, (int)(Math.cos(dir)*o)), BlockInit.SHATTERWOOD.get().defaultBlockState());
             }
-            this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*length), i+1+(int)yoffset, (int)(Math.cos(dir)*length)), BlockInit.SHATTERSTONE.get().defaultBlockState());
+            this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*length), i+1+(int)yoffset, (int)(Math.cos(dir)*length)), BlockInit.SHATTERWOOD.get().defaultBlockState());
             dir += pContext.random().nextInt(45, 60);
         }
         return true;

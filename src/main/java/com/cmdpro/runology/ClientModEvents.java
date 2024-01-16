@@ -8,10 +8,7 @@ import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeConditio
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
-import com.cmdpro.runology.renderers.RunicConstructRenderer;
-import com.cmdpro.runology.renderers.RunicScoutRenderer;
-import com.cmdpro.runology.renderers.RunicWorkbenchRenderer;
-import com.cmdpro.runology.renderers.ShatterRealmEffects;
+import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
@@ -43,6 +40,7 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICWORKBENCH.get(), RunicWorkbenchRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.VOIDGLASS.get(), VoidGlassRenderer::new);
     }
     @SubscribeEvent
     public static void onRegisterDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {

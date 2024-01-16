@@ -18,6 +18,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -111,6 +112,7 @@ public class Runology
             event.accept(ItemInit.SHATTERBERRIES);
             event.accept(ItemInit.RAWMYSTERIUM);
             event.accept(ItemInit.MYSTERIUMINGOT);
+            event.accept(ItemInit.MYSTERIUMNUGGET);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
@@ -132,6 +134,10 @@ public class Runology
             event.accept(BlockInit.SHATTERLEAF);
             event.accept(BlockInit.MYSTERIUMORE);
             event.accept(BlockInit.MYSTERIUMBLOCK);
+            event.accept(BlockInit.RAWMYSTERIUMBLOCK);
+            event.accept(BlockInit.SHATTERCRYSTAL);
+            event.accept(BlockInit.SHATTERWOOD);
+            event.accept(ItemInit.VOIDGLASSITEM);
         }
 
     }
