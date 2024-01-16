@@ -8,6 +8,7 @@ import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.RunicScout;
 import com.cmdpro.runology.init.AttributeInit;
 import com.cmdpro.runology.init.EntityInit;
+import com.cmdpro.runology.init.RecipeInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -33,17 +34,8 @@ public class ModEventBusEvents {
         event.put(EntityInit.RUNICSCOUT.get(), RunicScout.setAttributes());
     }
     @SubscribeEvent
-    public static void onModConfigEvent(ModConfigEvent event) {
-        ModConfig config = event.getConfig();
-        if (config.getSpec() == RunologyConfig.COMMON_SPEC) {
-            RunologyConfig.bake(config);
-        }
-    }
-    @SubscribeEvent
     public static void registerStuff(RegisterEvent event) {
-        event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
-            //helper.register(new ResourceLocation(Runology.MOD_ID, SoulShaperRecipe.Type.ID), SoulShaperRecipe.Type.INSTANCE);
-        });
+
     }
     @SubscribeEvent
     public static void registerRegistries(NewRegistryEvent event) {

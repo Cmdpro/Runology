@@ -43,7 +43,6 @@ public class BookRunicRecipePage extends BookCraftingRecipePage {
     @Override
     public void toNetwork(FriendlyByteBuf buffer) {
         super.toNetwork(buffer);
-        buffer.writeUtf(this.anchor);
     }
 
     @Override

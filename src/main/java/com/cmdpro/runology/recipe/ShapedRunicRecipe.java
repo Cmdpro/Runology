@@ -20,10 +20,10 @@ import java.util.concurrent.ConcurrentMap;
 
 public class ShapedRunicRecipe extends ShapedRecipe implements IRunicRecipe {
     private final ShapedRecipe recipe;
-    private final ResourceLocation entry;
+    private final String entry;
     private final Map<String, Float> runicEnergy;
 
-    public ShapedRunicRecipe(ShapedRecipe recipe, ResourceLocation entry, Map<String, Float> runicEnergy) {
+    public ShapedRunicRecipe(ShapedRecipe recipe, String entry, Map<String, Float> runicEnergy) {
         super(recipe.getId(), recipe.getGroup(), recipe.category(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getResultItem(RegistryAccess.EMPTY));
         this.recipe = recipe;
         this.entry = entry;
@@ -68,7 +68,7 @@ public class ShapedRunicRecipe extends ShapedRecipe implements IRunicRecipe {
     }
 
     @Override
-    public ResourceLocation getEntry() {
+    public String getEntry() {
         return entry;
     }
 
@@ -85,7 +85,7 @@ public class ShapedRunicRecipe extends ShapedRecipe implements IRunicRecipe {
         @Override
         public ShapedRunicRecipe fromJson(ResourceLocation id, JsonObject json) {
             ShapedRecipe recipe = RecipeSerializer.SHAPED_RECIPE.fromJson(id, json);
-            ResourceLocation entry = ResourceLocation.of(json.get("entry").getAsString(), ':');
+            String entry = json.get("entry").getAsString();
             HashMap<String, Float> runicEnergy = new HashMap<>();
             for (JsonElement i : json.getAsJsonArray("runicenergy")) {
                 runicEnergy.put(i.getAsJsonObject().get("type").getAsString(), i.getAsJsonObject().get("amount").getAsFloat());
@@ -95,7 +95,7 @@ public class ShapedRunicRecipe extends ShapedRecipe implements IRunicRecipe {
 
         @Override
         public ShapedRunicRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            ResourceLocation entry = buf.readResourceLocation();
+            String entry = buf.readUtf();
             ShapedRecipe recipe = RecipeSerializer.SHAPED_RECIPE.fromNetwork(id, buf);
             Map<String, Float> map = buf.readMap(FriendlyByteBuf::readUtf, FriendlyByteBuf::readFloat);
             return new ShapedRunicRecipe(recipe, entry, map);
@@ -103,7 +103,7 @@ public class ShapedRunicRecipe extends ShapedRecipe implements IRunicRecipe {
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, ShapedRunicRecipe recipe) {
-            buf.writeResourceLocation(recipe.entry);
+            buf.writeUtf(recipe.entry);
             RecipeSerializer.SHAPED_RECIPE.toNetwork(buf, recipe.recipe);
             buf.writeMap(recipe.runicEnergy, FriendlyByteBuf::writeUtf, FriendlyByteBuf::writeFloat);
         }

@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 
 public class AttributeInit {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, Runology.MOD_ID);
-    public static final RegistryObject<Attribute> MAXSOULS = register("maxsouls", () -> new RangedAttribute("attribute.runology.maxsouls", 50, 0, Float.MAX_VALUE).setSyncable(true));
     private static <T extends Attribute> RegistryObject<T> register(final String name, final Supplier<T> attribute) {
         return ATTRIBUTES.register(name, attribute);
     }

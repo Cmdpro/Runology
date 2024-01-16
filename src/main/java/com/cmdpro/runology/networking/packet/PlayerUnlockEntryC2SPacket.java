@@ -31,7 +31,7 @@ public class PlayerUnlockEntryC2SPacket {
         buf.writeResourceLocation(book);
     }
 
-    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+    public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             BookCondition condition = BookDataManager.get().getBook(book).getEntry(entry).getCondition();
@@ -57,6 +57,6 @@ public class PlayerUnlockEntryC2SPacket {
                 }
             }
         });
-        return true;
+        context.setPacketHandled(true);
     }
 }

@@ -48,13 +48,11 @@ import java.util.stream.Collectors;
 @Mod.EventBusSubscriber(modid = Runology.MOD_ID)
 public class Runology
 {
-    public static ResourceKey<DamageType> soulExplosion = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Runology.MOD_ID, "soulexplosion"));
 
     public static final String MOD_ID = "runology";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static RandomSource random;
-    public static ImmutableList<EntityType<? extends LivingEntity>> soulCrystalEntities = ImmutableList.of();
     public Runology()
     {
         // Register the setup method for modloading

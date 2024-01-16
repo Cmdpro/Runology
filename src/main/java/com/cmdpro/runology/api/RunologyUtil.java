@@ -16,8 +16,7 @@ import java.util.function.Supplier;
 public class RunologyUtil {
     public static Supplier<IForgeRegistry<RunicEnergyType>> RUNIC_ENERGY_TYPES_REGISTRY = null;
     public static Supplier<IForgeRegistry<InstabilityEvent>> INSTABILITY_EVENTS_REGISTRY = null;
-    public static List<Item> SOULCASTER_CRYSTALS = new ArrayList<>();
-    public static void AddConnection(ChunkPos chunk, Level level, float amount, float min, float max) {
+    public static void AddInstability(ChunkPos chunk, Level level, float amount, float min, float max) {
         int[][] offsets = {
                 { -1, -1 }, { -1, 0 }, { -1, 1 },
                 { 0, -1 }, { 0, 0 }, { 0, 1 },

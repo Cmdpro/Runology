@@ -22,10 +22,10 @@ import java.util.concurrent.ConcurrentMap;
 
 public class ShapelessRunicRecipe extends ShapelessRecipe implements IRunicRecipe {
     private final ShapelessRecipe recipe;
-    private final ResourceLocation entry;
+    private final String entry;
     private final Map<String, Float> runicEnergy;
 
-    public ShapelessRunicRecipe(ShapelessRecipe recipe, ResourceLocation entry, Map<String, Float> runicEnergy) {
+    public ShapelessRunicRecipe(ShapelessRecipe recipe, String entry, Map<String, Float> runicEnergy) {
         super(recipe.getId(), recipe.getGroup(), recipe.category(), recipe.getResultItem(RegistryAccess.EMPTY), recipe.getIngredients());
         this.recipe = recipe;
         this.entry = entry;
@@ -70,7 +70,7 @@ public class ShapelessRunicRecipe extends ShapelessRecipe implements IRunicRecip
     }
 
     @Override
-    public ResourceLocation getEntry() {
+    public String getEntry() {
         return entry;
     }
 
@@ -87,7 +87,7 @@ public class ShapelessRunicRecipe extends ShapelessRecipe implements IRunicRecip
         @Override
         public ShapelessRunicRecipe fromJson(ResourceLocation id, JsonObject json) {
             ShapelessRecipe recipe = RecipeSerializer.SHAPELESS_RECIPE.fromJson(id, json);
-            ResourceLocation entry = ResourceLocation.of(json.get("entry").getAsString(), ':');
+            String entry = json.get("entry").getAsString();
             HashMap<String, Float> runicEnergy = new HashMap<>();
             for (JsonElement i : json.getAsJsonArray("runicenergy")) {
                 runicEnergy.put(i.getAsJsonObject().get("type").getAsString(), i.getAsJsonObject().get("amount").getAsFloat());
@@ -97,7 +97,7 @@ public class ShapelessRunicRecipe extends ShapelessRecipe implements IRunicRecip
 
         @Override
         public ShapelessRunicRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            ResourceLocation entry = buf.readResourceLocation();
+            String entry = buf.readUtf();
             ShapelessRecipe recipe = RecipeSerializer.SHAPELESS_RECIPE.fromNetwork(id, buf);
             Map<String, Float> map = buf.readMap(FriendlyByteBuf::readUtf, FriendlyByteBuf::readFloat);
             return new ShapelessRunicRecipe(recipe, entry, map);
@@ -105,7 +105,7 @@ public class ShapelessRunicRecipe extends ShapelessRecipe implements IRunicRecip
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, ShapelessRunicRecipe recipe) {
-            buf.writeResourceLocation(recipe.entry);
+            buf.writeUtf(recipe.entry);
             RecipeSerializer.SHAPELESS_RECIPE.toNetwork(buf, recipe.recipe);
             buf.writeMap(recipe.runicEnergy, FriendlyByteBuf::writeUtf, FriendlyByteBuf::writeFloat);
         }

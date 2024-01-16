@@ -2,6 +2,8 @@ package com.cmdpro.runology.networking.packet;
 
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -25,11 +27,15 @@ public class PlayerDataSyncS2CPacket {
         buf.writeFloat(currentChunkInstability);
     }
 
-    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
+    public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            ClientPlayerData.set(runicKnowledge, currentChunkInstability);
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handlePacket(supplier));
         });
-        return true;
+        context.setPacketHandled(true);
+    }
+
+    public void handlePacket(Supplier<NetworkEvent.Context> supplier) {
+        ClientPlayerData.set(runicKnowledge, currentChunkInstability);
     }
 }
