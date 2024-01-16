@@ -10,18 +10,19 @@ import net.minecraft.world.level.LevelWriter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShatterTree extends Feature {
-    public ShatterTree(Codec pCodec) {
+public class ShatterTree extends Feature<NoneFeatureConfiguration> {
+    public ShatterTree(Codec<NoneFeatureConfiguration> pCodec) {
         super(pCodec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext pContext) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> pContext) {
         boolean reachedBottom = false;
         BlockPos pos = pContext.origin();
         if (!pContext.level().isEmptyBlock(pos)) {

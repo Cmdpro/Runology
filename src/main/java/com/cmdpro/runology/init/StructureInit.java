@@ -16,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class StructureInit {
     public static final DeferredRegister<StructureType<?>> STRUCTURES = DeferredRegister.create(Registries.STRUCTURE_TYPE,
             Runology.MOD_ID);
+
     public static final RegistryObject<StructureType<ShatterRealmStructure>> SHATTERREALMSTRUCTURE = STRUCTURES.register("shatterrealmstructure", () -> () -> ShatterRealmStructure.CODEC);
 
     public static void register(IEventBus eventBus) {

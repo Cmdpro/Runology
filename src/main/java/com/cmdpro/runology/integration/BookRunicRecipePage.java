@@ -10,13 +10,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public class BookRunicRecipePage extends BookCraftingRecipePage {
+public class BookRunicRecipePage extends BookRecipePage<Recipe<?>> {
 
 
     public BookRunicRecipePage(BookTextHolder title1, ResourceLocation recipeId1, BookTextHolder title2, ResourceLocation recipeId2, BookTextHolder text, String anchor) {
-        super(title1, recipeId1, title2, recipeId2, text, anchor);
+        super(RecipeInit.RUNICCRAFTING.get(), title1, recipeId1, title2, recipeId2, text, anchor);
     }
 
     public static BookRunicRecipePage fromJson(JsonObject json) {
@@ -43,6 +44,7 @@ public class BookRunicRecipePage extends BookCraftingRecipePage {
     @Override
     public void toNetwork(FriendlyByteBuf buffer) {
         super.toNetwork(buffer);
+        var anchor = buffer.readUtf();
     }
 
     @Override

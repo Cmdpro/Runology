@@ -8,6 +8,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 
@@ -15,13 +16,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Shattercrystal extends Feature {
-    public Shattercrystal(Codec pCodec) {
+public class Shattercrystal extends Feature<NoneFeatureConfiguration> {
+    public Shattercrystal(Codec<NoneFeatureConfiguration> pCodec) {
         super(pCodec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext pContext) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> pContext) {
         boolean reachedBottom = false;
         BlockPos pos = pContext.origin();
         if (!pContext.level().isEmptyBlock(pos)) {

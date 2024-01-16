@@ -22,7 +22,7 @@ import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 
 import java.util.Optional;
 
-public final class ShatterRealmStructure extends Structure {
+public class ShatterRealmStructure extends Structure {
     public static final int MAX_TOTAL_STRUCTURE_RANGE = 128;
     public static final Codec<ShatterRealmStructure> CODEC = ExtraCodecs.validate(RecordCodecBuilder.mapCodec((p_227640_) -> {
         return p_227640_.group(settingsCodec(p_227640_), StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter((p_227656_) -> {
