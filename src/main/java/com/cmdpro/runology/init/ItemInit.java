@@ -44,5 +44,5 @@ public class ItemInit {
         return ITEMS.register(name, item);
     }
     public static final RegistryObject<Item> SPIRITMANCYGUIDEICON =
-            ITEMS.register("runologyguideicon", () -> new Item(new Item.Properties()));
+            register("runologyguideicon", () -> new Item(new Item.Properties()));
 }

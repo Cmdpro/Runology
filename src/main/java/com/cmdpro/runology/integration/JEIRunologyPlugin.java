@@ -24,7 +24,7 @@ public class JEIRunologyPlugin implements IModPlugin {
     }
 
     public static IJeiRuntime runTime;
-    public static final RecipeType RUNICRECIPE = RecipeType.create(Runology.MOD_ID, RecipeInit.RUNICCRAFTING.getId().getPath().toString(), IRunicRecipe.class);
+    public static final RecipeType RUNICRECIPE = RecipeType.create(Runology.MOD_ID, RecipeInit.RUNICCRAFTING.getId().getPath(), IRunicRecipe.class);
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new RunicCraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));

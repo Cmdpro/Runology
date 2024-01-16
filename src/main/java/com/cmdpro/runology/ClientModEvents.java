@@ -77,7 +77,7 @@ public class ClientModEvents {
         EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);
         event.enqueueWork(new Runnable() {
             public void run() {
-                ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation("runology:instability"), (stack, level, entity, seed) -> {
+                ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {
                     return ClientPlayerData.getPlayerChunkInstability();
                 });
             }

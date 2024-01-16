@@ -4,7 +4,6 @@ import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.init.BlockInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.recipe.IRunicRecipe;
-import com.verdantartifice.primalmagick.client.util.RecipeUtils;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -15,6 +14,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.network.chat.Component;
@@ -44,7 +44,7 @@ public class RunicCraftingRecipeCategory implements IRecipeCategory<IRunicRecipe
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IRunicRecipe recipe, IFocusGroup focuses) {
         // Initialize recipe output
-        this.craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, List.of(RecipeUtils.getResultItem(recipe)));
+        this.craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, List.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())));
 
         // Initialize recipe inputs
         int width = (recipe instanceof IShapedRecipe<?> shapedRecipe) ? shapedRecipe.getRecipeWidth() : 0;

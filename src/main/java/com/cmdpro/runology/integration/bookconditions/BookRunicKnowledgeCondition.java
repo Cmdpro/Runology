@@ -79,9 +79,9 @@ public class BookRunicKnowledgeCondition extends BookCondition {
 
     public static BookRunicKnowledgeCondition fromNetwork(FriendlyByteBuf buffer) {
         var tooltip = buffer.readBoolean() ? buffer.readComponent() : null;
+        var hasAdvancement = buffer.readBoolean();
         var advancementId = buffer.readResourceLocation();
         var knowledge = buffer.readInt();
-        var hasAdvancement = buffer.readBoolean();
         return new BookRunicKnowledgeCondition(tooltip, knowledge, advancementId, hasAdvancement);
     }
 
@@ -96,9 +96,9 @@ public class BookRunicKnowledgeCondition extends BookCondition {
         if (this.tooltip != null) {
             buffer.writeComponent(this.tooltip);
         }
+        buffer.writeBoolean(hasAdvancement);
         buffer.writeResourceLocation(this.advancementId);
         buffer.writeInt(runicKnowledge);
-        buffer.writeBoolean(hasAdvancement);
     }
 
     @Override

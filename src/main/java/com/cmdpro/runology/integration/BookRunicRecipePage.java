@@ -3,6 +3,7 @@ package com.cmdpro.runology.integration;
 import com.cmdpro.runology.init.RecipeInit;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
+import com.klikli_dev.modonomicon.book.page.BookCraftingRecipePage;
 import com.klikli_dev.modonomicon.book.page.BookRecipePage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -11,9 +12,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 
-public class BookRunicRecipePage extends BookRecipePage<Recipe<?>> {
+public class BookRunicRecipePage extends BookCraftingRecipePage {
+
+
     public BookRunicRecipePage(BookTextHolder title1, ResourceLocation recipeId1, BookTextHolder title2, ResourceLocation recipeId2, BookTextHolder text, String anchor) {
-        super(RecipeInit.RUNICCRAFTING.get(), title1, recipeId1, title2, recipeId2, text, anchor);
+        super(title1, recipeId1, title2, recipeId2, text, anchor);
     }
 
     public static BookRunicRecipePage fromJson(JsonObject json) {

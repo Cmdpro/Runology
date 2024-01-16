@@ -157,6 +157,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerModData.class);
+        event.register(ChunkModData.class);
     }
     @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {

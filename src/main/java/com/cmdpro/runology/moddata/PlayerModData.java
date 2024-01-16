@@ -56,20 +56,22 @@ public class PlayerModData {
     }
     public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("runicknowledge", runicKnowledge);
-        ListTag tag = new ListTag();
-        for (ResourceLocation i : unlocked.keySet()) {
-            CompoundTag tag2 = new CompoundTag();
-            tag2.putString("key", i.toString());
-            ListTag tag3 = new ListTag();
-            for (ResourceLocation o : unlocked.get(i)) {
-                CompoundTag tag4 = new CompoundTag();
-                tag4.putString("value", o.toString());
-                tag3.add(tag4);
+        if (!unlocked.isEmpty()) {
+            ListTag tag = new ListTag();
+            for (ResourceLocation i : unlocked.keySet()) {
+                CompoundTag tag2 = new CompoundTag();
+                tag2.putString("key", i.toString());
+                ListTag tag3 = new ListTag();
+                for (ResourceLocation o : unlocked.get(i)) {
+                    CompoundTag tag4 = new CompoundTag();
+                    tag4.putString("value", o.toString());
+                    tag3.add(tag4);
+                }
+                tag2.put("value", tag3);
+                tag.add(tag2);
             }
-            tag2.put("value", tag3);
-            tag.add(tag2);
+            nbt.put("unlocked", tag);
         }
-        nbt.put("unlocked", tag);
     }
     public void loadNBTData(CompoundTag nbt) {
         unlocked.clear();

@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.structures.EndCityStructure;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -146,7 +147,7 @@ public class Runology
         // some preinit code
         ModMessages.register();
         event.enqueueWork(ModCriteriaTriggers::register);
-        LoaderRegistry.registerPredicate(new ResourceLocation("runology:empty"), (getter, pos, state) -> !state.isSolid());
+        LoaderRegistry.registerPredicate(new ResourceLocation(Runology.MOD_ID, "empty"), (getter, pos, state) -> !state.isSolid());
         LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICRECIPE, BookRunicRecipePage::fromJson, BookRunicRecipePage::fromNetwork);
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockInit.SHATTERLEAF.getId(), BlockInit.POTTED_SHATTERLEAF);
@@ -172,6 +173,7 @@ public class Runology
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
+
         // Do something when the server starts
     }
 
