@@ -3,7 +3,6 @@
   "package": "com.cmdpro.runology.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ConnectionMixin"
   ],
   "client": [
   ]

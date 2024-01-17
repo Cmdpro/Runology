@@ -15,7 +15,6 @@ public interface IRunicRecipe extends CraftingRecipe, IHasRequiredKnowledge, IHa
 
     @Override
     default boolean isSpecial() {
-        // Return true to keep arcane recipes from showing up in the vanilla recipe book
         return true;
     }
 
@@ -26,7 +25,6 @@ public interface IRunicRecipe extends CraftingRecipe, IHasRequiredKnowledge, IHa
 
     @Override
     default CraftingBookCategory category() {
-        // Arcane recipes use a separate recipe book, so an accurate crafting book category isn't needed
         return CraftingBookCategory.MISC;
     }
 }

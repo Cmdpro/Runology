@@ -9,8 +9,8 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 
 public class DimensionInit {
-    //public static final ResourceKey<Level> SHATTERREALM = ResourceKey.create(Registries.DIMENSION,
-            //new ResourceLocation(Runology.MOD_ID, "shatterrealm"));
-    //public static final ResourceKey<DimensionType> SHATTERREALMTYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
-            //new ResourceLocation(Runology.MOD_ID, "shatterrealm"));
+    public static final ResourceKey<Level> SHATTERREALM = ResourceKey.create(Registries.DIMENSION,
+            new ResourceLocation(Runology.MOD_ID, "shatterrealm"));
+    public static final ResourceKey<DimensionType> SHATTERREALMTYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
+            new ResourceLocation(Runology.MOD_ID, "shatterrealm"));
 }
