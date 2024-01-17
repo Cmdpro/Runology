@@ -15,6 +15,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.neoforged.gradle' version '[6.0.13, 6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 apply plugin: 'net.neoforged.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
@@ -185,6 +186,7 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.neoforged:forge:1.20.1-47.1.79'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.4')
     // compile against the JEI API but do not include it at runtime
     compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
@@ -249,4 +251,9 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+mixin {
+    // MixinGradle Settings
+    config 'runology.mixins.json'
 }

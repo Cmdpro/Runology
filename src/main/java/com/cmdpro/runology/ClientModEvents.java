@@ -47,7 +47,7 @@ public class ClientModEvents {
         registerDimensionEffects((dimension, effects) -> event.register(dimension.location(), effects)); //
     }
     public static void registerDimensionEffects(BiConsumer<ResourceKey<Level>, ShatterRealmEffects> consumer) {
-        //consumer.accept(DimensionInit.SHATTERREALM, new ShatterRealmEffects());
+        consumer.accept(DimensionInit.SHATTERREALM, new ShatterRealmEffects());
     }
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {

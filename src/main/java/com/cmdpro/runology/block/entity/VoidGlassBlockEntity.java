@@ -7,7 +7,6 @@ import com.cmdpro.runology.init.RecipeInit;
 import com.cmdpro.runology.recipe.IRunicRecipe;
 import com.cmdpro.runology.recipe.NonMenuCraftingContainer;
 import com.cmdpro.runology.screen.RunicWorkbenchMenu;
-import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;

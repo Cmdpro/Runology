@@ -43,7 +43,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Math;
-import top.theillusivec4.curios.api.CuriosCapability;
 
 import java.awt.event.ItemEvent;
 import java.util.*;
