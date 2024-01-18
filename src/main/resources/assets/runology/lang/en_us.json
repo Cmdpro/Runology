@@ -50,8 +50,11 @@
   "item.runology.mysteriumnugget": "Mysterium Nugget",
   "block.runology.rawmysteriumblock": "Block of Raw Mysterium",
   "block.runology.shattercrystal": "Shattercrystal",
-  "block.runology.shatterwood": "Petrified Shatterwood",
+  "block.runology.petrifiedshatterwood": "Petrified Shatterwood",
   "block.runology.voidglass": "Void Glass",
+  "block.runology.shatterwood": "Shatterwood",
+  "block.runology.shatterwoodplanks": "Shatterwood Planks",
+  "block.runology.strippedshatterwood": "Stripped Shatterwood",
 
   "curios.identifier.runictrinket": "Runic Trinket",
 

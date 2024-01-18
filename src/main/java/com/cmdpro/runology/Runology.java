@@ -135,7 +135,7 @@ public class Runology
             event.accept(BlockInit.MYSTERIUMBLOCK);
             event.accept(BlockInit.RAWMYSTERIUMBLOCK);
             event.accept(BlockInit.SHATTERCRYSTAL);
-            event.accept(BlockInit.SHATTERWOOD);
+            event.accept(BlockInit.PETRIFIEDSHATTERWOOD);
             event.accept(ItemInit.VOIDGLASSITEM);
         }
 

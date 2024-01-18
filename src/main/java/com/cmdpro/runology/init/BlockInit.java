@@ -3,11 +3,15 @@ package com.cmdpro.runology.init;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.*;
 import com.cmdpro.runology.item.VoidGlassItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -25,8 +29,8 @@ public class BlockInit {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> VOIDGLASS = registerBlock("voidglass",
             () -> new VoidGlass(BlockBehaviour.Properties.copy(Blocks.GLASS)));
-    public static final RegistryObject<Block> SHATTERWOOD = register("shatterwood",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).lightLevel((state) -> 0)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> PETRIFIEDSHATTERWOOD = register("petrifiedshatterwood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).lightLevel((state) -> 2)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEBRICKS = register("shatterstonebricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICKS)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEPILLAR = register("shatterstonepillar",

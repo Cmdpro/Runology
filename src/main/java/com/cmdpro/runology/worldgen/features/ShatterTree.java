@@ -40,7 +40,7 @@ public class ShatterTree extends Feature<NoneFeatureConfiguration> {
         }
         int height = pContext.random().nextInt(7, 10);
         for (int i = 0; i < height; i++) {
-            this.setBlock(pContext.level(), pos.offset(0, i, 0), BlockInit.SHATTERWOOD.get().defaultBlockState());
+            this.setBlock(pContext.level(), pos.offset(0, i, 0), BlockInit.PETRIFIEDSHATTERWOOD.get().defaultBlockState());
         }
         int branchAmount = pContext.random().nextInt(4, height-2);
         List<Integer> branchesList = new ArrayList<>();
@@ -55,9 +55,9 @@ public class ShatterTree extends Feature<NoneFeatureConfiguration> {
             float yoffset = 0;
             for (int o = 0; o < length; o++) {
                 yoffset += 0.5f+(0.5*(o/length));
-                this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*o), i+(int)yoffset, (int)(Math.cos(dir)*o)), BlockInit.SHATTERWOOD.get().defaultBlockState());
+                this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*o), i+(int)yoffset, (int)(Math.cos(dir)*o)), BlockInit.PETRIFIEDSHATTERWOOD.get().defaultBlockState());
             }
-            this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*length), i+1+(int)yoffset, (int)(Math.cos(dir)*length)), BlockInit.SHATTERWOOD.get().defaultBlockState());
+            this.setBlock(pContext.level(), pos.offset((int)(Math.sin(dir)*length), i+1+(int)yoffset, (int)(Math.cos(dir)*length)), BlockInit.PETRIFIEDSHATTERWOOD.get().defaultBlockState());
             dir += pContext.random().nextInt(45, 60);
         }
         return true;

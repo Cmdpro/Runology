@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.TheEndPortalBlockEntity;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
 public class VoidGlassRenderer implements BlockEntityRenderer<VoidGlassBlockEntity> {
@@ -29,6 +30,11 @@ public class VoidGlassRenderer implements BlockEntityRenderer<VoidGlassBlockEnti
         this.renderFace(pBlockEntity, pPose, pConsumer, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 0.0F, Direction.WEST);
         this.renderFace(pBlockEntity, pPose, pConsumer, 0.0F, 1.0F, 0f, 0f, 0.0F, 0.0F, 1.0F, 1.0F, Direction.DOWN);
         this.renderFace(pBlockEntity, pPose, pConsumer, 0.0F, 1.0F, 1f, 1f, 1.0F, 1.0F, 0.0F, 0.0F, Direction.UP);
+    }
+
+    @Override
+    public boolean shouldRender(VoidGlassBlockEntity pBlockEntity, Vec3 pCameraPos) {
+        return true;
     }
 
     private void renderFace(VoidGlassBlockEntity pBlockEntity, Matrix4f pPose, VertexConsumer pConsumer, float pX0, float pX1, float pY0, float pY1, float pZ0, float pZ1, float pZ2, float pZ3, Direction pDirection) {
