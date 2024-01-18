@@ -1,5 +1,5 @@
 {
-  "icon": "runology:runicworkbench",
+  "icon": "runology:textures/gui/runicmysteries.png",
   "name": "book.runology.runologyguide.runicmysteries.name",
   "sort_number": 2
 }
