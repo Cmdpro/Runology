@@ -8,6 +8,7 @@ import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.commands.ClearInventoryCommands;
 import net.minecraft.server.commands.GiveCommand;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -44,7 +45,7 @@ public class PlayerUnlockEntryC2SPacket {
                 var advancement = context.getSender().getServer().getAdvancements().getAdvancement(condition2.advancementId);
                 if (!condition2.hasAdvancement || (advancement != null && context.getSender().getAdvancements().getOrStartProgress(advancement).isDone())) {
                     if (context.getSender().getInventory().contains(new ItemStack(Items.PAPER, 1))) {
-                        context.getSender().getInventory().removeItem(new ItemStack(Items.PAPER, 1));
+                        context.getSender().getInventory().clearOrCountMatchingItems((item) -> item.is(Items.PAPER), 1, context.getSender().inventoryMenu.getCraftSlots());
                         ItemStack stack = new ItemStack(ItemInit.RESEARCH.get(), 1);
                         stack.getOrCreateTag().putInt("progress", 0);
                         stack.getOrCreateTag().putString("entry", entry.toString());

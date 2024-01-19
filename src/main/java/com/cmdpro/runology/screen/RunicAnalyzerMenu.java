@@ -17,24 +17,21 @@ import net.minecraftforge.items.SlotItemHandler;
 public class RunicAnalyzerMenu extends AbstractContainerMenu {
     public final RunicAnalyzerBlockEntity blockEntity;
     private final Level level;
-    private final ContainerData data;
     public final Player player;
     public RunicAnalyzerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2), inv.player);
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), inv.player);
     }
-    public RunicAnalyzerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data, Player player) {
+    public RunicAnalyzerMenu(int pContainerId, Inventory inv, BlockEntity entity, Player player) {
         super(MenuInit.RUNICANALYZERMENU.get(), pContainerId);
         this.player = player;
         checkContainerSize(inv, 1);
         blockEntity = ((RunicAnalyzerBlockEntity) entity);
         this.level = inv.player.level();
-        this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 25, 35));
+            this.addSlot(new SlotItemHandler(handler, 0, 8, 17));
         });
-        addDataSlots(data);
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -96,14 +93,14 @@ public class RunicAnalyzerMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }

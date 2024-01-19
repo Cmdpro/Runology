@@ -49,7 +49,7 @@ public class BookAnalyzeTaskCondition extends BookCondition {
         List<AnalyzeTask> tasks = new ArrayList<>();
         if (json.has("tasks")) {
             for (JsonElement i : json.get("tasks").getAsJsonArray()) {
-                JsonObject obj = (JsonObject)i;
+                JsonObject obj = i.getAsJsonObject();
                 tasks.add(RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getValue(ResourceLocation.tryParse(obj.get("type").getAsString())).fromJson(obj));
             }
         }
@@ -70,8 +70,9 @@ public class BookAnalyzeTaskCondition extends BookCondition {
         if (!tooltip.getString().equals("")) {
             list.add(tooltip);
         }
+        list.add(Component.translatable("book.runology.condition.analyze.ln1"));
         if (hasAdvancement) {
-            list.add(Component.translatable("book.runology.condition.analyzetask.ln3", Component.translatable(makeDescriptionId("advancements", advancementId) + ".title")));
+            list.add(Component.translatable("book.runology.condition.analyze.ln2", Component.translatable(makeDescriptionId("advancements", advancementId) + ".title")));
         }
         return list;
     }
@@ -91,15 +92,17 @@ public class BookAnalyzeTaskCondition extends BookCondition {
         return new BookAnalyzeTaskCondition(tooltip, knowledge, advancementId, hasAdvancement);
     }
     public static AnalyzeTask readTask(FriendlyByteBuf buffer) {
-        return RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getValue(buffer.readResourceLocation()).fromNetwork(buffer);
+        ResourceLocation resourceLocation = buffer.readResourceLocation();
+        return RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getValue(resourceLocation).fromNetwork(buffer);
     }
     public static void writeTask(FriendlyByteBuf buffer, AnalyzeTask task) {
+        buffer.writeResourceLocation(RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getKey(task.getSerializer()));
         task.getSerializer().toNetwork(task, buffer);
     }
 
     @Override
     public ResourceLocation getType() {
-        return new ResourceLocation(Runology.MOD_ID, "analyzetask");
+        return new ResourceLocation(Runology.MOD_ID, "analyze");
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.cmdpro.runology.init.RecipeInit;
 import com.cmdpro.runology.item.Research;
 import com.cmdpro.runology.recipe.IRunicRecipe;
 import com.cmdpro.runology.recipe.NonMenuCraftingContainer;
+import com.cmdpro.runology.screen.RunicAnalyzerMenu;
 import com.cmdpro.runology.screen.RunicWorkbenchMenu;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import net.minecraft.core.BlockPos;
@@ -171,6 +172,6 @@ public class RunicAnalyzerBlockEntity extends BlockEntity implements MenuProvide
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pInventory, Player pPlayer) {
-        return new RunicWorkbenchMenu(pContainerId, pInventory, this);
+        return new RunicAnalyzerMenu(pContainerId, pInventory, this, pPlayer);
     }
 }

@@ -9,6 +9,7 @@ import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
 import com.cmdpro.runology.renderers.*;
+import com.cmdpro.runology.screen.RunicAnalyzerScreen;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
@@ -70,6 +71,7 @@ public class ClientModEvents {
             }
         });
         MenuScreens.register(MenuInit.RUNICWORKBENCHMENU.get(), RunicWorkbenchScreen::new);
+        MenuScreens.register(MenuInit.RUNICANALYZERMENU.get(), RunicAnalyzerScreen::new);
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
         EntityRenderers.register(EntityInit.RUNICCONSTRUCT.get(), RunicConstructRenderer::new);
         EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);

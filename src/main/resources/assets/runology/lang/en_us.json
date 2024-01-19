@@ -74,7 +74,6 @@
   "book.runology.runologyguide.forgottenpractices.name": "Forgotten Practices",
   "book.runology.runologyguide.runicmysteries.name": "Runic Mysteries",
 
-  "book.runology.condition.runicknowledge.ln1": "Required Runic Knowledge : %1$s",
-  "book.runology.condition.runicknowledge.ln2": "Your Runic Knowledge : %1$s",
-  "book.runology.condition.runicknowledge.ln3": "Requires Advancement : %1$s"
+  "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
+  "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"
 }

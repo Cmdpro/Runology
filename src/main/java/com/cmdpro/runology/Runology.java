@@ -64,6 +64,7 @@ public class Runology
         AttributeInit.ATTRIBUTES.register(bus);
         RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
         InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
+        AnalyzeTaskInit.ANALYZE_TASKS.register(bus);
         StructureInit.register(bus);
         FeatureInit.register(bus);
         GeckoLib.initialize();

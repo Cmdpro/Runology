@@ -2,6 +2,7 @@ package com.cmdpro.runology.analyzetasks;
 
 import com.cmdpro.runology.api.AnalyzeTask;
 import com.cmdpro.runology.api.AnalyzeTaskSerializer;
+import com.cmdpro.runology.init.AnalyzeTaskInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.google.gson.JsonObject;
 import net.minecraft.client.gui.GuiGraphics;
@@ -27,6 +28,6 @@ public class GetItemTask extends AnalyzeTask {
 
     @Override
     public AnalyzeTaskSerializer getSerializer() {
-        return null;
+        return AnalyzeTaskInit.GETITEM.get();
     }
 }
