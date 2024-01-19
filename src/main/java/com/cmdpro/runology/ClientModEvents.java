@@ -4,7 +4,7 @@ import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
-import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeCondition;
+import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
@@ -18,7 +18,6 @@ import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceKey;
@@ -41,6 +40,7 @@ public class ClientModEvents {
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICWORKBENCH.get(), RunicWorkbenchRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.VOIDGLASS.get(), VoidGlassRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.RUNICANALYZER.get(), RunicAnalyzerRenderer::new);
     }
     @SubscribeEvent
     public static void onRegisterDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
@@ -53,20 +53,18 @@ public class ClientModEvents {
     public static void doSetup(FMLClientSetupEvent event) {
         ModonomiconEvents.client().onEntryClicked((e) -> {
             BookEntry entry = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId());
-            if (entry.getCondition() instanceof BookRunicKnowledgeCondition condition) {
-                if (ClientPlayerData.getPlayerRunicKnowledge() >= condition.runicKnowledge) {
-                    if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, entry)) {
-                        List<BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
-                        boolean canSee = true;
-                        for (BookEntryParent i : parents) {
-                            if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
-                                canSee = false;
-                                break;
-                            }
+            if (entry.getCondition() instanceof BookAnalyzeTaskCondition condition) {
+                if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, entry)) {
+                    List<BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
+                    boolean canSee = true;
+                    for (BookEntryParent i : parents) {
+                        if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
+                            canSee = false;
+                            break;
                         }
-                        if (canSee) {
-                            ModMessages.sendToServer(new PlayerUnlockEntryC2SPacket(e.getEntryId(), e.getBookId()));
-                        }
+                    }
+                    if (canSee) {
+                        ModMessages.sendToServer(new PlayerUnlockEntryC2SPacket(e.getEntryId(), e.getBookId()));
                     }
                 }
             }

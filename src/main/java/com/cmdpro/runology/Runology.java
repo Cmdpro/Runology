@@ -1,30 +1,17 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.api.InstabilityEvent;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
-import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
-import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeCondition;
+import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
-import com.google.common.collect.ImmutableList;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.structure.structures.EndCityStructure;
-import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -86,7 +73,7 @@ public class Runology
         random = RandomSource.create();
         //modLoadingContext.registerConfig(ModConfig.Type.COMMON, RunologyConfig.COMMON_SPEC, "runology.toml");
 
-        LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "knowledge"), BookRunicKnowledgeCondition::fromJson, BookRunicKnowledgeCondition::fromNetwork);
+        LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "analyze"), BookAnalyzeTaskCondition::fromJson, BookAnalyzeTaskCondition::fromNetwork);
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {

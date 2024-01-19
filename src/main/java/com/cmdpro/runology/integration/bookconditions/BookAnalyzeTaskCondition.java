@@ -1,9 +1,13 @@
 package com.cmdpro.runology.integration.bookconditions;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.moddata.ClientPlayerData;
+import com.cmdpro.runology.api.AnalyzeTask;
+import com.cmdpro.runology.api.AnalyzeTaskSerializer;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.moddata.PlayerModData;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
+import com.google.common.collect.Lists;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.book.conditions.context.BookConditionContext;
@@ -17,33 +21,37 @@ import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class BookRunicKnowledgeCondition extends BookCondition {
+public class BookAnalyzeTaskCondition extends BookCondition {
 
     public ResourceLocation advancementId;
-    public int runicKnowledge;
+    public AnalyzeTask[] tasks;
     public Component advancement;
     public boolean hasAdvancement;
-    public BookRunicKnowledgeCondition(Component component, int knowledge, ResourceLocation advancementId, boolean hasAdvancement) {
+    public BookAnalyzeTaskCondition(Component component, AnalyzeTask[] tasks, ResourceLocation advancementId, boolean hasAdvancement) {
         super(component);
         this.tooltip = component;
         this.advancementId = advancementId;
-        this.runicKnowledge = knowledge;
+        this.tasks = tasks;
         this.hasAdvancement = hasAdvancement;
     }
 
-    public static BookRunicKnowledgeCondition fromJson(JsonObject json) {
+    public static BookAnalyzeTaskCondition fromJson(JsonObject json) {
         ResourceLocation advancementId = new ResourceLocation("", "");
         boolean hasAdvancement = false;
         if (json.has("advancement_id")) {
             hasAdvancement = true;
             advancementId = new ResourceLocation(GsonHelper.getAsString(json, "advancement_id"));
         }
-        var knowledge = 1;
-        if (json.has("runicKnowledge")) {
-            knowledge = json.get("runicKnowledge").getAsInt();
+        List<AnalyzeTask> tasks = new ArrayList<>();
+        if (json.has("tasks")) {
+            for (JsonElement i : json.get("tasks").getAsJsonArray()) {
+                JsonObject obj = (JsonObject)i;
+                tasks.add(RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getValue(ResourceLocation.tryParse(obj.get("type").getAsString())).fromJson(obj));
+            }
         }
 
 
@@ -53,7 +61,7 @@ public class BookRunicKnowledgeCondition extends BookCondition {
             tooltip = tooltipFromJson(json);
         }
 
-        return new BookRunicKnowledgeCondition(tooltip, knowledge, advancementId, hasAdvancement);
+        return new BookAnalyzeTaskCondition(tooltip, tasks.toArray(new AnalyzeTask[0]), advancementId, hasAdvancement);
     }
 
     @Override
@@ -62,10 +70,8 @@ public class BookRunicKnowledgeCondition extends BookCondition {
         if (!tooltip.getString().equals("")) {
             list.add(tooltip);
         }
-        list.add(Component.translatable("book.runology.condition.runicknowledge.ln1", runicKnowledge));
-        list.add(Component.translatable("book.runology.condition.runicknowledge.ln2", ClientPlayerData.getPlayerRunicKnowledge()));
         if (hasAdvancement) {
-            list.add(Component.translatable("book.runology.condition.runicknowledge.ln3", Component.translatable(makeDescriptionId("advancements", advancementId) + ".title")));
+            list.add(Component.translatable("book.runology.condition.analyzetask.ln3", Component.translatable(makeDescriptionId("advancements", advancementId) + ".title")));
         }
         return list;
     }
@@ -77,17 +83,23 @@ public class BookRunicKnowledgeCondition extends BookCondition {
         }
     }
 
-    public static BookRunicKnowledgeCondition fromNetwork(FriendlyByteBuf buffer) {
+    public static BookAnalyzeTaskCondition fromNetwork(FriendlyByteBuf buffer) {
         var tooltip = buffer.readBoolean() ? buffer.readComponent() : null;
         var hasAdvancement = buffer.readBoolean();
         var advancementId = buffer.readResourceLocation();
-        var knowledge = buffer.readInt();
-        return new BookRunicKnowledgeCondition(tooltip, knowledge, advancementId, hasAdvancement);
+        var knowledge = buffer.readList(BookAnalyzeTaskCondition::readTask).toArray(new AnalyzeTask[0]);
+        return new BookAnalyzeTaskCondition(tooltip, knowledge, advancementId, hasAdvancement);
+    }
+    public static AnalyzeTask readTask(FriendlyByteBuf buffer) {
+        return RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getValue(buffer.readResourceLocation()).fromNetwork(buffer);
+    }
+    public static void writeTask(FriendlyByteBuf buffer, AnalyzeTask task) {
+        task.getSerializer().toNetwork(task, buffer);
     }
 
     @Override
     public ResourceLocation getType() {
-        return new ResourceLocation(Runology.MOD_ID, "knowledge");
+        return new ResourceLocation(Runology.MOD_ID, "analyzetask");
     }
 
     @Override
@@ -98,7 +110,7 @@ public class BookRunicKnowledgeCondition extends BookCondition {
         }
         buffer.writeBoolean(hasAdvancement);
         buffer.writeResourceLocation(this.advancementId);
-        buffer.writeInt(runicKnowledge);
+        buffer.writeCollection(Arrays.stream(tasks).toList(), BookAnalyzeTaskCondition::writeTask);
     }
 
     @Override

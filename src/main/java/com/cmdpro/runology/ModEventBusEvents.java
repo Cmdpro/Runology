@@ -1,27 +1,20 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.AnalyzeTaskSerializer;
 import com.cmdpro.runology.api.InstabilityEvent;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.RunicEnergyType;
-import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.RunicScout;
-import com.cmdpro.runology.init.AttributeInit;
 import com.cmdpro.runology.init.EntityInit;
-import com.cmdpro.runology.init.RecipeInit;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
@@ -43,6 +36,8 @@ public class ModEventBusEvents {
                 .setName(new ResourceLocation(Runology.MOD_ID, "runicenergytypes")));
         RunologyUtil.INSTABILITY_EVENTS_REGISTRY = event.create(new RegistryBuilder<InstabilityEvent>()
                 .setName(new ResourceLocation(Runology.MOD_ID, "instabilityevents")));
+        RunologyUtil.ANALYZE_TASKS_REGISTRY = event.create(new RegistryBuilder<AnalyzeTaskSerializer>()
+                .setName(new ResourceLocation(Runology.MOD_ID, "analyzetasks")));
     }
     @SubscribeEvent
     public static void entitySpawnRestriction(SpawnPlacementRegisterEvent event) {

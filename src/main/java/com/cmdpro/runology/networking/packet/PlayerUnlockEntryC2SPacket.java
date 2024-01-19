@@ -1,12 +1,17 @@
 package com.cmdpro.runology.networking.packet;
 
-import com.cmdpro.runology.integration.bookconditions.BookRunicKnowledgeCondition;
+import com.cmdpro.runology.init.ItemInit;
+import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.commands.GiveCommand;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.ArrayList;
@@ -35,25 +40,24 @@ public class PlayerUnlockEntryC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             BookCondition condition = BookDataManager.get().getBook(book).getEntry(entry).getCondition();
-            if (condition instanceof BookRunicKnowledgeCondition condition2) {
+            if (condition instanceof BookAnalyzeTaskCondition condition2) {
                 var advancement = context.getSender().getServer().getAdvancements().getAdvancement(condition2.advancementId);
                 if (!condition2.hasAdvancement || (advancement != null && context.getSender().getAdvancements().getOrStartProgress(advancement).isDone())) {
-                    context.getSender().getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                        if (data.getRunicKnowledge() >= condition2.runicKnowledge) {
-                            if (data.getUnlocked().containsKey(book)) {
-                                if (!data.getUnlocked().get(book).contains(entry)) {
-                                    data.getUnlocked().get(book).add(entry);
-                                    data.setRunicKnowledge(data.getRunicKnowledge() - condition2.runicKnowledge);
-                                }
-                            } else {
-                                ArrayList list = new ArrayList<>();
-                                list.add(entry);
-                                data.getUnlocked().put(book, list);
-                                data.setRunicKnowledge(data.getRunicKnowledge() - condition2.runicKnowledge);
+                    if (context.getSender().getInventory().contains(new ItemStack(Items.PAPER, 1))) {
+                        context.getSender().getInventory().removeItem(new ItemStack(Items.PAPER, 1));
+                        ItemStack stack = new ItemStack(ItemInit.RESEARCH.get(), 1);
+                        stack.getOrCreateTag().putInt("progress", 0);
+                        stack.getOrCreateTag().putString("entry", entry.toString());
+                        stack.getOrCreateTag().putString("book", book.toString());
+                        stack.getOrCreateTag().putBoolean("finished", false);
+                        if (!context.getSender().getInventory().add(stack)) {
+                            ItemEntity itementity = context.getSender().drop(stack, false);
+                            if (itementity != null) {
+                                itementity.setNoPickUpDelay();
+                                itementity.setTarget(context.getSender().getUUID());
                             }
-                            BookUnlockStateManager.get().updateAndSyncFor(context.getSender());
                         }
-                    });
+                    }
                 }
             }
         });

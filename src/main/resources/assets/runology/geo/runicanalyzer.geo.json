@@ -1,0 +1,54 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.runicanalyzer",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, -8, 0],
+					"cubes": [
+						{"origin": [-8, -8, -8], "size": [16, 12, 16], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lens2",
+					"parent": "body",
+					"pivot": [0, 5.5, 0],
+					"cubes": [
+						{"origin": [-6, 5, -3], "size": [2, 1, 6], "uv": [0, 7]},
+						{"origin": [4, 5, -3], "size": [2, 1, 6], "uv": [0, 0]},
+						{"origin": [3, 5, 3], "size": [2, 1, 2], "uv": [24, 35]},
+						{"origin": [3, 5, -5], "size": [2, 1, 2], "uv": [16, 35]},
+						{"origin": [-5, 5, -5], "size": [2, 1, 2], "uv": [10, 31]},
+						{"origin": [-5, 5, 3], "size": [2, 1, 2], "uv": [10, 28]},
+						{"origin": [-3, 5, 4], "size": [6, 1, 2], "uv": [26, 31]},
+						{"origin": [-3, 5, -6], "size": [6, 1, 2], "uv": [26, 28]}
+					]
+				},
+				{
+					"name": "lens",
+					"parent": "body",
+					"pivot": [0, 4.5, 0],
+					"cubes": [
+						{"origin": [-6, 4, -3], "size": [2, 1, 6], "uv": [0, 7]},
+						{"origin": [4, 4, -3], "size": [2, 1, 6], "uv": [0, 0]},
+						{"origin": [3, 4, 3], "size": [2, 1, 2], "uv": [24, 35]},
+						{"origin": [3, 4, -5], "size": [2, 1, 2], "uv": [16, 35]},
+						{"origin": [-5, 4, -5], "size": [2, 1, 2], "uv": [10, 31]},
+						{"origin": [-5, 4, 3], "size": [2, 1, 2], "uv": [10, 28]},
+						{"origin": [-3, 4, 4], "size": [6, 1, 2], "uv": [26, 31]},
+						{"origin": [-3, 4, -6], "size": [6, 1, 2], "uv": [26, 28]}
+					]
+				}
+			]
+		}
+	]
+}

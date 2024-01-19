@@ -1,6 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.screen.RunicAnalyzerMenu;
 import com.cmdpro.runology.screen.RunicWorkbenchMenu;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class MenuInit {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Runology.MOD_ID);
     public static final RegistryObject<MenuType<RunicWorkbenchMenu>> RUNICWORKBENCHMENU = registerMenuType(RunicWorkbenchMenu::new, "runicworkbenchmenu");
+    public static final RegistryObject<MenuType<RunicAnalyzerMenu>> RUNICANALYZERMENU = registerMenuType(RunicAnalyzerMenu::new, "runicanalyzermenu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

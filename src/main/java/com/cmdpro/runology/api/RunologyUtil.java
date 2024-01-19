@@ -1,21 +1,17 @@
 package com.cmdpro.runology.api;
 
-import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class RunologyUtil {
     public static Supplier<IForgeRegistry<RunicEnergyType>> RUNIC_ENERGY_TYPES_REGISTRY = null;
     public static Supplier<IForgeRegistry<InstabilityEvent>> INSTABILITY_EVENTS_REGISTRY = null;
+    public static Supplier<IForgeRegistry<AnalyzeTaskSerializer>> ANALYZE_TASKS_REGISTRY = null;
     public static void AddInstability(ChunkPos chunk, Level level, float amount, float min, float max) {
         int[][] offsets = {
                 { -1, -1 }, { -1, 0 }, { -1, 1 },

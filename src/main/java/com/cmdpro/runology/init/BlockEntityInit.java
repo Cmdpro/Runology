@@ -1,6 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
 import com.cmdpro.runology.block.entity.VoidGlassBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -16,6 +17,10 @@ public class BlockEntityInit {
             BLOCK_ENTITIES.register("runicworkbenchblockentity", () ->
                     BlockEntityType.Builder.of(RunicWorkbenchBlockEntity::new,
                             BlockInit.RUNICWORKBENCH.get()).build(null));
+    public static final RegistryObject<BlockEntityType<RunicAnalyzerBlockEntity>> RUNICANALYZER =
+            BLOCK_ENTITIES.register("runicanalyzerblockentity", () ->
+                    BlockEntityType.Builder.of(RunicAnalyzerBlockEntity::new,
+                            BlockInit.RUNICANALYZER.get()).build(null));
     public static final RegistryObject<BlockEntityType<VoidGlassBlockEntity>> VOIDGLASS =
             BLOCK_ENTITIES.register("voidglassblockentity", () ->
                     BlockEntityType.Builder.of(VoidGlassBlockEntity::new,

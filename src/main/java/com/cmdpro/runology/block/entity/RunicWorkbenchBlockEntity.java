@@ -57,7 +57,6 @@ import java.util.concurrent.ConcurrentMap;
 
 public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity, IRunicEnergyContainer {
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
-    private float souls;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(10) {
         @Override
