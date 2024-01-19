@@ -3,8 +3,10 @@ package com.cmdpro.runology.item;
 import com.cmdpro.runology.api.RuneItem;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
+import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -15,13 +17,25 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Research extends Item {
     public Research(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable(BookDataManager.get().getBook(ResourceLocation.tryParse(pStack.getTag().getString("book"))).getEntry(ResourceLocation.tryParse(pStack.getTag().getString("entry"))).getName()));
+        if (pStack.getTag().getBoolean("finished")) {
+            pTooltipComponents.add(Component.translatable("item.runology.research.complete"));
+        }
     }
 
     @Override

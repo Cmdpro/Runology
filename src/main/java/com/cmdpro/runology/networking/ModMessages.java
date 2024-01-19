@@ -37,6 +37,11 @@ public class ModMessages {
                 .encoder(PlayerUnlockEntryC2SPacket::toBytes)
                 .consumerMainThread(PlayerUnlockEntryC2SPacket::handle)
                 .add();
+        net.messageBuilder(PlayerClickAnalyzeButtonC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PlayerClickAnalyzeButtonC2SPacket::new)
+                .encoder(PlayerClickAnalyzeButtonC2SPacket::toBytes)
+                .consumerMainThread(PlayerClickAnalyzeButtonC2SPacket::handle)
+                .add();
 
     }
     public static <MSG> void sendToServer(MSG message) {

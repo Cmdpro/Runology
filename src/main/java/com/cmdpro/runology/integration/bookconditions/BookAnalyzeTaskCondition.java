@@ -126,12 +126,7 @@ public class BookAnalyzeTaskCondition extends BookCondition {
                 });
                 if (data.get().getUnlocked().containsKey(context.getBook().getId())) {
                     if (data.get().getUnlocked().get(context.getBook().getId()).contains(context2.getEntry().getId())) {
-                        if (hasAdvancement) {
-                            var advancement = serverPlayer.getServer().getAdvancements().getAdvancement(this.advancementId);
-                            return advancement != null && serverPlayer.getAdvancements().getOrStartProgress(advancement).isDone();
-                        } else {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }

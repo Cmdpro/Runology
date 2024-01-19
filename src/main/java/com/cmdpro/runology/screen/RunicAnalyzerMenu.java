@@ -89,7 +89,6 @@ public class RunicAnalyzerMenu extends AbstractContainerMenu {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, BlockInit.RUNICANALYZER.get());
     }
-
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
