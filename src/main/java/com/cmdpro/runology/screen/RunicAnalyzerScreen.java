@@ -44,13 +44,14 @@ public class RunicAnalyzerScreen extends AbstractContainerScreen<RunicAnalyzerMe
             if (entry.getCondition() instanceof BookAnalyzeTaskCondition taskCondition) {
                 if (menu.blockEntity.item.getTag().getInt("progress") < taskCondition.tasks.length) {
                     AnalyzeTask task = taskCondition.tasks[menu.blockEntity.item.getTag().getInt("progress")];
-                    task.render(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
+                    task.render(pGuiGraphics, pPartialTick, pMouseX, pMouseY, x, y);
                     if (task.canComplete(menu.player)) {
                         if (pMouseX >= x+47 && pMouseY >= y+57 && pMouseX <= x+129 && pMouseY <= y+66) {
                             pGuiGraphics.blit(TEXTURE, x + 47, y + 57, 0, 166, 83, 10);
                         } else {
                             pGuiGraphics.blit(TEXTURE, x + 47, y + 57, 0, 176, 83, 10);
                         }
+                        pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, "Complete", x + 88, y + 58, 0xFFFFFF);
                     }
                 }
             }
@@ -63,12 +64,12 @@ public class RunicAnalyzerScreen extends AbstractContainerScreen<RunicAnalyzerMe
         int y = (height - imageHeight) / 2;
         if (pMouseX >= x+47 && pMouseY >= y+57 && pMouseX <= x+129 && pMouseY <= y+66) {
             if (pButton == 0) {
-                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 if (menu.blockEntity.item != null && menu.blockEntity.item.is(ItemInit.RESEARCH.get()) && menu.blockEntity.item.hasTag() && menu.blockEntity.item.getTag().contains("entry") && menu.blockEntity.item.getTag().contains("progress")) {
                     BookEntry entry = BookDataManager.get().getBook(new ResourceLocation(Runology.MOD_ID, "runologyguide")).getEntry(ResourceLocation.tryParse(menu.blockEntity.item.getTag().getString("entry")));
                     if (entry.getCondition() instanceof BookAnalyzeTaskCondition task) {
                         if (menu.blockEntity.item.getTag().getInt("progress") < task.tasks.length) {
                             if (task.tasks[menu.blockEntity.item.getTag().getInt("progress")].canComplete(menu.player)) {
+                                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                                 ModMessages.sendToServer(new PlayerClickAnalyzeButtonC2SPacket(menu.blockEntity.getBlockPos()));
                             }
                         }
@@ -81,13 +82,15 @@ public class RunicAnalyzerScreen extends AbstractContainerScreen<RunicAnalyzerMe
 
     @Override
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
         renderBackground(pGuiGraphics);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         if (menu.blockEntity.item != null && menu.blockEntity.item.is(ItemInit.RESEARCH.get()) && menu.blockEntity.item.hasTag() && menu.blockEntity.item.getTag().contains("entry") && menu.blockEntity.item.getTag().contains("progress")) {
             BookEntry entry = BookDataManager.get().getBook(new ResourceLocation(Runology.MOD_ID, "runologyguide")).getEntry(ResourceLocation.tryParse(menu.blockEntity.item.getTag().getString("entry")));
             if (entry.getCondition() instanceof BookAnalyzeTaskCondition task) {
                 if (menu.blockEntity.item.getTag().getInt("progress") < task.tasks.length) {
-                    task.tasks[menu.blockEntity.item.getTag().getInt("progress")].renderPost(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
+                    task.tasks[menu.blockEntity.item.getTag().getInt("progress")].renderPost(pGuiGraphics, pPartialTick, pMouseX, pMouseY, x, y);
                 }
             }
         }

@@ -15,13 +15,35 @@
     "type": "runology:analyze",
     "tasks": [
       {
-        "type": "runology:getitem"
+        "type": "runology:getitem",
+        "items": [
+          {
+            "item": "runology:blankrune"
+          }
+        ]
       },
       {
-        "type": "runology:getitem"
+        "type": "runology:getitem",
+        "items": [
+          {
+            "item": "runology:voidglass"
+          },
+          {
+            "item": "minecraft:glass"
+          },
+          {
+            "item": "runology:voidrune"
+          }
+        ]
       },
       {
-        "type": "runology:getitem"
+        "type": "runology:getitem",
+        "items": [
+          {
+            "item": "minecraft:diamond",
+            "count": 45
+          }
+        ]
       }
     ]
   },

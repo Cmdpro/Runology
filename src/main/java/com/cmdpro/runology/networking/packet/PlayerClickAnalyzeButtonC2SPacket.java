@@ -41,6 +41,7 @@ public class PlayerClickAnalyzeButtonC2SPacket {
                     if (entry.getCondition() instanceof BookAnalyzeTaskCondition task) {
                         if (analyzer.item.getTag().getInt("progress") < task.tasks.length) {
                             if (task.tasks[analyzer.item.getTag().getInt("progress")].canComplete(context.getSender())) {
+                                task.tasks[analyzer.item.getTag().getInt("progress")].onComplete(context.getSender());
                                 analyzer.item.getTag().putInt("progress", analyzer.item.getTag().getInt("progress")+1);
                                 if (analyzer.item.getTag().getInt("progress") >= task.tasks.length) {
                                     analyzer.item.getTag().putBoolean("finished", true);

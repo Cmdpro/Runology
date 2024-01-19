@@ -3,12 +3,14 @@ package com.cmdpro.runology.item;
 import com.cmdpro.runology.api.RuneItem;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
+import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -56,6 +58,7 @@ public class Research extends Item {
                     }
                 });
                 pPlayer.getItemInHand(pUsedHand).shrink(1);
+                BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer)pPlayer);
             }
             return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
         }
