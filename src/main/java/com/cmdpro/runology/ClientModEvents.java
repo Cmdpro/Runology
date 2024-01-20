@@ -82,6 +82,20 @@ public class ClientModEvents {
                 });
             }
         });
+        event.enqueueWork(new Runnable() {
+            public void run() {
+                ItemProperties.register(ItemInit.RESEARCH.get(), new ResourceLocation(Runology.MOD_ID, "finished"), (stack, level, entity, seed) -> {
+                    if (stack.hasTag()) {
+                        if (stack.getTag().contains("finished")) {
+                            if (stack.getTag().getBoolean("finished")) {
+                                return 1;
+                            }
+                        }
+                    }
+                    return 0;
+                });
+            }
+        });
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {

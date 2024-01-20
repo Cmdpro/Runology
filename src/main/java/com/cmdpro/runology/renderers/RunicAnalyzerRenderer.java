@@ -31,9 +31,9 @@ public class RunicAnalyzerRenderer extends GeoBlockRenderer<RunicAnalyzerBlockEn
     public void postRender(PoseStack poseStack, RunicAnalyzerBlockEntity animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.postRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
         poseStack.pushPose();
-        poseStack.translate(0D, 0.75D, 0D);
+        poseStack.translate(0D, 1.125D, 0D);
         poseStack.mulPose(Axis.YP.rotationDegrees(animatable.getLevel().getLevelData().getGameTime() % 360));
-        poseStack.scale(0.75F, 0.75F, 0.75F);
+        poseStack.scale(0.5F, 0.5f, 0.5F);
         Minecraft.getInstance().getItemRenderer().renderStatic(animatable.item, ItemDisplayContext.GUI, packedLight, packedOverlay, poseStack, bufferSource, animatable.getLevel(), 0);
         poseStack.popPose();
     }

@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "runology:item/unwrittenresearch"
+  },
+  "overrides": [
+    { "predicate": { "runology:finished": 1 }, "model": "runology:item/writtenresearch" }
+  ]
+}
