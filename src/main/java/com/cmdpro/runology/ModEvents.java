@@ -12,7 +12,9 @@ import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -25,10 +27,13 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.*;
@@ -83,6 +88,20 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
+                if (event.player.tickCount % 20 == 0) {
+                    List<StructureStart> structureStarts = ((ServerLevel) event.player.level()).structureManager().startsForStructure(new ChunkPos(event.player.blockPosition()), s -> true);
+                    List<Structure> structures = structureStarts.stream()
+                            .filter(ss -> ss.getBoundingBox().isInside(event.player.blockPosition()))
+                            .map(StructureStart::getStructure).toList();
+                    if (!structures.isEmpty()) {
+                        for (Structure i : structures) {
+                            ResourceLocation id = event.player.level().registryAccess().registryOrThrow(Registries.STRUCTURE).getKey(i);
+                            if (!data.getVisitedStructures().contains(id)) {
+                                data.getVisitedStructures().add(id);
+                            }
+                        }
+                    }
+                }
                 data.updateData(event.player);
             });
 

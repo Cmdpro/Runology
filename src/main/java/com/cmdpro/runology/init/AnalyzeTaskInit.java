@@ -2,7 +2,6 @@ package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.analyzetasks.ConsumeItemTaskSerializer;
-import com.cmdpro.runology.analyzetasks.GetItemTask;
 import com.cmdpro.runology.analyzetasks.GetItemTaskSerializer;
 import com.cmdpro.runology.api.AnalyzeTaskSerializer;
 import net.minecraft.resources.ResourceLocation;

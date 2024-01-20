@@ -21,16 +21,9 @@ public class PlayerModData {
         unlocked = new HashMap<>();
     }
     private HashMap<ResourceLocation, List<ResourceLocation>> unlocked;
-    private int runicKnowledge;
     private int instabilityEventCooldown;
     public HashMap<ResourceLocation, List<ResourceLocation>> getUnlocked() {
         return unlocked;
-    }
-    public int getRunicKnowledge() {
-        return runicKnowledge;
-    }
-    public void setRunicKnowledge(int amount) {
-        this.runicKnowledge = amount;
     }
     public int getInstabilityEventCooldown() {
         return instabilityEventCooldown;
@@ -42,20 +35,19 @@ public class PlayerModData {
     public void updateData(ServerPlayer player) {
         if (player.level().getChunkAt(player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).isPresent()) {
             player.level().getChunkAt(player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).ifPresent((data) -> {
-                ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(getRunicKnowledge(), data.getInstability()), (player));
+                ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(data.getInstability()), (player));
             });
         } else {
-            ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(getRunicKnowledge(), 0), (player));
+            ModMessages.sendToPlayer(new PlayerDataSyncS2CPacket(0), (player));
         }
     }
     public void updateData(Player player) {
         updateData((ServerPlayer)player);
     }
     public void copyFrom(PlayerModData source) {
-        this.runicKnowledge = source.runicKnowledge;
+        this.unlocked = source.unlocked;
     }
     public void saveNBTData(CompoundTag nbt) {
-        nbt.putInt("runicknowledge", runicKnowledge);
         if (!unlocked.isEmpty()) {
             ListTag tag = new ListTag();
             for (ResourceLocation i : unlocked.keySet()) {
@@ -75,7 +67,6 @@ public class PlayerModData {
     }
     public void loadNBTData(CompoundTag nbt) {
         unlocked.clear();
-        this.runicKnowledge = nbt.getInt("runicknowledge");
         if (nbt.contains("unlocked")) {
             for (Tag i : (ListTag) nbt.get("unlocked")) {
                 List<ResourceLocation> list = new ArrayList<>();

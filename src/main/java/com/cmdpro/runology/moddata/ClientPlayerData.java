@@ -1,14 +1,13 @@
 package com.cmdpro.runology.moddata;
 
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
+
 public class ClientPlayerData {
-    private static int runicKnowledge;
     private static float currentChunkInstability;
-    public static void set(int runicKnowledge, float currentChunkInstability) {
-        ClientPlayerData.runicKnowledge = runicKnowledge;
+    public static void set(float currentChunkInstability) {
         ClientPlayerData.currentChunkInstability = currentChunkInstability;
-    }
-    public static int getPlayerRunicKnowledge() {
-        return runicKnowledge;
     }
     public static float getPlayerChunkInstability() {
         return currentChunkInstability;

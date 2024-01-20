@@ -19,9 +19,7 @@ public class ConsumeItemTaskSerializer extends AnalyzeTaskSerializer<ConsumeItem
     public AnalyzeTask fromJson(JsonObject json) {
         ArrayList<ItemStack> items = new ArrayList<>();
         for (JsonElement i : json.get("items").getAsJsonArray()) {
-            Runology.LOGGER.info(i.getAsJsonObject().toString());
             items.add(itemStackFromJson(i.getAsJsonObject()));
-            Runology.LOGGER.info("" + itemStackFromJson(i.getAsJsonObject()).getCount());
         }
         return new ConsumeItemTask(items.toArray(new ItemStack[0]));
     }

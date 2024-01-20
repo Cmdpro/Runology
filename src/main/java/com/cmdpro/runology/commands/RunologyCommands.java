@@ -22,12 +22,10 @@ public class RunologyCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(Commands.literal(Runology.MOD_ID)
                 .requires(source -> source.hasPermission(4))
-                .then(Commands.literal("setrunicknowledge")
-                        .then(Commands.argument("amount", IntegerArgumentType.integer(0))
-                                .executes((command) -> {
-                                    return setrunicknowledge(command);
-                                })
-                        )
+                .then(Commands.literal("clearvisitedstructures")
+                        .executes((command) -> {
+                            return clearvisitedstructures(command);
+                        })
                 )
                 .then(Commands.literal("resetlearned")
                         .executes((command) -> {
@@ -68,12 +66,11 @@ public class RunologyCommands {
         }
         return Command.SINGLE_SUCCESS;
     }
-    private static int setrunicknowledge(CommandContext<CommandSourceStack> command){
+    private static int clearvisitedstructures(CommandContext<CommandSourceStack> command){
         if(command.getSource().getEntity() instanceof Player) {
             Player player = (Player) command.getSource().getEntity();
             player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                int knowledge = command.getArgument("amount", int.class);
-                data.setRunicKnowledge(knowledge);
+                data.getVisitedStructures().clear();
             });
         }
         return Command.SINGLE_SUCCESS;
