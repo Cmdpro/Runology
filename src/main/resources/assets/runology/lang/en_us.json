@@ -55,6 +55,13 @@
   "block.runology.shatterwood": "Shatterwood",
   "block.runology.shatterwoodplanks": "Shatterwood Planks",
   "block.runology.strippedshatterwood": "Stripped Shatterwood",
+  "container.runology.runicanalyzer": "Runic Analyzer",
+  "container.runology.runicanalyzer.complete": "Complete",
+  "block.runology.runicanalyzer": "Runic Analyzer",
+  "block.runology.research": "Research",
+
+  "runology.analyzetasks.runology.consumeitem": "Consume Item",
+  "runology.analyzetasks.runology.getitem": "Collect Item",
 
   "curios.identifier.runictrinket": "Runic Trinket",
 

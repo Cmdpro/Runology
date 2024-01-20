@@ -2,6 +2,7 @@ package com.cmdpro.runology.screen;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.AnalyzeTask;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
@@ -45,13 +46,15 @@ public class RunicAnalyzerScreen extends AbstractContainerScreen<RunicAnalyzerMe
                 if (menu.blockEntity.item.getTag().getInt("progress") < taskCondition.tasks.length) {
                     AnalyzeTask task = taskCondition.tasks[menu.blockEntity.item.getTag().getInt("progress")];
                     task.render(pGuiGraphics, pPartialTick, pMouseX, pMouseY, x, y);
+                    ResourceLocation id = RunologyUtil.ANALYZE_TASKS_REGISTRY.get().getKey(task.getSerializer());
+                    pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable("runology.analyzetasks." + id.getNamespace() + "." + id.getPath()), x + 88, y + 20, 0xFFFFFF);
                     if (task.canComplete(menu.player)) {
                         if (pMouseX >= x+47 && pMouseY >= y+57 && pMouseX <= x+129 && pMouseY <= y+66) {
                             pGuiGraphics.blit(TEXTURE, x + 47, y + 57, 0, 166, 83, 10);
                         } else {
                             pGuiGraphics.blit(TEXTURE, x + 47, y + 57, 0, 176, 83, 10);
                         }
-                        pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, "Complete", x + 88, y + 58, 0xFFFFFF);
+                        pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable("container.runology.runicanalyzer.complete"), x + 88, y + 58, 0xFFFFFF);
                     }
                 }
             }

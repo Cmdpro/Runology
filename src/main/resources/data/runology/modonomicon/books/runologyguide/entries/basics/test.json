@@ -15,7 +15,7 @@
     "type": "runology:analyze",
     "tasks": [
       {
-        "type": "runology:getitem",
+        "type": "runology:consumeitem",
         "items": [
           {
             "item": "runology:blankrune"
