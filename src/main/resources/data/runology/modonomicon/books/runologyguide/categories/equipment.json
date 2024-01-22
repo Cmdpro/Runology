@@ -1,5 +1,5 @@
 {
-  "icon": "runology:runicworkbench",
+  "icon": "runology:textures/gui/equipment.png",
   "name": "book.runology.runologyguide.equipment.name",
   "sort_number": -1
 }

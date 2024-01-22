@@ -88,20 +88,6 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                if (event.player.tickCount % 20 == 0) {
-                    List<StructureStart> structureStarts = ((ServerLevel) event.player.level()).structureManager().startsForStructure(new ChunkPos(event.player.blockPosition()), s -> true);
-                    List<Structure> structures = structureStarts.stream()
-                            .filter(ss -> ss.getBoundingBox().isInside(event.player.blockPosition()))
-                            .map(StructureStart::getStructure).toList();
-                    if (!structures.isEmpty()) {
-                        for (Structure i : structures) {
-                            ResourceLocation id = event.player.level().registryAccess().registryOrThrow(Registries.STRUCTURE).getKey(i);
-                            if (!data.getVisitedStructures().contains(id)) {
-                                data.getVisitedStructures().add(id);
-                            }
-                        }
-                    }
-                }
                 data.updateData(event.player);
             });
 
@@ -186,19 +172,5 @@ public class ModEvents {
                 });
             }
         }
-    }
-    public static boolean playerHasNeededEntry(ServerPlayer player, boolean mustRead, String entry) {
-        ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).unlockedEntries;
-        if (mustRead) {
-            entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).readEntries;
-        }
-        for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
-            for (ResourceLocation o : i.getValue()) {
-                if (o.toString().equals(entry)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

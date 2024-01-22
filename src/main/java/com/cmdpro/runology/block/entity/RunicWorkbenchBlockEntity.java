@@ -3,8 +3,10 @@ package com.cmdpro.runology.block.entity;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.IRunicEnergyContainer;
 import com.cmdpro.runology.api.RuneItem;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.RecipeInit;
+import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.recipe.IRunicRecipe;
 import com.cmdpro.runology.recipe.NonMenuCraftingContainer;
 import com.cmdpro.runology.screen.RunicWorkbenchMenu;
@@ -190,6 +192,13 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
                         ItemEntity entity = new ItemEntity(pLevel, (float) pPos.getX() + 0.5f, (float) pPos.getY() + 1f, (float) pPos.getZ() + 0.5f, stack);
                         pLevel.addFreshEntity(entity);
                         pLevel.playSound(null, pPos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 2, 1);
+                        float waste = 0;
+                        for (Map.Entry<String, Float> i : ent.recipe.getRunicEnergyCost().entrySet()) {
+                            ent.getRunicEnergy().put(i.getKey(), ent.getRunicEnergy().get(i.getKey())-i.getValue());
+                            waste += i.getValue();
+                        }
+                        waste /= 25;
+                        RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, waste, 0, ChunkModData.MAX_INSTABILITY);
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("block.runology.runicworkbench.dontknowhow"));
                     }
@@ -248,7 +257,9 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
                 pBlockEntity.enoughRunicEnergy = enoughEnergy;
             } else {
                 pBlockEntity.recipe = null;
-                pBlockEntity.runicEnergyCost.clear();
+                if (!pBlockEntity.runicEnergyCost.isEmpty()) {
+                    pBlockEntity.runicEnergyCost = new HashMap<>();
+                }
                 pBlockEntity.item = ItemStack.EMPTY;
             }
             pBlockEntity.updateBlock();
@@ -256,7 +267,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     }
     public boolean playerHasNeededEntry(Player player) {
         if (recipe != null) {
-            ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).readEntries;
+            ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).unlockedEntries;
             for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
                 for (ResourceLocation o : i.getValue()) {
                     if (o.toString().equals(recipe.getEntry())) {

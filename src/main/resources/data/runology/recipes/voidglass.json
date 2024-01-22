@@ -1,6 +1,6 @@
 {
   "type": "runology:shapelessrunicrecipe",
-  "entry": "runology:basics/runicworkbench",
+  "entry": "runology:basics/voidglass",
   "runicenergy": [
     {
       "type": "runology:void",

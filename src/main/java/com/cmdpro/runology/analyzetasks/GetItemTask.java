@@ -4,6 +4,7 @@ import com.cmdpro.runology.api.AnalyzeTask;
 import com.cmdpro.runology.api.AnalyzeTaskSerializer;
 import com.cmdpro.runology.init.AnalyzeTaskInit;
 import com.cmdpro.runology.init.ItemInit;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,6 +13,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GetItemTask extends AnalyzeTask {
@@ -66,5 +69,31 @@ public class GetItemTask extends AnalyzeTask {
     @Override
     public AnalyzeTaskSerializer getSerializer() {
         return AnalyzeTaskInit.GETITEM.get();
+    }
+    public static class GetItemTaskSerializer extends AnalyzeTaskSerializer<GetItemTask> {
+        public static final GetItemTaskSerializer INSTANCE = new GetItemTaskSerializer();
+
+        @Override
+        public AnalyzeTask fromJson(JsonObject json) {
+            ArrayList<ItemStack> items = new ArrayList<>();
+            for (JsonElement i : json.get("items").getAsJsonArray()) {
+                items.add(itemStackFromJson(i.getAsJsonObject()));
+            }
+            return new GetItemTask(items.toArray(new ItemStack[0]));
+        }
+        public static ItemStack itemStackFromJson(JsonObject pStackObject) {
+            return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(pStackObject, true, true);
+        }
+
+        @Override
+        public AnalyzeTask fromNetwork(FriendlyByteBuf buffer) {
+            List<ItemStack> items = buffer.readList(FriendlyByteBuf::readItem);
+            return new GetItemTask(items.toArray(new ItemStack[0]));
+        }
+
+        @Override
+        public void toNetwork(GetItemTask task, FriendlyByteBuf buffer) {
+            buffer.writeCollection(Arrays.stream(task.items).toList(), FriendlyByteBuf::writeItem);
+        }
     }
 }

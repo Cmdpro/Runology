@@ -1,6 +1,6 @@
 {
-  "name": "book.spiritmancy.spiritmancyguide.name",
+  "name": "book.runology.runologyguide.name",
   "creative_tab": "modonomicon:modonomicon",
   "auto_add_read_conditions": true,
-  "model": "spiritmancy:spiritmancyguideicon"
+  "model": "runology:runologyguideicon"
 }

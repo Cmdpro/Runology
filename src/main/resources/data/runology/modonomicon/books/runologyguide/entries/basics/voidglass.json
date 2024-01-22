@@ -1,0 +1,42 @@
+{
+  "category": "runology:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:voidglass",
+  "name": "book.runology.runologyguide.basics.voidglass.name",
+  "pages": [
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:voidglass",
+      "title1": "book.runology.runologyguide.basics.voidglass.page1.title",
+      "text": "book.runology.runologyguide.basics.voidglass.page1.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:basics/runetransformations",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "minecraft:glass",
+            "count": 5
+          },
+          {
+            "item": "minecraft:end_stone"
+          }
+        ]
+      }
+    ]
+  },
+  "x": 4,
+  "y": -4
+}

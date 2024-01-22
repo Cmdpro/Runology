@@ -43,13 +43,15 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         Map.Entry<String, Float>[] entrySet = menu.blockEntity.getRunicEnergy().entrySet().toArray(new Map.Entry[0]);
         for (int i = 0; i < entrySet.length; i++) {
             Map.Entry<String, Float> entry = entrySet[i];
-            RunicEnergyType type = RunologyUtil.RUNIC_ENERGY_TYPES_REGISTRY.get().getValue(ResourceLocation.tryParse(entry.getKey()));
-            RenderSystem.setShaderColor((float)type.color.getRed()/255f, (float)type.color.getGreen()/255f, (float)type.color.getBlue()/255f, 1.0F);
-            pGuiGraphics.blit(TEXTURE, x2, y2, 176, 0, 4, 4);
-            x2 += 7;
-            if (x2 > x+(7*3)) {
-                x2 -= 7*3;
-                y2 += 7;
+            if (entry.getValue() > 0) {
+                RunicEnergyType type = RunologyUtil.RUNIC_ENERGY_TYPES_REGISTRY.get().getValue(ResourceLocation.tryParse(entry.getKey()));
+                RenderSystem.setShaderColor((float) type.color.getRed() / 255f, (float) type.color.getGreen() / 255f, (float) type.color.getBlue() / 255f, 1.0F);
+                pGuiGraphics.blit(TEXTURE, x2, y2, 176, 0, 4, 4);
+                x2 += 7;
+                if (x2 > x + (7 * 3)) {
+                    x2 -= 7 * 3;
+                    y2 += 7;
+                }
             }
         }
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.25f);
@@ -81,7 +83,9 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         for (int i = 0; i < entrySet.length; i++) {
             Map.Entry<String, Float> entry = entrySet[i];
             if (pMouseX >= x2 && pMouseY >= y2 && pMouseX <= x2 + 4 && pMouseY <= y2+4) {
-                component.add(Component.translatable("container.runology.runicworkbench.runicenergyamount", entry.getValue(), 1000, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(entry.getKey())))).getVisualOrderText());
+                if (entry.getValue() > 0) {
+                    component.add(Component.translatable("container.runology.runicworkbench.runicenergyamount", entry.getValue(), 1000, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(entry.getKey())))).getVisualOrderText());
+                }
             }
             x2 += 7;
             if (x2 > x+(7*3)) {

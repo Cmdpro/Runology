@@ -6,12 +6,14 @@ import com.cmdpro.runology.item.VoidGlassItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,7 +32,7 @@ public class BlockInit {
     public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> VOIDGLASS = registerBlock("voidglass",
-            () -> new VoidGlass(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+            () -> new VoidGlass(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.HAT).strength(0.3F).sound(SoundType.GLASS).isValidSpawn(BlockInit::never).isRedstoneConductor(BlockInit::never).isSuffocating(BlockInit::never)));
     public static final RegistryObject<Block> PETRIFIEDSHATTERWOOD = register("petrifiedshatterwood",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).lightLevel((state) -> 2)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEBRICKS = register("shatterstonebricks",
@@ -85,5 +87,11 @@ public class BlockInit {
         RegistryObject<T> obj = registerBlock(name, block);
         ITEMS.register(name, item.apply(obj));
         return obj;
+    }
+    private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
+        return false;
+    }
+    private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return false;
     }
 }

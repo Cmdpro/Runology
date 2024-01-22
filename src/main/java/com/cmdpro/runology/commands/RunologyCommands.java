@@ -22,11 +22,6 @@ public class RunologyCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(Commands.literal(Runology.MOD_ID)
                 .requires(source -> source.hasPermission(4))
-                .then(Commands.literal("clearvisitedstructures")
-                        .executes((command) -> {
-                            return clearvisitedstructures(command);
-                        })
-                )
                 .then(Commands.literal("resetlearned")
                         .executes((command) -> {
                             return resetlearned(command);
@@ -62,15 +57,6 @@ public class RunologyCommands {
                 data.getUnlocked().clear();
                 BookUnlockStateManager.get().resetFor((ServerPlayer)player, BookDataManager.get().getBook(new ResourceLocation("runology", "runologyguide")));
                 BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer)player);
-            });
-        }
-        return Command.SINGLE_SUCCESS;
-    }
-    private static int clearvisitedstructures(CommandContext<CommandSourceStack> command){
-        if(command.getSource().getEntity() instanceof Player) {
-            Player player = (Player) command.getSource().getEntity();
-            player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                data.getVisitedStructures().clear();
             });
         }
         return Command.SINGLE_SUCCESS;

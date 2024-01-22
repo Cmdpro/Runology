@@ -76,18 +76,6 @@ public class ShapelessRunicRecipe implements IRunicRecipe {
         return result.copy();
     }
 
-    public boolean playerHasNeededEntry(Player player) {
-        ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).readEntries;
-        for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
-            for (ResourceLocation o : i.getValue()) {
-                if (o.toString().equals(entry)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;

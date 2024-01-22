@@ -1,0 +1,82 @@
+{
+  "category": "runology:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:voidrune",
+  "name": "book.runology.runologyguide.basics.runetransformations.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.runology.runologyguide.basics.runetransformations.page1.title",
+      "text": "book.runology.runologyguide.basics.runetransformations.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "runology:voidrune"
+      },
+      "title": "book.runology.runologyguide.basics.runetransformations.page2.title",
+      "text": "book.runology.runologyguide.basics.runetransformations.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "runology:energyrune"
+      },
+      "title": "book.runology.runologyguide.basics.runetransformations.page3.title",
+      "text": "book.runology.runologyguide.basics.runetransformations.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "runology:plantrune"
+      },
+      "title": "book.runology.runologyguide.basics.runetransformations.page4.title",
+      "text": "book.runology.runologyguide.basics.runetransformations.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "runology:icerune"
+      },
+      "title": "book.runology.runologyguide.basics.runetransformations.page5.title",
+      "text": "book.runology.runologyguide.basics.runetransformations.page5.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:basics/runicanalyzer",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "runology:firerune",
+            "count": 1
+          },
+          {
+            "item": "runology:earthrune",
+            "count": 1
+          },
+          {
+            "item": "runology:airrune",
+            "count": 1
+          },
+          {
+            "item": "runology:waterrune",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  },
+  "x": 2,
+  "y": -4
+}

@@ -36,7 +36,6 @@ public class VoidGlass extends BaseEntityBlock {
         return SHAPE;
     }
 
-
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;

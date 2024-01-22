@@ -2,9 +2,13 @@ package com.cmdpro.runology.item;
 
 import com.cmdpro.runology.api.RuneItem;
 import com.cmdpro.runology.init.ItemInit;
+import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
+import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -44,21 +48,41 @@ public class Research extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pPlayer.getItemInHand(pUsedHand).hasTag() && pPlayer.getItemInHand(pUsedHand).getTag().contains("finished") && pPlayer.getItemInHand(pUsedHand).getTag().getBoolean("finished") && pPlayer.getItemInHand(pUsedHand).getTag().contains("book") && pPlayer.getItemInHand(pUsedHand).getTag().contains("entry")) {
             if (!pLevel.isClientSide) {
-                pPlayer.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                    ResourceLocation book = ResourceLocation.tryParse(pPlayer.getItemInHand(pUsedHand).getTag().getString("book"));
-                    ResourceLocation entry = ResourceLocation.tryParse(pPlayer.getItemInHand(pUsedHand).getTag().getString("entry"));
-                    if (data.getUnlocked().containsKey(book)) {
-                        if (!data.getUnlocked().get(book).contains(entry)) {
-                            data.getUnlocked().get(book).add(entry);
+                ResourceLocation book = ResourceLocation.tryParse(pPlayer.getItemInHand(pUsedHand).getTag().getString("book"));
+                ResourceLocation entry = ResourceLocation.tryParse(pPlayer.getItemInHand(pUsedHand).getTag().getString("entry"));
+                BookEntry bookEntry = BookDataManager.get().getBook(book).getEntry(entry);
+                if (bookEntry.getCondition() instanceof BookAnalyzeTaskCondition condition) {
+                    var advancement = pPlayer.getServer().getAdvancements().getAdvancement(condition.advancementId);
+                    if (!condition.hasAdvancement || (advancement != null && ((ServerPlayer)pPlayer).getAdvancements().getOrStartProgress(advancement).isDone())) {
+                        List<BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
+                        boolean canSee = true;
+                        for (BookEntryParent i : parents) {
+                            if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
+                                canSee = false;
+                                break;
+                            }
+                        }
+                        if (canSee) {
+                            pPlayer.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
+                                if (data.getUnlocked().containsKey(book)) {
+                                    if (!data.getUnlocked().get(book).contains(entry)) {
+                                        data.getUnlocked().get(book).add(entry);
+                                    }
+                                } else {
+                                    ArrayList list = new ArrayList<>();
+                                    list.add(entry);
+                                    data.getUnlocked().put(book, list);
+                                }
+                            });
+                            pPlayer.getItemInHand(pUsedHand).shrink(1);
+                            BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer) pPlayer);
+                        } else {
+                            pPlayer.sendSystemMessage(Component.translatable("item.runology.research.previousentryneeded"));
                         }
                     } else {
-                        ArrayList list = new ArrayList<>();
-                        list.add(entry);
-                        data.getUnlocked().put(book, list);
+                        pPlayer.sendSystemMessage(Component.translatable("item.runology.research.advancementneeded"));
                     }
-                });
-                pPlayer.getItemInHand(pUsedHand).shrink(1);
-                BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer)pPlayer);
+                }
             }
             return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
         }
