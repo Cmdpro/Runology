@@ -5,6 +5,7 @@ import com.cmdpro.runology.api.InstabilityEvent;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.RunicEnergyType;
 import com.cmdpro.runology.entity.RunicConstruct;
+import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.entity.RunicScout;
 import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ public class ModEventBusEvents {
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(EntityInit.RUNICCONSTRUCT.get(), RunicConstruct.setAttributes());
         event.put(EntityInit.RUNICSCOUT.get(), RunicScout.setAttributes());
+        event.put(EntityInit.RUNICOVERSEER.get(), RunicOverseer.setAttributes());
     }
     @SubscribeEvent
     public static void registerStuff(RegisterEvent event) {

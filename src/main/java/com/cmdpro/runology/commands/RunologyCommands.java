@@ -1,6 +1,8 @@
 package com.cmdpro.runology.commands;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.entity.RunicOverseer;
+import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;

@@ -1,5 +1,6 @@
 package com.cmdpro.runology.renderers;
 
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
 
@@ -36,5 +38,21 @@ public class RunicAnalyzerRenderer extends GeoBlockRenderer<RunicAnalyzerBlockEn
         poseStack.scale(0.5F, 0.5f, 0.5F);
         Minecraft.getInstance().getItemRenderer().renderStatic(animatable.item, ItemDisplayContext.GUI, packedLight, packedOverlay, poseStack, bufferSource, animatable.getLevel(), 0);
         poseStack.popPose();
+    }
+    public static class RunicAnalyzerModel extends GeoModel<RunicAnalyzerBlockEntity> {
+        @Override
+        public ResourceLocation getModelResource(RunicAnalyzerBlockEntity object) {
+            return new ResourceLocation(Runology.MOD_ID, "geo/runicanalyzer.geo.json");
+        }
+
+        @Override
+        public ResourceLocation getTextureResource(RunicAnalyzerBlockEntity object) {
+            return new ResourceLocation(Runology.MOD_ID, "textures/block/runicanalyzer.png");
+        }
+
+        @Override
+        public ResourceLocation getAnimationResource(RunicAnalyzerBlockEntity animatable) {
+            return new ResourceLocation(Runology.MOD_ID, "animations/runicanalyzer.animation.json");
+        }
     }
 }

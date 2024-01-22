@@ -1,19 +1,27 @@
 package com.cmdpro.runology;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
     public static SimpleSoundInstance music;
-    /*
+
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
         Minecraft mc = Minecraft.getInstance();
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
+            /*
             boolean playMusic = false;
             SoundEvent mus = SoundInit.SOULKEEPERPHASE1.get();
             for (Entity i : mc.level.entitiesForRendering()) {
@@ -36,7 +44,7 @@ public class ClientEvents {
                     music = SimpleSoundInstance.forMusic(mus);
                     manager.play(music);
                 }
-            }
+            }*/
         }
-    }*/
+    }
 }

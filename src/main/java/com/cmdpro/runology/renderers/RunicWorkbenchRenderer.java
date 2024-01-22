@@ -1,5 +1,6 @@
 package com.cmdpro.runology.renderers;
 
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
 
@@ -35,5 +37,21 @@ public class RunicWorkbenchRenderer extends GeoBlockRenderer<RunicWorkbenchBlock
         poseStack.scale(0.75F, 0.75F, 0.75F);
         Minecraft.getInstance().getItemRenderer().renderStatic(animatable.item, ItemDisplayContext.GUI, packedLight, packedOverlay, poseStack, bufferSource, animatable.getLevel(), 0);
         poseStack.popPose();
+    }
+    public static class RunicWorkbenchModel extends GeoModel<RunicWorkbenchBlockEntity> {
+        @Override
+        public ResourceLocation getModelResource(RunicWorkbenchBlockEntity object) {
+            return new ResourceLocation(Runology.MOD_ID, "geo/runicworkbench.geo.json");
+        }
+
+        @Override
+        public ResourceLocation getTextureResource(RunicWorkbenchBlockEntity object) {
+            return new ResourceLocation(Runology.MOD_ID, "textures/block/runicworkbench.png");
+        }
+
+        @Override
+        public ResourceLocation getAnimationResource(RunicWorkbenchBlockEntity animatable) {
+            return new ResourceLocation(Runology.MOD_ID, "animations/runicworkbench.animation.json");
+        }
     }
 }

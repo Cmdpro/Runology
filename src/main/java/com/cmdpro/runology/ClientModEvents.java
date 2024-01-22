@@ -75,6 +75,8 @@ public class ClientModEvents {
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
         EntityRenderers.register(EntityInit.RUNICCONSTRUCT.get(), RunicConstructRenderer::new);
         EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);
+        EntityRenderers.register(EntityInit.RUNICOVERSEER.get(), RunicOverseerRenderer::new);
+        EntityRenderers.register(EntityInit.VOIDBOMB.get(), BillboardProjectileRenderer::new);
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {
