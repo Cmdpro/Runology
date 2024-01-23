@@ -16,15 +16,22 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.network.NetworkHooks;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class VoidBullet extends BillboardProjectile {
+public class VoidBullet extends Projectile implements GeoEntity {
     public int time;
     public VoidBullet(EntityType<VoidBullet> entityType, Level world) {
         super(entityType, world);
@@ -43,15 +50,6 @@ public class VoidBullet extends BillboardProjectile {
     protected void onHitBlock(BlockHitResult hit) {
         super.onHitBlock(hit);
         remove(RemovalReason.KILLED);
-    }
-
-    @Override
-    public ResourceLocation getSprite() {
-        return new ResourceLocation(Runology.MOD_ID, "textures/entity/voidbullet.png");
-    }
-    @Override
-    public float getScale() {
-        return 0.5f;
     }
 
     @Override
@@ -80,7 +78,6 @@ public class VoidBullet extends BillboardProjectile {
     protected EntityHitResult findHitEntity(Vec3 p_36758_, Vec3 p_36759_) {
         return ProjectileUtil.getEntityHitResult(this.level(), this, p_36758_, p_36759_, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), this::canHitEntity);
     }
-    public float gravity;
     @Override
     public void tick() {
         if (!level().isClientSide) {
@@ -144,12 +141,27 @@ public class VoidBullet extends BillboardProjectile {
             damagesource = null;
         }
         if (damagesource != null) {
-            entity.hurt(damagesource, 25);
+            hit.getEntity().hurt(damagesource, 25);
         }
+        remove(RemovalReason.KILLED);
     }
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController(this, "controller", 0, this::predicate));
+    }
+
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
+        event.getController().setAnimation(RawAnimation.begin().then("animation.voidbullet.move", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.factory;
+    }
 }

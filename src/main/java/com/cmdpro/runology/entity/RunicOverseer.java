@@ -3,8 +3,13 @@ package com.cmdpro.runology.entity;
 import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -49,7 +54,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
-        this.spawnPos = position();
+        this.spawnPos = position().add(0, -1, 0);
         return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 
@@ -87,7 +92,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
                 triggerAnim("attackController", "animation.runicoverseer.throw");
                 for (int i = 0; i < 8; i++) {
                     VoidBomb voidBomb = new VoidBomb(EntityInit.VOIDBOMB.get(), this, level());
-                    voidBomb.setDeltaMovement(calculateViewVector(-20, i * (360 / 8)).multiply(0.75f, 0.75f, 0.75f));
+                    voidBomb.setDeltaMovement(calculateViewVector(-20, i * (360 / 8)).multiply(0.25f, 0.25f, 0.25f));
                     voidBomb.minExplodeHeight = (float) spawnPos.y;
                     level().addFreshEntity(voidBomb);
                 }
@@ -95,10 +100,62 @@ public class RunicOverseer extends Monster implements GeoEntity {
             if (atk == 1) {
                 atkTimer = -100;
             }
+            if (atk == 2) {
+                atkTimer = -100;
+            }
+            if (atk == 3) {
+                triggerAnim("attackController", "animation.runicoverseer.beam");
+                for (Player i : level().players()) {
+                    if (i.position().distanceTo(position()) <= 35) {
+                        VoidBeam voidBomb = new VoidBeam(EntityInit.VOIDBEAM.get(), this, level());
+                        voidBomb.player = i;
+                        level().addFreshEntity(voidBomb);
+                    }
+                }
+                atkTimer = -100;
+            }
         }
         if (atk == 1) {
             if (atkTimer <= -20) {
-
+                if (atkTimer/10 == Math.round(atkTimer/10)) {
+                    Player player = null;
+                    for (Player i : level().players()) {
+                        if (i.position().distanceTo(position()) <= 35) {
+                            if (player == null || i.position().distanceTo(position()) <= player.position().distanceTo(position())) {
+                                player = i;
+                            }
+                        }
+                    }
+                    if (player != null) {
+                        Vec3 vec3 = getEyePosition();
+                        double d0 = player.getEyePosition().x - vec3.x;
+                        double d1 = player.getEyePosition().y - vec3.y;
+                        double d2 = player.getEyePosition().z - vec3.z;
+                        double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+                        VoidBullet voidBullet = new VoidBullet(EntityInit.VOIDBULLET.get(), this, level());
+                        voidBullet.setDeltaMovement(calculateViewVector(
+                                Mth.wrapDegrees((float) (-(Mth.atan2(d1, d3) * (double) (180F / (float) Math.PI)))),
+                                Mth.wrapDegrees((float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F)
+                        ).multiply(0.75f, 0.75f, 0.75f));
+                        level().addFreshEntity(voidBullet);
+                    }
+                }
+            }
+        }
+        if (atk == 2) {
+            if (atkTimer <= 0) {
+                if (atkTimer/20 == Math.round(atkTimer/20)) {
+                    VoidBomb voidBomb = new VoidBomb(EntityInit.VOIDBOMB.get(), this, level());
+                    voidBomb.setDeltaMovement(new Vec3(0, 1, 0));
+                    voidBomb.minExplodeHeight = (float) spawnPos.y;
+                    level().addFreshEntity(voidBomb);
+                    triggerAnim("attackController", "animation.runicoverseer.throw");
+                    Vec3 pos = spawnPos;
+                    while (pos.distanceTo(spawnPos) <= 3) {
+                        pos = new Vec3(spawnPos.x + random.nextInt(-10, 10), position().y, spawnPos.z + random.nextInt(-10, 10));
+                    }
+                    setPos(pos);
+                }
             }
         }
     }
@@ -148,5 +205,45 @@ public class RunicOverseer extends Monster implements GeoEntity {
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         spawnPos = new Vec3(pCompound.getDouble("spawnX"), pCompound.getDouble("spawnY"), pCompound.getDouble("spawnZ"));
+        if (this.hasCustomName()) {
+            this.bossEvent.setName(this.getDisplayName());
+        }
+    }
+    @Override
+    public void setCustomName(@javax.annotation.Nullable Component p_31476_) {
+        super.setCustomName(p_31476_);
+        this.bossEvent.setName(this.getDisplayName());
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!level().isClientSide()) {
+            this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+            if (position().y < spawnPos.y-1) {
+                remove(RemovalReason.DISCARDED);
+            }
+            Player player = null;
+            for (Player i : level().players()) {
+                if (i.position().distanceTo(position()) <= 35) {
+                    player = i;
+                }
+            }
+            if (player == null) {
+                remove(RemovalReason.DISCARDED);
+            }
+        }
+    }
+
+    private final ServerBossEvent bossEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS));
+    @Override
+    public void startSeenByPlayer(ServerPlayer p_31483_) {
+        super.startSeenByPlayer(p_31483_);
+        this.bossEvent.addPlayer(p_31483_);
+    }
+    @Override
+    public void stopSeenByPlayer(ServerPlayer p_31488_) {
+        super.stopSeenByPlayer(p_31488_);
+        this.bossEvent.removePlayer(p_31488_);
     }
 }

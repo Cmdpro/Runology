@@ -62,6 +62,10 @@
   "item.runology.research.complete": "Complete",
   "item.runology.research.previousentryneeded": "You have not unlocked the previous entries!",
   "item.runology.research.advancementneeded": "You do not have the required advancement!",
+  "entity.runology.runicoverseer": "Runic Overseer",
+  "entity.runology.voidbullet": "Void Bullet",
+  "entity.runology.voidbeam": "Void Beam",
+  "entity.runology.voidbomb": "Void Bomb",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

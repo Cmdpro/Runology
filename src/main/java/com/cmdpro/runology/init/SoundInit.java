@@ -14,7 +14,7 @@ public class SoundInit {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Runology.MOD_ID);
 
-    //public static RegistryObject<SoundEvent> SOULKEEPERPHASE1 = registerSoundEvent("soulkeeperphase1");
+    public static RegistryObject<SoundEvent> RUNICOVERSEER = registerSoundEvent("runicoverseer");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

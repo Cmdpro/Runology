@@ -20,18 +20,25 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.network.NetworkHooks;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-public class VoidBomb extends BillboardProjectile {
+public class VoidBomb extends Projectile implements GeoEntity {
     public int time;
     public VoidBomb(EntityType<VoidBomb> entityType, Level world) {
         super(entityType, world);
@@ -71,15 +78,6 @@ public class VoidBomb extends BillboardProjectile {
     }
 
     @Override
-    public ResourceLocation getSprite() {
-        return new ResourceLocation(Runology.MOD_ID, "textures/entity/voidbomb.png");
-    }
-    @Override
-    public float getScale() {
-        return 1;
-    }
-
-    @Override
     protected void defineSynchedData() {
 
     }
@@ -108,7 +106,7 @@ public class VoidBomb extends BillboardProjectile {
     public float gravity;
     @Override
     public void tick() {
-        gravity += 0.05;
+        gravity += 0.01;
         if (gravity >= 0.25) {
             gravity = 0.25f;
         }
@@ -182,4 +180,18 @@ public class VoidBomb extends BillboardProjectile {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController(this, "controller", 0, this::predicate));
+    }
+
+    private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
+        event.getController().setAnimation(RawAnimation.begin().then("animation.voidbomb.idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+    private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.factory;
+    }
 }

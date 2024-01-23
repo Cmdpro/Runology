@@ -100,6 +100,8 @@ public class Runology
             event.accept(ItemInit.RAWMYSTERIUM);
             event.accept(ItemInit.MYSTERIUMINGOT);
             event.accept(ItemInit.MYSTERIUMNUGGET);
+            event.accept(ItemInit.MYSTERIUMIDOL);
+            event.accept(ItemInit.INSTABILITYRESONATOR);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
@@ -125,6 +127,7 @@ public class Runology
             event.accept(BlockInit.SHATTERCRYSTAL);
             event.accept(BlockInit.PETRIFIEDSHATTERWOOD);
             event.accept(ItemInit.VOIDGLASSITEM);
+            event.accept(BlockInit.MYSTERIOUSALTAR);
         }
 
     }

@@ -1,5 +1,7 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.entity.RunicOverseer;
+import com.cmdpro.runology.init.SoundInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
@@ -21,11 +23,13 @@ public class ClientEvents {
         Minecraft mc = Minecraft.getInstance();
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
-            /*
             boolean playMusic = false;
-            SoundEvent mus = SoundInit.SOULKEEPERPHASE1.get();
+            SoundEvent mus = SoundInit.RUNICOVERSEER.get();
             for (Entity i : mc.level.entitiesForRendering()) {
-
+                if (i instanceof RunicOverseer) {
+                    playMusic = true;
+                    mus = SoundInit.RUNICOVERSEER.get();
+                }
             }
             SoundManager manager = mc.getSoundManager();
             if (manager.isActive(music))
@@ -44,7 +48,7 @@ public class ClientEvents {
                     music = SimpleSoundInstance.forMusic(mus);
                     manager.play(music);
                 }
-            }*/
+            }
         }
     }
 }

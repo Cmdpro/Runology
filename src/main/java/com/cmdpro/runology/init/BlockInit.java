@@ -32,7 +32,7 @@ public class BlockInit {
     public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> MYSTERIOUSALTAR = register("mysteriousaltar",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+            () -> new MysteriousAltar(BlockBehaviour.Properties.copy(Blocks.END_PORTAL_FRAME)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> VOIDGLASS = registerBlock("voidglass",
             () -> new VoidGlass(BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.HAT).strength(0.3F).sound(SoundType.GLASS).isValidSpawn(BlockInit::never).isRedstoneConductor(BlockInit::never).isSuffocating(BlockInit::never)));
     public static final RegistryObject<Block> PETRIFIEDSHATTERWOOD = register("petrifiedshatterwood",
