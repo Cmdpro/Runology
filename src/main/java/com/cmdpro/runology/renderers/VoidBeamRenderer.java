@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Math;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
@@ -24,7 +25,7 @@ public class VoidBeamRenderer extends EntityRenderer<VoidBeam> {
 
     public VoidBeamRenderer(EntityRendererProvider.Context p_173962_) {
         super(p_173962_);
-        this.shadowRadius = 0.5f;
+        this.shadowRadius = 0f;
     }
     @Override
     protected int getBlockLightLevel(VoidBeam p_114087_, BlockPos p_114088_) {

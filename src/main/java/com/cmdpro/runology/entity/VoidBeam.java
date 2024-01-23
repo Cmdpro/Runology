@@ -1,6 +1,7 @@
 package com.cmdpro.runology.entity;
 
 import com.cmdpro.runology.init.BlockInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.particles.ParticleTypes;
@@ -74,12 +75,12 @@ public class VoidBeam extends Entity implements TraceableEntity {
         this(entityType, shooter.getX(), shooter.getEyeY() - (double)0.1F, shooter.getZ(), world);
         this.setOwner(shooter);
     }
-    public static final EntityDataAccessor<Optional<UUID>> PLAYER = SynchedEntityData.defineId(VoidBeam.class, EntityDataSerializers.OPTIONAL_UUID);
 
     @Override
     protected void defineSynchedData() {
-        this.entityData.define(PLAYER, Optional.empty());
+
     }
+
     @Override
     public void tick() {
         super.tick();
@@ -89,7 +90,17 @@ public class VoidBeam extends Entity implements TraceableEntity {
                 remove(RemovalReason.DISCARDED);
                 return;
             }
-            entityData.set(PLAYER, Optional.of(player.getUUID()));
+            if (time <= 100) {
+                Vec3 pos = new Vec3(player.position().x, player.blockPosition().getCenter().y, player.position().z);
+                while (!level().getBlockState(BlockPos.containing(pos)).isSolid() && pos.y > level().getMinBuildHeight()) {
+                    pos = pos.add(0, -1, 0);
+                }
+                pos = pos.add(0, 0.5f, 0);
+                setPos(position().x, pos.y, position().z);
+                setDeltaMovement((pos.subtract(position()).multiply(0.75f, 0.75f, 0.75f)));
+            } else {
+                setDeltaMovement(0, 0, 0);
+            }
             if (time == 110) {
                 playSound(SoundEvents.BEACON_POWER_SELECT);
                 for (Player i : level().players()) {
@@ -102,23 +113,7 @@ public class VoidBeam extends Entity implements TraceableEntity {
                 remove(RemovalReason.KILLED);
             }
         }
-        if (level().isClientSide) {
-            Optional<UUID> plr = entityData.get(PLAYER);
-            if (plr.isPresent()) {
-                player = level().getPlayerByUUID(plr.get());
-            }
-        }
-        if (player == null) {
-            return;
-        }
-        if (time <= 100) {
-            Vec3 pos = new Vec3(player.position().x, player.blockPosition().getCenter().y, player.position().z);
-            while (!level().getBlockState(BlockPos.containing(pos)).isSolid() && pos.y > level().getMinBuildHeight()) {
-                pos = pos.add(0, -1, 0);
-            }
-            pos = pos.add(0, 0.5f, 0);
-            setPos(pos);
-        }
+        setPos(position().add(getDeltaMovement()));
     }
 
     @Override

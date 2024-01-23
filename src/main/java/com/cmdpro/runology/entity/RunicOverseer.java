@@ -109,6 +109,12 @@ public class RunicOverseer extends Monster implements GeoEntity {
                     if (i.position().distanceTo(position()) <= 35) {
                         VoidBeam voidBomb = new VoidBeam(EntityInit.VOIDBEAM.get(), this, level());
                         voidBomb.player = i;
+                        Vec3 pos = new Vec3(i.position().x, i.blockPosition().getCenter().y, i.position().z);
+                        while (!level().getBlockState(BlockPos.containing(pos)).isSolid() && pos.y > level().getMinBuildHeight()) {
+                            pos = pos.add(0, -1, 0);
+                        }
+                        pos = pos.add(0, 0.5f, 0);
+                        voidBomb.setPos(pos);
                         level().addFreshEntity(voidBomb);
                     }
                 }

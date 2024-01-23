@@ -57,7 +57,7 @@ public class Research extends Item {
                         List<BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
                         boolean canSee = true;
                         for (BookEntryParent i : parents) {
-                            if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
+                            if (!BookUnlockStateManager.get().isUnlockedFor(pPlayer, i.getEntry())) {
                                 canSee = false;
                                 break;
                             }
