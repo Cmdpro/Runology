@@ -184,7 +184,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
         if (blockEntity instanceof RunicWorkbenchBlockEntity ent) {
             if (ent.recipe != null) {
                 if (ent.enoughRunicEnergy) {
-                    if (ent.playerHasNeededEntry(pPlayer)) {
+                    if (RunologyUtil.playerHasEntry(pPlayer, ent.recipe.getEntry())) {
                         for (int i = 1; i < 10; i++) {
                             ent.itemHandler.getStackInSlot(i).shrink(1);
                         }
@@ -264,19 +264,6 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
             }
             pBlockEntity.updateBlock();
         }
-    }
-    public boolean playerHasNeededEntry(Player player) {
-        if (recipe != null) {
-            ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).unlockedEntries;
-            for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
-                for (ResourceLocation o : i.getValue()) {
-                    if (o.toString().equals(recipe.getEntry())) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
     protected void updateBlock() {
         BlockState blockState = level.getBlockState(this.getBlockPos());

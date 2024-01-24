@@ -1,11 +1,17 @@
 package com.cmdpro.runology.api;
 
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
+import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
 
 public class RunologyUtil {
@@ -30,5 +36,18 @@ public class RunologyUtil {
                 }
             });
         }
+    }
+    public static boolean playerHasEntry(Player player, String entry) {
+        if (entry != null) {
+            ConcurrentMap<ResourceLocation, Set<ResourceLocation>> entries = BookUnlockStateManager.get().saveData.getUnlockStates(player.getUUID()).unlockedEntries;
+            for (Map.Entry<ResourceLocation, Set<ResourceLocation>> i : entries.entrySet()) {
+                for (ResourceLocation o : i.getValue()) {
+                    if (o.toString().equals(entry)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

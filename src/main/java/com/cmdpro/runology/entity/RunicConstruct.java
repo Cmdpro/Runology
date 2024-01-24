@@ -1,6 +1,9 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.RunologyUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,7 +15,6 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -26,6 +28,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 
 public class RunicConstruct extends Monster implements GeoEntity {
+
     private AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
     public RunicConstruct(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -37,7 +40,6 @@ public class RunicConstruct extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_SPEED, 2.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
-
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
         if (event.isMoving()) {

@@ -51,7 +51,7 @@ public class MysteriousAltar extends Block {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            if (pPlayer.getItemInHand(pHand).is(ItemInit.MYSTERIUMIDOL.get())) {
+            if (pPlayer.getItemInHand(pHand).is(ItemInit.MYSTERIUMTOTEM.get())) {
                 pPlayer.getItemInHand(pHand).shrink(1);
                 RunicOverseer boss = new RunicOverseer(EntityInit.RUNICOVERSEER.get(), pLevel);
                 boss.setPos(pPos.getCenter().add(0, 1, 0));
