@@ -105,6 +105,9 @@ public class ModEvents {
                 if (data.getInstability() < 0) {
                     data.setInstability(0);
                 }
+                if (event.player.level().dimension().equals(DimensionInit.SHATTERREALM)) {
+                    possibleEvents.clear();
+                }
                 if (possibleEvents.size() > 0) {
                     event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data2 -> {
                         data2.setInstabilityEventCooldown(data2.getInstabilityEventCooldown() + 1);

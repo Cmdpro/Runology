@@ -5,6 +5,7 @@ import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
@@ -82,7 +83,7 @@ public class ClientModEvents {
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {
-                    return ClientPlayerData.getPlayerChunkInstability();
+                    return level.dimension().equals(DimensionInit.SHATTERREALM) ? ChunkModData.MAX_INSTABILITY : ClientPlayerData.getPlayerChunkInstability();
                 });
             }
         });
