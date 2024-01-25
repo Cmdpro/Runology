@@ -5,16 +5,24 @@ import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.Shatter;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 
@@ -64,6 +72,21 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
         @Override
         public ResourceLocation getAnimationResource(Shatter animatable) {
             return new ResourceLocation(Runology.MOD_ID, "animations/shatter.animation.json");
+        }
+        @Override
+        public void setCustomAnimations(Shatter animatable, long instanceId, AnimationState<Shatter> animationState) {
+            CoreGeoBone head = getAnimationProcessor().getBone("outer");
+
+            if (head != null) {
+                Vec3 vec3 = animatable.position().add(0, animatable.getBoundingBox().getYsize()/2, 0);
+                Vec3 pTarget = Minecraft.getInstance().player.getEyePosition();
+                double d0 = pTarget.x - vec3.x;
+                double d1 = pTarget.y - vec3.y;
+                double d2 = pTarget.z - vec3.z;
+                double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+                head.setRotX(-Mth.wrapDegrees((float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)))) * Mth.DEG_TO_RAD);
+                head.setRotY(-Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F) * Mth.DEG_TO_RAD);
+            }
         }
     }
 }

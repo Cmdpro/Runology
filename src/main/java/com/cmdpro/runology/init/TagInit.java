@@ -13,12 +13,13 @@ public class TagInit {
         public static final TagKey<Block> SHATTERSTONEREPLACEABLE = tag("shatterstonereplaceable");
         public static final TagKey<Block> SHATTERWOODREPLACEABLE = tag("shatterwoodreplaceable");
         public static final TagKey<Block> SHATTERREMOVES = tag("shatterremoves");
+        public static final TagKey<Block> MYSTERIUMOREREPLACEABLE = tag("mysteriumorereplaceable");
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(Runology.MOD_ID, name));
         }
     }
     public static class Items {
-
+        public static final TagKey<Item> GAUNTLETS = tag("gauntlets");
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(Runology.MOD_ID, name));
         }

@@ -3,6 +3,7 @@ package com.cmdpro.runology.block;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.ItemInit;
+import com.cmdpro.runology.init.TagInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -62,7 +63,7 @@ public class RunicWorkbench extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof RunicWorkbenchBlockEntity ent) {
-                if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ItemInit.COPPERGAUNTLET.get()) || pPlayer.getItemInHand(InteractionHand.OFF_HAND).is(ItemInit.COPPERGAUNTLET.get())) {
+                if (pPlayer.getItemInHand(pHand).is(TagInit.Items.GAUNTLETS)) {
                     return RunicWorkbenchBlockEntity.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
                 }
                 if (pPlayer.isShiftKeyDown()) {
