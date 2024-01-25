@@ -102,6 +102,7 @@ public class Runology
             event.accept(ItemInit.MYSTERIUMNUGGET);
             event.accept(ItemInit.MYSTERIUMTOTEM);
             event.accept(ItemInit.INSTABILITYRESONATOR);
+            event.accept(ItemInit.MYSTERIUMCORE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

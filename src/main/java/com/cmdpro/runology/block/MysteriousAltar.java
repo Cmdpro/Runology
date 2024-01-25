@@ -2,6 +2,7 @@ package com.cmdpro.runology.block;
 
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.entity.RunicOverseer;
+import com.cmdpro.runology.entity.Shatter;
 import com.cmdpro.runology.entity.VoidBeam;
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.EntityInit;
@@ -12,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -57,6 +60,9 @@ public class MysteriousAltar extends Block {
                 boss.setPos(pPos.getCenter().add(0, 1, 0));
                 boss.finalizeSpawn((ServerLevel)pLevel, pLevel.getCurrentDifficultyAt(pPos), MobSpawnType.TRIGGERED, (SpawnGroupData)null, (CompoundTag)null);
                 pLevel.addFreshEntity(boss);
+                for (Shatter i : pLevel.getEntitiesOfClass(Shatter.class, AABB.ofSize(pPos.getCenter().add(0, 1, 0), 5, 5, 5))) {
+                    i.remove(Entity.RemovalReason.DISCARDED);
+                }
             }
         }
 

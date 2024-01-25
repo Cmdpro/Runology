@@ -76,6 +76,23 @@ public class RunicOverseer extends Monster implements GeoEntity {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
+
+    @Override
+    public void die(DamageSource pDamageSource) {
+        super.die(pDamageSource);
+        Shatter shatter = new Shatter(EntityInit.SHATTER.get(), level());
+        shatter.setPos(spawnPos.add(0, 1, 0));
+        shatter.oneTimePlayerOnly = true;
+        shatter.getEntityData().set(Shatter.OPENED, true);
+        level().addFreshEntity(shatter);
+    }
+
+    @Override
+    public boolean isNoAi() {
+        return super.isNoAi() || !introDone;
+    }
+    public boolean introDone;
+    public int introTimer;
     public float atkTimer;
     public int atk;
     @Override
@@ -205,12 +222,27 @@ public class RunicOverseer extends Monster implements GeoEntity {
         pCompound.putDouble("spawnX", spawnPos.x);
         pCompound.putDouble("spawnY", spawnPos.y);
         pCompound.putDouble("spawnZ", spawnPos.z);
+        pCompound.putInt("introTimer", introTimer);
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        if (!introDone && !level().isClientSide) {
+            for (Player i : level().players()) {
+                if (i.position().distanceTo(position()) <= 35) {
+                    i.sendSystemMessage(Component.translatable("entity.runology.runicoverseer.interrupt"));
+                    introTimer = (100*6)+1;
+                }
+            }
+        }
+        return super.hurt(pSource, pAmount);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         spawnPos = new Vec3(pCompound.getDouble("spawnX"), pCompound.getDouble("spawnY"), pCompound.getDouble("spawnZ"));
+        introTimer = pCompound.getInt("introTimer");
         if (this.hasCustomName()) {
             this.bossEvent.setName(this.getDisplayName());
         }
@@ -237,6 +269,28 @@ public class RunicOverseer extends Monster implements GeoEntity {
             }
             if (player == null) {
                 remove(RemovalReason.DISCARDED);
+            }
+            if (introTimer <= 100*6) {
+                String[] intro = {
+                        "entity.runology.runicoverseer.dialogue1",
+                        "entity.runology.runicoverseer.dialogue2",
+                        "entity.runology.runicoverseer.dialogue3",
+                        "entity.runology.runicoverseer.dialogue4",
+                        "entity.runology.runicoverseer.dialogue5",
+                        "entity.runology.runicoverseer.dialogue6",
+                        "entity.runology.runicoverseer.dialogue7"
+                };
+                if (Math.round((float)introTimer/100f) == (float)introTimer/100f) {
+                    for (Player i : level().players()) {
+                        if (i.position().distanceTo(position()) <= 35) {
+                            i.sendSystemMessage(Component.translatable(intro[introTimer/100]));
+                        }
+                    }
+                }
+                introTimer++;
+                introDone = false;
+            } else {
+                introDone = true;
             }
         }
     }

@@ -9,8 +9,11 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -37,6 +40,8 @@ public class ShatterRealmStructure extends Structure {
             return p_227644_.projectStartToHeightmap;
         }), Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter((p_227642_) -> {
             return p_227642_.maxDistanceFromCenter;
+        }), Codec.intRange(0, 320).optionalFieldOf("min_height").forGetter((p_227654_) -> {
+            return p_227654_.minHeight;
         })).apply(p_227640_, ShatterRealmStructure::new);
     }), ShatterRealmStructure::verifyRange).codec();
     private final Holder<StructureTemplatePool> startPool;
@@ -45,6 +50,7 @@ public class ShatterRealmStructure extends Structure {
     private final boolean useExpansionHack;
     private final Optional<Heightmap.Types> projectStartToHeightmap;
     private final int maxDistanceFromCenter;
+    private final Optional<Integer> minHeight;
 
     private static DataResult<ShatterRealmStructure> verifyRange(ShatterRealmStructure p_286886_) {
         byte b0;
@@ -67,7 +73,7 @@ public class ShatterRealmStructure extends Structure {
         }) : DataResult.success(p_286886_);
     }
 
-    public ShatterRealmStructure(Structure.StructureSettings p_227627_, Holder<StructureTemplatePool> p_227628_, Optional<ResourceLocation> p_227629_, int p_227630_, boolean p_227632_, Optional<Heightmap.Types> p_227633_, int p_227634_) {
+    public ShatterRealmStructure(Structure.StructureSettings p_227627_, Holder<StructureTemplatePool> p_227628_, Optional<ResourceLocation> p_227629_, int p_227630_, boolean p_227632_, Optional<Heightmap.Types> p_227633_, int p_227634_, Optional<Integer> minHeight) {
         super(p_227627_);
         this.startPool = p_227628_;
         this.startJigsawName = p_227629_;
@@ -75,20 +81,24 @@ public class ShatterRealmStructure extends Structure {
         this.useExpansionHack = p_227632_;
         this.projectStartToHeightmap = p_227633_;
         this.maxDistanceFromCenter = p_227634_;
+        this.minHeight = minHeight;
     }
 
     public ShatterRealmStructure(Structure.StructureSettings pSettings, Holder<StructureTemplatePool> pStartPool, int pMaxDepth, boolean pUseExpansionHack, Heightmap.Types pProjectStartToHeightmap) {
-        this(pSettings, pStartPool, Optional.empty(), pMaxDepth, pUseExpansionHack, Optional.of(pProjectStartToHeightmap), 80);
+        this(pSettings, pStartPool, Optional.empty(), pMaxDepth, pUseExpansionHack, Optional.of(pProjectStartToHeightmap), 80, Optional.of(Integer.valueOf(0)));
     }
 
     public ShatterRealmStructure(Structure.StructureSettings pSettings, Holder<StructureTemplatePool> pStartPool, int pMaxDepth, boolean pUseExpansionHack) {
-        this(pSettings, pStartPool, Optional.empty(), pMaxDepth, pUseExpansionHack, Optional.empty(), 80);
+        this(pSettings, pStartPool, Optional.empty(), pMaxDepth, pUseExpansionHack, Optional.empty(), 80, Optional.of(Integer.valueOf(0)));
     }
 
     public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext pContext) {
         Rotation rotation = Rotation.getRandom(pContext.random());
         BlockPos blockpos = this.getLowestYIn5by5BoxOffset7Blocks(pContext, rotation);
-        return JigsawPlacement.addPieces(pContext, this.startPool, this.startJigsawName, this.maxDepth, blockpos, this.useExpansionHack, this.projectStartToHeightmap, this.maxDistanceFromCenter);
+        if (!minHeight.isPresent() || blockpos.getY() >= minHeight.get()) {
+            return JigsawPlacement.addPieces(pContext, this.startPool, this.startJigsawName, this.maxDepth, blockpos, this.useExpansionHack, this.projectStartToHeightmap, this.maxDistanceFromCenter);
+        }
+        return Optional.empty();
     }
 
     public StructureType<?> type() {

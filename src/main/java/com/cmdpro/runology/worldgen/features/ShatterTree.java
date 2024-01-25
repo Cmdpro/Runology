@@ -33,6 +33,8 @@ public class ShatterTree extends Feature<NoneFeatureConfiguration> {
                 reachedBottom = true;
                 pos = pContext.origin().offset(0, (-i)+1, 0);
                 break;
+            } else if (pContext.level().getBlockState(pContext.origin().offset(0, -i, 0)).isSolid()) {
+                break;
             }
         }
         if (!reachedBottom) {
