@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-25T14:58:48.5679063	Item Models: runology
+// 1.20.1	2024-01-25T16:05:18.4845015	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
@@ -14,6 +14,15 @@ b797f4a4a8cf4d41ed2ca2bcb9b710c43f0e429f assets/runology/models/item/earthpowder
 c4462717d81c615f54bc2e9f404619feaa54a188 assets/runology/models/item/firepowder.json
 b0a3fa5c586781f380a2c29c986db267a2f83a36 assets/runology/models/item/firerune.json
 37afa4574af2d584e2e41ff8d4c584b29f70c1b1 assets/runology/models/item/icerune.json
+4c9fb8d0fcae0e70b8bb9166895fab876b10b481 assets/runology/models/item/instabilityreader.json
+4414447fe5b7e545e0acc792c5415b2fcddbf002 assets/runology/models/item/instabilityreader2.json
+ad0c2327157bc954103dbf32b98dadb78f2c1d9d assets/runology/models/item/instabilityreader3.json
+31533a7cfabb336bb5988a04f6f73accd2c21a03 assets/runology/models/item/instabilityreader4.json
+f75db6577152374e579a5b682b173fcff09a35b8 assets/runology/models/item/instabilityreader5.json
+8a8024d579f6d0c70d6da5425c7a7512a666a341 assets/runology/models/item/instabilityreader6.json
+85117408e2f7ec2d097d12745d1ca211843d23e1 assets/runology/models/item/instabilityreader7.json
+03e41e4daa9779ec23b11323c38b40bba970b85d assets/runology/models/item/instabilityreader8.json
+28b6f7441104ce064d34d4fcbbdd42f1bf679c60 assets/runology/models/item/instabilityreader9.json
 b306bb433c8b19e2f057b002d2d83978719ed031 assets/runology/models/item/mysteriousaltar.json
 7e96b20ba4fd8e2fdfcaf90fb8e3ecf3ddbfc4e3 assets/runology/models/item/mysteriumblock.json
 2a66cbdb61b0a08407ad57482f7bf4fffa7eba8a assets/runology/models/item/mysteriumcore.json
@@ -25,6 +34,8 @@ c3af3e52b6b0390c07ad3bb379778c848e7260b8 assets/runology/models/item/mysteriumor
 eed527b94080923b9ee56eb2eb7dc784bf4776b3 assets/runology/models/item/plantrune.json
 bf0e530f11c6939e1f27dcb4a012f26372cd5afb assets/runology/models/item/rawmysterium.json
 7f6bb6f722380f0555f1c33e263bef4d6c341bd4 assets/runology/models/item/rawmysteriumblock.json
+91c4a41fc2c157e7238a9411c544014a4ea14bbf assets/runology/models/item/realityslicer.json
+f74602e34f9d3a8e306aa9402fbe9d6447a9e0f8 assets/runology/models/item/research.json
 d779210d97ca68884dad8fa4de93d5f872977439 assets/runology/models/item/runicanalyzer.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/runology/models/item/runicconstructspawnegg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/runology/models/item/runicscoutspawnegg.json
@@ -44,3 +55,4 @@ d16e886c1ff7bfebb6433a990a8b12caca42b145 assets/runology/models/item/shatterston
 81867c86ce029daee883baf77e6a65df7bf8aa5c assets/runology/models/item/voidrune.json
 fc1ae0c137863ec07b0ea34db28dbb9ed490b935 assets/runology/models/item/waterpowder.json
 5022bc8aa20b82cc109233e11097d1b467840d99 assets/runology/models/item/waterrune.json
+321d2e7349367c8d9d8ea0ac5c7dd745d496595e assets/runology/models/item/writtenresearch.json

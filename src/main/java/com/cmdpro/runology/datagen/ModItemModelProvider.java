@@ -62,6 +62,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.RAWMYSTERIUM);
         simpleItem(ItemInit.RUNOLOGYGUIDEICON);
         simpleItem(ItemInit.SHATTERBERRIES);
+        handheldItem(ItemInit.REALITYSLICER);
 
         withExistingParent(ItemInit.RUNICCONSTRUCTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ItemInit.RUNICSCOUTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -89,11 +90,52 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockInit.SHATTERSTONESTAIRS);
         wallItem(BlockInit.SHATTERSTONEWALL, BlockInit.SHATTERSTONE);
         wallItem(BlockInit.SHATTERSTONEBRICKWALL, BlockInit.SHATTERSTONEBRICKS);
+        instabilityResonator(ItemInit.INSTABILITYRESONATOR);
+        research(ItemInit.RESEARCH);
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(Runology.MOD_ID,"item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder instabilityResonator(RegistryObject<Item> item) {
+        withExistingParent("instabilityreader2", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader2"));
+        withExistingParent("instabilityreader3", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader3"));
+        withExistingParent("instabilityreader4", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader4"));
+        withExistingParent("instabilityreader5", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader5"));
+        withExistingParent("instabilityreader6", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader6"));
+        withExistingParent("instabilityreader7", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader7"));
+        withExistingParent("instabilityreader8", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader8"));
+        withExistingParent("instabilityreader9", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/instabilityreader9"));
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                        new ResourceLocation(Runology.MOD_ID,"item/instabilityreader1"))
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 0).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 125).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader2"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 250).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader3"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 375).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader4"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 500).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader5"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 625).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader6"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 750).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader7"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 875).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader8"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 1000).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader9"))).end();
+    }
+    private ItemModelBuilder research(RegistryObject<Item> item) {
+        withExistingParent("writtenresearch", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/writtenresearch"));
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                        new ResourceLocation(Runology.MOD_ID,"item/unwrittenresearch"))
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "finished"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "writtenresearch"))).end();
     }
 
     public void evenSimplerBlockItem(RegistryObject<Block> block) {
