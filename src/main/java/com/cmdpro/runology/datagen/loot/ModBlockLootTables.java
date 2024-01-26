@@ -64,7 +64,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(BlockInit.MYSTERIOUSALTAR.get(),
                 block -> noDrop());
         this.add(BlockInit.POTTED_SHATTERLEAF.get(), block -> {
-            return LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.FLOWER_POT).when(ExplosionCondition.survivesExplosion())).add(LootItem.lootTableItem(BlockInit.SHATTERLEAF.get()).when(ExplosionCondition.survivesExplosion())));
+            return LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.FLOWER_POT).when(ExplosionCondition.survivesExplosion()))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(BlockInit.SHATTERLEAF.get()).when(ExplosionCondition.survivesExplosion())));
         });
         dropWhenSilkTouch(BlockInit.PETRIFIEDSHATTERWOOD.get());
     }
