@@ -68,9 +68,13 @@ public class Shatter extends Entity implements GeoEntity {
     }
 
     public static final EntityDataAccessor<Boolean> OPENED = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Float> ROTX = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.FLOAT);
+    public static final EntityDataAccessor<Float> ROTY = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.FLOAT);
     @Override
     protected void defineSynchedData() {
         this.entityData.define(OPENED, false);
+        this.entityData.define(ROTX, 0f);
+        this.entityData.define(ROTY, (float)random.nextInt(0, 360));
     }
     public int timer;
     public int lifeTime;

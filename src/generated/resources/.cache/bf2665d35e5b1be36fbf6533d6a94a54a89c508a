@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-25T16:05:18.4845015	Item Models: runology
+// 1.20.1	2024-01-26T17:02:47.9237211	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
@@ -43,6 +43,8 @@ d97adc8521bd880b487c040687bfae9a285fc757 assets/runology/models/item/runicworkbe
 80f78b6836cb854933b347a3142444ee117a9da8 assets/runology/models/item/runologyguideicon.json
 0669871dddfa816c54ba2a44ecb0596eac85ad65 assets/runology/models/item/shatterberries.json
 d1dc4455cc5de659dad7585899e6f03331c53299 assets/runology/models/item/shattercrystal.json
+d4f79b6592fb93ec726fd1e0b66110998e487aac assets/runology/models/item/shatteredsoul.json
+252c9de649d457edb8d52cb2aff991686330cb73 assets/runology/models/item/shatterleaf.json
 443b704ce803cbf593ee084a988f7dcf2c49c0a8 assets/runology/models/item/shatterstone.json
 c18474d1fae65837c31e61df2d20b2ea6a5b7f1b assets/runology/models/item/shatterstonebricks.json
 3d7751332a35d644edfe00501a5b48c6cec9e43b assets/runology/models/item/shatterstonebrickslab.json

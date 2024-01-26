@@ -2,6 +2,7 @@ package com.cmdpro.runology.item;
 
 import com.cmdpro.runology.entity.Shatter;
 import com.cmdpro.runology.init.EntityInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerEntity;
@@ -39,6 +40,14 @@ public class RealitySlicer extends SwordItem {
                 }
                 shatter.getEntityData().set(Shatter.OPENED, true);
                 shatter.setPos(pos);
+                Vec3 vec3 = shatter.position().add(0, shatter.getBoundingBox().getYsize()/2, 0);
+                Vec3 pTarget = pPlayer.getEyePosition();
+                double d0 = pTarget.x - vec3.x;
+                double d1 = pTarget.y - vec3.y;
+                double d2 = pTarget.z - vec3.z;
+                double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+                shatter.getEntityData().set(Shatter.ROTX, -Mth.wrapDegrees((float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)))));
+                shatter.getEntityData().set(Shatter.ROTY, -Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F));
                 pLevel.addFreshEntity(shatter);
                 pPlayer.getItemInHand(pUsedHand).hurtAndBreak(100, pPlayer, (e -> e.broadcastBreakEvent(pUsedHand)));
                 shatter.playSound(SoundEvents.LIGHTNING_BOLT_IMPACT);

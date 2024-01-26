@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.Shatterleaf;
 import com.cmdpro.runology.init.BlockInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -33,6 +34,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockInit.PETRIFIEDSHATTERWOOD);
         blockWithItem(BlockInit.RAWMYSTERIUMBLOCK);
         blockWithItem(BlockInit.SHATTERCRYSTAL);
+        shatterleaf(BlockInit.SHATTERLEAF.get(), "shatterleaf", "shatterleaf");
 
         axisBlock((RotatedPillarBlock)BlockInit.SHATTERSTONEPILLAR.get(), new ResourceLocation(Runology.MOD_ID, "block/shatterstonepillar"), new ResourceLocation(Runology.MOD_ID, "block/shatterstonepillartop"));
 
@@ -48,5 +50,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+    public void shatterleaf(Block block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> shatterleafStates(state, block, modelName, textureName);
+
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] shatterleafStates(BlockState state, Block block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().cross(modelName + state.getValue(((Shatterleaf) block).AGE),
+                new ResourceLocation(Runology.MOD_ID, "block/" + textureName + (state.getValue(((Shatterleaf) block).AGE) == 3 ? "" : "empty"))).renderType("cutout"));
+
+        return models;
     }
 }

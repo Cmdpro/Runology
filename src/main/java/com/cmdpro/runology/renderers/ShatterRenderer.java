@@ -78,14 +78,8 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
             CoreGeoBone head = getAnimationProcessor().getBone("outer");
 
             if (head != null) {
-                Vec3 vec3 = animatable.position().add(0, animatable.getBoundingBox().getYsize()/2, 0);
-                Vec3 pTarget = Minecraft.getInstance().player.getEyePosition();
-                double d0 = pTarget.x - vec3.x;
-                double d1 = pTarget.y - vec3.y;
-                double d2 = pTarget.z - vec3.z;
-                double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-                head.setRotX(-Mth.wrapDegrees((float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)))) * Mth.DEG_TO_RAD);
-                head.setRotY(-Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F) * Mth.DEG_TO_RAD);
+                head.setRotX(animatable.getEntityData().get(Shatter.ROTX) * Mth.DEG_TO_RAD);
+                head.setRotY(animatable.getEntityData().get(Shatter.ROTY) * Mth.DEG_TO_RAD);
             }
         }
     }
