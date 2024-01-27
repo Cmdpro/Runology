@@ -1,9 +1,9 @@
-// 1.20.1	2024-01-25T14:58:48.5659056	Tags for minecraft:block mod id runology
+// 1.20.1	2024-01-26T23:34:13.8909341	Tags for minecraft:block mod id runology
 a8771c8878712a567c60afa1d2da443b5b5a65be data/forge/tags/blocks/ores.json
 7206a289bd1eec95cc43157ff1ebd688a7fef26f data/minecraft/tags/blocks/mineable/pickaxe.json
 24e21e068453d1fbf1964fe50a0658c77eca7ae9 data/minecraft/tags/blocks/needs_iron_tool.json
 fce989b61e362fa619d16839418b5add6d33618b data/minecraft/tags/blocks/walls.json
 cb28339548a9f5c43f81c4715df14c62d24020ad data/runology/tags/blocks/mysteriumorereplaceable.json
 a4e8097fff07f9a74259d6b5dd583f3437ff28a2 data/runology/tags/blocks/shatterremoves.json
-0074e928b90ea10f3b248bce7ff2e39f7d9c13b0 data/runology/tags/blocks/shatterstonereplaceable.json
+de4deb36475c35847f94bc11d61bd2da3d5d95f6 data/runology/tags/blocks/shatterstonereplaceable.json
 b147fcff5c0b4d72df1cb7809b063b2562180832 data/runology/tags/blocks/shatterwoodreplaceable.json

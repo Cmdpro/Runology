@@ -55,13 +55,15 @@ public class MysteriousAltar extends Block {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             if (pPlayer.getItemInHand(pHand).is(ItemInit.MYSTERIUMTOTEM.get())) {
-                pPlayer.getItemInHand(pHand).shrink(1);
-                RunicOverseer boss = new RunicOverseer(EntityInit.RUNICOVERSEER.get(), pLevel);
-                boss.setPos(pPos.getCenter().add(0, 1, 0));
-                boss.finalizeSpawn((ServerLevel)pLevel, pLevel.getCurrentDifficultyAt(pPos), MobSpawnType.TRIGGERED, (SpawnGroupData)null, (CompoundTag)null);
-                pLevel.addFreshEntity(boss);
-                for (Shatter i : pLevel.getEntitiesOfClass(Shatter.class, AABB.ofSize(pPos.getCenter().add(0, 1, 0), 5, 5, 5))) {
-                    i.remove(Entity.RemovalReason.DISCARDED);
+                if (pLevel.getEntitiesOfClass(RunicOverseer.class, AABB.ofSize(pPos.getCenter(), 50, 50, 50)).size() <= 0) {
+                    pPlayer.getItemInHand(pHand).shrink(1);
+                    RunicOverseer boss = new RunicOverseer(EntityInit.RUNICOVERSEER.get(), pLevel);
+                    boss.setPos(pPos.getCenter().add(0, 1, 0));
+                    boss.finalizeSpawn((ServerLevel) pLevel, pLevel.getCurrentDifficultyAt(pPos), MobSpawnType.TRIGGERED, (SpawnGroupData) null, (CompoundTag) null);
+                    pLevel.addFreshEntity(boss);
+                    for (Shatter i : pLevel.getEntitiesOfClass(Shatter.class, AABB.ofSize(pPos.getCenter().add(0, 1, 0), 5, 5, 5))) {
+                        i.remove(Entity.RemovalReason.DISCARDED);
+                    }
                 }
             }
         }
