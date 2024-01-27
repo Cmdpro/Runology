@@ -74,6 +74,11 @@
   "entity.runology.voidbullet": "Void Bullet",
   "entity.runology.voidbeam": "Void Beam",
   "entity.runology.voidbomb": "Void Bomb",
+  "entity.runology.shatter": "Shatter",
+  "item.runology.realityslicer": "Reality Slicer",
+  "item.runology.mysteriumtotem": "Mysterium Totem",
+  "item.runology.mysteriumcore": "Mysterium Core",
+  "item.runology.shatteredsoul": "Shattered Soul",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

@@ -106,6 +106,7 @@ public class Runology
             event.accept(ItemInit.MYSTERIUMGAUNTLET);
             event.accept(ItemInit.EMPOWEREDMYSTERIUMGAUNTLET);
             event.accept(ItemInit.REALITYSLICER);
+            event.accept(ItemInit.SHATTEREDSOUL);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
