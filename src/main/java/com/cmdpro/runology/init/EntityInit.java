@@ -22,4 +22,5 @@ public class EntityInit {
     public static final RegistryObject<EntityType<RunicOverseer>> RUNICOVERSEER = ENTITY_TYPES.register("runicoverseer", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicOverseer>) RunicOverseer::new, MobCategory.MONSTER).sized(0.6F, 2F).build(Runology.MOD_ID + ":" + "runicoverseer"));
     public static final RegistryObject<EntityType<VoidBeam>> VOIDBEAM = ENTITY_TYPES.register("voidbeam", () -> EntityType.Builder.of((EntityType.EntityFactory<VoidBeam>) VoidBeam::new, MobCategory.MISC).sized(0.5f, 0.5f).build(Runology.MOD_ID + ":" + "voidbeam"));
     public static final RegistryObject<EntityType<Shatter>> SHATTER = ENTITY_TYPES.register("shatter", () -> EntityType.Builder.of((EntityType.EntityFactory<Shatter>) Shatter::new, MobCategory.MISC).sized(1.75f, 2.625f).build(Runology.MOD_ID + ":" + "shatter"));
+    public static final RegistryObject<EntityType<PurityArrow>> PURITYARROW = ENTITY_TYPES.register("purityarrow", () -> EntityType.Builder.of((EntityType.EntityFactory<PurityArrow>) PurityArrow::new, MobCategory.MISC).sized(1.75f, 2.625f).build(Runology.MOD_ID + ":" + "purityarrow"));
 }

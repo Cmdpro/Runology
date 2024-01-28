@@ -46,6 +46,7 @@ public class ItemInit {
     public static final RegistryObject<Item> MYSTERIUMTOTEM = register("mysteriumtotem", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MYSTERIUMCORE = register("mysteriumcore", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SHATTEREDSOUL = register("shatteredsoul", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PURITYARROW = register("purityarrow", () -> new PurityArrowItem(new Item.Properties()));
 
     public static final RegistryObject<Item> RUNICCONSTRUCTSPAWNEGG = register("runicconstructspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICCONSTRUCT, 0x000000, 0xaa00aa, new Item.Properties()));
     public static final RegistryObject<Item> RUNICSCOUTSPAWNEGG = register("runicscoutspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICSCOUT, 0x000000, 0xaa00aa, new Item.Properties()));

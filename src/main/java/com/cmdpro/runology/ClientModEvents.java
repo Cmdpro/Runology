@@ -81,6 +81,7 @@ public class ClientModEvents {
         EntityRenderers.register(EntityInit.VOIDBULLET.get(), VoidBulletRenderer::new);
         EntityRenderers.register(EntityInit.VOIDBEAM.get(), VoidBeamRenderer::new);
         EntityRenderers.register(EntityInit.SHATTER.get(), ShatterRenderer::new);
+        EntityRenderers.register(EntityInit.PURITYARROW.get(), PurityArrowRenderer::new);
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {

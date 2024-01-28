@@ -60,6 +60,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.RUNOLOGYGUIDEICON);
         simpleItem(ItemInit.SHATTERBERRIES);
         simpleItem(ItemInit.SHATTEREDSOUL);
+        simpleItem(ItemInit.PURITYARROW);
+
         handheldItem(ItemInit.REALITYSLICER);
 
         withExistingParent(ItemInit.RUNICCONSTRUCTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

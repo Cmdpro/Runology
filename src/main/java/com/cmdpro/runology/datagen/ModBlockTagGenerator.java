@@ -89,6 +89,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockInit.SHATTERSTONEBRICKWALL.get())
                 .add(BlockInit.SHATTERSTONEWALL.get());
 
-
+        this.tag(BlockTags.BEACON_BASE_BLOCKS)
+                .add(BlockInit.MYSTERIUMBLOCK.get());
     }
 }
