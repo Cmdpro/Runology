@@ -1,0 +1,78 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.shatterbeacon.idle": {
+			"loop": true,
+			"animation_length": 0.04167,
+			"bones": {
+				"body": {
+					"position": {
+						"vector": [0, 8, 0]
+					}
+				}
+			}
+		},
+		"animation.shatterbeacon.hand": {
+			"loop": true,
+			"animation_length": 0.04167,
+			"bones": {
+				"body": {
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.shatterbeacon.active": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"body": {
+					"position": {
+						"vector": [0, 8, 0]
+					}
+				},
+				"part3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, -360, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 6, 0]
+					}
+				},
+				"part1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, -360, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 2, 0]
+					}
+				},
+				"part2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 360, 0]
+						}
+					},
+					"position": {
+						"vector": [0, 4, 0]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
