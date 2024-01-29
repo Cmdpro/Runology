@@ -108,6 +108,8 @@ public class Runology
             event.accept(ItemInit.REALITYSLICER);
             event.accept(ItemInit.SHATTEREDSOUL);
             event.accept(ItemInit.PURITYARROW);
+            event.accept(ItemInit.INSTABILITYPOWDER);
+            event.accept(ItemInit.INSTABILITYRUNE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
