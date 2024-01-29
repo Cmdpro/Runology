@@ -1,13 +1,11 @@
 package com.cmdpro.runology.entity;
 
-import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.api.RunologyUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -40,7 +38,6 @@ public class RunicConstruct extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_SPEED, 2.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
-
     private <E extends GeoAnimatable> PlayState predicate(AnimationState event) {
         if (event.isMoving()) {
             event.getController().setAnimation(RawAnimation.begin().then("animation.runicconstruct.walk", Animation.LoopType.LOOP));

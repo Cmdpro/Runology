@@ -2,6 +2,7 @@ package com.cmdpro.runology.entity;
 
 import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.init.ItemInit;
+import com.cmdpro.runology.init.TagInit;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.renderer.entity.SpectralArrowRenderer;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,14 +11,17 @@ import net.minecraft.server.commands.LootCommand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.SpectralArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.ArrowDamageEnchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootDataManager;
@@ -45,6 +49,20 @@ public class PurityArrow extends AbstractArrow {
                 remove(RemovalReason.KILLED);
             }
         }
+    }
+
+    @Override
+    public void doEnchantDamageEffects(LivingEntity pAttacker, Entity pTarget) {
+        if (pTarget instanceof LivingEntity ent) {
+            if (ent.getMobType().equals(MobType.UNDEAD)) {
+                this.setBaseDamage(this.getBaseDamage()*3);
+            } else {
+                if (ent.getType().is(TagInit.EntityTypes.IMPURE)) {
+                    this.setBaseDamage(this.getBaseDamage()*3);
+                }
+            }
+        }
+        super.doEnchantDamageEffects(pAttacker, pTarget);
     }
 
     @Override

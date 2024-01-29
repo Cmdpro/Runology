@@ -14,6 +14,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -49,6 +50,12 @@ public class RunicOverseer extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_SPEED, 2.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
     }
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEAD;
+    }
+
     public Vec3 spawnPos;
 
     @Nullable

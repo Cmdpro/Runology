@@ -110,6 +110,8 @@ public class Runology
             event.accept(ItemInit.PURITYARROW);
             event.accept(ItemInit.INSTABILITYPOWDER);
             event.accept(ItemInit.INSTABILITYRUNE);
+            event.accept(ItemInit.PURITYPOWDER);
+            event.accept(ItemInit.PURITYRUNE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

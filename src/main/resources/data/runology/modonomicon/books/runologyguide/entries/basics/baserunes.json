@@ -10,14 +10,14 @@
       "recipe_id_1": "runology:blankrune",
       "title1": "book.runology.runologyguide.basics.baserunes.page1.title",
       "recipe_id_2": "runology:firerune",
-      "title1": "book.runology.runologyguide.basics.baserunes.page1.title2"
+      "title2": "book.runology.runologyguide.basics.baserunes.page1.title2"
     },
     {
       "type": "modonomicon:crafting_recipe",
       "recipe_id_1": "runology:earthrune",
       "title1": "book.runology.runologyguide.basics.baserunes.page2.title",
       "recipe_id_2": "runology:airrune",
-      "title1": "book.runology.runologyguide.basics.baserunes.page2.title2"
+      "title2": "book.runology.runologyguide.basics.baserunes.page2.title2"
     },
     {
       "type": "modonomicon:crafting_recipe",

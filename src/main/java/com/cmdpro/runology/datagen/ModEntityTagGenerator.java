@@ -25,5 +25,8 @@ public class ModEntityTagGenerator extends EntityTypeTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(Tags.EntityTypes.BOSSES)
                 .add(EntityInit.RUNICOVERSEER.get());
+        this.tag(TagInit.EntityTypes.IMPURE)
+                .add(EntityInit.RUNICSCOUT.get())
+                .add(EntityInit.RUNICCONSTRUCT.get());
     }
 }

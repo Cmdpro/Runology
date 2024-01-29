@@ -96,6 +96,7 @@
   "rune.runology.void": "Void",
   "rune.runology.energy": "Energy",
   "rune.runology.instability": "Instability",
+  "rune.runology.purity": "Purity",
 
   "book.runology.runologyguide.name": "Runic Codex",
   "book.runology.runologyguide.basics.name": "Basics",
@@ -132,6 +133,14 @@
   "book.runology.runologyguide.basics.runetransformations.page4.text": "By throwing an Earth Rune on the ground and waiting for a plant to grow around it, I can transform it into a Void Rune",
   "book.runology.runologyguide.basics.runetransformations.page5.title": "Ice Rune",
   "book.runology.runologyguide.basics.runetransformations.page5.text": "By throwing a Water Rune into powdered snow, I can transform it into a Void Rune",
+  "book.runology.runologyguide.basics.purityrune.name": "Purity Rune",
+  "book.runology.runologyguide.purity.purityrune.page1.title": "Purity Powder",
+  "book.runology.runologyguide.purity.purityrune.page1.title2": "Purity Rune",
+  "book.runology.runologyguide.purity.purityrune.page2.text": "The 4 base elements, when combined can create true purity, with this purity I can fight against anything impure",
+  "book.runology.runologyguide.basics.purityarrow.name": "Purity Arrow",
+  "book.runology.runologyguide.purity.purityarrow.page1.title2": "Purity Arrow",
+  "book.runology.runologyguide.purity.purityarrow.page1.text": "Using 1 Purity Powder, I can purify 8 arrows making them able to fight purity by being shot",
+  "book.runology.runologyguide.purity.purityarrow.page2.text": "If a hole in reality were to ever appear, this will work fine for patching it, It also deals more damage towards impure mobs such as the undead, I have a feeling there may be more impurity in another realm close to mine though...",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"

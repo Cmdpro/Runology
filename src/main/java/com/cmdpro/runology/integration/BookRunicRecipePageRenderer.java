@@ -72,7 +72,7 @@ public class BookRunicRecipePageRenderer extends BookRecipePageRenderer<Recipe<?
         guiGraphics.renderItem(new ItemStack(ItemInit.BLANKRUNE.get()), recipeX+80, recipeY+2);
 
         this.parentScreen.renderItemStack(guiGraphics, recipeX + 79, recipeY + 41, mouseX, mouseY, recipe.getToastSymbol());
-        if (mouseX >= recipeX+80 && recipeY+mouseY >= 2 && mouseX <= recipeX+80+16 && mouseY <= recipeY+2+16) {
+        if (mouseX >= recipeX+80 && mouseY >= recipeY+2 && mouseX <= recipeX+80+16 && mouseY <= recipeY+2+16) {
             if (((IRunicRecipe)recipe).getRunicEnergyCost() != null && !((IRunicRecipe)recipe).getRunicEnergyCost().isEmpty()) {
                 List<Component> tooltip = new ArrayList<>();
                 for (Map.Entry<String, Float> i : ((IRunicRecipe)recipe).getRunicEnergyCost().entrySet()) {
