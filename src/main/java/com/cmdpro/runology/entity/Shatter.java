@@ -22,12 +22,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.NetherPortalBlock;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.jarjar.selection.util.Constants;
 import net.minecraftforge.network.NetworkHooks;
@@ -68,17 +70,20 @@ public class Shatter extends Entity implements GeoEntity {
     }
 
     public static final EntityDataAccessor<Boolean> OPENED = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> EXHAUSTED = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Float> ROTX = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.FLOAT);
     public static final EntityDataAccessor<Float> ROTY = SynchedEntityData.defineId(Shatter.class, EntityDataSerializers.FLOAT);
     @Override
     protected void defineSynchedData() {
         this.entityData.define(OPENED, false);
+        this.entityData.define(EXHAUSTED, false);
         this.entityData.define(ROTX, 0f);
         this.entityData.define(ROTY, (float)random.nextInt(0, 360));
     }
     public int timer;
     public int lifeTime;
     public boolean hasLifeTime;
+    public int exhaustion;
 
     @Override
     public InteractionResult interact(Player pPlayer, InteractionHand pHand) {
@@ -102,6 +107,7 @@ public class Shatter extends Entity implements GeoEntity {
         if (!level().isClientSide) {
             opened = entityData.get(OPENED);
             if (opened) {
+                entityData.set(EXHAUSTED, false);
                 for (Entity i : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox())) {
                     if (i instanceof Player || !oneTimePlayerOnly) {
                         if (i.canChangeDimensions()) {
@@ -121,6 +127,19 @@ public class Shatter extends Entity implements GeoEntity {
                             }
                         }
                     }
+                }
+            } else {
+                exhaustion++;
+                if (exhaustion >= 20*(60*5)) {
+                    entityData.set(EXHAUSTED, true);
+                    for (LivingEntity i : level().getEntitiesOfClass(LivingEntity.class, AABB.ofSize(position(), 15, 15, 15))) {
+                        i.hurt(damageSources().magic(), 5);
+                    }
+                } else {
+                    entityData.set(EXHAUSTED, false);
+                }
+                if (exhaustion >= 20*(60*8f)) {
+                    remove(RemovalReason.DISCARDED);
                 }
             }
             if (hasLifeTime) {
@@ -167,6 +186,7 @@ public class Shatter extends Entity implements GeoEntity {
         oneTimePlayerOnly = pCompound.getBoolean("oneTimePlayerOnly");
         lifeTime = pCompound.getInt("lifeTime");
         hasLifeTime = pCompound.getBoolean("hasLifeTime");
+        exhaustion = pCompound.getInt("exhaustion");
     }
 
     @Override
@@ -175,6 +195,7 @@ public class Shatter extends Entity implements GeoEntity {
         pCompound.putBoolean("oneTimePlayerOnly", oneTimePlayerOnly);
         pCompound.putInt("lifeTime", lifeTime);
         pCompound.putBoolean("hasLifeTime", hasLifeTime);
+        pCompound.putInt("exhaustion", exhaustion);
     }
 
     //@Override

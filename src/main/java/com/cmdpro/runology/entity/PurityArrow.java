@@ -54,12 +54,8 @@ public class PurityArrow extends AbstractArrow {
     @Override
     public void doEnchantDamageEffects(LivingEntity pAttacker, Entity pTarget) {
         if (pTarget instanceof LivingEntity ent) {
-            if (ent.getMobType().equals(MobType.UNDEAD)) {
+            if (ent.getMobType().equals(MobType.UNDEAD) || ent.getType().is(TagInit.EntityTypes.IMPURE)) {
                 this.setBaseDamage(this.getBaseDamage()*3);
-            } else {
-                if (ent.getType().is(TagInit.EntityTypes.IMPURE)) {
-                    this.setBaseDamage(this.getBaseDamage()*3);
-                }
             }
         }
         super.doEnchantDamageEffects(pAttacker, pTarget);

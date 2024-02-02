@@ -27,6 +27,7 @@ public class ModEntityTagGenerator extends EntityTypeTagsProvider {
                 .add(EntityInit.RUNICOVERSEER.get());
         this.tag(TagInit.EntityTypes.IMPURE)
                 .add(EntityInit.RUNICSCOUT.get())
-                .add(EntityInit.RUNICCONSTRUCT.get());
+                .add(EntityInit.RUNICCONSTRUCT.get())
+                .add(EntityInit.RUNICOVERSEER.get());
     }
 }
