@@ -45,8 +45,10 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
                 super.renderRecursively(poseStack, animatable, bone, RenderType.endGateway(), bufferSource, bufferSource.getBuffer(RenderType.endGateway()), isReRender, partialTick, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, red, green, blue, alpha);
             }
         } else {
-            RenderType renderType2 = getRenderType(animatable, getTextureLocation(animatable), bufferSource, partialTick);
-            super.renderRecursively(poseStack, animatable, bone, renderType2, bufferSource, bufferSource.getBuffer(renderType2), isReRender, partialTick, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, red, green, blue, alpha);
+            if (!(bone.getParent() != null && bone.getParent().getName().equals("outer") && bone.getName().equals("inner")) || !animatable.getEntityData().get(Shatter.OPENED) || (animatable.attackController.getCurrentAnimation() != null && animatable.attackController.getCurrentAnimation().animation().name().equals("animation.shatter.open"))) {
+                RenderType renderType2 = getRenderType(animatable, getTextureLocation(animatable), bufferSource, partialTick);
+                super.renderRecursively(poseStack, animatable, bone, renderType2, bufferSource, bufferSource.getBuffer(renderType2), isReRender, partialTick, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, red, green, blue, alpha);
+            }
         }
     }
 

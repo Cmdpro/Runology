@@ -81,6 +81,8 @@
   "item.runology.shatteredsoul": "Shattered Soul",
   "item.runology.purityarrow": "Purity Arrow",
   "entity.runology.purityarrow": "Purity Arrow",
+  "item.runology.mysteriumgauntlet": "Mysterium Gauntlet",
+  "item.runology.empoweredmysteriumgauntlet": "Empowered Mysterium Gauntlet",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

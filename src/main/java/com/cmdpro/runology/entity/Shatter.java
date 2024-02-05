@@ -218,10 +218,10 @@ public class Shatter extends Entity implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController(this, "controller", 0, this::predicate));
-        data.add(new AnimationController(this, "attackController", 0, this::openPredicate)
-                .triggerableAnim("animation.shatter.open", RawAnimation.begin().then("animation.shatter.open", Animation.LoopType.PLAY_ONCE))
-        );
+        data.add(attackController);
     }
+    public AnimationController attackController = new AnimationController(this, "attackController", 0, this::openPredicate)
+            .triggerableAnim("animation.shatter.open", RawAnimation.begin().then("animation.shatter.open", Animation.LoopType.PLAY_ONCE));
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.factory;

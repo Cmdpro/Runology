@@ -9,6 +9,7 @@ import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -140,7 +141,6 @@ public class Runology
             event.accept(BlockInit.MYSTERIOUSALTAR);
             event.accept(ItemInit.RUNICANALYZERITEM);
         }
-
     }
     private void setup(final FMLCommonSetupEvent event)
     {
