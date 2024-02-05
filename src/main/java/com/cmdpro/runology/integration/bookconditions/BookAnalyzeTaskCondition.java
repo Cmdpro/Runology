@@ -27,25 +27,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class BookAnalyzeTaskCondition extends BookCondition {
 
-    public ResourceLocation advancementId;
     public AnalyzeTask[] tasks;
-    public Component advancement;
-    public boolean hasAdvancement;
-    public BookAnalyzeTaskCondition(Component component, AnalyzeTask[] tasks, ResourceLocation advancementId, boolean hasAdvancement) {
+    public BookAnalyzeTaskCondition(Component component, AnalyzeTask[] tasks) {
         super(component);
         this.tooltip = component;
-        this.advancementId = advancementId;
         this.tasks = tasks;
-        this.hasAdvancement = hasAdvancement;
     }
 
     public static BookAnalyzeTaskCondition fromJson(JsonObject json) {
         ResourceLocation advancementId = new ResourceLocation("", "");
-        boolean hasAdvancement = false;
-        if (json.has("advancement_id")) {
-            hasAdvancement = true;
-            advancementId = new ResourceLocation(GsonHelper.getAsString(json, "advancement_id"));
-        }
         List<AnalyzeTask> tasks = new ArrayList<>();
         if (json.has("tasks")) {
             for (JsonElement i : json.get("tasks").getAsJsonArray()) {
@@ -61,7 +51,7 @@ public class BookAnalyzeTaskCondition extends BookCondition {
             tooltip = tooltipFromJson(json);
         }
 
-        return new BookAnalyzeTaskCondition(tooltip, tasks.toArray(new AnalyzeTask[0]), advancementId, hasAdvancement);
+        return new BookAnalyzeTaskCondition(tooltip, tasks.toArray(new AnalyzeTask[0]));
     }
 
     @Override
@@ -71,25 +61,13 @@ public class BookAnalyzeTaskCondition extends BookCondition {
             list.add(tooltip);
         }
         list.add(Component.translatable("book.runology.condition.analyze.ln1"));
-        if (hasAdvancement) {
-            list.add(Component.translatable("book.runology.condition.analyze.ln2", Component.translatable(makeDescriptionId("advancements", advancementId) + ".title")));
-        }
         return list;
-    }
-    public static String makeDescriptionId(String pType, @Nullable ResourceLocation pId) {
-        if (pId.getNamespace().equals("minecraft")) {
-            return pId == null ? pType + ".unregistered_sadface" : pType + "." + pId.getPath().replace('/', '.');
-        } else {
-            return pId == null ? pType + ".unregistered_sadface" : pType + "." + pId.getNamespace() + "." + pId.getPath().replace('/', '.');
-        }
     }
 
     public static BookAnalyzeTaskCondition fromNetwork(FriendlyByteBuf buffer) {
         var tooltip = buffer.readBoolean() ? buffer.readComponent() : null;
-        var hasAdvancement = buffer.readBoolean();
-        var advancementId = buffer.readResourceLocation();
         var knowledge = buffer.readList(BookAnalyzeTaskCondition::readTask).toArray(new AnalyzeTask[0]);
-        return new BookAnalyzeTaskCondition(tooltip, knowledge, advancementId, hasAdvancement);
+        return new BookAnalyzeTaskCondition(tooltip, knowledge);
     }
     public static AnalyzeTask readTask(FriendlyByteBuf buffer) {
         ResourceLocation resourceLocation = buffer.readResourceLocation();
@@ -111,8 +89,6 @@ public class BookAnalyzeTaskCondition extends BookCondition {
         if (this.tooltip != null) {
             buffer.writeComponent(this.tooltip);
         }
-        buffer.writeBoolean(hasAdvancement);
-        buffer.writeResourceLocation(this.advancementId);
         buffer.writeCollection(Arrays.stream(tasks).toList(), BookAnalyzeTaskCondition::writeTask);
     }
 

@@ -1,5 +1,6 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
@@ -14,6 +15,9 @@ import com.cmdpro.runology.screen.RunicAnalyzerScreen;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
+import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
@@ -55,18 +59,21 @@ public class ClientModEvents {
     public static void doSetup(FMLClientSetupEvent event) {
         ModonomiconEvents.client().onEntryClicked((e) -> {
             BookEntry entry = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId());
-            if (entry.getCondition() instanceof BookAnalyzeTaskCondition condition) {
+            BookAnalyzeTaskCondition condition = RunologyUtil.getAnalyzeCondition(entry.getCondition());
+            if (condition != null) {
                 if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, entry)) {
-                    List<BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
-                    boolean canSee = true;
-                    for (BookEntryParent i : parents) {
-                        if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
-                            canSee = false;
-                            break;
+                    if (RunologyUtil.conditionAllTrueExceptAnalyze(entry, Minecraft.getInstance().player)) {
+                        List<BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
+                        boolean canSee = true;
+                        for (BookEntryParent i : parents) {
+                            if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {
+                                canSee = false;
+                                break;
+                            }
                         }
-                    }
-                    if (canSee) {
-                        ModMessages.sendToServer(new PlayerUnlockEntryC2SPacket(e.getEntryId(), e.getBookId()));
+                        if (canSee) {
+                            ModMessages.sendToServer(new PlayerUnlockEntryC2SPacket(e.getEntryId(), e.getBookId()));
+                        }
                     }
                 }
             }

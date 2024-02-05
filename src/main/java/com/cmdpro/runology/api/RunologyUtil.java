@@ -1,6 +1,12 @@
 package com.cmdpro.runology.api;
 
+import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
+import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
+import com.klikli_dev.modonomicon.book.conditions.context.BookConditionContext;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -39,6 +45,51 @@ public class RunologyUtil {
                 }
             });
         }
+    }
+    public static BookAnalyzeTaskCondition getAnalyzeCondition(BookCondition condition) {
+        if (condition instanceof BookAnalyzeTaskCondition cond) {
+            return cond;
+        }
+        if (condition instanceof BookAndCondition cond) {
+            for (BookCondition i : cond.children()) {
+                BookCondition cond2 = getAnalyzeCondition(i);
+                if (cond2 instanceof BookAnalyzeTaskCondition cond3) {
+                    return cond3;
+                }
+            }
+        }
+        if (condition instanceof BookOrCondition cond) {
+            for (BookCondition i : cond.children()) {
+                BookCondition cond2 = getAnalyzeCondition(i);
+                if (cond2 instanceof BookAnalyzeTaskCondition cond3) {
+                    return cond3;
+                }
+            }
+        }
+        return null;
+    }
+    public static boolean conditionAllTrueExceptAnalyze(BookEntry entry, Player player) {
+        BookCondition condition = entry.getCondition();
+        if (condition instanceof BookAndCondition cond) {
+            for (BookCondition i : cond.children()) {
+                if (!(i instanceof BookAnalyzeTaskCondition)) {
+                    if (!i.test(BookConditionContext.of(entry.getBook(), entry), player)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        if (condition instanceof BookOrCondition cond) {
+            for (BookCondition i : cond.children()) {
+                if (!(i instanceof BookAnalyzeTaskCondition)) {
+                    if (i.test(BookConditionContext.of(entry.getBook(), entry), player)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     public static void RemoveInstability(ChunkPos chunk, Level level, float amount, float min, float max) {
         int[][] offsets = {

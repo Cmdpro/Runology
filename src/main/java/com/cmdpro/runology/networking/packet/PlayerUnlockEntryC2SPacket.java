@@ -1,5 +1,6 @@
 package com.cmdpro.runology.networking.packet;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
@@ -40,10 +41,9 @@ public class PlayerUnlockEntryC2SPacket {
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            BookCondition condition = BookDataManager.get().getBook(book).getEntry(entry).getCondition();
-            if (condition instanceof BookAnalyzeTaskCondition condition2) {
-                var advancement = context.getSender().getServer().getAdvancements().getAdvancement(condition2.advancementId);
-                if (!condition2.hasAdvancement || (advancement != null && context.getSender().getAdvancements().getOrStartProgress(advancement).isDone())) {
+            BookAnalyzeTaskCondition condition = RunologyUtil.getAnalyzeCondition(BookDataManager.get().getBook(book).getEntry(entry).getCondition());
+            if (condition != null) {
+                if (RunologyUtil.conditionAllTrueExceptAnalyze(BookDataManager.get().getBook(book).getEntry(entry), context.getSender())) {
                     if (context.getSender().getInventory().contains(new ItemStack(Items.PAPER, 1))) {
                         context.getSender().getInventory().clearOrCountMatchingItems((item) -> item.is(Items.PAPER), 1, context.getSender().inventoryMenu.getCraftSlots());
                         ItemStack stack = new ItemStack(ItemInit.RESEARCH.get(), 1);
