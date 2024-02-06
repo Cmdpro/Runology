@@ -196,7 +196,6 @@ dependencies {
     //compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     //runtimeOnly fg.deobf("curse.maven:attributefix-280510:4714729")
-    //runtimeOnly fg.deobf("curse.maven:magicaladventure-910133:4754016")
     compileOnly fg.deobf("com.klikli_dev:modonomicon-${mc_version}-common:${modonomicon_version}")
     implementation fg.deobf("com.klikli_dev:modonomicon-${mc_version}-forge:${modonomicon_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")

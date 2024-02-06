@@ -90,11 +90,6 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     }
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        return super.getCapability(cap, side);
-    }
-    @Nonnull
-    @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
@@ -283,7 +278,6 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController(this, "controller", 0, this::predicate));
     }
-
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.factory;

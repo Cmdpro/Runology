@@ -39,6 +39,11 @@ public class PurityArrow extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
+        if (pResult.getEntity() instanceof LivingEntity ent) {
+            if (ent.getMobType().equals(MobType.UNDEAD) || ent.getType().is(TagInit.EntityTypes.IMPURE)) {
+                this.setBaseDamage(this.getBaseDamage()*2d);
+            }
+        }
         super.onHitEntity(pResult);
         if (!pResult.getEntity().level().isClientSide) {
             if (pResult.getEntity() instanceof Shatter shatter) {
@@ -49,16 +54,6 @@ public class PurityArrow extends AbstractArrow {
                 remove(RemovalReason.KILLED);
             }
         }
-    }
-
-    @Override
-    public void doEnchantDamageEffects(LivingEntity pAttacker, Entity pTarget) {
-        if (pTarget instanceof LivingEntity ent) {
-            if (ent.getMobType().equals(MobType.UNDEAD) || ent.getType().is(TagInit.EntityTypes.IMPURE)) {
-                this.setBaseDamage(this.getBaseDamage()*3);
-            }
-        }
-        super.doEnchantDamageEffects(pAttacker, pTarget);
     }
 
     @Override

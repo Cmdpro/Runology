@@ -3,7 +3,7 @@
   "description": "",
   "hide_while_locked": false,
   "icon": "runology:purityarrow",
-  "name": "book.runology.runologyguide.basics.purityarrow.name",
+  "name": "book.runology.runologyguide.purity.purityarrow.name",
   "pages": [
     {
       "type": "runology:runicrecipe",

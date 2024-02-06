@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "runology:instabilityevent",
+      "conditions" : {
+        "instabilityEvent": "runology:shatter"
+      }
+    }
+  }
+}

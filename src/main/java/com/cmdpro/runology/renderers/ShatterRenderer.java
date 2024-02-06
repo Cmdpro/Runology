@@ -54,10 +54,17 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
 
     @Override
     public void render(Shatter entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        float xOffset = 0;
+        float yOffset = 0;
+        float zOffset = 0;
         if (entity.getEntityData().get(Shatter.EXHAUSTED)) {
-            poseStack.translate(RandomUtils.nextFloat(0, 0.2f)-0.1f, RandomUtils.nextFloat(0, 0.2f)-0.1f, RandomUtils.nextFloat(0f, 0.2f)-0.1f);
+            xOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
+            yOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
+            zOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
         }
+        poseStack.translate(xOffset, yOffset, zOffset);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+        poseStack.translate(-xOffset, -yOffset, -zOffset);
     }
 
     @Override

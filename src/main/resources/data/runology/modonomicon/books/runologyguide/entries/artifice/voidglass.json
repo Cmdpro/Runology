@@ -1,15 +1,15 @@
 {
-  "category": "runology:basics",
+  "category": "runology:artifice",
   "description": "",
   "hide_while_locked": false,
   "icon": "runology:voidglass",
-  "name": "book.runology.runologyguide.basics.voidglass.name",
+  "name": "book.runology.runologyguide.artifice.voidglass.name",
   "pages": [
     {
       "type": "runology:runicrecipe",
       "recipe_id_1": "runology:voidglass",
-      "title1": "book.runology.runologyguide.basics.voidglass.page1.title",
-      "text": "book.runology.runologyguide.basics.voidglass.page1.text"
+      "title1": "book.runology.runologyguide.artifice.voidglass.page1.title",
+      "text": "book.runology.runologyguide.artifice.voidglass.page1.text"
     }
   ],
   "parents": [
@@ -37,6 +37,6 @@
       }
     ]
   },
-  "x": 4,
-  "y": -4
+  "x": 0,
+  "y": 0
 }

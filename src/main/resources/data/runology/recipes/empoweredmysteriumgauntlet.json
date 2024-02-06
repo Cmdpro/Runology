@@ -1,0 +1,26 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:runicmysteries/mysteriumgauntlet",
+  "runicenergy": [
+    {
+      "type": "runology:instability",
+      "amount": 80
+    }
+  ],
+  "pattern": [
+    "aaa",
+    "aAa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "runology:mysteriumcore"
+    },
+    "A": {
+      "item": "runology:mysteriumgauntlet"
+    }
+  },
+  "result": {
+    "item": "runology:empoweredmysteriumgauntlet"
+  }
+}

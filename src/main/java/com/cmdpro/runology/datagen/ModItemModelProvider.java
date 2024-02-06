@@ -61,6 +61,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.SHATTERBERRIES);
         simpleItem(ItemInit.SHATTEREDSOUL);
         simpleItem(ItemInit.PURITYARROW);
+        simpleItem(ItemInit.PURITYPOWDER);
+        simpleItem(ItemInit.PURITYRUNE);
 
         handheldItem(ItemInit.REALITYSLICER);
 

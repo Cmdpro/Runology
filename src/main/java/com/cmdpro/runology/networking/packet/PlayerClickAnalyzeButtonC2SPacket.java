@@ -1,6 +1,7 @@
 package com.cmdpro.runology.networking.packet;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
@@ -38,7 +39,8 @@ public class PlayerClickAnalyzeButtonC2SPacket {
             if (context.getSender().level().getBlockEntity(pos) instanceof RunicAnalyzerBlockEntity analyzer) {
                 if (analyzer.item != null && analyzer.item.is(ItemInit.RESEARCH.get()) && analyzer.item.hasTag() && analyzer.item.getTag().contains("entry") && analyzer.item.getTag().contains("progress")) {
                     BookEntry entry = BookDataManager.get().getBook(new ResourceLocation(Runology.MOD_ID, "runologyguide")).getEntry(ResourceLocation.tryParse(analyzer.item.getTag().getString("entry")));
-                    if (entry.getCondition() instanceof BookAnalyzeTaskCondition task) {
+                    BookAnalyzeTaskCondition task = RunologyUtil.getAnalyzeCondition(entry.getCondition());
+                    if (task != null) {
                         if (analyzer.item.getTag().getInt("progress") < task.tasks.length) {
                             if (task.tasks[analyzer.item.getTag().getInt("progress")].canComplete(context.getSender())) {
                                 task.tasks[analyzer.item.getTag().getInt("progress")].onComplete(context.getSender());

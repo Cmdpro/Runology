@@ -1,6 +1,8 @@
 package com.cmdpro.runology.api;
 
+import com.cmdpro.runology.init.DimensionInit;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
@@ -17,6 +19,7 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
@@ -89,7 +92,10 @@ public class RunologyUtil {
                 }
             }
         }
-        return false;
+        if (condition instanceof BookAnalyzeTaskCondition cond) {
+            return true;
+        }
+        return condition.test(BookConditionContext.of(entry.getBook(), entry), player);
     }
     public static void RemoveInstability(ChunkPos chunk, Level level, float amount, float min, float max) {
         int[][] offsets = {
@@ -117,6 +123,16 @@ public class RunologyUtil {
                 });
             }
         });
+    }
+    public static float getChunkInstability(ChunkPos chunk, Level level) {
+        Optional<ChunkModData> data = level.getChunk(chunk.x, chunk.z).getCapability(ChunkModDataProvider.CHUNK_MODDATA).resolve();
+        if (level.dimension().equals(DimensionInit.SHATTERREALM)) {
+            return ChunkModData.MAX_INSTABILITY;
+        }
+        if (data.isPresent()) {
+            return data.get().getInstability();
+        }
+        return 0;
     }
     public static boolean playerHasEntry(Player player, String entry) {
         if (entry != null) {
