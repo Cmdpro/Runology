@@ -28,6 +28,7 @@ public class RunologyUtil {
     public static Supplier<IForgeRegistry<RunicEnergyType>> RUNIC_ENERGY_TYPES_REGISTRY = null;
     public static Supplier<IForgeRegistry<InstabilityEvent>> INSTABILITY_EVENTS_REGISTRY = null;
     public static Supplier<IForgeRegistry<AnalyzeTaskSerializer>> ANALYZE_TASKS_REGISTRY = null;
+    public static Supplier<IForgeRegistry<Spell>> SPELL_REGISTRY = null;
     public static void AddInstability(ChunkPos chunk, Level level, float amount, float min, float max) {
         int[][] offsets = {
                 { -2, -2 }, { -2, -1 }, { -2, 0 }, { -2, 1 }, { -2, 2 },

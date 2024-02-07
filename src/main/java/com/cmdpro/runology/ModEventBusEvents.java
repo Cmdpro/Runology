@@ -1,9 +1,6 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.api.AnalyzeTaskSerializer;
-import com.cmdpro.runology.api.InstabilityEvent;
-import com.cmdpro.runology.api.RunologyUtil;
-import com.cmdpro.runology.api.RunicEnergyType;
+import com.cmdpro.runology.api.*;
 import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.entity.RunicScout;
@@ -40,6 +37,8 @@ public class ModEventBusEvents {
                 .setName(new ResourceLocation(Runology.MOD_ID, "instabilityevents")));
         RunologyUtil.ANALYZE_TASKS_REGISTRY = event.create(new RegistryBuilder<AnalyzeTaskSerializer>()
                 .setName(new ResourceLocation(Runology.MOD_ID, "analyzetasks")));
+        RunologyUtil.SPELL_REGISTRY = event.create(new RegistryBuilder<Spell>()
+                .setName(new ResourceLocation(Runology.MOD_ID, "spells")));
     }
     @SubscribeEvent
     public static void entitySpawnRestriction(SpawnPlacementRegisterEvent event) {

@@ -1,0 +1,6 @@
+{
+	"parent": "runology:item/amethyststaff",
+	"textures": {
+		"0": "runology:item/shattercrystalstaff"
+	}
+}

@@ -1,5 +1,6 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.Spell;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
@@ -66,6 +67,7 @@ public class Runology
         RunicEnergyInit.RUNIC_ENERGY_TYPES.register(bus);
         InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
         AnalyzeTaskInit.ANALYZE_TASKS.register(bus);
+        SpellInit.SPELLS.register(bus);
         StructureInit.register(bus);
         FeatureInit.register(bus);
         GeckoLib.initialize();
@@ -113,6 +115,8 @@ public class Runology
             event.accept(ItemInit.INSTABILITYRUNE);
             event.accept(ItemInit.PURITYPOWDER);
             event.accept(ItemInit.PURITYRUNE);
+            event.accept(ItemInit.AMETHYSTSTAFF);
+            event.accept(ItemInit.SHATTERCRYSTALSTAFF);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
