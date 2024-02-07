@@ -1,6 +1,7 @@
 package com.cmdpro.runology.spells.gauntlet;
 
 import com.cmdpro.runology.api.Spell;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
 public class SummonTotemSpell extends Spell {
@@ -11,7 +12,7 @@ public class SummonTotemSpell extends Spell {
 
     @Override
     public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
-
+        player.sendSystemMessage(Component.literal("test"));
     }
 
     @Override
