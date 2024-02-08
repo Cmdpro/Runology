@@ -48,6 +48,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockInit.MYSTERIUMBLOCK.get());
         dropSelf(BlockInit.RAWMYSTERIUMBLOCK.get());
         dropSelf(BlockInit.RUNICWORKBENCH.get());
+        dropSelf(BlockInit.CASTINGTABLE.get());
         dropSelf(BlockInit.SHATTERCRYSTAL.get());
         dropSelf(BlockInit.SHATTERLEAF.get());
         dropSelf(BlockInit.SHATTERSTONE.get());

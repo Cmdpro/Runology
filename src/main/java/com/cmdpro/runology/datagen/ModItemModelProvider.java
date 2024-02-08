@@ -82,6 +82,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockInit.RAWMYSTERIUMBLOCK);
         evenSimplerBlockItem(BlockInit.RUNICANALYZER);
         evenSimplerBlockItem(BlockInit.RUNICWORKBENCH);
+        evenSimplerBlockItem(BlockInit.CASTINGTABLE);
         evenSimplerBlockItem(BlockInit.SHATTERCRYSTAL);
         evenSimplerBlockItem(BlockInit.SHATTERSTONE);
         evenSimplerBlockItem(BlockInit.SHATTERSTONEBRICKS);

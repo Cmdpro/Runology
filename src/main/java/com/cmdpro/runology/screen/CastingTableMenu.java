@@ -39,7 +39,7 @@ public class CastingTableMenu extends AbstractContainerMenu {
     }
 
     public CastingTableMenu(int pContainerId, Inventory pPlayerInventory, final ContainerLevelAccess pAccess) {
-        super(MenuInit.CASTINGTABLE_MENU.get(), pContainerId);
+        super(MenuInit.CASTINGTABLEMENU.get(), pContainerId);
         this.access = pAccess;
         this.level = pPlayerInventory.player.level();
         addPlayerInventory(pPlayerInventory);
@@ -77,8 +77,9 @@ public class CastingTableMenu extends AbstractContainerMenu {
                         tag3.putString("upgrade", upgrade);
                         tag2.add(tag3);
                     }
+                    invSlots.get(2).getItem().shrink(1);
                 }
-                tag.put("runicEnergy", tag2);
+                tag.put("upgrades", tag2);
             }
             if (invSlots.get(1).hasItem() && invSlots.get(1).getItem().getItem() instanceof RuneItem item) {
                 CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
@@ -90,12 +91,15 @@ public class CastingTableMenu extends AbstractContainerMenu {
                     max = staff.maxRunicEnergy;
                 }
                 if (tag2.getFloat(item.runicEnergyType.toString()) <= max) {
-                    float newTotal = tag2.getFloat(item.runicEnergyType.toString()) + 50;
+                    int costToFill = (int)Math.ceil((max-tag2.getFloat(item.runicEnergyType.toString()))/50);
+                    int cost = Math.min(invSlots.get(1).getItem().getCount(), costToFill);
+                    float newTotal = tag2.getFloat(item.runicEnergyType.toString()) + (float)cost*50f;
                     if (newTotal > max) {
                         newTotal = max;
                     }
                     tag2.putFloat(item.runicEnergyType.toString(), newTotal);
                     tag.put("runicEnergy", tag2);
+                    invSlots.get(1).getItem().shrink(cost);
                 }
             }
         }
@@ -103,7 +107,7 @@ public class CastingTableMenu extends AbstractContainerMenu {
     }
 
     public MenuType<?> getType() {
-        return MenuInit.CASTINGTABLE_MENU.get();
+        return MenuInit.CASTINGTABLEMENU.get();
     }
     public void slotsChanged(Container pInventory) {
         setupResultSlot();
@@ -127,7 +131,7 @@ public class CastingTableMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 7;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
@@ -174,14 +178,14 @@ public class CastingTableMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }

@@ -1,7 +1,8 @@
-// 1.20.1	2024-02-06T15:56:35.3174198	Item Models: runology
+// 1.20.1	2024-02-07T22:30:38.1003911	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
+059082257a17f111e0ac21222ebd95291cb91386 assets/runology/models/item/castingtable.json
 69fb356de0fde0068ad5b3fb377bc5516ab355f1 assets/runology/models/item/chiseledshatterstonebricks.json
 6a6b2498a50bb53354806c7c7994c33d5b86305a assets/runology/models/item/crackedshatterstonebricks.json
 a5df7bba627d7c2ec014f5b45488a57fbc26d138 assets/runology/models/item/deepslateairore.json

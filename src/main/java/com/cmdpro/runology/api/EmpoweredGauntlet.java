@@ -14,8 +14,8 @@ import net.minecraft.world.phys.EntityHitResult;
 
 public class EmpoweredGauntlet extends Gauntlet {
     public Item returnsTo;
-    public EmpoweredGauntlet(Properties properties, int magicLevel, Item returnsTo) {
-        super(properties, magicLevel);
+    public EmpoweredGauntlet(Properties properties, int magicLevel, float maxRunicEnergy, Item returnsTo) {
+        super(properties, magicLevel, maxRunicEnergy);
         this.returnsTo = returnsTo;
     }
 

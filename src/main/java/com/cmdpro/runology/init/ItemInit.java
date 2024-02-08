@@ -20,8 +20,9 @@ public class ItemInit {
     public static final RegistryObject<Item> SHATTERCRYSTALSTAFF = register("shattercrystalstaff", () -> new Staff(new Item.Properties().stacksTo(1), 2, 500));
     public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 1, 200));
     public static final RegistryObject<Item> MYSTERIUMGAUNTLET = register("mysteriumgauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 2, 500));
-    public static final RegistryObject<Item> EMPOWEREDMYSTERIUMGAUNTLET = register("empoweredmysteriumgauntlet", () -> new EmpoweredGauntlet(new Item.Properties().stacksTo(1), 2, ItemInit.MYSTERIUMGAUNTLET.get()));
+    public static final RegistryObject<Item> EMPOWEREDMYSTERIUMGAUNTLET = register("empoweredmysteriumgauntlet", () -> new EmpoweredGauntlet(new Item.Properties().stacksTo(1), 2, 500, ItemInit.MYSTERIUMGAUNTLET.get()));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CASTINGTABLEITEM = register("castingtable", () -> new CastingTableItem(BlockInit.CASTINGTABLE.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICANALYZERITEM = register("runicanalyzer", () -> new RunicAnalyzerItem(BlockInit.RUNICANALYZER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
@@ -51,7 +52,7 @@ public class ItemInit {
     public static final RegistryObject<Item> PURITYARROW = register("purityarrow", () -> new PurityArrowItem(new Item.Properties()));
     public static final RegistryObject<Item> PURITYPOWDER = register("puritypowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PURITYRUNE = register("purityrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "purity")));
-    public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "summontotem")));
+    public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "summontotem")));
 
     public static final RegistryObject<Item> RUNICCONSTRUCTSPAWNEGG = register("runicconstructspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICCONSTRUCT, 0x000000, 0xaa00aa, new Item.Properties()));
     public static final RegistryObject<Item> RUNICSCOUTSPAWNEGG = register("runicscoutspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICSCOUT, 0x000000, 0xaa00aa, new Item.Properties()));
