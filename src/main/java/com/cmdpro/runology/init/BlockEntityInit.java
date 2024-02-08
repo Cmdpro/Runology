@@ -1,6 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.entity.CastingTableBlockEntity;
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
 import com.cmdpro.runology.block.entity.VoidGlassBlockEntity;
@@ -17,6 +18,10 @@ public class BlockEntityInit {
             BLOCK_ENTITIES.register("runicworkbenchblockentity", () ->
                     BlockEntityType.Builder.of(RunicWorkbenchBlockEntity::new,
                             BlockInit.RUNICWORKBENCH.get()).build(null));
+    public static final RegistryObject<BlockEntityType<CastingTableBlockEntity>> CASTINGTABLE =
+            BLOCK_ENTITIES.register("castingtableblockentity", () ->
+                    BlockEntityType.Builder.of(CastingTableBlockEntity::new,
+                            BlockInit.CASTINGTABLE.get()).build(null));
     public static final RegistryObject<BlockEntityType<RunicAnalyzerBlockEntity>> RUNICANALYZER =
             BLOCK_ENTITIES.register("runicanalyzerblockentity", () ->
                     BlockEntityType.Builder.of(RunicAnalyzerBlockEntity::new,

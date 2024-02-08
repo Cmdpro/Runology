@@ -15,15 +15,24 @@ public class Gauntlet extends Item {
         this.magicLevel = magicLevel;
     }
     public Spell getSpell(Level level, Player player, InteractionHand hand) {
-        return SpellInit.SUMMONTOTEM.get();
+        ItemStack stack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+        if (stack.getItem() instanceof SpellCrystal crystal) {
+            Spell spell = crystal.getSpell();
+            if (spell.gauntletCastable()) {
+                return spell;
+            }
+        }
+        return null;
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide) {
             Spell spell = getSpell(pLevel, pPlayer, pUsedHand);
             if (spell != null) {
-                spell.cast(pPlayer, false, true);
-                return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
+                if (spell.gauntletCastable() && magicLevel >= spell.magicLevel()) {
+                    spell.cast(pPlayer, false, true);
+                    return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
+                }
             }
         }
         return super.use(pLevel, pPlayer, pUsedHand);

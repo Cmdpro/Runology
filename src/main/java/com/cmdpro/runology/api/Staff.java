@@ -15,6 +15,13 @@ public class Staff extends Item {
         this.magicLevel = magicLevel;
     }
     public Spell getSpell(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+        if (stack.getItem() instanceof SpellCrystal crystal) {
+            Spell spell = crystal.getSpell();
+            if (spell.staffCastable()) {
+                return spell;
+            }
+        }
         return null;
     }
     @Override
@@ -22,8 +29,10 @@ public class Staff extends Item {
         if (!pLevel.isClientSide) {
             Spell spell = getSpell(pLevel, pPlayer, pUsedHand);
             if (spell != null) {
-                spell.cast(pPlayer, true, false);
-                return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
+                if (spell.staffCastable() && magicLevel >= spell.magicLevel()) {
+                    spell.cast(pPlayer, true, false);
+                    return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
+                }
             }
         }
         return super.use(pLevel, pPlayer, pUsedHand);
