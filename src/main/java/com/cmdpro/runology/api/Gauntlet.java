@@ -10,9 +10,11 @@ import net.minecraft.world.level.Level;
 
 public class Gauntlet extends Item {
     public int magicLevel;
-    public Gauntlet(Properties properties, int magicLevel) {
+    public float maxRunicEnergy;
+    public Gauntlet(Properties properties, int magicLevel, float maxRunicEnergy) {
         super(properties);
         this.magicLevel = magicLevel;
+        this.maxRunicEnergy = maxRunicEnergy;
     }
     public Spell getSpell(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);

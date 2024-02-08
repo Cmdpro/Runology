@@ -16,10 +16,10 @@ import java.util.function.Supplier;
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Runology.MOD_ID);
     public static final RegistryObject<Item> REALITYSLICER = register("realityslicer", () -> new RealitySlicer(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> AMETHYSTSTAFF = register("amethyststaff", () -> new Staff(new Item.Properties().stacksTo(1), 1));
-    public static final RegistryObject<Item> SHATTERCRYSTALSTAFF = register("shattercrystalstaff", () -> new Staff(new Item.Properties().stacksTo(1), 2));
-    public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 1));
-    public static final RegistryObject<Item> MYSTERIUMGAUNTLET = register("mysteriumgauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 2));
+    public static final RegistryObject<Item> AMETHYSTSTAFF = register("amethyststaff", () -> new Staff(new Item.Properties().stacksTo(1), 1, 200));
+    public static final RegistryObject<Item> SHATTERCRYSTALSTAFF = register("shattercrystalstaff", () -> new Staff(new Item.Properties().stacksTo(1), 2, 500));
+    public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 1, 200));
+    public static final RegistryObject<Item> MYSTERIUMGAUNTLET = register("mysteriumgauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 2, 500));
     public static final RegistryObject<Item> EMPOWEREDMYSTERIUMGAUNTLET = register("empoweredmysteriumgauntlet", () -> new EmpoweredGauntlet(new Item.Properties().stacksTo(1), 2, ItemInit.MYSTERIUMGAUNTLET.get()));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));

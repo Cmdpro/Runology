@@ -1,6 +1,6 @@
 package com.cmdpro.runology.screen;
 
-import com.cmdpro.runology.api.UpgradeItem;
+import com.cmdpro.runology.api.*;
 import com.cmdpro.runology.init.BlockInit;
 import com.cmdpro.runology.init.MenuInit;
 import com.cmdpro.runology.screen.slot.CastingDeviceSlot;
@@ -56,9 +56,9 @@ public class CastingTableMenu extends AbstractContainerMenu {
     }
 
     void setupResultSlot() {
-        ItemStack wand = invSlots.get(0).getItem();
-        if (!wand.is(ItemStack.EMPTY.getItem())) {
-            CompoundTag tag = wand.getOrCreateTag();
+        ItemStack castingDevice = invSlots.get(0).getItem();
+        if (!castingDevice.is(ItemStack.EMPTY.getItem())) {
+            CompoundTag tag = castingDevice.getOrCreateTag();
             if (invSlots.get(2).hasItem() && invSlots.get(2).getItem().getItem() instanceof UpgradeItem item) {
                 ListTag tag2 = tag.contains("upgrades") ? (ListTag) tag.get("upgrades") : new ListTag();
                 if (tag2.size() < 3) {
@@ -77,6 +77,25 @@ public class CastingTableMenu extends AbstractContainerMenu {
                         tag3.putString("upgrade", upgrade);
                         tag2.add(tag3);
                     }
+                }
+                tag.put("runicEnergy", tag2);
+            }
+            if (invSlots.get(1).hasItem() && invSlots.get(1).getItem().getItem() instanceof RuneItem item) {
+                CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
+                float max = 100;
+                if (castingDevice.getItem() instanceof Gauntlet gauntlet) {
+                    max = gauntlet.maxRunicEnergy;
+                }
+                if (castingDevice.getItem() instanceof Staff staff) {
+                    max = staff.maxRunicEnergy;
+                }
+                if (tag2.getFloat(item.runicEnergyType.toString()) <= max) {
+                    float newTotal = tag2.getFloat(item.runicEnergyType.toString()) + 50;
+                    if (newTotal > max) {
+                        newTotal = max;
+                    }
+                    tag2.putFloat(item.runicEnergyType.toString(), newTotal);
+                    tag.put("runicEnergy", tag2);
                 }
             }
         }
