@@ -4,5 +4,11 @@
       "runology:runicoverseer"
     ],
     "stream": true
+  },
+  "runicoverseerintro": {
+    "sounds": [
+      "runology:runicoverseerintro"
+    ],
+    "stream": true
   }
 }

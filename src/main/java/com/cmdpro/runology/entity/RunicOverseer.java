@@ -5,6 +5,9 @@ import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -49,6 +52,12 @@ public class RunicOverseer extends Monster implements GeoEntity {
                 .add(Attributes.ATTACK_DAMAGE, 5f)
                 .add(Attributes.ATTACK_SPEED, 2.0f)
                 .add(Attributes.MOVEMENT_SPEED, 0.2f).build();
+    }
+    public static final EntityDataAccessor<Boolean> INTRO = SynchedEntityData.defineId(RunicOverseer.class, EntityDataSerializers.BOOLEAN);
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(INTRO, true);
     }
 
     @Override
@@ -225,6 +234,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
+        introDone = true;
         super.addAdditionalSaveData(pCompound);
         pCompound.putDouble("spawnX", spawnPos.x);
         pCompound.putDouble("spawnY", spawnPos.y);
@@ -259,7 +269,6 @@ public class RunicOverseer extends Monster implements GeoEntity {
         super.setCustomName(p_31476_);
         this.bossEvent.setName(this.getDisplayName());
     }
-
     @Override
     public void tick() {
         super.tick();
@@ -299,6 +308,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
             } else {
                 introDone = true;
             }
+            entityData.set(INTRO, !introDone);
         }
     }
 

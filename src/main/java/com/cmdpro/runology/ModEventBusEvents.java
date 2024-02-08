@@ -4,6 +4,7 @@ import com.cmdpro.runology.api.*;
 import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.entity.RunicScout;
+import com.cmdpro.runology.entity.Totem;
 import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -24,6 +25,7 @@ public class ModEventBusEvents {
         event.put(EntityInit.RUNICCONSTRUCT.get(), RunicConstruct.setAttributes());
         event.put(EntityInit.RUNICSCOUT.get(), RunicScout.setAttributes());
         event.put(EntityInit.RUNICOVERSEER.get(), RunicOverseer.setAttributes());
+        event.put(EntityInit.TOTEM.get(), Totem.setAttributes());
     }
     @SubscribeEvent
     public static void registerStuff(RegisterEvent event) {

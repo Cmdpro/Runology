@@ -26,9 +26,12 @@ public class ClientEvents {
             boolean playMusic = false;
             SoundEvent mus = SoundInit.RUNICOVERSEER.get();
             for (Entity i : mc.level.entitiesForRendering()) {
-                if (i instanceof RunicOverseer) {
+                if (i instanceof RunicOverseer overseer) {
                     playMusic = true;
                     mus = SoundInit.RUNICOVERSEER.get();
+                    if (overseer.getEntityData().get(RunicOverseer.INTRO)) {
+                        mus = SoundInit.RUNICOVERSEERINTRO.get();
+                    }
                 }
             }
             SoundManager manager = mc.getSoundManager();
@@ -42,12 +45,11 @@ public class ClientEvents {
                 if (!music.getLocation().equals(mus.getLocation())) {
                     manager.stop(music);
                 }
-            } else {
-                if (!manager.isActive(music) && playMusic)
-                {
-                    music = SimpleSoundInstance.forMusic(mus);
-                    manager.play(music);
-                }
+            }
+            if (!manager.isActive(music) && playMusic)
+            {
+                music = SimpleSoundInstance.forMusic(mus);
+                manager.play(music);
             }
         }
     }

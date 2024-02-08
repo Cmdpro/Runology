@@ -15,6 +15,7 @@ public class SoundInit {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Runology.MOD_ID);
 
     public static RegistryObject<SoundEvent> RUNICOVERSEER = registerSoundEvent("runicoverseer");
+    public static RegistryObject<SoundEvent> RUNICOVERSEERINTRO = registerSoundEvent("runicoverseerintro");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

@@ -2,6 +2,8 @@ package com.cmdpro.runology.spells.gauntlet;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.Spell;
+import com.cmdpro.runology.entity.Totem;
+import com.cmdpro.runology.init.EntityInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +27,10 @@ public class SummonTotemSpell extends Spell {
 
     @Override
     public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
-        player.sendSystemMessage(Component.literal("test"));
+        Totem totem = new Totem(EntityInit.TOTEM.get(), player.level());
+        totem.setPos(player.position());
+        player.level().addFreshEntity(totem);
+        totem.triggerAnim("attackController", "animation.totem.spawning");
     }
 
     @Override
