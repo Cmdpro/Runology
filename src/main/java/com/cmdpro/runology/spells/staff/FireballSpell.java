@@ -1,17 +1,17 @@
-package com.cmdpro.runology.spells.gauntlet;
+package com.cmdpro.runology.spells.staff;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.Spell;
-import com.cmdpro.runology.entity.Totem;
+import com.cmdpro.runology.entity.FireballProjectile;
 import com.cmdpro.runology.entity.VoidBomb;
 import com.cmdpro.runology.init.EntityInit;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Fireball;
 
 import java.util.HashMap;
 
-public class SummonTotemSpell extends Spell {
+public class FireballSpell extends Spell {
     @Override
     public int magicLevel() {
         return 1;
@@ -21,26 +21,24 @@ public class SummonTotemSpell extends Spell {
     public HashMap<ResourceLocation, Float> getCost() {
         return new HashMap<>() {
             {
-                put(new ResourceLocation(Runology.MOD_ID, "earth"), 100f);
+                put(new ResourceLocation(Runology.MOD_ID, "fire"), 10f);
             }
         };
     }
 
     @Override
     public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
-        Totem totem = new Totem(EntityInit.TOTEM.get(), player.level());
-        totem.setPos(player.position());
-        player.level().addFreshEntity(totem);
-        totem.triggerAnim("attackController", "animation.totem.spawning");
+        FireballProjectile fireball = new FireballProjectile(EntityInit.FIREBALL.get(), player, player.level());
+        player.level().addFreshEntity(fireball);
     }
 
     @Override
     public boolean gauntletCastable() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean staffCastable() {
-        return false;
+        return true;
     }
 }

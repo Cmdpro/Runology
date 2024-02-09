@@ -66,7 +66,7 @@ public class Staff extends Item {
         if (!pLevel.isClientSide) {
             Spell spell = getSpell(pLevel, pPlayer, pUsedHand);
             if (spell != null) {
-                if (spell.gauntletCastable() && magicLevel >= spell.magicLevel()) {
+                if (spell.staffCastable() && magicLevel >= spell.magicLevel()) {
                     if (pPlayer.getItemInHand(pUsedHand).hasTag() && pPlayer.getItemInHand(pUsedHand).getTag().contains("runicEnergy")) {
                         boolean hasAll = true;
                         CompoundTag tag = ((CompoundTag)pPlayer.getItemInHand(pUsedHand).getTag().get("runicEnergy"));
@@ -76,8 +76,6 @@ public class Staff extends Item {
                                     if (tag.getFloat(i) < o.getValue()) {
                                         hasAll = false;
                                     }
-                                } else {
-                                    hasAll = false;
                                 }
                             }
                         }

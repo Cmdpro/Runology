@@ -13,8 +13,8 @@ public class ParticleInit {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Runology.MOD_ID);
 
-    //public static final RegistryObject<SimpleParticleType> SOUL =
-    //        PARTICLE_TYPES.register("soul", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> FIRE =
+            PARTICLE_TYPES.register("fire", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

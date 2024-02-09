@@ -10,6 +10,7 @@ import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
+import com.cmdpro.runology.particle.FireParticle;
 import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.CastingTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
@@ -93,6 +94,7 @@ public class ClientModEvents {
         EntityRenderers.register(EntityInit.SHATTER.get(), ShatterRenderer::new);
         EntityRenderers.register(EntityInit.PURITYARROW.get(), PurityArrowRenderer::new);
         EntityRenderers.register(EntityInit.TOTEM.get(), TotemRenderer::new);
+        EntityRenderers.register(EntityInit.FIREBALL.get(), EmptyEntityRenderer::new);
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {
@@ -117,5 +119,7 @@ public class ClientModEvents {
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+        Minecraft.getInstance().particleEngine.register(ParticleInit.FIRE.get(),
+                FireParticle.Provider::new);
     }
 }

@@ -76,8 +76,6 @@ public class Gauntlet extends Item {
                                     if (tag.getFloat(i) < o.getValue()) {
                                         hasAll = false;
                                     }
-                                } else {
-                                    hasAll = false;
                                 }
                             }
                         }
