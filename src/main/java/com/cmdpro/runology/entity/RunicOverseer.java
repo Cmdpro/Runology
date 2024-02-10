@@ -115,7 +115,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
     protected void customServerAiStep() {
         super.customServerAiStep();
         atkTimer++;
-        if (atkTimer >= 100) {
+        if (atkTimer >= 50) {
             atk = level().random.nextInt(0, 2);
             if (getHealth() <= getMaxHealth()/2) {
                 atk = level().random.nextInt(0, 4);
@@ -249,6 +249,7 @@ public class RunicOverseer extends Monster implements GeoEntity {
                 if (i.position().distanceTo(position()) <= 35) {
                     i.sendSystemMessage(Component.translatable("entity.runology.runicoverseer.interrupt"));
                     introTimer = (100*6)+1;
+                    introDone = true;
                 }
             }
         }

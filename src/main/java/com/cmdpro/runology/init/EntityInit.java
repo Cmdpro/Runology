@@ -25,4 +25,5 @@ public class EntityInit {
     public static final RegistryObject<EntityType<PurityArrow>> PURITYARROW = ENTITY_TYPES.register("purityarrow", () -> EntityType.Builder.of((EntityType.EntityFactory<PurityArrow>) PurityArrow::new, MobCategory.MISC).sized(0.5F, 0.5F).build(Runology.MOD_ID + ":" + "purityarrow"));
     public static final RegistryObject<EntityType<Totem>> TOTEM = ENTITY_TYPES.register("totem", () -> EntityType.Builder.of((EntityType.EntityFactory<Totem>) Totem::new, MobCategory.MISC).sized(1f, 3f).build(Runology.MOD_ID + ":" + "totem"));
     public static final RegistryObject<EntityType<FireballProjectile>> FIREBALL = ENTITY_TYPES.register("fireball", () -> EntityType.Builder.of((EntityType.EntityFactory<FireballProjectile>) FireballProjectile::new, MobCategory.MISC).sized(0.25F, 0.25F).build(Runology.MOD_ID + ":" + "fireball"));
+    public static final RegistryObject<EntityType<IceShard>> ICESHARD = ENTITY_TYPES.register("iceshard", () -> EntityType.Builder.of((EntityType.EntityFactory<IceShard>) IceShard::new, MobCategory.MISC).sized(0.5F, 0.5F).build(Runology.MOD_ID + ":" + "iceshard"));
 }

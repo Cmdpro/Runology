@@ -12,21 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 
-public class EmpoweredGauntlet extends Gauntlet {
+public class EmpoweredGauntlet extends Item {
     public Item returnsTo;
-    public EmpoweredGauntlet(Properties properties, int magicLevel, float maxRunicEnergy, Item returnsTo) {
-        super(properties, magicLevel, maxRunicEnergy);
+    public EmpoweredGauntlet(Properties properties, Item returnsTo) {
+        super(properties);
         this.returnsTo = returnsTo;
-    }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        double entityReach = pPlayer.getEntityReach();
-        if (pPlayer.pick(entityReach, 1, false) instanceof EntityHitResult result) {
-            if (result.getEntity() instanceof Shatter) {
-                return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
-            }
-        }
-        return super.use(pLevel, pPlayer, pUsedHand);
     }
 }

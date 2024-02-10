@@ -119,6 +119,7 @@ public class Runology
             event.accept(ItemInit.SHATTERCRYSTALSTAFF);
             event.accept(ItemInit.SUMMONTOTEMSPELLCRYSTAL);
             event.accept(ItemInit.FIREBALLSPELLCRYSTAL);
+            event.accept(ItemInit.ICESHARDSSPELLCRYSTAL);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

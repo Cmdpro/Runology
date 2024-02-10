@@ -73,7 +73,7 @@ public class Totem extends LivingEntity implements GeoEntity {
         super.tick();
         if (!level().isClientSide) {
             for (Player i : level().getEntitiesOfClass(Player.class, AABB.ofSize(position(), 10, 10, 10))) {
-                i.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, 1));
+                i.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, 2));
             }
             lifeTime++;
             if (lifeTime >= 500) {

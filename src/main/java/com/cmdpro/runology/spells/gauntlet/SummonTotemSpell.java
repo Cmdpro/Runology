@@ -21,7 +21,7 @@ public class SummonTotemSpell extends Spell {
     public HashMap<ResourceLocation, Float> getCost() {
         return new HashMap<>() {
             {
-                put(new ResourceLocation(Runology.MOD_ID, "earth"), 100f);
+                put(new ResourceLocation(Runology.MOD_ID, "void"), 100f);
             }
         };
     }

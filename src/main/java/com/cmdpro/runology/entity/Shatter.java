@@ -108,7 +108,7 @@ public class Shatter extends Entity implements GeoEntity {
             opened = entityData.get(OPENED);
             if (opened) {
                 entityData.set(EXHAUSTED, false);
-                for (Entity i : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox())) {
+                for (LivingEntity i : level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox())) {
                     if (i instanceof Player || !oneTimePlayerOnly) {
                         if (i.canChangeDimensions()) {
                             if (i.isOnPortalCooldown()) {

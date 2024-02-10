@@ -19,9 +19,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.*;
@@ -63,7 +65,7 @@ public class VoidBomb extends Projectile implements GeoEntity {
         level().playSound(null, position().x, position().y, position().z, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE, 1.0f, 1.0f);
         List<Entity> entities = level().getEntities(this, AABB.ofSize(position(), 5f, 5f, 5f));
         for (Entity p : entities) {
-            if (!p.is(getOwner())) {
+            if (!p.is(getOwner()) && !(p instanceof ItemEntity)) {
                 p.hurt(level().damageSources().mobAttack((LivingEntity) this.getOwner()), 20);
             }
         }

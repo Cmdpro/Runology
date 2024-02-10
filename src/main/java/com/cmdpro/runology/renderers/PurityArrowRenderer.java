@@ -12,6 +12,7 @@ public class PurityArrowRenderer extends ArrowRenderer<PurityArrow> {
     public PurityArrowRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);
     }
+    @Override
     public ResourceLocation getTextureLocation(PurityArrow pEntity) {
         return new ResourceLocation(Runology.MOD_ID, "textures/entity/purityarrow.png");
     }
