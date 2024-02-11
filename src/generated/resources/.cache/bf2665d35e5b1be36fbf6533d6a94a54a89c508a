@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-07T22:30:38.1003911	Item Models: runology
+// 1.20.1	2024-02-10T19:26:31.8935413	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
@@ -58,6 +58,7 @@ d6809c50c6617315705d73833b8e3d756ff5e1c1 assets/runology/models/item/shatterston
 d16e886c1ff7bfebb6433a990a8b12caca42b145 assets/runology/models/item/shatterstoneslab.json
 03ff5f1b3e2609d02c3f2bf9ac9fc8c80d72ddf6 assets/runology/models/item/shatterstonestairs.json
 18eb402dd7d7708edb8d9975821316eafaf1027d assets/runology/models/item/shatterstonewall.json
+d0a652afc7cd6ab1f6eee99d8f57777fcdf322b4 assets/runology/models/item/summontotemspellcrystal.json
 81867c86ce029daee883baf77e6a65df7bf8aa5c assets/runology/models/item/voidrune.json
 fc1ae0c137863ec07b0ea34db28dbb9ed490b935 assets/runology/models/item/waterpowder.json
 5022bc8aa20b82cc109233e11097d1b467840d99 assets/runology/models/item/waterrune.json
