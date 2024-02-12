@@ -1,0 +1,27 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:purity/purifiedflesh",
+  "runicenergy": [
+    {
+      "type": "runology:purity",
+      "amount": 10
+    }
+  ],
+  "key": {
+    "a": {
+      "item": "runology:puritypowder"
+    },
+    "A": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AaA",
+    "AAA"
+  ],
+  "result": {
+    "item": "runology:purifiedflesh",
+    "count": 8
+  }
+}

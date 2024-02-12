@@ -83,6 +83,17 @@
   "entity.runology.purityarrow": "Purity Arrow",
   "item.runology.mysteriumgauntlet": "Mysterium Gauntlet",
   "item.runology.empoweredmysteriumgauntlet": "Empowered Mysterium Gauntlet",
+  "item.runology.instabilitypowder": "Instability Powder",
+  "item.runology.instabilityrune": "Instability Rune",
+  "item.runology.puritypowder": "Purity Powder",
+  "item.runology.purityrune": "Purity Rune",
+  "item.runology.amethyststaff": "Amethyst Staff",
+  "item.runology.shattercrystalstaff": "Shattercrystal Staff",
+  "item.runology.summontotemspellcrystal": "Summon Totem Spell Crystal",
+  "item.runology.fireballspellcrystal": "Fireball Spell Crystal",
+  "item.runology.iceshardspellcrystal": "Ice Shards Spell Crystal",
+  "item.runology.purifiedflesh": "Purified Flesh",
+  "block.runology.castingtable": "Casting Table",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",
@@ -151,6 +162,9 @@
   "book.runology.runologyguide.runicmysteries.mysteriumgauntlet.page1.title": "Mysterium Gauntlet",
   "book.runology.runologyguide.runicmysteries.mysteriumgauntlet.page1.title2": "Empowered Mysterium Gauntlet",
   "book.runology.runologyguide.runicmysteries.mysteriumgauntlet.page2.text": "If I am correct, by creating a gauntlet out of mysterium and empowering it with 8 mysterium cores, I can stabilize a shatter by giving it the power of all 8 mysterium cores, Entering a stabilized shatter is likely a one way trip, I feel an incredible power from the other side, I may need to defeat that incredible power to return to my realm",
+  "book.runology.runologyguide.purity.purifiedflesh.name": "Purified Flesh",
+  "book.runology.runologyguide.purity.purifiedflesh.page1.title": "Purified Flesh",
+  "book.runology.runologyguide.purity.purifiedflesh.page1.text": "By infusing rotten flesh with purity, I can purify it allowing me to eat it without any side effects",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"

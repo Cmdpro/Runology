@@ -120,6 +120,7 @@ public class Runology
             event.accept(ItemInit.SUMMONTOTEMSPELLCRYSTAL);
             event.accept(ItemInit.FIREBALLSPELLCRYSTAL);
             event.accept(ItemInit.ICESHARDSSPELLCRYSTAL);
+            event.accept(ItemInit.PURIFIEDFLESH);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
