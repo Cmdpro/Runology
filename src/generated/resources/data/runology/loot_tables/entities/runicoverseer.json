@@ -6,6 +6,16 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.25,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "runology:dimensionalthreatmusicdisc"
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,

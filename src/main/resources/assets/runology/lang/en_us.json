@@ -190,6 +190,9 @@
   "book.runology.runologyguide.runicmysteries.realityslicer.name": "Reality Slicer",
   "book.runology.runologyguide.runicmysteries.realityslicer.page1.title": "Reality Slicer",
   "book.runology.runologyguide.runicmysteries.realityslicer.page1.text": "This blade, it can slice open holes in reality, These shatters are weak but stable meaning I can go through them, but they will close on their own after a short time",
+  "book.runology.runologyguide.runicmysteries.instabilityresonator.name": "Instability Resonator",
+  "book.runology.runologyguide.runicmysteries.instabilityresonator.page1.title": "Instability Resonator",
+  "book.runology.runologyguide.runicmysteries.instabilityresonator.page1.text": "By infusing a clock with void, I will get a device that can detect instability!",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"
