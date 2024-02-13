@@ -53,6 +53,7 @@ public class ItemInit {
     public static final RegistryObject<Item> PURITYPOWDER = register("puritypowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PURITYRUNE = register("purityrune", () -> new RuneItem(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "purity")));
     public static final RegistryObject<Item> PURIFIEDFLESH = register("purifiedflesh", () -> new Item(new Item.Properties().food(ModFoods.PURIFIEDFLESH)));
+    public static final RegistryObject<Item> DIMENSIONALTHREATMUSICDISC = register("dimensionalthreatmusicdisc", () -> new RecordItem(6, SoundInit.RUNICOVERSEER, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 2020));
 
     public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "summontotem")));
     public static final RegistryObject<Item> FIREBALLSPELLCRYSTAL = register("fireballspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "fireball")));

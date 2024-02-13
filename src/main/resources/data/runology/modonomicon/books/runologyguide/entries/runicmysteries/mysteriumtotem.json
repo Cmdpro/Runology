@@ -1,0 +1,29 @@
+{
+  "category": "runology:runicmysteries",
+  "description": "",
+  "hide_while_locked": true,
+  "icon": "runology:mysteriumtotem",
+  "name": "book.runology.runologyguide.runicmysteries.mysteriumtotem.name",
+  "pages": [
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:mysteriumtotem",
+      "text": "book.runology.runologyguide.runicmysteries.mysteriumtotem.page1.text",
+      "title1": "book.runology.runologyguide.runicmysteries.mysteriumtotem.page1.title"
+    }
+  ],
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "runology:mysteriumtotem"
+  },
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:runicmysteries/theshatterrealm",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 1,
+  "y": -6
+}

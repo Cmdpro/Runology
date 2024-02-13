@@ -1,0 +1,28 @@
+{
+  "category": "runology:runicmysteries",
+  "description": "",
+  "hide_while_locked": true,
+  "icon": "runology:mysteriousaltar",
+  "name": "book.runology.runologyguide.runicmysteries.anescape.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.runology.runologyguide.runicmysteries.anescape.page1.text",
+      "title": "book.runology.runologyguide.runicmysteries.anescape.page1.title"
+    }
+  ],
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "runology:anescape"
+  },
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:runicmysteries/theshatterrealm",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": -1,
+  "y": -6
+}

@@ -8,6 +8,7 @@ import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;

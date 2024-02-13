@@ -8,5 +8,5 @@ import net.minecraftforge.common.ForgeTier;
 public class ModTiers {
     public static final ForgeTier REALITYSLICER = new ForgeTier(4, 800, 8f,
             8f, 15, BlockTags.NEEDS_DIAMOND_TOOL,
-            () -> Ingredient.of(ItemInit.MYSTERIUMINGOT.get()));
+            () -> Ingredient.of(ItemInit.SHATTEREDSOUL.get()));
 }

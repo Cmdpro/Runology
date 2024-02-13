@@ -1,15 +1,15 @@
 package com.cmdpro.runology.renderers;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.Shatter;
+import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -19,6 +19,8 @@ import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.RandomUtils;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.lwjgl.system.linux.Stat;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
@@ -30,7 +32,10 @@ import software.bernie.geckolib.model.data.EntityModelData;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 
+import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
@@ -51,16 +56,15 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
             }
         }
     }
-
     @Override
     public void render(Shatter entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         float xOffset = 0;
         float yOffset = 0;
         float zOffset = 0;
         if (entity.getEntityData().get(Shatter.EXHAUSTED)) {
-            xOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
-            yOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
-            zOffset = RandomUtils.nextFloat(0, 0.2f)-0.1f;
+            xOffset = RandomUtils.nextFloat(0, 0.1f)-0.05f;
+            yOffset = RandomUtils.nextFloat(0, 0.1f)-0.05f;
+            zOffset = RandomUtils.nextFloat(0, 0.1f)-0.05f;
         }
         poseStack.translate(xOffset, yOffset, zOffset);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);

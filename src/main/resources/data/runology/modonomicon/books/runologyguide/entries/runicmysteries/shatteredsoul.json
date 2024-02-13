@@ -1,0 +1,34 @@
+{
+  "category": "runology:runicmysteries",
+  "description": "",
+  "hide_while_locked": true,
+  "icon": "runology:shatteredsoul",
+  "name": "book.runology.runologyguide.runicmysteries.shatteredsoul.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.runology.runologyguide.runicmysteries.shatteredsoul.page1.text",
+      "title": "book.runology.runologyguide.runicmysteries.shatteredsoul.page1.title"
+    }
+  ],
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "runology:shatteredsoul"
+  },
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:runicmysteries/mysteriumtotem",
+      "line_enabled": true,
+      "line_reversed": false
+    },
+    {
+      "draw_arrow": true,
+      "entry": "runology:runicmysteries/anescape",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 0,
+  "y": -8
+}

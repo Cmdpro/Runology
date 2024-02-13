@@ -132,8 +132,10 @@ public class Shatter extends Entity implements GeoEntity {
                 exhaustion++;
                 if (exhaustion >= 20*(60*5)) {
                     entityData.set(EXHAUSTED, true);
-                    for (LivingEntity i : level().getEntitiesOfClass(LivingEntity.class, AABB.ofSize(position(), 15, 15, 15))) {
-                        i.hurt(damageSources().magic(), 5);
+                    for (Entity i : ((ServerLevel)level()).getEntities().getAll()) {
+                        if (i.position().distanceTo(position()) <= 5) {
+                            i.hurt(damageSources().magic(), 5);
+                        }
                     }
                 } else {
                     entityData.set(EXHAUSTED, false);

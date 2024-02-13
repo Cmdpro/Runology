@@ -28,13 +28,16 @@
 							"vector": [0, 0, 0]
 						},
 						"1.0": {
-							"vector": [0, 1, 0]
+							"vector": [0, 1, 0],
+							"easing": "easeInOutQuad"
 						},
 						"2.0": {
-							"vector": [0, 0, 0]
+							"vector": [0, 0, 0],
+							"easing": "easeInOutQuad"
 						},
 						"3.0": {
-							"vector": [0, 1, 0]
+							"vector": [0, 1, 0],
+							"easing": "easeInOutQuad"
 						},
 						"4.0": {
 							"vector": [0, 0, 0]

@@ -1,0 +1,23 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:runicmysteries/mysteriumtotem",
+  "runicenergy": [
+    {
+      "type": "runology:instability",
+      "amount": 100
+    }
+  ],
+  "pattern": [
+    "aaa",
+    "aaa",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "runology:mysteriumingot"
+    }
+  },
+  "result": {
+    "item": "runology:mysteriumtotem"
+  }
+}

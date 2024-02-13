@@ -10,6 +10,9 @@ import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
 import com.klikli_dev.modonomicon.book.conditions.context.BookConditionContext;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.awt.*;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;

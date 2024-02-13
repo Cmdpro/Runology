@@ -1,0 +1,29 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:runicmysteries/mysteriumtotem",
+  "runicenergy": [
+    {
+      "type": "runology:instability",
+      "amount": 250
+    }
+  ],
+  "pattern": [
+    "  a",
+    "ab ",
+    "Aa "
+  ],
+  "key": {
+    "a": {
+      "item": "runology:mysteriumingot"
+    },
+    "A": {
+      "item": "minecraft:stick"
+    },
+    "b": {
+      "item": "runology:shatteredsoul"
+    }
+  },
+  "result": {
+    "item": "runology:realityslicer"
+  }
+}

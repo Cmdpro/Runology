@@ -33,6 +33,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PacketDistributor;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -149,7 +150,7 @@ public class Totem extends LivingEntity implements GeoEntity {
         data.add(new AnimationController(this, "attackController", 0, this::openPredicate)
                 .triggerableAnim("animation.totem.spawning", RawAnimation.begin().then("animation.totem.spawning", Animation.LoopType.PLAY_ONCE))
                 .setSoundKeyframeHandler(state -> {
-                    level().playLocalSound(position().x, position().y, position().z, SoundEvents.ANVIL_HIT, SoundSource.PLAYERS, 1, 1, false);
+                    level().playLocalSound(position().x, position().y, position().z, SoundEvents.ANVIL_PLACE, SoundSource.PLAYERS, 1, 1, false);
                 }));
     }
     @Override

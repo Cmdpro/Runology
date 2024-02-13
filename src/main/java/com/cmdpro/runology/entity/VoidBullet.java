@@ -29,6 +29,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VoidBullet extends Projectile implements GeoEntity {
@@ -116,7 +117,6 @@ public class VoidBullet extends Projectile implements GeoEntity {
 
                 hitresult = null;
             }
-
         }
         this.setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
         super.tick();

@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-10T19:26:31.8935413	Item Models: runology
+// 1.20.1	2024-02-12T23:32:17.0764377	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
@@ -9,6 +9,7 @@ a5df7bba627d7c2ec014f5b45488a57fbc26d138 assets/runology/models/item/deepslateai
 f5965e19490f2a0dab28e38ebd28d693214fcf7d assets/runology/models/item/deepslateearthore.json
 04d7eff3ce58e8f547c4818fb061594b537c6800 assets/runology/models/item/deepslatefireore.json
 fd6a419ead8c5691f7e1b161335408d7d3d0e530 assets/runology/models/item/deepslatewaterore.json
+b7dff478eada640c6febe85c8a1e0f52c18b3585 assets/runology/models/item/dimensionalthreatmusicdisc.json
 b797f4a4a8cf4d41ed2ca2bcb9b710c43f0e429f assets/runology/models/item/earthpowder.json
 748af756f00fca1b9a0d1f19f110913f3b5f6541 assets/runology/models/item/earthrune.json
 911e2d13a122e8ec44fd2368ebe53514ce6e15b7 assets/runology/models/item/energyrune.json
