@@ -7,6 +7,8 @@ import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import com.klikli_dev.modonomicon.bookstate.BookVisualStateManager;
+import com.klikli_dev.modonomicon.command.ResetBookUnlocksCommand;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;

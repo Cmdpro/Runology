@@ -12,8 +12,21 @@
     }
   ],
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "runology:shatteredsoul"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "runology:shatterrealm"
+      },
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:runicmysteries/mysteriumtotem"
+      },
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:runicmysteries/anescape"
+      }
+    ]
   },
   "parents": [
     {

@@ -1,8 +1,8 @@
 {
   "category": "runology:runicmysteries",
   "description": "",
-  "hide_while_locked": true,
-  "icon": "runology:instabilityresonator",
+  "hide_while_locked": false,
+  "icon": "runology:instabilityreader",
   "name": "book.runology.runologyguide.runicmysteries.instabilityresonator.name",
   "pages": [
     {
@@ -19,8 +19,8 @@
         "type": "runology:consumeitem",
         "items": [
           {
-            "item": "minecraft:clock",
-            "count": 1
+            "item": "minecraft:amethyst_shard",
+            "count": 10
           }
         ]
       }

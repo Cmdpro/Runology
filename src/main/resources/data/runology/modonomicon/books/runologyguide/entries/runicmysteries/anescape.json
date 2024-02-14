@@ -12,8 +12,17 @@
     }
   ],
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "runology:anescape"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "runology:anescape"
+      },
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:runicmysteries/theshatterrealm"
+      }
+    ]
   },
   "parents": [
     {

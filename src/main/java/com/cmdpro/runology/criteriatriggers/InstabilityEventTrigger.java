@@ -18,7 +18,7 @@ public class InstabilityEventTrigger extends SimpleCriterionTrigger<InstabilityE
 
     public InstabilityEventTrigger.TriggerInstance createInstance(JsonObject pJson, ContextAwarePredicate pEntityPredicate, DeserializationContext pConditionsParser) {
         String instabilityEvent = pJson.has("instabilityEvent") ? GsonHelper.getAsString(pJson, "instabilityEvent") : null;
-        return new InstabilityEventTrigger.TriggerInstance(pEntityPredicate, ResourceLocation.of(instabilityEvent, ':'));
+        return new InstabilityEventTrigger.TriggerInstance(pEntityPredicate, instabilityEvent == null ? null : ResourceLocation.tryParse(instabilityEvent));
     }
 
     public void trigger(ServerPlayer pPlayer, ResourceLocation instabilityEvent) {

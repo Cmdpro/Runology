@@ -8,6 +8,7 @@ import com.cmdpro.runology.moddata.PlayerModDataProvider;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import com.klikli_dev.modonomicon.bookstate.BookVisualStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

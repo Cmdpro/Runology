@@ -13,8 +13,17 @@
     }
   ],
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "runology:mysteriumtotem"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "runology:mysteriumtotem"
+      },
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:runicmysteries/theshatterrealm"
+      }
+    ]
   },
   "parents": [
     {
