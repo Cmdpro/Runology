@@ -38,6 +38,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
 
 import java.util.List;
 import java.util.function.BiConsumer;
