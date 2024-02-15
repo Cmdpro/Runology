@@ -65,7 +65,7 @@ A magic mod about runes
 [[dependencies.runology]]
     modId="geckolib"
     mandatory=true
-    versionRange="[4.1.2,)"
+    versionRange="[4.2.4,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.runology]]
