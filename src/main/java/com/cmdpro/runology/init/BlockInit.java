@@ -2,9 +2,7 @@ package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.*;
-import com.cmdpro.runology.item.VoidGlassItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
@@ -27,8 +25,8 @@ public class BlockInit {
     public static final DeferredRegister<Item> ITEMS = ItemInit.ITEMS;
     public static final RegistryObject<Block> RUNICWORKBENCH = registerBlock("runicworkbench",
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).sound(SoundType.COPPER).noOcclusion().strength(2.0f)));
-    public static final RegistryObject<Block> CASTINGTABLE = registerBlock("castingtable",
-            () -> new CastingTable(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
+    public static final RegistryObject<Block> SPELLTABLE = registerBlock("spelltable",
+            () -> new SpellTable(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> RUNICANALYZER = registerBlock("runicanalyzer",
             () -> new RunicAnalyzer(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",

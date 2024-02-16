@@ -12,14 +12,11 @@ import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
 import com.cmdpro.runology.particle.FireParticle;
 import com.cmdpro.runology.renderers.*;
-import com.cmdpro.runology.screen.CastingTableScreen;
+import com.cmdpro.runology.screen.SpellTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
-import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
-import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
@@ -38,7 +35,6 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -50,7 +46,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICWORKBENCH.get(), RunicWorkbenchRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.VOIDGLASS.get(), VoidGlassRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICANALYZER.get(), RunicAnalyzerRenderer::new);
-        event.registerBlockEntityRenderer(BlockEntityInit.CASTINGTABLE.get(), CastingTableRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.SPELLTABLE.get(), SpellTableRenderer::new);
     }
     @SubscribeEvent
     public static void onRegisterDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
@@ -84,7 +80,7 @@ public class ClientModEvents {
         });
         MenuScreens.register(MenuInit.RUNICWORKBENCHMENU.get(), RunicWorkbenchScreen::new);
         MenuScreens.register(MenuInit.RUNICANALYZERMENU.get(), RunicAnalyzerScreen::new);
-        MenuScreens.register(MenuInit.CASTINGTABLEMENU.get(), CastingTableScreen::new);
+        MenuScreens.register(MenuInit.SPELLTABLEMENU.get(), SpellTableScreen::new);
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
         EntityRenderers.register(EntityInit.RUNICCONSTRUCT.get(), RunicConstructRenderer::new);
         EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);

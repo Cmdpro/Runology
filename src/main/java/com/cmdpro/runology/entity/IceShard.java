@@ -67,20 +67,14 @@ public class IceShard extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
-        float f = (float)this.getDeltaMovement().length();
-        int i = Mth.ceil(Mth.clamp((double)f * getBaseDamage(), 0.0D, (double)Integer.MAX_VALUE));
-
-        if (this.isCritArrow()) {
-            long j = (long)this.random.nextInt(i / 2 + 2);
-            i = (int)Math.min(j + (long)i, 2147483647L);
-        }
+        double dmg = getBaseDamage();
 
         Entity entity1 = this.getOwner();
         DamageSource damagesource;
         if (entity1 == null) {
             damagesource = this.damageSources().indirectMagic(this, this);
         } else {
-            damagesource = this.damageSources().indirectMagic(this, entity1);
+            damagesource = this.damageSources().indirectMagic(entity1, this);
             if (entity1 instanceof LivingEntity) {
                 ((LivingEntity)entity1).setLastHurtMob(entity);
             }
@@ -94,7 +88,7 @@ public class IceShard extends AbstractArrow {
         if (flag) {
             return;
         }
-        if (entity.hurt(damagesource, (float)i)) {
+        if (entity.hurt(damagesource, (float)dmg)) {
             if (entity instanceof LivingEntity) {
                 LivingEntity livingentity = (LivingEntity)entity;
                 if (getKnockback() > 0) {

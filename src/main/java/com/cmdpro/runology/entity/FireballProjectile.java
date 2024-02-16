@@ -18,7 +18,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.phys.BlockHitResult;
@@ -27,6 +29,12 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.apache.commons.lang3.RandomUtils;
+import org.checkerframework.checker.units.qual.C;
+import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
+import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
+import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.systems.particle.options.WorldParticleOptions;
+import team.lodestar.lodestone.systems.particle.type.LodestoneParticleType;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -50,7 +58,7 @@ public class FireballProjectile extends Projectile {
     }
     @Override
     protected void onHitBlock(BlockHitResult hit) {
-        level().setBlockAndUpdate(hit.getBlockPos().relative(hit.getDirection()), Blocks.FIRE.defaultBlockState());
+        level().setBlock(hit.getBlockPos().relative(hit.getDirection()), BaseFireBlock.getState(level(), hit.getBlockPos().relative(hit.getDirection())), 11);
         remove(RemovalReason.KILLED);
         super.onHitBlock(hit);
     }
@@ -81,12 +89,14 @@ public class FireballProjectile extends Projectile {
     protected void defineSynchedData() {
 
     }
-
+    Vec3 previousPos;
     @Override
     public void tick() {
+        previousPos = position();
+        this.setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
         if (!level().isClientSide) {
             time++;
-            if (time >= 200) {
+            if (time >= 100) {
                 remove(RemovalReason.KILLED);
             }
             HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
@@ -122,14 +132,19 @@ public class FireballProjectile extends Projectile {
             }
 
         } else {
-            for (int i = 0; i < 3; i++) {
-                Vec3 pos = position();
-                pos = pos.add(0, getBoundingBox().getYsize() / 2f, 0);
-                pos = pos.add(RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f);
-                level().addAlwaysVisibleParticle(ParticleInit.FIRE.get(), pos.x, pos.y, pos.z, 0, 0, 0);
+            for (double i = 0; i < 3; i++) {
+                for (int o = 0; o < 2; o++) {
+                    Vec3 pos = position();
+                    pos = pos.subtract(getDeltaMovement().x*(i/3d), getDeltaMovement().y*(i/3d), getDeltaMovement().z*(i/3d));
+                    pos = pos.add(0, getBoundingBox().getYsize() / 2f, 0);
+                    pos = pos.add(RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f);
+                    WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
+                    options.colorData = ColorParticleData.create(new Color(0xFF5900), Color.YELLOW).build();
+                    options.scaleData = GenericParticleData.create(0.25f).build();
+                    level().addAlwaysVisibleParticle(options, pos.x, pos.y, pos.z, 0, 0, 0);
+                }
             }
         }
-        this.setPos(this.getX() + getDeltaMovement().x, this.getY() + getDeltaMovement().y, this.getZ() + getDeltaMovement().z);
         super.tick();
     }
 

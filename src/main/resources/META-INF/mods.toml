@@ -71,7 +71,7 @@ A magic mod about runes
 [[dependencies.runology]]
     modId="modonomicon"
     mandatory=true
-    versionRange="[1.58.0,)"
+    versionRange="[1.59.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.runology]]

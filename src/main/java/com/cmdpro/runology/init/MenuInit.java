@@ -1,7 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.screen.CastingTableMenu;
+import com.cmdpro.runology.screen.SpellTableMenu;
 import com.cmdpro.runology.screen.RunicAnalyzerMenu;
 import com.cmdpro.runology.screen.RunicWorkbenchMenu;
 import net.minecraft.world.flag.FeatureFlags;
@@ -18,7 +18,7 @@ public class MenuInit {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Runology.MOD_ID);
     public static final RegistryObject<MenuType<RunicWorkbenchMenu>> RUNICWORKBENCHMENU = registerMenuType(RunicWorkbenchMenu::new, "runicworkbenchmenu");
     public static final RegistryObject<MenuType<RunicAnalyzerMenu>> RUNICANALYZERMENU = registerMenuType(RunicAnalyzerMenu::new, "runicanalyzermenu");
-    public static final RegistryObject<MenuType<CastingTableMenu>> CASTINGTABLEMENU = MENUS.register("castingtablemenu", () -> new MenuType(CastingTableMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    public static final RegistryObject<MenuType<SpellTableMenu>> SPELLTABLEMENU = MENUS.register("spelltablemenu", () -> new MenuType(SpellTableMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

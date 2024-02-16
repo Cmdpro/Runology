@@ -149,7 +149,7 @@ public class Runology
             event.accept(ItemInit.VOIDGLASSITEM);
             event.accept(BlockInit.MYSTERIOUSALTAR);
             event.accept(ItemInit.RUNICANALYZERITEM);
-            event.accept(ItemInit.CASTINGTABLEITEM);
+            event.accept(ItemInit.SPELLTABLEITEM);
         }
     }
     private void setup(final FMLCommonSetupEvent event)
