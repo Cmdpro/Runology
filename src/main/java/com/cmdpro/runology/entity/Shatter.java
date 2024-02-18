@@ -2,10 +2,7 @@ package com.cmdpro.runology.entity;
 
 import com.cmdpro.runology.ShatterRealmTeleporter;
 import com.cmdpro.runology.api.EmpoweredGauntlet;
-import com.cmdpro.runology.init.BlockInit;
-import com.cmdpro.runology.init.DimensionInit;
-import com.cmdpro.runology.init.ItemInit;
-import com.cmdpro.runology.init.TagInit;
+import com.cmdpro.runology.init.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Rotations;
@@ -138,8 +135,13 @@ public class Shatter extends Entity implements GeoEntity {
                 if (exhaustion >= 20*(60*5)) {
                     entityData.set(EXHAUSTED, true);
                     for (Entity i : ((ServerLevel)level()).getEntities().getAll()) {
-                        if (i.position().distanceTo(position()) <= 5) {
-                            i.hurt(damageSources().magic(), 5);
+                        if (i != null) {
+                            if (i.position().distanceTo(position()) <= 5) {
+                                if (i.hurt(damageSources().magic(), 5)) {
+                                    ShatterAttack attack = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), i);
+                                    level().addFreshEntity(attack);
+                                }
+                            }
                         }
                     }
                 } else {
