@@ -98,13 +98,8 @@ public class ShatterAttack extends Entity implements TraceableEntity {
                 double distance = pos.distanceTo(position());
                 int amount = RandomUtils.nextInt(3, 8);
                 offsets.clear();
-                ArrayList<Float> values = new ArrayList<>();
                 for (int i = 0; i < amount; i++) {
-                    values.add(RandomUtils.nextFloat(0, (float)distance));
-                }
-                values.sort((a, b) -> b.compareTo(a));
-                for (Float i : values) {
-                    offsets.put(i, new Vec2(RandomUtils.nextFloat(0, 360), RandomUtils.nextFloat(0, 0.4f) - 0.2f));
+                    offsets.put(RandomUtils.nextFloat(0, (float)distance), new Vec2(RandomUtils.nextFloat(0, 360)-180f, RandomUtils.nextFloat(0, 0.8f) - 0.4f));
                 }
             }
         }

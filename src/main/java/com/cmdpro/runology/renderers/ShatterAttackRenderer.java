@@ -32,9 +32,12 @@ import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.awt.*;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
 
@@ -55,11 +58,14 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
         VertexConsumer consumer = RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL)));
         double length = pEntity.position().distanceTo(pos);
         Vec3 lastPos = pEntity.position();
-        for (Map.Entry<Float, Vec2> i : pEntity.offsets.entrySet()) {
+        List<Map.Entry<Float, Vec2>> entries = pEntity.offsets.entrySet().stream().sorted((a, b) -> a.getKey().compareTo(b.getKey())).toList();
+        for (Map.Entry<Float, Vec2> i : entries) {
             double distance = i.getKey().doubleValue();
             Vec3 pos2 = pEntity.position().lerp(pos, distance/length);
-            Vec2 rotVec = calculateRotationVector(lastPos.subtract(pos2));
-            pos2 = pos2.add(calculateViewVector(i.getValue().x, rotVec.y).multiply(i.getValue().y, i.getValue().y, i.getValue().y));
+            Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
+            Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
+            Runology.LOGGER.info(i.getKey().toString());
+            pos2 = pos2.add(offset);
             builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).renderBeam(consumer, pPoseStack.last().pose(), lastPos, pos2, 0.1f);
             lastPos = pos2;
         }
@@ -77,10 +83,10 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
         float f5 = Mth.sin(f);
         return new Vec3((double)(f3 * f4), (double)(-f5), (double)(f2 * f4));
     }
-    public Vec2 calculateRotationVector(Vec3 pVec) {
-        double d0 = pVec.x;
-        double d1 = pVec.y;
-        double d2 = pVec.z;
+    public Vec2 calculateRotationVector(Vec3 pVec, Vec3 pTarget) {
+        double d0 = pTarget.x - pVec.x;
+        double d1 = pTarget.y - pVec.y;
+        double d2 = pTarget.z - pVec.z;
         double d3 = Math.sqrt(d0 * d0 + d2 * d2);
         return new Vec2(
             Mth.wrapDegrees((float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)))),
