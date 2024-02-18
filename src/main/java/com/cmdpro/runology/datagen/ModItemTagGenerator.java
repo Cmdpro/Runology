@@ -28,5 +28,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ItemInit.EMPOWEREDMYSTERIUMGAUNTLET.get());
         this.tag(ItemTags.ARROWS)
                 .add(ItemInit.PURITYARROW.get());
+        this.tag(ItemTags.MUSIC_DISCS)
+                .add(ItemInit.DIMENSIONALTHREATMUSICDISC.get());
     }
 }

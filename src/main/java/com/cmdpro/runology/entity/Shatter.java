@@ -6,6 +6,7 @@ import com.cmdpro.runology.init.BlockInit;
 import com.cmdpro.runology.init.DimensionInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.TagInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Rotations;
 import net.minecraft.nbt.CompoundTag;
@@ -31,6 +32,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.jarjar.selection.util.Constants;
 import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -40,6 +43,8 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import team.lodestar.lodestone.handlers.ScreenshakeHandler;
+import team.lodestar.lodestone.systems.screenshake.ScreenshakeInstance;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -177,6 +182,14 @@ public class Shatter extends Entity implements GeoEntity {
                         }
                         tries++;
                     }
+                }
+            }
+        } else {
+            Player player = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, () -> () -> Minecraft.getInstance().player);
+            if (entityData.get(EXHAUSTED)) {
+                double dist = player.position().distanceTo(position());
+                if (dist <= 7.5f) {
+                    ScreenshakeHandler.addScreenshake(new ScreenshakeInstance(1).setIntensity(1f-((float)dist/15f)));
                 }
             }
         }

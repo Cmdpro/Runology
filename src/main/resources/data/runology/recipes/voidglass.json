@@ -1,18 +1,27 @@
 {
-  "type": "runology:shapelessrunicrecipe",
-  "entry": "runology:basics/voidglass",
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:artifice/enhancedbonemeal",
   "runicenergy": [
     {
       "type": "runology:void",
       "amount": 10
     }
   ],
-  "ingredients": [
-    {
+  "key": {
+    "a": {
+      "item": "minecraft:dragon_breath"
+    },
+    "A": {
       "item": "minecraft:glass"
     }
+  },
+  "pattern": [
+    "AAA",
+    "AaA",
+    "AAA"
   ],
   "result": {
-    "item": "runology:voidglass"
+    "item": "runology:voidglass",
+    "count": 8
   }
 }

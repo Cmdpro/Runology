@@ -1,0 +1,27 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:artifice/enhancedbonemeal",
+  "runicenergy": [
+    {
+      "type": "runology:plant",
+      "amount": 10
+    }
+  ],
+  "key": {
+    "a": {
+      "item": "runology:earthpowder"
+    },
+    "A": {
+      "item": "minecraft:bone_meal"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AaA",
+    "AAA"
+  ],
+  "result": {
+    "item": "runology:enhancedbonemeal",
+    "count": 8
+  }
+}

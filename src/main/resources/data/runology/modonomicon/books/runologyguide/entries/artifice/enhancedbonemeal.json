@@ -1,0 +1,31 @@
+{
+  "category": "runology:artifice",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:enhancedbonemeal",
+  "name": "book.runology.runologyguide.artifice.enhancedbonemeal.name",
+  "pages": [
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:enhancedbonemeal",
+      "title1": "book.runology.runologyguide.artifice.enhancedbonemeal.page1.title",
+      "text": "book.runology.runologyguide.artifice.enhancedbonemeal.page1.text"
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "minecraft:bone_meal",
+            "count": 6
+          }
+        ]
+      }
+    ]
+  },
+  "x": 1,
+  "y": 0
+}

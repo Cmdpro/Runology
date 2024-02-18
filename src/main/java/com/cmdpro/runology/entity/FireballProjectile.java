@@ -154,19 +154,23 @@ public class FireballProjectile extends Projectile {
         Entity entity = this.getOwner();
         DamageSource damagesource;
         if (entity instanceof LivingEntity) {
-            damagesource = entity.damageSources().indirectMagic(entity, this);
+            damagesource = this.damageSources().source(Runology.magicProjectile, this, entity);
             ((LivingEntity)entity).setLastHurtMob(hit.getEntity());
         } else if (entity instanceof Player) {
-            damagesource = entity.damageSources().indirectMagic(entity, this);
+            damagesource = this.damageSources().source(Runology.magicProjectile, this, entity);
             ((LivingEntity)entity).setLastHurtMob(hit.getEntity());
         } else {
             damagesource = null;
         }
-
+        boolean flag = hit.getEntity().getType() == EntityType.ENDERMAN;
         if (damagesource != null) {
             if (hit.getEntity() instanceof LivingEntity ent && entity instanceof LivingEntity) {
-                ent.hurt(damagesource, 5);
-                ent.setRemainingFireTicks(75);
+                if (ent.hurt(damagesource, 5)) {
+                    if (flag) {
+                        return;
+                    }
+                    ent.setRemainingFireTicks(75);
+                }
             }
         }
         remove(RemovalReason.KILLED);

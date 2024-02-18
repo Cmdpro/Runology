@@ -34,6 +34,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.PacketDistributor;
+import team.lodestar.lodestone.network.screenshake.PositionedScreenshakePacket;
+import team.lodestar.lodestone.registry.common.LodestonePacketRegistry;
+import team.lodestar.lodestone.systems.easing.Easing;
 
 public class PurityArrow extends AbstractArrow {
     public PurityArrow(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
@@ -58,6 +61,7 @@ public class PurityArrow extends AbstractArrow {
                 shatter.spawnAtLocation(new ItemStack(ItemInit.INSTABILITYPOWDER.get(), random.nextInt(5, 10)));
                 shatter.remove(RemovalReason.KILLED);
                 remove(RemovalReason.KILLED);
+                LodestonePacketRegistry.LODESTONE_CHANNEL.send(PacketDistributor.DIMENSION.with(() -> level().dimension()), new PositionedScreenshakePacket(30, position(), 16, 32).setEasing(Easing.CUBIC_OUT).setIntensity(4, 0));
             }
         }
     }

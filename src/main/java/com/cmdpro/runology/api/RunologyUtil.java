@@ -158,6 +158,6 @@ public class RunologyUtil {
         return false;
     }
     public static void drawSphere(VFXBuilders.WorldVFXBuilder builder, PoseStack stack, Color color, float alpha, float radius, int longs, int lats) {
-        builder.setPosColorTexLightmapDefaultFormat().setColor(color).setAlpha(alpha).renderSphere(RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifier(new ResourceLocation("textures/misc/white.png"), b -> b.replaceVertexFormat(VertexFormat.Mode.TRIANGLES).setCullState(LodestoneRenderTypeRegistry.NO_CULL))), stack, radius, longs, lats);
+        builder.setPosColorTexLightmapDefaultFormat().setColor(color).setAlpha(alpha).renderSphere(RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(new ResourceLocation("textures/misc/white.png"), b -> b.replaceVertexFormat(VertexFormat.Mode.TRIANGLES).setCullState(LodestoneRenderTypeRegistry.NO_CULL))), stack, radius, longs, lats);
     }
 }

@@ -9,8 +9,11 @@ import com.cmdpro.runology.networking.ModMessages;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -38,7 +41,7 @@ import java.util.stream.Collectors;
 @Mod.EventBusSubscriber(modid = Runology.MOD_ID)
 public class Runology
 {
-
+    public static final ResourceKey<DamageType> magicProjectile = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Runology.MOD_ID, "magicprojectile"));
     public static final String MOD_ID = "runology";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
@@ -122,6 +125,7 @@ public class Runology
             event.accept(ItemInit.FIREBALLSPELLCRYSTAL);
             event.accept(ItemInit.ICESHARDSSPELLCRYSTAL);
             event.accept(ItemInit.PURIFIEDFLESH);
+            event.accept(ItemInit.ENHANCEDBONEMEAL);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

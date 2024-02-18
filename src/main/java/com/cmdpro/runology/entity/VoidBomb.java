@@ -67,7 +67,7 @@ public class VoidBomb extends Projectile implements GeoEntity {
         List<Entity> entities = level().getEntities(this, AABB.ofSize(position(), 5f, 5f, 5f));
         for (Entity p : entities) {
             if (!p.is(getOwner()) && !(p instanceof ItemEntity)) {
-                p.hurt(level().damageSources().mobAttack((LivingEntity) this.getOwner()), 20);
+                p.hurt(this.damageSources().source(Runology.magicProjectile, this, (LivingEntity) getOwner()), 20);
             }
         }
         Iterable<BlockPos> blocks = BlockPos.betweenClosed(blockPosition().offset(-3, -3, -3), blockPosition().offset(3, 3, 3));

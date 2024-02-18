@@ -1,5 +1,6 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.TagInit;
@@ -47,7 +48,7 @@ public class IceShard extends AbstractArrow {
     @Override
     public void tick() {
         time++;
-        if (time >= 200) {
+        if (time >= 200 || this.isOnFire()) {
             remove(RemovalReason.DISCARDED);
         }
         super.tick();
@@ -65,30 +66,24 @@ public class IceShard extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        super.onHitEntity(pResult);
         Entity entity = pResult.getEntity();
         double dmg = getBaseDamage();
 
         Entity entity1 = this.getOwner();
         DamageSource damagesource;
         if (entity1 == null) {
-            damagesource = this.damageSources().indirectMagic(this, this);
+            damagesource = this.damageSources().source(Runology.magicProjectile, this, this);
         } else {
-            damagesource = this.damageSources().indirectMagic(entity1, this);
+            damagesource = this.damageSources().source(Runology.magicProjectile, this, entity1);
             if (entity1 instanceof LivingEntity) {
                 ((LivingEntity)entity1).setLastHurtMob(entity);
             }
         }
-
         boolean flag = entity.getType() == EntityType.ENDERMAN;
-        int k = entity.getRemainingFireTicks();
-        if (this.isOnFire() && !flag) {
-            entity.setSecondsOnFire(5);
-        }
-        if (flag) {
-            return;
-        }
         if (entity.hurt(damagesource, (float)dmg)) {
+            if (flag) {
+                return;
+            }
             if (entity instanceof LivingEntity) {
                 LivingEntity livingentity = (LivingEntity)entity;
                 if (getKnockback() > 0) {
@@ -109,8 +104,6 @@ public class IceShard extends AbstractArrow {
                     ((ServerPlayer)entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
                 }
             }
-        } else {
-            entity.setRemainingFireTicks(k);
             if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
                 if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
                     this.spawnAtLocation(this.getPickupItem(), 0.1F);

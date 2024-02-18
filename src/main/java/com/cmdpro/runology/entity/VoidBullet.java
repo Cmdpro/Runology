@@ -132,10 +132,10 @@ public class VoidBullet extends Projectile implements GeoEntity {
         Entity entity = this.getOwner();
         DamageSource damagesource;
         if (entity instanceof LivingEntity) {
-            damagesource = entity.damageSources().mobAttack((LivingEntity)entity);
+            damagesource = entity.damageSources().source(Runology.magicProjectile, this, (LivingEntity)entity);
             ((LivingEntity)entity).setLastHurtMob(hit.getEntity());
         } else if (entity instanceof Player) {
-            damagesource = entity.damageSources().playerAttack((Player)entity);
+            damagesource = entity.damageSources().source(Runology.magicProjectile, this, (Player)entity);
             ((LivingEntity)entity).setLastHurtMob(hit.getEntity());
         } else {
             damagesource = null;

@@ -24,11 +24,11 @@ public class BlockInit {
             Runology.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = ItemInit.ITEMS;
     public static final RegistryObject<Block> RUNICWORKBENCH = registerBlock("runicworkbench",
-            () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).sound(SoundType.COPPER).noOcclusion().strength(2.0f)));
+            () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SPELLTABLE = registerBlock("spelltable",
             () -> new SpellTable(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> RUNICANALYZER = registerBlock("runicanalyzer",
-            () -> new RunicAnalyzer(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.0f)));
+            () -> new RunicAnalyzer(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SHATTERSTONE = register("shatterstone",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> MYSTERIOUSALTAR = register("mysteriousaltar",

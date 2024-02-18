@@ -1,5 +1,6 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.init.BlockInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -105,7 +106,7 @@ public class VoidBeam extends Entity implements TraceableEntity {
                 playSound(SoundEvents.BEACON_POWER_SELECT);
                 for (Player i : level().players()) {
                     if (i.position().x >= position().x-0.5 && i.position().z >= position().z-0.5 && i.position().x <= position().x+0.5 && i.position().z <= position().z+0.5 && i.position().y >= position().y) {
-                        i.hurt(damageSources().mobAttack((LivingEntity) getOwner()), 40);
+                        i.hurt(this.damageSources().source(Runology.magicProjectile, this, (LivingEntity) getOwner()), 40);
                     }
                 }
             }

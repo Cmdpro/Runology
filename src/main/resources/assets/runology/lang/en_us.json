@@ -97,11 +97,14 @@
   "block.runology.mysteriousaltar": "Mysterious Altar",
   "item.runology.dimensionalthreatmusicdisc": "Music Disc",
   "item.runology.dimensionalthreatmusicdisc.desc": "DavidRarria09 - Dimensional Threat",
+  "item.runology.enhancedbonemeal": "Enhanced Bone Meal",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",
 
   "curios.identifier.runictrinket": "Runic Trinket",
+
+  "death.attack.magicprojectile": "%1$s was killed by %2$s using magic",
 
   "rune.runology.fire": "Fire",
   "rune.runology.earth": "Earth",
@@ -138,7 +141,10 @@
   "book.runology.runologyguide.basics.baserunes.page3.text": "Fire, Earth, Air, and Water, the 4 base elements of this universe, if I capture them in a rune then I can convert them to runic energy and harness their power",
   "book.runology.runologyguide.artifice.voidglass.name": "Void Glass",
   "book.runology.runologyguide.artifice.voidglass.page1.title": "Void Glass",
-  "book.runology.runologyguide.artifice.voidglass.page1.text": "Infusing glass with void runic energy seems to create a material that displays some sort of void similar to what I have noticed with the end portals",
+  "book.runology.runologyguide.artifice.voidglass.page1.text": "Infusing glass with void runic energy and a little bit of dragon's breath seems to create a material that displays some sort of void similar to what I have noticed with the end portals",
+  "book.runology.runologyguide.artifice.enhancedbonemeal.name": "Enhanced Bone Meal",
+  "book.runology.runologyguide.artifice.enhancedbonemeal.page1.title": "Enhanced Bone Meal",
+  "book.runology.runologyguide.artifice.enhancedbonemeal.page1.text": "By mixing bone meal with earth powder and infusing it with plant runic energy, I can make better bone meal",
   "book.runology.runologyguide.basics.runetransformations.name": "Rune Transformations",
   "book.runology.runologyguide.basics.runetransformations.page1.title": "Rune Transformations",
   "book.runology.runologyguide.basics.runetransformations.page1.text": "It seems that given the right circumstances, a rune may transform into a secondary type, I have written all 4 rune transformations and how to cause the transformation I know of at the moment on the following pages",
