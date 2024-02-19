@@ -64,6 +64,12 @@ public class ShatterAttack extends Entity implements TraceableEntity {
         this.victimPos = victim.getBoundingBox().getCenter().toVector3f();
         entityData.set(VICTIMPOS, victimPos);
     }
+    public ShatterAttack(EntityType<ShatterAttack> entityType, Entity shooter, Level world, Vec3 victimPos) {
+        this(entityType, shooter.getBoundingBox().getCenter(), world);
+        this.setOwner(shooter);
+        this.victimPos = victimPos.toVector3f();
+        entityData.set(VICTIMPOS, this.victimPos);
+    }
     public HashMap<Float, Vec2> offsets = new HashMap<>();
 
     public Vector3f victimPos;

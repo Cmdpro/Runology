@@ -33,6 +33,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.jarjar.selection.util.Constants;
 import net.minecraftforge.network.NetworkHooks;
+import org.apache.commons.lang3.RandomUtils;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -140,6 +141,21 @@ public class Shatter extends Entity implements GeoEntity {
                                 if (i.hurt(damageSources().magic(), 5)) {
                                     ShatterAttack attack = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), i);
                                     level().addFreshEntity(attack);
+                                    for (Entity o : level().getEntitiesOfClass(Entity.class, AABB.ofSize(i.position(), 5, 5, 5))) {
+                                        if (o != i) {
+                                            if (o.hurt(damageSources().magic(), 2.5f)) {
+                                                ShatterAttack attack2 = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), o);
+                                                attack2.setPos(i.getBoundingBox().getCenter());
+                                                level().addFreshEntity(attack2);
+                                            }
+                                        }
+                                    }
+                                    int amount = RandomUtils.nextInt(4, 7);
+                                    for (int o = 0; o < amount; o++) {
+                                        ShatterAttack attack2 = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), i.getBoundingBox().getCenter().add(RandomUtils.nextFloat(0, 5)-2.5f, RandomUtils.nextFloat(0, 5)-2.5f, RandomUtils.nextFloat(0, 5)-2.5f));
+                                        attack2.setPos(i.getBoundingBox().getCenter());
+                                        level().addFreshEntity(attack2);
+                                    }
                                 }
                             }
                         }

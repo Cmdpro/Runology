@@ -64,7 +64,6 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
             Vec3 pos2 = pEntity.position().lerp(pos, distance/length);
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
-            Runology.LOGGER.info(i.getKey().toString());
             pos2 = pos2.add(offset);
             builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).renderBeam(consumer, pPoseStack.last().pose(), lastPos, pos2, 0.1f);
             lastPos = pos2;
