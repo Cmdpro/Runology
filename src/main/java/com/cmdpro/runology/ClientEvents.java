@@ -2,16 +2,32 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.init.SoundInit;
+import com.cmdpro.runology.postprocessing.EchoGogglesProcessor;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderStateShard;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import team.lodestar.lodestone.LodestoneLib;
+import team.lodestar.lodestone.mixin.GameRendererMixin;
+import team.lodestar.lodestone.systems.postprocess.LodestoneGlslPreprocessor;
+import team.lodestar.lodestone.systems.postprocess.MultiInstancePostProcessor;
+import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
+import team.lodestar.lodestone.systems.postprocess.PostProcessor;
+import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
@@ -20,6 +36,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
+        ClientModEvents.echoGogglesProcessor.setActive(true);
         Minecraft mc = Minecraft.getInstance();
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
