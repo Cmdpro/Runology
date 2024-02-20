@@ -37,7 +37,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
-        ClientModEvents.echoGogglesProcessor.setActive(true);
+        ClientModEvents.echoGogglesProcessor.setActive(false);
         Minecraft mc = Minecraft.getInstance();
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {

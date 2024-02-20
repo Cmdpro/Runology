@@ -6,7 +6,7 @@
   "passes": [
     {
       "name": "runology:echogoggles",
-      "intarget": "minecraft:main",
+      "intarget": "depthMain",
       "outtarget": "swap",
       "auxtargets": [
         {
