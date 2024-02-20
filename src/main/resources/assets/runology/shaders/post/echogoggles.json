@@ -1,22 +1,17 @@
 {
   "targets": [
+    "depthMain",
     "swap"
   ],
   "passes": [
     {
-      "name": "minecraft:color_convolve",
+      "name": "runology:echogoggles",
       "intarget": "minecraft:main",
       "outtarget": "swap",
       "auxtargets": [
         {
-          "name": "DepthBuffer",
-          "id": "minecraft:main:depth"
-        }
-      ],
-      "uniforms": [
-        {
-          "name": "Saturation",
-          "values": [ 0.0 ]
+          "name": "MainDepthSampler",
+          "id": "depthMain:depth"
         }
       ]
     },
