@@ -4,7 +4,7 @@
     "srcrgb": "one",
     "dstrgb": "zero"
   },
-  "vertex": "sobel",
+  "vertex": "blit",
   "fragment": "runology:echogoggles",
   "attributes": [ "Position" ],
   "samplers": [
@@ -12,8 +12,7 @@
     { "name": "MainDepthSampler" }
   ],
   "uniforms": [
-    { "name": "ProjMat",     "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
-    { "name": "InSize",      "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] },
-    { "name": "OutSize",     "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] }
+    { "name": "ProjMat",    "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+    { "name": "OutSize",    "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] }
   ]
 }

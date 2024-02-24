@@ -3,16 +3,17 @@
 uniform sampler2D DiffuseSampler;
 uniform sampler2D MainDepthSampler;
 
-in vec2 texCoord;
-out vec4 fragColor;
+varying vec2 texCoord;
+
+float near = 0.1;
+float far = 1000.0;
 
 float linearizeDepth(float depth) {
-    float n = 1.0;
-    float f = 100.0;
-    return (2.0 * n) / (f + n - depth * (f - n));
+    float z = depth * 2.0 - 1.0;
+    return (near * far) / (far + near - z * (far - near));
 }
 void main() {
-    float mainDepth = texture(MainDepthSampler, texCoord).r;
-    float depth = linearizeDepth(mainDepth);
-    fragColor = vec4(depth, depth, depth, 1.0);
+    float depth = linearizeDepth(texture2D(MainDepthSampler, texCoord).r);
+    vec4 color = texture2D(DiffuseSampler, texCoord);
+    gl_FragColor = vec4(color.rgb/depth, color.a);
 }

@@ -1,17 +1,16 @@
 {
   "targets": [
-    "depthMain",
     "swap"
   ],
   "passes": [
     {
       "name": "runology:echogoggles",
-      "intarget": "depthMain",
+      "intarget": "minecraft:main",
       "outtarget": "swap",
       "auxtargets": [
         {
           "name": "MainDepthSampler",
-          "id": "depthMain:depth"
+          "id": "minecraft:main:depth"
         }
       ]
     },

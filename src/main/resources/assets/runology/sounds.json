@@ -10,5 +10,11 @@
       "runology:runicoverseerintro"
     ],
     "stream": true
+  },
+  "shatterrealmambient": {
+    "sounds": [
+      "runology:shatterrealmambient"
+    ],
+    "stream": true
   }
 }

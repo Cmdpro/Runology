@@ -34,11 +34,21 @@ import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
     public static SimpleSoundInstance music;
+    public static ResourceLocation echoGoggles = new ResourceLocation(Runology.MOD_ID, "shaders/post/echogoggles.json");
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
         ClientModEvents.echoGogglesProcessor.setActive(false);
         Minecraft mc = Minecraft.getInstance();
+        if (mc != null && mc.gameRenderer != null) {
+            if (true) {
+                if (mc.gameRenderer.currentEffect() == null || !mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
+                    mc.gameRenderer.loadEffect(echoGoggles);
+                }
+            } else if (mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
+                mc.gameRenderer.shutdownEffect();
+            }
+        }
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
             boolean playMusic = false;
