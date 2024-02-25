@@ -40,6 +40,7 @@ public class ClientEvents {
     {
         ClientModEvents.echoGogglesProcessor.setActive(false);
         Minecraft mc = Minecraft.getInstance();
+        /*
         if (mc != null && mc.gameRenderer != null) {
             if (true) {
                 if (mc.gameRenderer.currentEffect() == null || !mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
@@ -48,7 +49,7 @@ public class ClientEvents {
             } else if (mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
                 mc.gameRenderer.shutdownEffect();
             }
-        }
+        }*/
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
             boolean playMusic = false;
