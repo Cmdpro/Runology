@@ -12,7 +12,6 @@
     { "name": "DiffuseDepthSampler" }
   ],
   "uniforms": [
-    { "name": "ScreenSize", "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] },
-    { "name": "_FOV",       "type": "float",     "count": 1,  "values": [ 70.0 ] }
+    { "name": "OutSize",    "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] }
   ]
 }
