@@ -1,8 +1,10 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.entity.RunicOverseer;
+import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.SoundInit;
-import com.cmdpro.runology.postprocessing.EchoGogglesProcessor;
+import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -13,16 +15,21 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.level.lighting.LightEventListener;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import team.lodestar.lodestone.LodestoneLib;
 import team.lodestar.lodestone.mixin.GameRendererMixin;
 import team.lodestar.lodestone.systems.postprocess.LodestoneGlslPreprocessor;
@@ -31,24 +38,36 @@ import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
 import team.lodestar.lodestone.systems.postprocess.PostProcessor;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
+import java.io.IOException;
+
+import static com.mojang.blaze3d.platform.GlConst.GL_DRAW_FRAMEBUFFER;
+
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
     public static SimpleSoundInstance music;
     public static ResourceLocation echoGoggles = new ResourceLocation(Runology.MOD_ID, "shaders/post/echogoggles.json");
+    public static PostChain echoGogglesChain;
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onRenderLevelStage(RenderLevelStageEvent event) {
+        if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_LEVEL)) {
+            if (echoGogglesChain == null) {
+                try {
+                    echoGogglesChain = new PostChain(Minecraft.getInstance().getTextureManager(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getMainRenderTarget(), echoGoggles);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            }
+            if (echoGogglesChain != null && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.ECHOGOGGLES.get())) {
+                echoGogglesChain.resize(Minecraft.getInstance().getWindow().getWidth(), Minecraft.getInstance().getWindow().getHeight());
+                echoGogglesChain.process(event.getPartialTick());
+                GlStateManager._glBindFramebuffer(GL_DRAW_FRAMEBUFFER, Minecraft.getInstance().getMainRenderTarget().frameBufferId);
+            }
+        }
+    }
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
-        ClientModEvents.echoGogglesProcessor.setActive(false);
         Minecraft mc = Minecraft.getInstance();
-        if (mc != null && mc.gameRenderer != null) {
-            if (true) {
-                if (mc.gameRenderer.currentEffect() == null || !mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
-                    mc.gameRenderer.loadEffect(echoGoggles);
-                }
-            } else if (mc.gameRenderer.currentEffect().getName().equals(echoGoggles.toString())) {
-                mc.gameRenderer.shutdownEffect();
-            }
-        }
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
             boolean playMusic = false;

@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Runology.MOD_ID);
     public static final RegistryObject<Item> REALITYSLICER = register("realityslicer", () -> new RealitySlicer(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ANCIENTDRAGONSBLADE = register("ancientdragonsblade", () -> new AncientDragonsBlade(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> AMETHYSTSTAFF = register("amethyststaff", () -> new Staff(new Item.Properties().stacksTo(1), 1, 200));
     public static final RegistryObject<Item> SHATTERCRYSTALSTAFF = register("shattercrystalstaff", () -> new Staff(new Item.Properties().stacksTo(1), 2, 500));
     public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 1, 200));
@@ -55,6 +56,8 @@ public class ItemInit {
     public static final RegistryObject<Item> PURIFIEDFLESH = register("purifiedflesh", () -> new Item(new Item.Properties().food(ModFoods.PURIFIEDFLESH)));
     public static final RegistryObject<Item> DIMENSIONALTHREATMUSICDISC = register("dimensionalthreatmusicdisc", () -> new RecordItem(6, SoundInit.RUNICOVERSEER, new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 2020));
     public static final RegistryObject<Item> ENHANCEDBONEMEAL = register("enhancedbonemeal", () -> new EnhancedBoneMeal(new Item.Properties()));
+    public static final RegistryObject<Item> ECHOGOGGLES = register("echogoggles", () -> new ArmorItem(ModArmorMaterials.ECHOGOGGLES, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> DRAGONIUMINGOT = register("dragoniumingot", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "summontotem")));
     public static final RegistryObject<Item> FIREBALLSPELLCRYSTAL = register("fireballspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "fireball")));

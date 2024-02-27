@@ -8,6 +8,7 @@ import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -126,6 +127,9 @@ public class Runology
             event.accept(ItemInit.ICESHARDSSPELLCRYSTAL);
             event.accept(ItemInit.PURIFIEDFLESH);
             event.accept(ItemInit.ENHANCEDBONEMEAL);
+            event.accept(ItemInit.ECHOGOGGLES);
+            event.accept(ItemInit.DRAGONIUMINGOT);
+            event.accept(ItemInit.ANCIENTDRAGONSBLADE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

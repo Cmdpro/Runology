@@ -67,6 +67,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.DIMENSIONALTHREATMUSICDISC);
 
         handheldItem(ItemInit.REALITYSLICER);
+        handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
 
         withExistingParent(ItemInit.RUNICCONSTRUCTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ItemInit.RUNICSCOUTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
