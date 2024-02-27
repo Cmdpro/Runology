@@ -53,8 +53,8 @@ vec4 sobel(sampler2D s, vec3 color, bool isDepth) {
     return vec4(G * color, alpha);
 }
 void main() {
-    vec4 sobelColor = sobel(DiffuseSampler, vec3(0.0, 0.0, 1.0), false);
-    vec4 sobelDepth = sobel(DiffuseDepthSampler, vec3(0.0, 0.0, 1.0), true);
+    vec4 sobelColor = sobel(DiffuseSampler, vec3(0.5, 0.5, 1.0), false);
+    vec4 sobelDepth = sobel(DiffuseDepthSampler, vec3(0.5, 0.5, 1.0), true);
     vec4 sobelMix = mix(sobelColor, sobelDepth, 0.70);
     fragColor = sobelMix;
 }

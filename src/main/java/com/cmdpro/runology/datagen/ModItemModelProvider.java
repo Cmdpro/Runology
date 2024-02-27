@@ -65,6 +65,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.PURITYRUNE);
         simpleItem(ItemInit.SUMMONTOTEMSPELLCRYSTAL);
         simpleItem(ItemInit.DIMENSIONALTHREATMUSICDISC);
+        simpleItem(ItemInit.ECHOGOGGLES);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
