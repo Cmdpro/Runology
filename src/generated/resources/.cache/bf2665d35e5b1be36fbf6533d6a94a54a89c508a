@@ -1,4 +1,4 @@
-// 1.20.1	2024-02-27T15:29:26.8612783	Item Models: runology
+// 1.20.1	2024-02-29T16:30:08.3484676	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 d29c06739b96489389a440127d840aa2e92fac46 assets/runology/models/item/ancientdragonsblade.json
@@ -17,6 +17,7 @@ b797f4a4a8cf4d41ed2ca2bcb9b710c43f0e429f assets/runology/models/item/earthpowder
 c4462717d81c615f54bc2e9f404619feaa54a188 assets/runology/models/item/firepowder.json
 b0a3fa5c586781f380a2c29c986db267a2f83a36 assets/runology/models/item/firerune.json
 37afa4574af2d584e2e41ff8d4c584b29f70c1b1 assets/runology/models/item/icerune.json
+e23b932af18285a50eba64ab33ce6827156962aa assets/runology/models/item/iceshardspellcrystal.json
 4c9fb8d0fcae0e70b8bb9166895fab876b10b481 assets/runology/models/item/instabilityreader.json
 4414447fe5b7e545e0acc792c5415b2fcddbf002 assets/runology/models/item/instabilityreader2.json
 ad0c2327157bc954103dbf32b98dadb78f2c1d9d assets/runology/models/item/instabilityreader3.json

@@ -2,10 +2,6 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.*;
-import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.renderer.PostChain;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
@@ -14,7 +10,6 @@ import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
-import com.cmdpro.runology.particle.FireParticle;
 import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.SpellTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
@@ -25,31 +20,21 @@ import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceProvider;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.client.event.RegisterShadersEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import team.lodestar.lodestone.registry.client.LodestoneShaderRegistry;
-import team.lodestar.lodestone.systems.blockentity.ItemHolderBlockEntity;
-import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
-import team.lodestar.lodestone.systems.postprocess.PostProcessor;
-import team.lodestar.lodestone.systems.rendering.shader.ShaderHolder;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -69,6 +54,7 @@ public class ClientModEvents {
     public static void registerDimensionEffects(BiConsumer<ResourceKey<Level>, ShatterRealmEffects> consumer) {
         consumer.accept(DimensionInit.SHATTERREALM, new ShatterRealmEffects());
     }
+
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {
         ModonomiconEvents.client().onEntryClicked((e) -> {
@@ -132,7 +118,6 @@ public class ClientModEvents {
     }
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        Minecraft.getInstance().particleEngine.register(ParticleInit.FIRE.get(),
-                FireParticle.Provider::new);
+
     }
 }

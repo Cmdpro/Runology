@@ -17,6 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
@@ -130,6 +131,9 @@ public class Runology
             event.accept(ItemInit.ECHOGOGGLES);
             event.accept(ItemInit.DRAGONIUMINGOT);
             event.accept(ItemInit.ANCIENTDRAGONSBLADE);
+            ItemStack lanternofflames = new ItemStack(ItemInit.LANTERNOFFLAMES.get());
+            lanternofflames.setDamageValue(lanternofflames.getMaxDamage()-1);
+            event.accept(lanternofflames);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

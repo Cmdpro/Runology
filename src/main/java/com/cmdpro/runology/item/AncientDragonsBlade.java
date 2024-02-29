@@ -50,9 +50,9 @@ public class AncientDragonsBlade extends SwordItem {
                     ((ServerLevel) pLevel).sendParticles(options, pos.x, pos.y, pos.z, 4, 0.1, 0.1, 0.1, movement);
                 }
             }
-        }
-        if (pRemainingUseDuration <= 0) {
-            pLivingEntity.stopUsingItem();
+            if (pRemainingUseDuration <= 0) {
+                pLivingEntity.stopUsingItem();
+            }
         }
     }
 

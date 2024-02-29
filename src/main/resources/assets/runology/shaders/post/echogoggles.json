@@ -1,7 +1,6 @@
 {
   "targets": [
-    "final",
-    "depthMain"
+    "final"
   ],
   "passes": [
     {

@@ -1,5 +1,6 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.SoundInit;
@@ -17,6 +18,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.lighting.LightEventListener;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,6 +40,7 @@ import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
 import team.lodestar.lodestone.systems.postprocess.PostProcessor;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static com.mojang.blaze3d.platform.GlConst.GL_DRAW_FRAMEBUFFER;
@@ -47,6 +50,7 @@ public class ClientEvents {
     public static SimpleSoundInstance music;
     public static ResourceLocation echoGoggles = new ResourceLocation(Runology.MOD_ID, "shaders/post/echogoggles.json");
     public static PostChain echoGogglesChain;
+    public static VFXBuilders.WorldVFXBuilder worldBuilder = VFXBuilders.createWorld();
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_LEVEL)) {
@@ -61,6 +65,16 @@ public class ClientEvents {
                 echoGogglesChain.resize(Minecraft.getInstance().getWindow().getWidth(), Minecraft.getInstance().getWindow().getHeight());
                 echoGogglesChain.process(event.getPartialTick());
                 GlStateManager._glBindFramebuffer(GL_DRAW_FRAMEBUFFER, Minecraft.getInstance().getMainRenderTarget().frameBufferId);
+            }
+        }
+        if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
+            for (Player i : Minecraft.getInstance().level.players()) {
+                if (i.getUseItem().is(ItemInit.LANTERNOFFLAMES.get())) {
+                    Vec3 pos = i.getBoundingBox().getCenter().subtract(event.getCamera().getPosition());
+                    event.getPoseStack().translate(pos.x, pos.y, pos.z);
+                    RunologyUtil.drawSphere(worldBuilder, event.getPoseStack(), Color.RED, 0.25f, 5, 30, 30);
+                    event.getPoseStack().translate(-pos.x, -pos.y, -pos.z);
+                }
             }
         }
     }

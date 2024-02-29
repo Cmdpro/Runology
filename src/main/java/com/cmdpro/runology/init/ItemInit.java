@@ -17,6 +17,7 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Runology.MOD_ID);
     public static final RegistryObject<Item> REALITYSLICER = register("realityslicer", () -> new RealitySlicer(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ANCIENTDRAGONSBLADE = register("ancientdragonsblade", () -> new AncientDragonsBlade(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> LANTERNOFFLAMES = register("lanternofflames", () -> new LanternOfFlames(new Item.Properties().stacksTo(1).defaultDurability(1000).fireResistant()));
     public static final RegistryObject<Item> AMETHYSTSTAFF = register("amethyststaff", () -> new Staff(new Item.Properties().stacksTo(1), 1, 200));
     public static final RegistryObject<Item> SHATTERCRYSTALSTAFF = register("shattercrystalstaff", () -> new Staff(new Item.Properties().stacksTo(1), 2, 500));
     public static final RegistryObject<Item> COPPERGAUNTLET = register("coppergauntlet", () -> new Gauntlet(new Item.Properties().stacksTo(1), 1, 200));
