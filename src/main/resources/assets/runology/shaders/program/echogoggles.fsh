@@ -48,7 +48,7 @@ vec4 sobel(sampler2D s, vec3 color, bool isDepth) {
         }
     }
     float G = sqrt(Gx * Gx + Gy * Gy);
-    float edgeThreshold = 0.1; // Dont set this to 0.0, or do.
+    float edgeThreshold = 0.1;
     float alpha = G > edgeThreshold ? 1.0 : 0.0;
     return vec4(G * color, alpha);
 }
