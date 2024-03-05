@@ -19,6 +19,7 @@
     "minecraft:clay",
     "minecraft:dripstone_block",
     "minecraft:end_stone",
-    "minecraft:moss_block"
+    "minecraft:moss_block",
+    "minecraft:farmland"
   ]
 }

@@ -104,6 +104,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         instabilityResonator(ItemInit.INSTABILITYRESONATOR);
         research(ItemInit.RESEARCH);
         flatBlockItemWithTexture(BlockInit.SHATTERLEAF, new ResourceLocation(Runology.MOD_ID, "block/shatterleafempty"));
+        tornResearch(ItemInit.ANCIENTDRAGONSBLADETORNRESEARCH);
+        tornResearch(ItemInit.ECHOGOGGLESTORNRESEARCH);
+        tornResearch(ItemInit.LANTERNOFFLAMESTORNRESEARCH);
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),

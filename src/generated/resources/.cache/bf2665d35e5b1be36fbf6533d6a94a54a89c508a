@@ -1,7 +1,8 @@
-// 1.20.1	2024-03-04T15:11:53.601791	Item Models: runology
+// 1.20.1	2024-03-04T21:46:33.5513353	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 d29c06739b96489389a440127d840aa2e92fac46 assets/runology/models/item/ancientdragonsblade.json
+b8a0e34a33f7098a60bb9d591fca10b9bed95e0d assets/runology/models/item/ancientdragonsbladetornresearch.json
 b710f43a0e2c7cc3bd7554cbac489ddf558ef224 assets/runology/models/item/blankrune.json
 69fb356de0fde0068ad5b3fb377bc5516ab355f1 assets/runology/models/item/chiseledshatterstonebricks.json
 6a6b2498a50bb53354806c7c7994c33d5b86305a assets/runology/models/item/crackedshatterstonebricks.json
@@ -13,6 +14,7 @@ b7dff478eada640c6febe85c8a1e0f52c18b3585 assets/runology/models/item/dimensional
 b797f4a4a8cf4d41ed2ca2bcb9b710c43f0e429f assets/runology/models/item/earthpowder.json
 748af756f00fca1b9a0d1f19f110913f3b5f6541 assets/runology/models/item/earthrune.json
 1864fc9c488fa868fa63ec18711e74c1790a0aa3 assets/runology/models/item/echogoggles.json
+b8a0e34a33f7098a60bb9d591fca10b9bed95e0d assets/runology/models/item/echogogglestornresearch.json
 911e2d13a122e8ec44fd2368ebe53514ce6e15b7 assets/runology/models/item/energyrune.json
 52afd18955581deb11e7c0777d4c2d9cb9ae65fa assets/runology/models/item/fireballspellcrystal.json
 c4462717d81c615f54bc2e9f404619feaa54a188 assets/runology/models/item/firepowder.json
@@ -30,6 +32,7 @@ f75db6577152374e579a5b682b173fcff09a35b8 assets/runology/models/item/instability
 03e41e4daa9779ec23b11323c38b40bba970b85d assets/runology/models/item/instabilityreader8.json
 28b6f7441104ce064d34d4fcbbdd42f1bf679c60 assets/runology/models/item/instabilityreader9.json
 a1193e98f10d68644b5f991418854d48dab0f0cc assets/runology/models/item/instabilityrune.json
+b8a0e34a33f7098a60bb9d591fca10b9bed95e0d assets/runology/models/item/lanternofflamestornresearch.json
 b306bb433c8b19e2f057b002d2d83978719ed031 assets/runology/models/item/mysteriousaltar.json
 7e96b20ba4fd8e2fdfcaf90fb8e3ecf3ddbfc4e3 assets/runology/models/item/mysteriumblock.json
 2a66cbdb61b0a08407ad57482f7bf4fffa7eba8a assets/runology/models/item/mysteriumcore.json
