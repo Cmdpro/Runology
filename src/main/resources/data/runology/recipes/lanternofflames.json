@@ -1,0 +1,29 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:ancientdiscovery/ancientdragonsblade",
+  "runicenergy": [
+    {
+      "type": "runology:fire",
+      "amount": 250
+    }
+  ],
+  "pattern": [
+    "bAb",
+    "AaA",
+    "bAb"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:lantern"
+    },
+    "A": {
+      "item": "minecraft:blaze_rod"
+    },
+    "b": {
+      "item": "runology:firepowder"
+    }
+  },
+  "result": {
+    "item": "runology:lanternofflames"
+  }
+}

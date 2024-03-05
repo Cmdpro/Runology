@@ -1,0 +1,26 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:ancientdiscovery/ancientdragonsblade",
+  "runicenergy": [
+    {
+      "type": "runology:void",
+      "amount": 250
+    }
+  ],
+  "pattern": [
+    "A",
+    "A",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:blaze_rod"
+    },
+    "A": {
+      "item": "runology:dragoniumingot"
+    }
+  },
+  "result": {
+    "item": "runology:ancientdragonsblade"
+  }
+}

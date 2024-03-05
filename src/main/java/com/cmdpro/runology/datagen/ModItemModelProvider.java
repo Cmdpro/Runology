@@ -68,6 +68,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.ECHOGOGGLES);
         simpleItem(ItemInit.ICESHARDSSPELLCRYSTAL);
         simpleItem(ItemInit.FIREBALLSPELLCRYSTAL);
+        simpleItem(ItemInit.INSTABILITYRUNE);
+        simpleItem(ItemInit.INSTABILITYPOWDER);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
@@ -107,6 +109,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(Runology.MOD_ID,"item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder tornResearch(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(Runology.MOD_ID,"item/tornresearch"));
     }
     private ItemModelBuilder flatBlockItemWithTexture(RegistryObject<Block> item, ResourceLocation texture) {
         return withExistingParent(item.getId().getPath(),

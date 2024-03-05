@@ -51,7 +51,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(Blocks.CLAY)
                 .add(Blocks.DRIPSTONE_BLOCK)
                 .add(Blocks.END_STONE)
-                .add(Blocks.MOSS_BLOCK);
+                .add(Blocks.MOSS_BLOCK)
+                .add(Blocks.FARMLAND);
         this.tag(TagInit.Blocks.SHATTERWOODREPLACEABLE)
                 .addTags(BlockTags.LOGS);
 

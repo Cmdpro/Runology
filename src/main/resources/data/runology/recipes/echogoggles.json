@@ -1,0 +1,26 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:ancientdiscovery/echogoggles",
+  "runicenergy": [
+    {
+      "type": "runology:air",
+      "amount": 250
+    }
+  ],
+  "pattern": [
+    " A ",
+    "A A",
+    "aAa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:echo_shard"
+    },
+    "A": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "runology:echogoggles"
+  }
+}

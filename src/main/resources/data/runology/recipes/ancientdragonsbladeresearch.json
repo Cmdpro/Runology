@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "runology:ancientdragonsbladetornresearch"
+    }
+  },
+  "result": {
+    "item": "runology:research",
+    "nbt": {
+      "progress": 0,
+      "entry": "runology:ancientdiscovery/ancientdragonsblade",
+      "book": "runology:runologyguide",
+      "finished": false
+    }
+  }
+}

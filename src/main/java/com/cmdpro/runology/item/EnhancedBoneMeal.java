@@ -1,5 +1,7 @@
 package com.cmdpro.runology.item;
 
+import com.cmdpro.runology.api.RunologyUtil;
+import com.cmdpro.runology.moddata.ChunkModData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -36,6 +38,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
             if (!level.isClientSide) {
                 level.levelEvent(1505, blockpos, 0);
                 pContext.getItemInHand().shrink(1);
+                RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
             }
 
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -48,6 +51,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
                 if (!level.isClientSide) {
                     level.levelEvent(1505, blockpos1, 0);
                     pContext.getItemInHand().shrink(1);
+                    RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
                 }
 
                 return InteractionResult.sidedSuccess(level.isClientSide);

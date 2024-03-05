@@ -1,0 +1,27 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:runicmysteries/mysteriumgauntlet",
+  "runicenergy": [
+    {
+      "type": "runology:void",
+      "amount": 40
+    }
+  ],
+  "pattern": [
+    "aaa",
+    "aAa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:copper_ingot"
+    },
+    "A": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "runology:dragoniumingot",
+    "count": 8
+  }
+}

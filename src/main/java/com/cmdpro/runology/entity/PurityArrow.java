@@ -1,8 +1,11 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.TagInit;
+import com.cmdpro.runology.moddata.ChunkModData;
+import com.cmdpro.runology.moddata.PlayerModData;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.SpectralArrowRenderer;
@@ -61,6 +64,7 @@ public class PurityArrow extends AbstractArrow {
                 shatter.spawnAtLocation(new ItemStack(ItemInit.INSTABILITYPOWDER.get(), random.nextInt(5, 10)));
                 shatter.remove(RemovalReason.KILLED);
                 remove(RemovalReason.KILLED);
+                RunologyUtil.RemoveInstability(level().getChunkAt(shatter.blockPosition()).getPos(), level(), 500, 0, ChunkModData.MAX_INSTABILITY);
                 LodestonePacketRegistry.LODESTONE_CHANNEL.send(PacketDistributor.DIMENSION.with(() -> level().dimension()), new PositionedScreenshakePacket(30, position(), 16, 32).setEasing(Easing.CUBIC_OUT).setIntensity(4, 0));
             }
         }
