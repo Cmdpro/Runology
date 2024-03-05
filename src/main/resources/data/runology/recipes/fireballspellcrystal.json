@@ -1,0 +1,29 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:spellcasting/fireballspellcrystal",
+  "runicenergy": [
+    {
+      "type": "runology:fire",
+      "amount": 50
+    }
+  ],
+  "pattern": [
+    "bAb",
+    "AaA",
+    "bAb"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_block"
+    },
+    "A": {
+      "item": "minecraft:blaze_rod"
+    },
+    "b": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "result": {
+    "item": "runology:fireballspellcrystal"
+  }
+}

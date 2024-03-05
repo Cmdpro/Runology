@@ -134,6 +134,7 @@ public class Runology
             ItemStack lanternofflames = new ItemStack(ItemInit.LANTERNOFFLAMES.get());
             lanternofflames.setDamageValue(lanternofflames.getMaxDamage()-1);
             event.accept(lanternofflames);
+            event.accept(ItemInit.LANTERNOFFLAMES);
             event.accept(ItemInit.ANCIENTDRAGONSBLADETORNRESEARCH);
             event.accept(ItemInit.ECHOGOGGLESTORNRESEARCH);
             event.accept(ItemInit.LANTERNOFFLAMESTORNRESEARCH);

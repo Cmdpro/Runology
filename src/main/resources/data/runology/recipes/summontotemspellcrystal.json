@@ -1,0 +1,29 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:spellcasting/summontotemspellcrystal",
+  "runicenergy": [
+    {
+      "type": "runology:void",
+      "amount": 50
+    }
+  ],
+  "pattern": [
+    "bAb",
+    "AaA",
+    "bAb"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_block"
+    },
+    "A": {
+      "item": "runology:mysteriumingot"
+    },
+    "b": {
+      "item": "runology:rawmysterium"
+    }
+  },
+  "result": {
+    "item": "runology:summontotemspellcrystal"
+  }
+}

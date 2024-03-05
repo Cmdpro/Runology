@@ -70,6 +70,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.FIREBALLSPELLCRYSTAL);
         simpleItem(ItemInit.INSTABILITYRUNE);
         simpleItem(ItemInit.INSTABILITYPOWDER);
+        simpleItem(ItemInit.PURIFIEDFLESH);
+        simpleItem(ItemInit.ENHANCEDBONEMEAL);
+        simpleItem(ItemInit.DRAGONIUMINGOT);
+        simpleItem(ItemInit.LANTERNOFFLAMES);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);

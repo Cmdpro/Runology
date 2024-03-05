@@ -1,0 +1,26 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:spellcasting/amethyststaff",
+  "runicenergy": [
+    {
+      "type": "runology:earth",
+      "amount": 100
+    }
+  ],
+  "pattern": [
+    "aa",
+    "Aa",
+    " a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:copper_ingot"
+    },
+    "A": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "runology:amethyststaff"
+  }
+}

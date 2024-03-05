@@ -1,0 +1,29 @@
+{
+  "category": "runology:spellcasting",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:coppergauntlet",
+  "name": "book.runology.runologyguide.spellcasting.coppergauntlet.name",
+  "pages": [
+    {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runology:coppergauntlet",
+      "title1": "book.runology.runologyguide.spellcasting.coppergauntlet.page1.title",
+      "text": "book.runology.runologyguide.spellcasting.coppergauntlet.page1.text"
+    }
+  ],
+  "condition": {
+    "type": "modonomicon:entry_unlocked",
+    "entry_id": "runology:basics/runicworkbench"
+  },
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:spellcasting/spelltable",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 2,
+  "y": 0
+}

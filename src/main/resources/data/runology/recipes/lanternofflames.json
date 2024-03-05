@@ -8,19 +8,16 @@
     }
   ],
   "pattern": [
-    "bAb",
+    " A ",
     "AaA",
-    "bAb"
+    "AAA"
   ],
   "key": {
     "a": {
       "item": "minecraft:lantern"
     },
     "A": {
-      "item": "minecraft:blaze_rod"
-    },
-    "b": {
-      "item": "runology:firepowder"
+      "item": "minecraft:obsidian"
     }
   },
   "result": {

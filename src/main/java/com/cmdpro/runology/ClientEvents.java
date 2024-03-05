@@ -30,8 +30,6 @@ import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import team.lodestar.lodestone.LodestoneLib;
 import team.lodestar.lodestone.mixin.GameRendererMixin;
 import team.lodestar.lodestone.systems.postprocess.LodestoneGlslPreprocessor;

@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class SummonTotemSpell extends Spell {
     @Override
     public int magicLevel() {
-        return 1;
+        return 2;
     }
 
     @Override

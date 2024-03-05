@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
-import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class LanternOfFlames extends Item {
         if (!pLivingEntity.level().isClientSide()) {
             ((ServerLevel) pLevel).sendParticles(ParticleTypes.FLAME, pLivingEntity.getBoundingBox().getCenter().x, pLivingEntity.getBoundingBox().getCenter().y, pLivingEntity.getBoundingBox().getCenter().z, 20, 0, 0, 0, 1);
             for (Entity i : pLevel.getEntities(pLivingEntity, AABB.ofSize(pLivingEntity.getBoundingBox().getCenter(), 5, 5, 5))) {
-                if (i.getBoundingBox().getCenter().distanceTo(pLivingEntity.getBoundingBox().getCenter()) <= 2.5) {
+                if (i.position().distanceTo(pLivingEntity.getBoundingBox().getCenter()) <= 5) {
                     if (i.getRemainingFireTicks() <= 50) {
                         i.setRemainingFireTicks(50);
                         i.hurt(pLivingEntity.damageSources().magic(), 5f);

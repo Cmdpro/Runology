@@ -1,0 +1,32 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:spellcasting/amethyststaff",
+  "runicenergy": [
+    {
+      "type": "runology:earth",
+      "amount": 100
+    }
+  ],
+  "pattern": [
+    " B ",
+    "AbA",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "tag": "minecraft:planks"
+    },
+    "A": {
+      "item": "minecraft:copper_ingot"
+    },
+    "b": {
+      "item": "minecraft:red_wool"
+    },
+    "B": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "runology:spelltable"
+  }
+}
