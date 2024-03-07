@@ -97,7 +97,11 @@ public class ClientModEvents {
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {
-                    return level.dimension().equals(DimensionInit.SHATTERREALM) ? ChunkModData.MAX_INSTABILITY : ClientPlayerData.getPlayerChunkInstability();
+                    if (level != null) {
+                        return level.dimension().equals(DimensionInit.SHATTERREALM) ? ChunkModData.MAX_INSTABILITY : ClientPlayerData.getPlayerChunkInstability();
+                    } else {
+                        return ClientPlayerData.getPlayerChunkInstability();
+                    }
                 });
             }
         });

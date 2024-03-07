@@ -1,5 +1,6 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.ClientRunologyUtil;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.init.ItemInit;
@@ -70,7 +71,7 @@ public class ClientEvents {
                 if (i.getUseItem().is(ItemInit.LANTERNOFFLAMES.get())) {
                     Vec3 pos = i.getBoundingBox().getCenter().subtract(event.getCamera().getPosition());
                     event.getPoseStack().translate(pos.x, pos.y, pos.z);
-                    RunologyUtil.drawSphere(worldBuilder, event.getPoseStack(), Color.RED, 0.25f, 5, 30, 30);
+                    ClientRunologyUtil.drawSphere(worldBuilder, event.getPoseStack(), Color.RED, 0.25f, 5, 30, 30);
                     event.getPoseStack().translate(-pos.x, -pos.y, -pos.z);
                 }
             }

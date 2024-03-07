@@ -7,8 +7,10 @@ import com.cmdpro.runology.entity.VoidBeam;
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.EntityInit;
 import com.cmdpro.runology.init.ItemInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -65,6 +67,8 @@ public class MysteriousAltar extends Block {
                         i.remove(Entity.RemovalReason.DISCARDED);
                     }
                 }
+            } else {
+                pPlayer.sendSystemMessage(Component.translatable("block.runology.mysteriousaltar.seemsneedtotem").withStyle(ChatFormatting.DARK_PURPLE));
             }
         }
 

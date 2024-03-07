@@ -40,7 +40,13 @@ public class Research extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable(BookDataManager.get().getBook(ResourceLocation.tryParse(pStack.getTag().getString("book"))).getEntry(ResourceLocation.tryParse(pStack.getTag().getString("entry"))).getName()));
+        var book = BookDataManager.get().getBook(ResourceLocation.tryParse(pStack.getTag().getString("book")));
+        if (book != null) {
+            var entry = book.getEntry(ResourceLocation.tryParse(pStack.getTag().getString("entry")));
+            if (entry != null) {
+                pTooltipComponents.add(Component.translatable(entry.getName()));
+            }
+        }
         if (pStack.getTag().getBoolean("finished")) {
             pTooltipComponents.add(Component.translatable("item.runology.research.complete"));
         }
