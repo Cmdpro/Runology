@@ -22,6 +22,7 @@ public class PlayerModData {
     }
     private HashMap<ResourceLocation, List<ResourceLocation>> unlocked;
     private int instabilityEventCooldown;
+    private int bookDiscoverProcess;
     public HashMap<ResourceLocation, List<ResourceLocation>> getUnlocked() {
         return unlocked;
     }
@@ -30,6 +31,12 @@ public class PlayerModData {
     }
     public void setInstabilityEventCooldown(int amount) {
         this.instabilityEventCooldown = amount;
+    }
+    public int getBookDiscoverProcess() {
+        return bookDiscoverProcess;
+    }
+    public void setBookDiscoverProcess(int amount) {
+        this.bookDiscoverProcess = amount;
     }
 
     public void updateData(ServerPlayer player) {
@@ -64,6 +71,7 @@ public class PlayerModData {
             }
             nbt.put("unlocked", tag);
         }
+        nbt.putInt("bookDiscoverProcess", bookDiscoverProcess);
     }
     public void loadNBTData(CompoundTag nbt) {
         unlocked.clear();
@@ -77,5 +85,6 @@ public class PlayerModData {
                 unlocked.put(id, list);
             }
         }
+        bookDiscoverProcess = nbt.getInt("bookDiscoverProcess");
     }
 }

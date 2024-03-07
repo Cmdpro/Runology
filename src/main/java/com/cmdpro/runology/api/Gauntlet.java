@@ -42,6 +42,7 @@ public class Gauntlet extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("item.runology.gauntlet.tier", magicLevel));
         if (pStack.hasTag() && pStack.getTag().contains("runicEnergy")) {
             for (String i : ((CompoundTag) pStack.getTag().get("runicEnergy")).getAllKeys()) {
                 float amount = ((CompoundTag) pStack.getTag().get("runicEnergy")).getFloat(i);
@@ -76,6 +77,8 @@ public class Gauntlet extends Item {
                                     if (tag.getFloat(i) < o.getValue()) {
                                         hasAll = false;
                                     }
+                                } else if (!tag.getAllKeys().contains(o.getKey().toString())) {
+                                    hasAll = false;
                                 }
                             }
                         }

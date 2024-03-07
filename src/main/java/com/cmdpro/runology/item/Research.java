@@ -55,33 +55,41 @@ public class Research extends Item {
                 BookEntry bookEntry = BookDataManager.get().getBook(book).getEntry(entry);
                 BookAnalyzeTaskCondition condition = RunologyUtil.getAnalyzeCondition(bookEntry.getCondition());
                 if (condition != null) {
-                    List<BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
-                    boolean canSee = true;
-                    for (BookEntryParent i : parents) {
-                        if (!BookUnlockStateManager.get().isUnlockedFor(pPlayer, i.getEntry())) {
-                            canSee = false;
-                            break;
-                        }
-                    }
-                    if (canSee) {
-                        pPlayer.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
-                            if (data.getUnlocked().containsKey(book)) {
-                                if (!data.getUnlocked().get(book).contains(entry)) {
-                                    data.getUnlocked().get(book).add(entry);
-                                }
-                            } else {
-                                ArrayList list = new ArrayList<>();
-                                list.add(entry);
-                                data.getUnlocked().put(book, list);
+                    if (RunologyUtil.conditionAllTrueExceptAnalyze(bookEntry, pPlayer)) {
+                        List<BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
+                        boolean canSee = true;
+                        for (BookEntryParent i : parents) {
+                            if (!BookUnlockStateManager.get().isUnlockedFor(pPlayer, i.getEntry())) {
+                                canSee = false;
+                                break;
                             }
-                        });
-                        pPlayer.getItemInHand(pUsedHand).shrink(1);
-                        BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer) pPlayer);
+                        }
+                        if (canSee) {
+                            pPlayer.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
+                                if (data.getUnlocked().containsKey(book)) {
+                                    if (!data.getUnlocked().get(book).contains(entry)) {
+                                        data.getUnlocked().get(book).add(entry);
+                                        pPlayer.getItemInHand(pUsedHand).shrink(1);
+                                        BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer) pPlayer);
+                                        pPlayer.sendSystemMessage(Component.translatable("item.runology.research.use", Component.translatable(bookEntry.getName())));
+                                    } else {
+                                        pPlayer.sendSystemMessage(Component.translatable("item.runology.research.alreadyhave", Component.translatable(bookEntry.getName())));
+                                    }
+                                } else {
+                                    ArrayList list = new ArrayList<>();
+                                    list.add(entry);
+                                    data.getUnlocked().put(book, list);
+                                    pPlayer.getItemInHand(pUsedHand).shrink(1);
+                                    BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer) pPlayer);
+                                    pPlayer.sendSystemMessage(Component.translatable("item.runology.research.use", Component.translatable(bookEntry.getName())));
+                                }
+                            });
+                        } else {
+                            pPlayer.sendSystemMessage(Component.translatable("item.runology.research.previousentryneeded"));
+                        }
                     } else {
-                        pPlayer.sendSystemMessage(Component.translatable("item.runology.research.previousentryneeded"));
+                        pPlayer.sendSystemMessage(Component.translatable("item.runology.research.conditionsnotcompleted"));
                     }
-                } else {
-                    pPlayer.sendSystemMessage(Component.translatable("item.runology.research.advancementneeded"));
                 }
             }
             return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));

@@ -10,6 +10,10 @@
       "recipe_id_1": "runology:spelltable",
       "title1": "book.runology.runologyguide.spellcasting.spelltable.page1.title",
       "text": "book.runology.runologyguide.spellcasting.spelltable.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.runology.runologyguide.spellcasting.spelltable.page2.text"
     }
   ],
   "condition": {

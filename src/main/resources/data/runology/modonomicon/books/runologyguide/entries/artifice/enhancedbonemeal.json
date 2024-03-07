@@ -12,6 +12,14 @@
       "text": "book.runology.runologyguide.artifice.enhancedbonemeal.page1.text"
     }
   ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:basics/runetransformations",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
   "condition": {
     "type": "runology:analyze",
     "tasks": [

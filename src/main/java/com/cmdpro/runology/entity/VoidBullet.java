@@ -60,19 +60,12 @@ public class VoidBullet extends Projectile implements GeoEntity {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.putFloat("xd", (float)this.getDeltaMovement().x);
-        tag.putFloat("yd", (float)this.getDeltaMovement().y);
-        tag.putFloat("zd", (float)this.getDeltaMovement().z);
         tag.putInt("time", (int)this.time);
     }
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        float vx = tag.getFloat("xd");
-        float vy = tag.getFloat("yd");
-        float vz = tag.getFloat("zd");
         this.time = tag.getInt("time");
-        setDeltaMovement(new Vec3(vx, vy, vz));
     }
 
     @Nullable

@@ -13,8 +13,17 @@
     }
   ],
   "condition": {
-    "type": "modonomicon:entry_unlocked",
-    "entry_id": "runology:runicmysteries/mysteriumgauntlet"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:runicmysteries/mysteriumgauntlet"
+      },
+      {
+        "type": "modonomicon:entry_unlocked",
+        "entry_id": "runology:spellcasting/coppergauntlet"
+      }
+    ]
   },
   "parents": [
     {

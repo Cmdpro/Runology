@@ -58,6 +58,7 @@ public class RunologyCommands {
         if(command.getSource().getEntity() instanceof Player) {
             Player player = (Player) command.getSource().getEntity();
             player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
+                data.setBookDiscoverProcess(0);
                 data.getUnlocked().clear();
                 BookUnlockStateManager.get().resetFor((ServerPlayer)player, BookDataManager.get().getBook(new ResourceLocation("runology", "runologyguide")));
                 BookUnlockStateManager.get().updateAndSyncFor((ServerPlayer)player);

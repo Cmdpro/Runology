@@ -90,6 +90,35 @@ public class ModEvents {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data -> {
                 data.updateData(event.player);
+                if (data.getBookDiscoverProcess() < 2) {
+                    List<Item> naturalDusts = new ArrayList<>();
+                    naturalDusts.add(ItemInit.WATERPOWDER.get());
+                    naturalDusts.add(ItemInit.EARTHPOWDER.get());
+                    naturalDusts.add(ItemInit.AIRPOWDER.get());
+                    naturalDusts.add(ItemInit.FIREPOWDER.get());
+                    if (data.getBookDiscoverProcess() == 0) {
+                        for (Item i : naturalDusts) {
+                            if (event.player.getInventory().hasAnyMatching((item) -> item.is(i))) {
+                                event.player.sendSystemMessage(Component.translatable("book.runology.runologyguide.discover1").withStyle(ChatFormatting.DARK_PURPLE));
+                                data.setBookDiscoverProcess(1);
+                                break;
+                            }
+                        }
+                    }
+                    if (data.getBookDiscoverProcess() == 1) {
+                        int dusts = 0;
+                        for (Item i : naturalDusts) {
+                            if (event.player.getInventory().hasAnyMatching((item) -> item.is(i))) {
+                                dusts++;
+                            }
+                            if (dusts >= 2) {
+                                event.player.sendSystemMessage(Component.translatable("book.runology.runologyguide.discover2").withStyle(ChatFormatting.DARK_PURPLE));
+                                data.setBookDiscoverProcess(2);
+                                break;
+                            }
+                        }
+                    }
+                }
             });
 
             event.player.level().getChunkAt(event.player.blockPosition()).getCapability(ChunkModDataProvider.CHUNK_MODDATA).ifPresent(data -> {

@@ -16,14 +16,14 @@
 		},
 		"animation.runicanalyzer.analyzing": {
 			"loop": true,
-			"animation_length": 1,
+			"animation_length": 3,
 			"bones": {
 				"lens": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"1.0": {
+						"3.0": {
 							"vector": [0, 360, 0],
 							"easing": "linear"
 						}
@@ -32,11 +32,11 @@
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"0.5": {
+						"1.5": {
 							"vector": [0, 10, 0],
 							"easing": "easeInOutQuad"
 						},
-						"1.0": {
+						"3.0": {
 							"vector": [0, 0, 0],
 							"easing": "easeInOutQuad"
 						}
@@ -47,7 +47,7 @@
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"1.0": {
+						"3.0": {
 							"vector": [0, -360, 0]
 						}
 					},
@@ -55,11 +55,11 @@
 						"0.0": {
 							"vector": [0, 9, 0]
 						},
-						"0.5": {
+						"1.5": {
 							"vector": [0, -1, 0],
 							"easing": "easeInOutQuad"
 						},
-						"1.0": {
+						"3.0": {
 							"vector": [0, 9, 0],
 							"easing": "easeInOutQuad"
 						}

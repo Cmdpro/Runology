@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "runology:firepowder"
+    },
+    {
+      "item": "runology:earthpowder"
+    },
+    {
+      "item": "runology:airpowder"
+    },
+    {
+      "item": "runology:waterpowder"
+    }
+  ],
+  "result": {
+    "item": "modonomicon:modonomicon",
+    "nbt": {
+      "modonomicon:book_id": "runology:runologyguide"
+    }
+  }
+}
