@@ -18,6 +18,7 @@
     "runology:mysteriumore",
     "runology:mysteriumblock",
     "runology:runicworkbench",
-    "runology:shattercrystal"
+    "runology:shattercrystal",
+    "runology:runicanalyzer"
   ]
 }

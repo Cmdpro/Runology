@@ -53,6 +53,7 @@ public class PlayerModData {
     }
     public void copyFrom(PlayerModData source) {
         this.unlocked = source.unlocked;
+        this.bookDiscoverProcess = source.bookDiscoverProcess;
     }
     public void saveNBTData(CompoundTag nbt) {
         if (!unlocked.isEmpty()) {

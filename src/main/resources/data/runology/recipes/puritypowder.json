@@ -1,6 +1,6 @@
 {
   "type": "runology:shapelessrunicrecipe",
-  "entry": "runology:basics/purityrune",
+  "entry": "runology:purity/purityrune",
   "runicenergy": [
     {
       "type": "runology:earth",

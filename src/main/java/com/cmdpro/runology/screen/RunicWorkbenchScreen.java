@@ -82,15 +82,15 @@ public class RunicWorkbenchScreen extends AbstractContainerScreen<RunicWorkbench
         Map.Entry<String, Float>[] entrySet = menu.blockEntity.getRunicEnergy().entrySet().toArray(new Map.Entry[0]);
         for (int i = 0; i < entrySet.length; i++) {
             Map.Entry<String, Float> entry = entrySet[i];
-            if (pMouseX >= x2 && pMouseY >= y2 && pMouseX <= x2 + 4 && pMouseY <= y2+4) {
-                if (entry.getValue() > 0) {
+            if (entry.getValue() > 0) {
+                if (pMouseX >= x2 && pMouseY >= y2 && pMouseX <= x2 + 4 && pMouseY <= y2 + 4) {
                     component.add(Component.translatable("container.runology.runicworkbench.runicenergyamount", entry.getValue(), 1000, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(entry.getKey())))).getVisualOrderText());
                 }
-            }
-            x2 += 7;
-            if (x2 > x+(7*3)) {
-                x2 -= 7*3;
-                y2 += 7;
+                x2 += 7;
+                if (x2 > x + (7 * 3)) {
+                    x2 -= 7 * 3;
+                    y2 += 7;
+                }
             }
         }
         if (component != null) {

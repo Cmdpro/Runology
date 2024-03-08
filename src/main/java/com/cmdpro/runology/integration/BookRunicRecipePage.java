@@ -48,12 +48,6 @@ public class BookRunicRecipePage extends BookRecipePage<Recipe<?>> {
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buffer) {
-        super.toNetwork(buffer);
-        var anchor = buffer.readUtf();
-    }
-
-    @Override
     public ResourceLocation getType() {
         return RunologyModonomiconConstants.Page.RUNICRECIPE;
     }

@@ -1,9 +1,21 @@
 {
   "type": "runology:shapelessrunicrecipe",
-  "entry": "runology:basics/purityrune",
+  "entry": "runology:purity/purityrune",
   "runicenergy": [
     {
-      "type": "runology:purity",
+      "type": "runology:earth",
+      "amount": 10
+    },
+    {
+      "type": "runology:air",
+      "amount": 10
+    },
+    {
+      "type": "runology:water",
+      "amount": 10
+    },
+    {
+      "type": "runology:fire",
       "amount": 10
     }
   ],

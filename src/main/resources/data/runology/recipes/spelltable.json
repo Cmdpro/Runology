@@ -1,6 +1,6 @@
 {
   "type": "runology:shapedrunicrecipe",
-  "entry": "runology:spellcasting/amethyststaff",
+  "entry": "runology:spellcasting/spelltable",
   "runicenergy": [
     {
       "type": "runology:earth",
