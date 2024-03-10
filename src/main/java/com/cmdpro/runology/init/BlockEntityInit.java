@@ -1,10 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.block.entity.SpellTableBlockEntity;
-import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
-import com.cmdpro.runology.block.entity.RunicWorkbenchBlockEntity;
-import com.cmdpro.runology.block.entity.VoidGlassBlockEntity;
+import com.cmdpro.runology.block.entity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +15,10 @@ public class BlockEntityInit {
             BLOCK_ENTITIES.register("runicworkbenchblockentity", () ->
                     BlockEntityType.Builder.of(RunicWorkbenchBlockEntity::new,
                             BlockInit.RUNICWORKBENCH.get()).build(null));
+    public static final RegistryObject<BlockEntityType<RunicCauldronBlockEntity>> RUNICCAULDRON =
+            BLOCK_ENTITIES.register("runiccauldronblockentity", () ->
+                    BlockEntityType.Builder.of(RunicCauldronBlockEntity::new,
+                            BlockInit.RUNICCAULDRON.get()).build(null));
     public static final RegistryObject<BlockEntityType<SpellTableBlockEntity>> SPELLTABLE =
             BLOCK_ENTITIES.register("spelltableblockentity", () ->
                     BlockEntityType.Builder.of(SpellTableBlockEntity::new,
