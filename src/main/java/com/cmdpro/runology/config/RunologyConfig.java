@@ -17,16 +17,17 @@ public class RunologyConfig {
         }
     }
     public RunologyConfig(ForgeConfigSpec.Builder builder) {
-        //otherModAdvancementsAllowedValue = buildBoolean(builder, "otherModAdvancementsAllowed", "all", false, "Should advancements from other mods give knowledge?");
+        builder.push("destructivePotential");
+        stabilizedShatterSpreadsValue = buildBoolean(builder, "stabilizedShatterSpreads", "all", true, "Should Stabilized Shatters spread the shatter realm?");
     }
     private static ForgeConfigSpec.BooleanValue buildBoolean(ForgeConfigSpec.Builder builder, String name, String catagory, boolean defaultValue, String comment) {
         return builder.comment(comment).translation(name).define(name, defaultValue);
     }
-    //public static boolean otherModAdvancementsAllowed = false;
-    //public final ForgeConfigSpec.BooleanValue otherModAdvancementsAllowedValue;
+    public static boolean stabilizedShatterSpreads = false;
+    public final ForgeConfigSpec.BooleanValue stabilizedShatterSpreadsValue;
     public static void bake(ModConfig config) {
         try {
-            //otherModAdvancementsAllowed = COMMON.otherModAdvancementsAllowedValue.get();
+            stabilizedShatterSpreads = COMMON.stabilizedShatterSpreadsValue.get();
         } catch (Exception e) {
             Runology.LOGGER.warn("Failed to load Runology config");
             e.printStackTrace();

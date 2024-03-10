@@ -1,6 +1,7 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.Spell;
+import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
@@ -27,6 +28,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -81,7 +83,7 @@ public class Runology
         MinecraftForge.EVENT_BUS.register(this);
         bus.addListener(this::addCreative);
         random = RandomSource.create();
-        //modLoadingContext.registerConfig(ModConfig.Type.COMMON, RunologyConfig.COMMON_SPEC, "runology.toml");
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, RunologyConfig.COMMON_SPEC, "runology.toml");
 
         LoaderRegistry.registerConditionLoader(new ResourceLocation(MOD_ID, "analyze"), BookAnalyzeTaskCondition::fromJson, BookAnalyzeTaskCondition::fromNetwork);
     }

@@ -2,6 +2,7 @@ package com.cmdpro.runology.entity;
 
 import com.cmdpro.runology.ShatterRealmTeleporter;
 import com.cmdpro.runology.api.EmpoweredGauntlet;
+import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.init.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -176,29 +177,31 @@ public class Shatter extends Entity implements GeoEntity {
             }
             timer++;
             if (timer >= 25) {
-                if (random.nextBoolean()) {
-                    int tries = 0;
-                    boolean successful = false;
-                    while (tries < 5 && !successful) {
-                        Vec3 offset = new Vec3(random.nextInt(-8, 8), random.nextInt(-8, 8), random.nextInt(-8, 8));
-                        BlockPos pos = BlockPos.containing(position().add(offset));
-                        if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERSTONEREPLACEABLE)) {
-                            level().setBlock(pos, BlockInit.SHATTERSTONE.get().defaultBlockState(), Block.UPDATE_ALL);
-                            successful = true;
+                if (RunologyConfig.stabilizedShatterSpreads || !entityData.get(OPENED)) {
+                    if (random.nextBoolean()) {
+                        int tries = 0;
+                        boolean successful = false;
+                        while (tries < 5 && !successful) {
+                            Vec3 offset = new Vec3(random.nextInt(-8, 8), random.nextInt(-8, 8), random.nextInt(-8, 8));
+                            BlockPos pos = BlockPos.containing(position().add(offset));
+                            if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERSTONEREPLACEABLE)) {
+                                level().setBlock(pos, BlockInit.SHATTERSTONE.get().defaultBlockState(), Block.UPDATE_ALL);
+                                successful = true;
+                            }
+                            if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERWOODREPLACEABLE)) {
+                                level().setBlock(pos, BlockInit.PETRIFIEDSHATTERWOOD.get().defaultBlockState(), Block.UPDATE_ALL);
+                                successful = true;
+                            }
+                            if (level().getBlockState(pos).is(TagInit.Blocks.MYSTERIUMOREREPLACEABLE)) {
+                                level().setBlock(pos, BlockInit.MYSTERIUMORE.get().defaultBlockState(), Block.UPDATE_ALL);
+                                successful = true;
+                            }
+                            if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERREMOVES)) {
+                                level().removeBlock(pos, false);
+                                successful = true;
+                            }
+                            tries++;
                         }
-                        if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERWOODREPLACEABLE)) {
-                            level().setBlock(pos, BlockInit.PETRIFIEDSHATTERWOOD.get().defaultBlockState(), Block.UPDATE_ALL);
-                            successful = true;
-                        }
-                        if (level().getBlockState(pos).is(TagInit.Blocks.MYSTERIUMOREREPLACEABLE)) {
-                            level().setBlock(pos, BlockInit.MYSTERIUMORE.get().defaultBlockState(), Block.UPDATE_ALL);
-                            successful = true;
-                        }
-                        if (level().getBlockState(pos).is(TagInit.Blocks.SHATTERREMOVES)) {
-                            level().removeBlock(pos, false);
-                            successful = true;
-                        }
-                        tries++;
                     }
                 }
             }

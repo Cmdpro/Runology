@@ -1,6 +1,7 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.*;
+import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.entity.RunicConstruct;
 import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.entity.RunicScout;
@@ -18,6 +19,8 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
@@ -34,6 +37,13 @@ public class ModEventBusEvents {
         event.put(EntityInit.RUNICSCOUT.get(), RunicScout.setAttributes());
         event.put(EntityInit.RUNICOVERSEER.get(), RunicOverseer.setAttributes());
         event.put(EntityInit.TOTEM.get(), Totem.setAttributes());
+    }
+    @SubscribeEvent
+    public static void onModConfigEvent(ModConfigEvent event) {
+        ModConfig config = event.getConfig();
+        if (config.getSpec() == RunologyConfig.COMMON_SPEC) {
+            RunologyConfig.bake(config);
+        }
     }
     @SubscribeEvent
     public static void registerStuff(RegisterEvent event) {
