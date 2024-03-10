@@ -13,6 +13,10 @@
     {
       "type": "modonomicon:text",
       "text": "book.runology.runologyguide.runicmysteries.shatters.page2.text"
+    },
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:instabilityrune"
     }
   ],
   "condition": {

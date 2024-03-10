@@ -16,7 +16,7 @@
     "children": [
       {
         "type": "modonomicon:advancement",
-        "advancement_id": "runology:shatterrealm"
+        "advancement_id": "runology:shatteredsoul"
       },
       {
         "type": "modonomicon:entry_unlocked",

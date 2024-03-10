@@ -36,7 +36,7 @@ public class ModEntityLootTables extends EntityLootSubProvider {
     public void generate() {
         add(EntityInit.RUNICCONSTRUCT.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.MYSTERIUMCORE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))))));
         add(EntityInit.RUNICSCOUT.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.MYSTERIUMCORE.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))));
-        add(EntityInit.RUNICOVERSEER.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.DIMENSIONALTHREATMUSICDISC.get()).when(LootItemRandomChanceCondition.randomChance(0.25f))).add(LootItem.lootTableItem(ItemInit.SHATTEREDSOUL.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3))))));
+        add(EntityInit.RUNICOVERSEER.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.DIMENSIONALTHREATMUSICDISC.get()).when(LootItemRandomChanceCondition.randomChance(0.25f)))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemInit.SHATTEREDSOUL.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3))))));
     }
 
     @Override

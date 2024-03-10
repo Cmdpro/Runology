@@ -44,7 +44,7 @@ public class InstabilityEventInit {
                 pos = pos.add(0, -1, 0);
                 monster.setPos(pos);
             }
-            if (chunk.getLevel().getEntitiesOfClass(RunicScout.class, AABB.ofSize(pos, 80, 80, 80)).size() <= 0) {
+            if (chunk.getLevel().getEntitiesOfClass(RunicScout.class, AABB.ofSize(pos, 80, 80, 80)).size() <= 10) {
                 player.level().addFreshEntity(monster);
             } else {
                 monster.discard();
