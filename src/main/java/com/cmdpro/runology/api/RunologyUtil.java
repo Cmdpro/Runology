@@ -118,10 +118,12 @@ public class RunologyUtil {
             for (int[] i : offsets) {
                 LevelChunk chunk3 = level.getChunk(chunk.x+i[0], chunk.z+i[1]);
                 chunk3.getCapability(ChunkModDataProvider.CHUNK_MODDATA).ifPresent(data2 -> {
-                    if (data.getInstability() < data2.getInstability()) {
-                        float change = data2.getInstability()-data.getInstability();
-                        data.setInstability(data.getInstability()+change);
-                        data2.setInstability(data2.getInstability()-change);
+                    data2.setInstability(data2.getInstability()-amount);
+                    if (data2.getInstability() > max) {
+                        data2.setInstability(max);
+                    }
+                    if (data2.getInstability() < min) {
+                        data2.setInstability(min);
                     }
                 });
             }
