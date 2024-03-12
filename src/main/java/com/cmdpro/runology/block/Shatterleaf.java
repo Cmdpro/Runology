@@ -68,8 +68,8 @@ public class Shatterleaf extends FlowerBlock implements BonemealableBlock {
         boolean flag = i == 3;
         if (!flag && pPlayer.getItemInHand(pHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
-        } else if (i > 1) {
-            int j = 1 + pLevel.random.nextInt(2);
+        } else if (i >= 3) {
+            int j = 1 + pLevel.random.nextInt(1);
             popResource(pLevel, pPos, new ItemStack(ItemInit.SHATTERBERRIES.get(), j + (flag ? 1 : 0)));
             pLevel.playSound((Player)null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
             BlockState blockstate = pState.setValue(AGE, Integer.valueOf(0));

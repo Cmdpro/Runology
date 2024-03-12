@@ -42,7 +42,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(BlockInit.FIREORE.get(),
                 block -> createElementalOreDrops(BlockInit.FIREORE.get(), ItemInit.FIREPOWDER.get()));
         this.add(BlockInit.MYSTERIUMORE.get(),
-                block -> createElementalOreDrops(BlockInit.MYSTERIUMORE.get(), ItemInit.RAWMYSTERIUM.get()));
+                block -> createMysteriumOreDrops(BlockInit.MYSTERIUMORE.get(), ItemInit.RAWMYSTERIUM.get()));
         dropSelf(BlockInit.CHISELEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.CRACKEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.MYSTERIUMBLOCK.get());
@@ -62,6 +62,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockInit.SHATTERSTONEWALL.get());
         dropSelf(BlockInit.VOIDGLASS.get());
         dropSelf(BlockInit.RUNICANALYZER.get());
+        dropSelf(BlockInit.RUNICCAULDRON.get());
         this.add(BlockInit.MYSTERIOUSALTAR.get(),
                 block -> noDrop());
         this.add(BlockInit.POTTED_SHATTERLEAF.get(), block -> {

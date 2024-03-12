@@ -1,5 +1,6 @@
 package com.cmdpro.runology.item;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -15,6 +16,8 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.lang3.RandomUtils;
+import org.checkerframework.checker.units.qual.C;
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -45,13 +48,23 @@ public class AncientDragonsBlade extends SwordItem {
                     for (LivingEntity p : entities) {
                         p.hurt(pLivingEntity.damageSources().mobAttack(pLivingEntity), 8);
                     }
-                    float movement = 0.025f;
-                    DustParticleOptions options = new DustParticleOptions(new Vector3f(1f, 0f, 1f), 1);
-                    ((ServerLevel) pLevel).sendParticles(options, pos.x, pos.y, pos.z, 4, 0.1, 0.1, 0.1, movement);
                 }
             }
             if (pRemainingUseDuration <= 0) {
                 pLivingEntity.stopUsingItem();
+            }
+        } else {
+            for (int i = 0; i < 10; i++) {
+                for (int o = -4; o <= 4; o++) {
+                    Vec3 vec = calculateViewVector(pLivingEntity.getXRot(), pLivingEntity.getYRot() + (o * 5)).multiply(((float) i) / 2, ((float) i) / 2, ((float) i) / 2);
+                    Vec3 pos = pLivingEntity.getBoundingBox().getCenter().add(0, 0.25f, 0).add(vec);
+                    DustParticleOptions options = new DustParticleOptions(new Vector3f(1f, 0f, 1f), 1);
+                    float movement = 0.025f;
+                    for (int p = 0; p < 4; p++) {
+                        pLevel.addParticle(options, pos.x+(RandomUtils.nextFloat(0f, 0.2f)-0.1f), pos.y+(RandomUtils.nextFloat(0f, 0.2f)-0.1f), pos.z+(RandomUtils.nextFloat(0f, 0.2f)-0.1f), movement, movement, movement);
+                    }
+
+                }
             }
         }
     }

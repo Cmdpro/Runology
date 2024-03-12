@@ -91,7 +91,7 @@ public class VoidBeam extends Entity implements TraceableEntity {
                 remove(RemovalReason.DISCARDED);
                 return;
             }
-            if (time <= 100) {
+            if (time <= 50) {
                 Vec3 pos = new Vec3(player.position().x, player.blockPosition().getCenter().y, player.position().z);
                 while (!level().getBlockState(BlockPos.containing(pos)).isSolid() && pos.y > level().getMinBuildHeight()) {
                     pos = pos.add(0, -1, 0);
@@ -102,7 +102,7 @@ public class VoidBeam extends Entity implements TraceableEntity {
             } else {
                 setDeltaMovement(0, 0, 0);
             }
-            if (time == 110) {
+            if (time == 60) {
                 playSound(SoundEvents.BEACON_POWER_SELECT);
                 for (Player i : level().players()) {
                     if (i.position().x >= position().x-0.5 && i.position().z >= position().z-0.5 && i.position().x <= position().x+0.5 && i.position().z <= position().z+0.5 && i.position().y >= position().y) {
@@ -110,7 +110,7 @@ public class VoidBeam extends Entity implements TraceableEntity {
                     }
                 }
             }
-            if (time >= 120) {
+            if (time >= 70) {
                 remove(RemovalReason.KILLED);
             }
         }

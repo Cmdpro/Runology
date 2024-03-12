@@ -43,7 +43,7 @@ public class ItemInit {
     public static final RegistryObject<Item> AIRPOWDER = register("airpowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> INSTABILITYPOWDER = register("instabilitypowder", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> INSTABILITYRESONATOR = register("instabilityreader", () -> new InstabilityResonator(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> SHATTERBERRIES = register("shatterberries", () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build())));
+    public static final RegistryObject<Item> SHATTERBERRIES = register("shatterberries", () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.3F).build())));
     public static final RegistryObject<Item> RAWMYSTERIUM = register("rawmysterium", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MYSTERIUMINGOT = register("mysteriumingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MYSTERIUMNUGGET = register("mysteriumnugget", () -> new Item(new Item.Properties()));

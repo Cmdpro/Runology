@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.init.BlockInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.TagInit;
 import net.minecraft.core.HolderLookup;
@@ -22,6 +23,12 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+        this.tag(Tags.Items.ORES)
+                .add(BlockInit.AIRORE.get().asItem())
+                .add(BlockInit.WATERORE.get().asItem())
+                .add(BlockInit.FIREORE.get().asItem())
+                .add(BlockInit.EARTHORE.get().asItem())
+                .add(BlockInit.MYSTERIUMORE.get().asItem());
         this.tag(TagInit.Items.GAUNTLETS)
                 .add(ItemInit.COPPERGAUNTLET.get())
                 .add(ItemInit.MYSTERIUMGAUNTLET.get())
