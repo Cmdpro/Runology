@@ -1,0 +1,36 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.runiccauldron",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [6, 3, -8], "size": [2, 13, 16], "uv": [20, 13]},
+						{"origin": [-6, 3, -6], "size": [12, 1, 12], "uv": [20, 0]},
+						{"origin": [-8, 3, -8], "size": [2, 13, 16], "uv": [0, 0]},
+						{"origin": [-6, 3, -8], "size": [12, 13, 2], "uv": [0, 42]},
+						{"origin": [-6, 3, 6], "size": [12, 13, 2], "uv": [40, 13]},
+						{"origin": [4, 0, -8], "size": [4, 3, 2], "uv": [20, 0]},
+						{"origin": [6, 0, -6], "size": [2, 3, 2], "uv": [0, 34]},
+						{"origin": [-8, 0, -8], "size": [4, 3, 2], "uv": [0, 10]},
+						{"origin": [-8, 0, -6], "size": [2, 3, 2], "uv": [8, 29]},
+						{"origin": [4, 0, 6], "size": [4, 3, 2], "uv": [0, 5]},
+						{"origin": [6, 0, 4], "size": [2, 3, 2], "uv": [0, 29]},
+						{"origin": [-8, 0, 6], "size": [4, 3, 2], "uv": [0, 0]},
+						{"origin": [-8, 0, 4], "size": [2, 3, 2], "uv": [20, 5]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-05T14:06:24.0530735	Item Models: runology
+// 1.20.1	2024-03-12T16:28:20.0603513	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 d29c06739b96489389a440127d840aa2e92fac46 assets/runology/models/item/ancientdragonsblade.json
@@ -54,8 +54,10 @@ bf0e530f11c6939e1f27dcb4a012f26372cd5afb assets/runology/models/item/rawmysteriu
 91c4a41fc2c157e7238a9411c544014a4ea14bbf assets/runology/models/item/realityslicer.json
 f74602e34f9d3a8e306aa9402fbe9d6447a9e0f8 assets/runology/models/item/research.json
 d779210d97ca68884dad8fa4de93d5f872977439 assets/runology/models/item/runicanalyzer.json
+4e52a717bb5486aab43f29a58985355abf4d1979 assets/runology/models/item/runiccauldron.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/runology/models/item/runicconstructspawnegg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/runology/models/item/runicscoutspawnegg.json
+4dcc0a224482321b59f924c49a877e42f604cd39 assets/runology/models/item/runicwaste.json
 d97adc8521bd880b487c040687bfae9a285fc757 assets/runology/models/item/runicworkbench.json
 80f78b6836cb854933b347a3142444ee117a9da8 assets/runology/models/item/runologyguideicon.json
 0669871dddfa816c54ba2a44ecb0596eac85ad65 assets/runology/models/item/shatterberries.json

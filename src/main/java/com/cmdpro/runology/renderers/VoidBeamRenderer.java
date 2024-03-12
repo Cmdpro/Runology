@@ -42,6 +42,6 @@ public class VoidBeamRenderer extends EntityRenderer<VoidBeam> {
     }
     @Override
     public ResourceLocation getTextureLocation(VoidBeam proj) {
-        return null;
+        return BeaconRenderer.BEAM_LOCATION;
     }
 }

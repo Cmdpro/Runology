@@ -46,6 +46,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(BlockEntityInit.VOIDGLASS.get(), VoidGlassRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.RUNICANALYZER.get(), RunicAnalyzerRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.SPELLTABLE.get(), SpellTableRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.RUNICCAULDRON.get(), RunicCauldronRenderer::new);
     }
     @SubscribeEvent
     public static void onRegisterDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {

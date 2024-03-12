@@ -7,6 +7,7 @@ import com.cmdpro.runology.entity.RunicOverseer;
 import com.cmdpro.runology.entity.RunicScout;
 import com.cmdpro.runology.entity.Totem;
 import com.cmdpro.runology.init.EntityInit;
+import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -21,6 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
@@ -47,7 +49,9 @@ public class ModEventBusEvents {
     }
     @SubscribeEvent
     public static void registerStuff(RegisterEvent event) {
-
+        event.register(ForgeRegistries.Keys.RECIPE_TYPES, helper -> {
+            helper.register(new ResourceLocation(Runology.MOD_ID, RunicCauldronItemRecipe.Type.ID), RunicCauldronItemRecipe.Type.INSTANCE);
+        });
     }
     @SubscribeEvent
     public static void registerRegistries(NewRegistryEvent event) {

@@ -2,6 +2,7 @@ package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.recipe.IRunicRecipe;
+import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
 import com.cmdpro.runology.recipe.ShapedRunicRecipe;
 import com.cmdpro.runology.recipe.ShapelessRunicRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,8 @@ public class RecipeInit {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPES = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Runology.MOD_ID);
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, Runology.MOD_ID);
 
+    public static final RegistryObject<RecipeSerializer<RunicCauldronItemRecipe>> RUNICCAULDRONITEMSERIALIZER =
+            RECIPES.register("runiccauldronitem", () -> RunicCauldronItemRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeSerializer<ShapelessRunicRecipe>> SHAPELESSRUNICRECIPE = RECIPES.register("shapelessrunicrecipe", () -> ShapelessRunicRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeSerializer<ShapedRunicRecipe>> SHAPEDRUNICRECIPE = RECIPES.register("shapedrunicrecipe", () -> ShapedRunicRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeType<IRunicRecipe>> RUNICCRAFTING =

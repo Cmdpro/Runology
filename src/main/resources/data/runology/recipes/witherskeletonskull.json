@@ -1,0 +1,15 @@
+{
+  "type": "runology:runiccauldronitem",
+  "entry": "runology:ancientdiscovery/echogoggles",
+  "input": {
+    "item": "minecraft:skeleton_skull"
+  },
+  "fluidInput": {
+    "id": "minecraft:lava",
+    "amount": 1000
+  },
+  "output": {
+    "item": "minecraft:wither_skeleton_skull",
+    "count": 1
+  }
+}

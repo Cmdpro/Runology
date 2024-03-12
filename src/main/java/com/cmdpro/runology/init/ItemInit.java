@@ -25,6 +25,7 @@ public class ItemInit {
     public static final RegistryObject<Item> EMPOWEREDMYSTERIUMGAUNTLET = register("empoweredmysteriumgauntlet", () -> new EmpoweredGauntlet(new Item.Properties().stacksTo(1), ItemInit.MYSTERIUMGAUNTLET.get()));
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
     public static final RegistryObject<Item> SPELLTABLEITEM = register("spelltable", () -> new SpellTableItem(BlockInit.SPELLTABLE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RUNICCAULDRONITEM = register("runiccauldron", () -> new RunicCauldronItem(BlockInit.RUNICCAULDRON.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICANALYZERITEM = register("runicanalyzer", () -> new RunicAnalyzerItem(BlockInit.RUNICANALYZER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
@@ -47,6 +48,7 @@ public class ItemInit {
     public static final RegistryObject<Item> RAWMYSTERIUM = register("rawmysterium", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MYSTERIUMINGOT = register("mysteriumingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> MYSTERIUMNUGGET = register("mysteriumnugget", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RUNICWASTE = register("runicwaste", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RESEARCH = register("research", () -> new Research(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MYSTERIUMTOTEM = register("mysteriumtotem", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MYSTERIUMCORE = register("mysteriumcore", () -> new Item(new Item.Properties()));

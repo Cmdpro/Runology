@@ -114,6 +114,8 @@
   "item.runology.spellcrystal.tier": "Tier %1$s",
   "item.runology.gauntlet.tier": "Tier %1$s",
   "item.runology.staff.tier": "Tier %1$s",
+  "block.runology.runiccauldron": "Runic Cauldron",
+  "block.runology.runiccauldron.owner": "This Runic Cauldron is owned by %1$s",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",
