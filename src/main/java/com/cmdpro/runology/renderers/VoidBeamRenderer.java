@@ -36,7 +36,7 @@ public class VoidBeamRenderer extends EntityRenderer<VoidBeam> {
     public void render(VoidBeam pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         super.render(pEntity, pEntityYaw, pPartialTick, pPoseStack, pBuffer, pPackedLight);
         pPoseStack.translate(-0.5f, 0, -0.5f);
-        float size = pEntity.time >= 110 ? (1f-(((float)pEntity.time-110)/10f)) : 0.1f;
+        float size = pEntity.time >= 60 ? (1f-(((float)pEntity.time-60)/10f)) : 0.1f;
         BeaconRenderer.renderBeaconBeam(pPoseStack, pBuffer, BeaconRenderer.BEAM_LOCATION, pPartialTick, 1.0F, Minecraft.getInstance().level.getGameTime(), 0, 100, new float[] { 1f, 0f, 1f }, size, size);
         pPoseStack.translate(0.5f, 0, 0.5f);
     }
