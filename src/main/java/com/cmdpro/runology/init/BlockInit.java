@@ -23,6 +23,10 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             Runology.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = ItemInit.ITEMS;
+    public static final RegistryObject<LiquidBlock> LIQUIDSOULSBLOCK = BLOCKS.register("liquidsouls",
+            () -> new LiquidBlock(FluidInit.SOURCELIQUIDSOULS, BlockBehaviour.Properties.copy(Blocks.WATER)));
+    public static final RegistryObject<LiquidBlock> TRANSMUTATIVESOLUTIONBLOCK = BLOCKS.register("transmutativesolution",
+            () -> new LiquidBlock(FluidInit.SOURCETRANSMUTATIVESOLUTION, BlockBehaviour.Properties.copy(Blocks.WATER)));
     public static final RegistryObject<Block> RUNICWORKBENCH = registerBlock("runicworkbench",
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> RUNICCAULDRON = registerBlock("runiccauldron",

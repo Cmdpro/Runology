@@ -13,6 +13,7 @@
 			}
 		},
 		"animation.runiccauldron.hand": {
+			"loop": true,
 			"animation_length": 0.04167,
 			"bones": {
 				"body": {

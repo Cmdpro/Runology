@@ -24,6 +24,10 @@ public class RunicCauldronItemRecipe implements Recipe<SimpleContainer>, IHasReq
     private final Ingredient input;
     private final FluidStack fluidInput;
     private final String entry;
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
 
     public RunicCauldronItemRecipe(ResourceLocation id, ItemStack output,
                                    Ingredient input, FluidStack fluidInput, String entry) {

@@ -25,6 +25,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -76,6 +77,8 @@ public class Runology
         InstabilityEventInit.INSTABILITY_EVENTS.register(bus);
         AnalyzeTaskInit.ANALYZE_TASKS.register(bus);
         SpellInit.SPELLS.register(bus);
+        FluidInit.register(bus);
+        FluidTypeInit.FLUID_TYPES.register(bus);
         StructureInit.register(bus);
         FeatureInit.register(bus);
         GeckoLib.initialize();

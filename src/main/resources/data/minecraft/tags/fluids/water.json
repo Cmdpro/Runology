@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"runology:flowingliquidsouls",
+		"runology:sourceliquidsouls",
+		"runology:flowingtransmutativesolution",
+		"runology:sourcetransmutativesolution"
+	]
+}
