@@ -1,4 +1,4 @@
-// 1.20.1	2024-03-13T21:17:55.9904701	Loot Tables
+// 1.20.1	2024-03-14T10:38:46.8226119	Loot Tables
 b3893579b954b9cc5f69044be66d166582d635bb data/runology/loot_tables/blocks/chiseledshatterstonebricks.json
 db685e930aec9b2436b6e3b91a4b66bc6a1bb65a data/runology/loot_tables/blocks/crackedshatterstonebricks.json
 42bb4677446eb04ab300bdefdff403dfd06e3763 data/runology/loot_tables/blocks/deepslateairore.json
@@ -26,6 +26,7 @@ f648e4f6593d8b369e2043f84f8776ba493f86b2 data/runology/loot_tables/blocks/shatte
 7b91402bc56e534717a4cc2be4929bdbd122c838 data/runology/loot_tables/blocks/shatterstoneslab.json
 fcad441cd080037b5413a5f1b3e4bfd40374b626 data/runology/loot_tables/blocks/shatterstonestairs.json
 b6962c6c3cac822c1f83b94ccb24086bcf25a258 data/runology/loot_tables/blocks/shatterstonewall.json
+6a6312b53b81f6b17138fb55bc0aaf529acfcbf7 data/runology/loot_tables/blocks/spark.json
 98dd4ff4cb3709f041703aadcd06fdfb60fbbdce data/runology/loot_tables/blocks/spelltable.json
 f35a3a256609cb1488732aa815ed9f119b81e595 data/runology/loot_tables/blocks/voidglass.json
 d9d8e0ee2c15c2a3c1c2f0b351e9b9ba7730fd29 data/runology/loot_tables/entities/runicconstruct.json

@@ -143,6 +143,10 @@ public class Runology
             event.accept(ItemInit.ANCIENTDRAGONSBLADETORNRESEARCH);
             event.accept(ItemInit.ECHOGOGGLESTORNRESEARCH);
             event.accept(ItemInit.LANTERNOFFLAMESTORNRESEARCH);
+            event.accept(ItemInit.RUNICWASTE);
+            event.accept(ItemInit.LIQUIDSOULSBUCKET);
+            event.accept(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
+            event.accept(ItemInit.CONJURESPARKSPELLCRYSTAL);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
@@ -171,6 +175,8 @@ public class Runology
             event.accept(BlockInit.MYSTERIOUSALTAR);
             event.accept(ItemInit.RUNICANALYZERITEM);
             event.accept(ItemInit.SPELLTABLEITEM);
+            event.accept(ItemInit.RUNICCAULDRONITEM);
+            event.accept(ItemInit.ENDERTRANSPORTERITEM);
         }
     }
     private void setup(final FMLCommonSetupEvent event)

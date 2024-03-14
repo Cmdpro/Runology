@@ -27,11 +27,12 @@ public class SummonTotemSpell extends Spell {
     }
 
     @Override
-    public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
+    public boolean cast(Player player, boolean fromStaff, boolean fromGauntlet) {
         Totem totem = new Totem(EntityInit.TOTEM.get(), player.level());
         totem.setPos(player.position());
         player.level().addFreshEntity(totem);
         totem.triggerAnim("attackController", "animation.totem.spawning");
+        return true;
     }
 
     @Override

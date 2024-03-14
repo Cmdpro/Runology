@@ -35,6 +35,10 @@ public class BlockEntityInit {
             BLOCK_ENTITIES.register("endertransporterblockentity", () ->
                     BlockEntityType.Builder.of(EnderTransporterBlockEntity::new,
                             BlockInit.ENDERTRANSPORTER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SparkBlockEntity>> SPARK =
+            BLOCK_ENTITIES.register("sparkblockentity", () ->
+                    BlockEntityType.Builder.of(SparkBlockEntity::new,
+                            BlockInit.SPARK.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

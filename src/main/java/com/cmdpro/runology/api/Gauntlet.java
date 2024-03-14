@@ -86,15 +86,16 @@ public class Gauntlet extends Item {
                             }
                         }
                         if (hasAll) {
-                            for (String i : tag.getAllKeys()) {
-                                for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
-                                    if (i.equals(o.getKey().toString())) {
-                                        tag.putFloat(i, tag.getFloat(i)-o.getValue());
+                            if (spell.cast(pPlayer, false, true)) {
+                                for (String i : tag.getAllKeys()) {
+                                    for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
+                                        if (i.equals(o.getKey().toString())) {
+                                            tag.putFloat(i, tag.getFloat(i) - o.getValue());
+                                        }
                                     }
                                 }
+                                return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
                             }
-                            spell.cast(pPlayer, false, true);
-                            return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
                         }
                     }
                 }

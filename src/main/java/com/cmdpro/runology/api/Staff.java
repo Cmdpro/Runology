@@ -83,15 +83,16 @@ public class Staff extends Item {
                             }
                         }
                         if (hasAll) {
-                            for (String i : tag.getAllKeys()) {
-                                for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
-                                    if (i.equals(o.getKey().toString())) {
-                                        tag.putFloat(i, tag.getFloat(i)-o.getValue());
+                            if (spell.cast(pPlayer, true, false)) {
+                                for (String i : tag.getAllKeys()) {
+                                    for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
+                                        if (i.equals(o.getKey().toString())) {
+                                            tag.putFloat(i, tag.getFloat(i) - o.getValue());
+                                        }
                                     }
                                 }
+                                return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
                             }
-                            spell.cast(pPlayer, true, false);
-                            return InteractionResultHolder.success(pPlayer.getItemInHand(pUsedHand));
                         }
                     }
                 }

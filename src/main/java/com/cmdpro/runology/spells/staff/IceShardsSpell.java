@@ -30,7 +30,7 @@ public class IceShardsSpell extends Spell {
     }
 
     @Override
-    public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
+    public boolean cast(Player player, boolean fromStaff, boolean fromGauntlet) {
         for (int i = 0; i < 15; i++) {
             IceShard shard = new IceShard(player.level(), player);
             float xDir = player.getXRot()+RandomUtils.nextFloat(0f, 30f)-15f;
@@ -38,6 +38,7 @@ public class IceShardsSpell extends Spell {
             shard.setDeltaMovement(calculateViewVector(xDir, yDir));
             player.level().addFreshEntity(shard);
         }
+        return true;
     }
     protected final Vec3 calculateViewVector(float pXRot, float pYRot) {
         float f = pXRot * ((float)Math.PI / 180F);

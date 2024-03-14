@@ -71,6 +71,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "summontotem")));
     public static final RegistryObject<Item> FIREBALLSPELLCRYSTAL = register("fireballspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "fireball")));
     public static final RegistryObject<Item> ICESHARDSSPELLCRYSTAL = register("iceshardspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "iceshards")));
+    public static final RegistryObject<Item> CONJURESPARKSPELLCRYSTAL = register("conjuresparkspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "conjurespark")));
 
     public static final RegistryObject<Item> RUNICCONSTRUCTSPAWNEGG = register("runicconstructspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICCONSTRUCT, 0x000000, 0xaa00aa, new Item.Properties()));
     public static final RegistryObject<Item> RUNICSCOUTSPAWNEGG = register("runicscoutspawnegg", () -> new ForgeSpawnEggItem(EntityInit.RUNICSCOUT, 0x000000, 0xaa00aa, new Item.Properties()));

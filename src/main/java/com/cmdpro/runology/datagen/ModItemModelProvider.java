@@ -77,6 +77,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.RUNICWASTE);
         simpleItem(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
         simpleItem(ItemInit.LIQUIDSOULSBUCKET);
+        simpleItem(ItemInit.CONJURESPARKSPELLCRYSTAL);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);

@@ -124,6 +124,13 @@
   "block.runology.endertransporter.fluid": "FLUID",
   "block.runology.endertransporter.extract": "EXTRACT",
   "block.runology.endertransporter.insert": "INSERT",
+  "item.runology.conjuresparkspellcrystal": "Conjure Spark Spell Crystal",
+  "item.runology.runicwaste": "Runic Waste",
+  "item.runology.liquidsoulsbucket": "Liquid Souls Bucket",
+  "item.runology.transmutativesolutionbucket": "Transmutative Solution Bucket",
+  "block.runology.liquidsouls": "Liquid Souls",
+  "block.runology.transmutivesolution": "Transmutive Solution",
+  "block.runology.spark": "Spark",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

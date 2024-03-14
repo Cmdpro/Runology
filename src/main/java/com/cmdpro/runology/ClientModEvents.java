@@ -1,6 +1,7 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.RunologyUtil;
+import com.cmdpro.runology.entity.SparkAttack;
 import com.cmdpro.runology.init.*;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePageRenderer;
@@ -96,6 +97,7 @@ public class ClientModEvents {
         EntityRenderers.register(EntityInit.FIREBALL.get(), EmptyEntityRenderer::new);
         EntityRenderers.register(EntityInit.ICESHARD.get(), IceShardRenderer::new);
         EntityRenderers.register(EntityInit.SHATTERATTACK.get(), ShatterAttackRenderer::new);
+        EntityRenderers.register(EntityInit.SPARKATTACK.get(), SparkAttackRenderer::new);
         event.enqueueWork(new Runnable() {
             public void run() {
                 ItemProperties.register(ItemInit.INSTABILITYRESONATOR.get(), new ResourceLocation(Runology.MOD_ID, "instability"), (stack, level, entity, seed) -> {

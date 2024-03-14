@@ -31,6 +31,8 @@ public class BlockInit {
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> ENDERTRANSPORTER = registerBlock("endertransporter",
             () -> new EnderTransporter(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
+    public static final RegistryObject<Block> SPARK = registerBlock("spark",
+            () -> new Spark(BlockBehaviour.Properties.copy(Blocks.TORCH)));
     public static final RegistryObject<Block> RUNICCAULDRON = registerBlock("runiccauldron",
             () -> new RunicCauldron(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SPELLTABLE = registerBlock("spelltable",

@@ -73,6 +73,7 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
         pTag.putString("color", color.getName());
         pTag.putString("mode", mode.name());
         pTag.putString("transportType", transportType.name());
+        pTag.putInt("timer", timer);
     }
     public int timer;
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EnderTransporterBlockEntity pBlockEntity) {
@@ -135,7 +136,7 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
                                         WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
                                         options.colorData = ColorParticleData.create(new Color(pBlockEntity.color.getTextColor()), new Color(pBlockEntity.color.getTextColor())).build();
                                         options.scaleData = GenericParticleData.create(0.25f).build();
-                                        RunologyUtil.drawLine(options, pPos.getCenter(), toInsert.getBlockPos().getCenter(), pLevel, 0.1f);
+                                        RunologyUtil.drawLine(options, pPos.getCenter().relative(pBlockEntity.getDirection().getOpposite(), 0.25), toInsert.getBlockPos().getCenter().relative(toInsert.getDirection().getOpposite(), 0.25), pLevel, 0.1f);
                                     }
                                 }
                             }
@@ -233,6 +234,7 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
         color = DyeColor.byName(pTag.getString("color"), DyeColor.WHITE);
         mode = Mode.valueOf(pTag.getString("mode"));
         transportType = TransportType.valueOf(pTag.getString("transportType"));
+        timer = pTag.getInt("timer");
     }
 
 }

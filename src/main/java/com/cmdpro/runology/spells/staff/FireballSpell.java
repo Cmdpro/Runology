@@ -27,9 +27,10 @@ public class FireballSpell extends Spell {
     }
 
     @Override
-    public void cast(Player player, boolean fromStaff, boolean fromGauntlet) {
+    public boolean cast(Player player, boolean fromStaff, boolean fromGauntlet) {
         FireballProjectile fireball = new FireballProjectile(EntityInit.FIREBALL.get(), player, player.level());
         player.level().addFreshEntity(fireball);
+        return true;
     }
 
     @Override
