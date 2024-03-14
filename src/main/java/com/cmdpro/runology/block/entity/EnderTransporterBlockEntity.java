@@ -66,7 +66,7 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
     }
     public DyeColor color = DyeColor.WHITE;
     public Mode mode = Mode.INSERT;
-    public TransportType transportType = TransportType.FLUID;
+    public TransportType transportType = TransportType.ITEM;
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);

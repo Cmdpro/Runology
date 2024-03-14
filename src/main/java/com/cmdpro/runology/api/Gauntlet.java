@@ -1,5 +1,6 @@
 package com.cmdpro.runology.api;
 
+import com.cmdpro.runology.block.entity.EnderTransporterBlockEntity;
 import com.cmdpro.runology.init.SpellInit;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -9,11 +10,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 

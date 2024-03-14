@@ -31,6 +31,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.client.event.RenderNameTagEvent;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
 
@@ -120,12 +121,14 @@ public class EnderTransporter extends BaseEntityBlock {
                         pLevel.playSound(null, pPos, SoundEvents.DYE_USE, SoundSource.BLOCKS);
                     }
                 } else {
-                    ent.mode = ent.mode == EnderTransporterBlockEntity.Mode.INSERT ? EnderTransporterBlockEntity.Mode.EXTRACT : EnderTransporterBlockEntity.Mode.INSERT;
-                    if (ent.mode == EnderTransporterBlockEntity.Mode.INSERT) {
-                        pPlayer.sendSystemMessage(Component.translatable("block.runology.endertransporter.insertmode"));
+                    if (pPlayer.isShiftKeyDown()) {
+                        ent.transportType = ent.transportType == EnderTransporterBlockEntity.TransportType.FLUID ? EnderTransporterBlockEntity.TransportType.ITEM : EnderTransporterBlockEntity.TransportType.FLUID;
+                        pPlayer.sendSystemMessage(Component.translatable("block.runology.endertransporter.type", ent.transportType == EnderTransporterBlockEntity.TransportType.ITEM ? Component.translatable("block.runology.endertransporter.item") : Component.translatable("block.runology.endertransporter.fluid")));
                     } else {
-                        pPlayer.sendSystemMessage(Component.translatable("block.runology.endertransporter.extractmode"));
+                        ent.mode = ent.mode == EnderTransporterBlockEntity.Mode.INSERT ? EnderTransporterBlockEntity.Mode.EXTRACT : EnderTransporterBlockEntity.Mode.INSERT;
+                        pPlayer.sendSystemMessage(Component.translatable("block.runology.endertransporter.mode", ent.mode == EnderTransporterBlockEntity.Mode.EXTRACT ? Component.translatable("block.runology.endertransporter.extract") : Component.translatable("block.runology.endertransporter.insert")));
                     }
+                    ent.updateBlock();
                 }
             }
         }
