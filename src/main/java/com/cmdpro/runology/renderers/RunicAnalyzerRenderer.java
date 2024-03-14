@@ -21,7 +21,7 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 public class RunicAnalyzerRenderer extends GeoBlockRenderer<RunicAnalyzerBlockEntity> {
 
     public RunicAnalyzerRenderer(BlockEntityRendererProvider.Context rendererProvider) {
-        super(new RunicAnalyzerModel());
+        super(new Model());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class RunicAnalyzerRenderer extends GeoBlockRenderer<RunicAnalyzerBlockEn
         Minecraft.getInstance().getItemRenderer().renderStatic(animatable.item, ItemDisplayContext.GUI, packedLight, packedOverlay, poseStack, bufferSource, animatable.getLevel(), 0);
         poseStack.popPose();
     }
-    public static class RunicAnalyzerModel extends GeoModel<RunicAnalyzerBlockEntity> {
+    public static class Model extends GeoModel<RunicAnalyzerBlockEntity> {
         @Override
         public ResourceLocation getModelResource(RunicAnalyzerBlockEntity object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicanalyzer.geo.json");

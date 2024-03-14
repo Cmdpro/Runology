@@ -29,6 +29,8 @@ public class BlockInit {
             () -> new LiquidBlock(FluidInit.SOURCETRANSMUTATIVESOLUTION, BlockBehaviour.Properties.copy(Blocks.WATER)));
     public static final RegistryObject<Block> RUNICWORKBENCH = registerBlock("runicworkbench",
             () -> new RunicWorkbench(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
+    public static final RegistryObject<Block> ENDERTRANSPORTER = registerBlock("endertransporter",
+            () -> new EnderTransporter(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> RUNICCAULDRON = registerBlock("runiccauldron",
             () -> new RunicCauldron(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().strength(2.0f)));
     public static final RegistryObject<Block> SPELLTABLE = registerBlock("spelltable",

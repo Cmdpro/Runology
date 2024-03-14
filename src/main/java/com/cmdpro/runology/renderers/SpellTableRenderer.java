@@ -14,14 +14,14 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 public class SpellTableRenderer extends GeoBlockRenderer<SpellTableBlockEntity> {
 
     public SpellTableRenderer(BlockEntityRendererProvider.Context rendererProvider) {
-        super(new SpellTableModel());
+        super(new Model());
     }
 
     @Override
     public RenderType getRenderType(SpellTableBlockEntity animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class SpellTableModel extends GeoModel<SpellTableBlockEntity> {
+    public static class Model extends GeoModel<SpellTableBlockEntity> {
         @Override
         public ResourceLocation getModelResource(SpellTableBlockEntity object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/spelltable.geo.json");

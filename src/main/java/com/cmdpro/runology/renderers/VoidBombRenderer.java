@@ -14,7 +14,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class VoidBombRenderer extends GeoEntityRenderer<VoidBomb> {
     public VoidBombRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new VoidBombModel());
+        super(renderManager, new Model());
         this.shadowRadius = 0.5f;
     }
     @Override
@@ -26,7 +26,7 @@ public class VoidBombRenderer extends GeoEntityRenderer<VoidBomb> {
     public RenderType getRenderType(VoidBomb animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class VoidBombModel extends GeoModel<VoidBomb> {
+    public static class Model extends GeoModel<VoidBomb> {
         @Override
         public ResourceLocation getModelResource(VoidBomb object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/voidbomb.geo.json");

@@ -24,7 +24,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class TotemRenderer extends GeoEntityRenderer<Totem> {
     public TotemRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new TotemModel());
+        super(renderManager, new Model());
         this.shadowRadius = 1f;
     }
 
@@ -37,7 +37,7 @@ public class TotemRenderer extends GeoEntityRenderer<Totem> {
     public RenderType getRenderType(Totem animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class TotemModel extends GeoModel<Totem> {
+    public static class Model extends GeoModel<Totem> {
         @Override
         public ResourceLocation getModelResource(Totem object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/totem.geo.json");

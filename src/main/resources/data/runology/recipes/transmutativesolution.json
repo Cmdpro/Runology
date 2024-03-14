@@ -1,0 +1,14 @@
+{
+  "type": "runology:runiccauldronfluid",
+  "entry": "runology:ancientdiscovery/echogoggles",
+  "input": {
+    "item": "minecraft:nether_wart"
+  },
+  "fluidInput": {
+    "id": "minecraft:water"
+  },
+  "output": {
+    "id": "runology:transmutivesolution",
+    "amount": 100
+  }
+}

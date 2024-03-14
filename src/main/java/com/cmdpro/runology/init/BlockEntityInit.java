@@ -31,6 +31,10 @@ public class BlockEntityInit {
             BLOCK_ENTITIES.register("voidglassblockentity", () ->
                     BlockEntityType.Builder.of(VoidGlassBlockEntity::new,
                             BlockInit.VOIDGLASS.get()).build(null));
+    public static final RegistryObject<BlockEntityType<EnderTransporterBlockEntity>> ENDERTRANSPORTER =
+            BLOCK_ENTITIES.register("endertransporterblockentity", () ->
+                    BlockEntityType.Builder.of(EnderTransporterBlockEntity::new,
+                            BlockInit.ENDERTRANSPORTER.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

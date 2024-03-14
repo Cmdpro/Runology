@@ -20,7 +20,7 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 public class RunicWorkbenchRenderer extends GeoBlockRenderer<RunicWorkbenchBlockEntity> {
 
     public RunicWorkbenchRenderer(BlockEntityRendererProvider.Context rendererProvider) {
-        super(new RunicWorkbenchModel());
+        super(new Model());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class RunicWorkbenchRenderer extends GeoBlockRenderer<RunicWorkbenchBlock
         Minecraft.getInstance().getItemRenderer().renderStatic(animatable.item, ItemDisplayContext.GUI, packedLight, packedOverlay, poseStack, bufferSource, animatable.getLevel(), 0);
         poseStack.popPose();
     }
-    public static class RunicWorkbenchModel extends GeoModel<RunicWorkbenchBlockEntity> {
+    public static class Model extends GeoModel<RunicWorkbenchBlockEntity> {
         @Override
         public ResourceLocation getModelResource(RunicWorkbenchBlockEntity object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicworkbench.geo.json");

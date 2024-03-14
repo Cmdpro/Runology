@@ -8,9 +8,9 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class RunicWorkbenchItemRenderer extends GeoItemRenderer<RunicWorkbenchItem> {
     public RunicWorkbenchItemRenderer() {
-        super(new RunicWorkbenchItemModel());
+        super(new Model());
     }
-    public static class RunicWorkbenchItemModel extends GeoModel<RunicWorkbenchItem> {
+    public static class Model extends GeoModel<RunicWorkbenchItem> {
         @Override
         public ResourceLocation getModelResource(RunicWorkbenchItem object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicworkbench.geo.json");

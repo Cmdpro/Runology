@@ -14,7 +14,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class RunicScoutRenderer extends GeoEntityRenderer<RunicScout> {
     public RunicScoutRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new RunicScoutModel());
+        super(renderManager, new Model());
         this.shadowRadius = 0.1f;
     }
     @Override
@@ -26,7 +26,7 @@ public class RunicScoutRenderer extends GeoEntityRenderer<RunicScout> {
     public RenderType getRenderType(RunicScout animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class RunicScoutModel extends GeoModel<RunicScout> {
+    public static class Model extends GeoModel<RunicScout> {
         @Override
         public ResourceLocation getModelResource(RunicScout object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicscout.geo.json");

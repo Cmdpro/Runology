@@ -9,9 +9,9 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class RunicCauldronItemRenderer extends GeoItemRenderer<RunicCauldronItem> {
     public RunicCauldronItemRenderer() {
-        super(new RunicCauldronItemModel());
+        super(new Model());
     }
-    public static class RunicCauldronItemModel extends GeoModel<RunicCauldronItem> {
+    public static class Model extends GeoModel<RunicCauldronItem> {
         @Override
         public ResourceLocation getModelResource(RunicCauldronItem object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runiccauldron.geo.json");

@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -63,6 +65,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockInit.VOIDGLASS.get());
         dropSelf(BlockInit.RUNICANALYZER.get());
         dropSelf(BlockInit.RUNICCAULDRON.get());
+        dropSelf(BlockInit.ENDERTRANSPORTER.get());
         this.add(BlockInit.MYSTERIOUSALTAR.get(),
                 block -> noDrop());
         this.add(BlockInit.POTTED_SHATTERLEAF.get(), block -> {
@@ -88,6 +91,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).filter((block) -> {
+            if (block instanceof LiquidBlock) {
+                return false;
+            }
+            return true;
+        })::iterator;
     }
 }

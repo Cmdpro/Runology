@@ -116,6 +116,9 @@
   "item.runology.staff.tier": "Tier %1$s",
   "block.runology.runiccauldron": "Runic Cauldron",
   "block.runology.runiccauldron.owner": "This Runic Cauldron is owned by %1$s",
+  "block.runology.endertransporter": "Ender Transporter",
+  "block.runology.endertransporter.insertmode": "Mode is now INSERT",
+  "block.runology.endertransporter.extractmode": "Mode is now EXTRACT",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

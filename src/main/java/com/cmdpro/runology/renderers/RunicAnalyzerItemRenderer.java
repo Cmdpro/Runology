@@ -9,9 +9,9 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class RunicAnalyzerItemRenderer extends GeoItemRenderer<RunicAnalyzerItem> {
     public RunicAnalyzerItemRenderer() {
-        super(new RunicAnalyzerItemModel());
+        super(new Model());
     }
-    public static class RunicAnalyzerItemModel extends GeoModel<RunicAnalyzerItem> {
+    public static class Model extends GeoModel<RunicAnalyzerItem> {
         @Override
         public ResourceLocation getModelResource(RunicAnalyzerItem object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicanalyzer.geo.json");

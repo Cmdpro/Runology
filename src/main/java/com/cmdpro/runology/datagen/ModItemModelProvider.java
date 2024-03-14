@@ -75,6 +75,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.DRAGONIUMINGOT);
         simpleItem(ItemInit.LANTERNOFFLAMES);
         simpleItem(ItemInit.RUNICWASTE);
+        simpleItem(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
+        simpleItem(ItemInit.LIQUIDSOULSBUCKET);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
@@ -97,6 +99,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockInit.RUNICWORKBENCH);
         evenSimplerBlockItem(BlockInit.SPELLTABLE);
         evenSimplerBlockItem(BlockInit.RUNICCAULDRON);
+        evenSimplerBlockItem(BlockInit.ENDERTRANSPORTER);
         evenSimplerBlockItem(BlockInit.SHATTERCRYSTAL);
         evenSimplerBlockItem(BlockInit.SHATTERSTONE);
         evenSimplerBlockItem(BlockInit.SHATTERSTONEBRICKS);

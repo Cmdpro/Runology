@@ -18,14 +18,14 @@ public class FluidTypeInit {
 
     public static final RegistryObject<FluidType> LIQUIDSOULSFLUIDTYPE = register("liquidsoulsfluid",
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5), new Vector3f(50, 50, 50), 0xffffff,
-            new ResourceLocation(Runology.MOD_ID, "block/fluid/liquidsouls/still"), new ResourceLocation(Runology.MOD_ID, "block/fluid/liquidsouls/flowing"));
+            new ResourceLocation(Runology.MOD_ID, "block/fluid/liquidsouls/still"), new ResourceLocation(Runology.MOD_ID, "block/fluid/liquidsouls/flowing"), null);
     public static final RegistryObject<FluidType> TRANSMUTATIVESOLUTIONFLUIDTYPE = register("transmutativesolutionfluid",
             FluidType.Properties.create().lightLevel(2).density(15).viscosity(5), new Vector3f(50, 50, 50), 0xffffff,
-            new ResourceLocation(Runology.MOD_ID, "block/fluid/transmutativesolution/still"), new ResourceLocation(Runology.MOD_ID, "block/fluid/transmutativesolution/flowing"));
+            new ResourceLocation(Runology.MOD_ID, "block/fluid/transmutativesolution/still"), new ResourceLocation(Runology.MOD_ID, "block/fluid/transmutativesolution/flowing"), new ResourceLocation(Runology.MOD_ID, "block/fluid/transmutativesolution/overlay"));
 
 
 
-    private static RegistryObject<FluidType> register(String name, FluidType.Properties properties, Vector3f color, int tint, ResourceLocation still, ResourceLocation flowing) {
+    private static RegistryObject<FluidType> register(String name, FluidType.Properties properties, Vector3f color, int tint, ResourceLocation still, ResourceLocation flowing, ResourceLocation overlay) {
         return FLUID_TYPES.register(name, () -> new BaseFluidType(still, flowing, null,
                 tint, new Vector3f(color.x / 255f, color.y / 255f, color.z / 255f), properties));
     }

@@ -40,7 +40,7 @@ import java.util.List;
 
 public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
     public ShatterRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new ShatterModel());
+        super(renderManager, new Model());
         this.shadowRadius = 1f;
     }
     @Override
@@ -85,7 +85,7 @@ public class ShatterRenderer extends GeoEntityRenderer<Shatter> {
     public RenderType getRenderType(Shatter animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class ShatterModel extends GeoModel<Shatter> {
+    public static class Model extends GeoModel<Shatter> {
         @Override
         public ResourceLocation getModelResource(Shatter object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/shatter.geo.json");

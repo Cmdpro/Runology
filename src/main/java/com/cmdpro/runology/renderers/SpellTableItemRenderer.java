@@ -8,9 +8,9 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class SpellTableItemRenderer extends GeoItemRenderer<SpellTableItem> {
     public SpellTableItemRenderer() {
-        super(new SpellTableItemModel());
+        super(new Model());
     }
-    public static class SpellTableItemModel extends GeoModel<SpellTableItem> {
+    public static class Model extends GeoModel<SpellTableItem> {
         @Override
         public ResourceLocation getModelResource(SpellTableItem object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/spelltable.geo.json");

@@ -28,6 +28,7 @@ public class ItemInit {
     public static final RegistryObject<Item> RUNICWORKBENCHITEM = register("runicworkbench", () -> new RunicWorkbenchItem(BlockInit.RUNICWORKBENCH.get(), new Item.Properties()));
     public static final RegistryObject<Item> SPELLTABLEITEM = register("spelltable", () -> new SpellTableItem(BlockInit.SPELLTABLE.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICCAULDRONITEM = register("runiccauldron", () -> new RunicCauldronItem(BlockInit.RUNICCAULDRON.get(), new Item.Properties()));
+    public static final RegistryObject<Item> ENDERTRANSPORTERITEM = register("endertransporter", () -> new EnderTransporterItem(BlockInit.ENDERTRANSPORTER.get(), new Item.Properties()));
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICANALYZERITEM = register("runicanalyzer", () -> new RunicAnalyzerItem(BlockInit.RUNICANALYZER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));

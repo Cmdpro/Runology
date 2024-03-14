@@ -27,7 +27,7 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 public class RunicCauldronRenderer extends GeoBlockRenderer<RunicCauldronBlockEntity> {
 
     public RunicCauldronRenderer(BlockEntityRendererProvider.Context rendererProvider) {
-        super(new RunicCauldronModel());
+        super(new Model());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class RunicCauldronRenderer extends GeoBlockRenderer<RunicCauldronBlockEn
     public float getFluidHeight() {
         return 12f*(((float)animatable.getFluidAmount())/((float)animatable.getCapacity()));
     }
-    public static class RunicCauldronModel extends GeoModel<RunicCauldronBlockEntity> {
+    public static class Model extends GeoModel<RunicCauldronBlockEntity> {
         @Override
         public ResourceLocation getModelResource(RunicCauldronBlockEntity object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runiccauldron.geo.json");

@@ -24,7 +24,7 @@ import java.awt.*;
 
 public class RunicOverseerRenderer extends GeoEntityRenderer<RunicOverseer> {
     public RunicOverseerRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new RunicOverseerModel());
+        super(renderManager, new Model());
         this.shadowRadius = 0.5f;
     }
     @Override
@@ -36,7 +36,7 @@ public class RunicOverseerRenderer extends GeoEntityRenderer<RunicOverseer> {
     public RenderType getRenderType(RunicOverseer animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class RunicOverseerModel extends GeoModel<RunicOverseer> {
+    public static class Model extends GeoModel<RunicOverseer> {
         @Override
         public ResourceLocation getModelResource(RunicOverseer object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/runicoverseer.geo.json");

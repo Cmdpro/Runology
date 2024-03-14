@@ -76,7 +76,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockInit.MYSTERIUMBLOCK.get())
                 .add(BlockInit.RUNICWORKBENCH.get())
                 .add(BlockInit.SHATTERCRYSTAL.get())
-                .add(BlockInit.RUNICANALYZER.get());
+                .add(BlockInit.RUNICANALYZER.get())
+                .add(BlockInit.RUNICCAULDRON.get())
+                .add(BlockInit.ENDERTRANSPORTER.get());
 
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)

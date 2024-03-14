@@ -1,10 +1,11 @@
-// 1.20.1	2024-03-12T16:28:20.0583494	Loot Tables
+// 1.20.1	2024-03-13T21:17:55.9904701	Loot Tables
 b3893579b954b9cc5f69044be66d166582d635bb data/runology/loot_tables/blocks/chiseledshatterstonebricks.json
 db685e930aec9b2436b6e3b91a4b66bc6a1bb65a data/runology/loot_tables/blocks/crackedshatterstonebricks.json
 42bb4677446eb04ab300bdefdff403dfd06e3763 data/runology/loot_tables/blocks/deepslateairore.json
 dd8ac40cd425fdbbe506062f1bf80df2447b0f75 data/runology/loot_tables/blocks/deepslateearthore.json
 32b92a84e9473285003fd1e2b2dc3ee9613798a8 data/runology/loot_tables/blocks/deepslatefireore.json
 925abbde02a67c00998a033f49b6b967b7b5376f data/runology/loot_tables/blocks/deepslatewaterore.json
+1686b3bb7f2b5a0eae074d23585110f1869a1b14 data/runology/loot_tables/blocks/endertransporter.json
 502a12fd0663f1fc4272066cb67f9a0f056cf7b6 data/runology/loot_tables/blocks/mysteriousaltar.json
 be1eb2f6961fa64b8f53cda4608fb3fe8d086ed9 data/runology/loot_tables/blocks/mysteriumblock.json
 288fe517612565535872e15cbfbb0af00ea60fe9 data/runology/loot_tables/blocks/mysteriumore.json

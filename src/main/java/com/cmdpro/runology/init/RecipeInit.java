@@ -1,10 +1,7 @@
 package com.cmdpro.runology.init;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.recipe.IRunicRecipe;
-import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
-import com.cmdpro.runology.recipe.ShapedRunicRecipe;
-import com.cmdpro.runology.recipe.ShapelessRunicRecipe;
+import com.cmdpro.runology.recipe.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -19,6 +16,8 @@ public class RecipeInit {
 
     public static final RegistryObject<RecipeSerializer<RunicCauldronItemRecipe>> RUNICCAULDRONITEMSERIALIZER =
             RECIPES.register("runiccauldronitem", () -> RunicCauldronItemRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<RunicCauldronFluidRecipe>> RUNICCAULDRONFLUIDSERIALIZER =
+            RECIPES.register("runiccauldronfluid", () -> RunicCauldronFluidRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeSerializer<ShapelessRunicRecipe>> SHAPELESSRUNICRECIPE = RECIPES.register("shapelessrunicrecipe", () -> ShapelessRunicRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeSerializer<ShapedRunicRecipe>> SHAPEDRUNICRECIPE = RECIPES.register("shapedrunicrecipe", () -> ShapedRunicRecipe.Serializer.INSTANCE);
     public static final RegistryObject<RecipeType<IRunicRecipe>> RUNICCRAFTING =

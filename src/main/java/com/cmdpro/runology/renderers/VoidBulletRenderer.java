@@ -21,7 +21,7 @@ import java.util.List;
 
 public class VoidBulletRenderer extends GeoEntityRenderer<VoidBullet> {
     public VoidBulletRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new VoidBulletModel());
+        super(renderManager, new Model());
         this.shadowRadius = 0.5f;
     }
     @Override
@@ -33,7 +33,7 @@ public class VoidBulletRenderer extends GeoEntityRenderer<VoidBullet> {
     public RenderType getRenderType(VoidBullet animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return super.getRenderType(animatable, texture, bufferSource, partialTick);
     }
-    public static class VoidBulletModel extends GeoModel<VoidBullet> {
+    public static class Model extends GeoModel<VoidBullet> {
         @Override
         public ResourceLocation getModelResource(VoidBullet object) {
             return new ResourceLocation(Runology.MOD_ID, "geo/voidbullet.geo.json");

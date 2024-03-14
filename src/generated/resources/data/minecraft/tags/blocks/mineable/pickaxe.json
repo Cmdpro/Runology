@@ -19,6 +19,8 @@
     "runology:mysteriumblock",
     "runology:runicworkbench",
     "runology:shattercrystal",
-    "runology:runicanalyzer"
+    "runology:runicanalyzer",
+    "runology:runiccauldron",
+    "runology:endertransporter"
   ]
 }
