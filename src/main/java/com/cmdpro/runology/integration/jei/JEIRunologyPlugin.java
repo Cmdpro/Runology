@@ -3,6 +3,7 @@ package com.cmdpro.runology.integration.jei;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.init.RecipeInit;
+import com.cmdpro.runology.recipe.IRunicCauldronRecipe;
 import com.cmdpro.runology.recipe.IRunicRecipe;
 import com.cmdpro.runology.recipe.RunicCauldronFluidRecipe;
 import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
@@ -27,13 +28,11 @@ public class JEIRunologyPlugin implements IModPlugin {
 
     public static IJeiRuntime runTime;
     public static final RecipeType RUNICRECIPE = RecipeType.create(Runology.MOD_ID, RecipeInit.RUNICCRAFTING.getId().getPath(), IRunicRecipe.class);
-    public static final RecipeType RUNICCAULDRONITEMRECIPE = RecipeType.create(Runology.MOD_ID, RunicCauldronItemRecipe.Type.ID, RunicCauldronItemRecipe.class);
-    public static final RecipeType RUNICCAULDRONFLUIDRECIPE = RecipeType.create(Runology.MOD_ID, RunicCauldronFluidRecipe.Type.ID, RunicCauldronFluidRecipe.class);
+    public static final RecipeType RUNICCAULDRONRECIPE = RecipeType.create(Runology.MOD_ID, "runiccauldron", IRunicCauldronRecipe.class);
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new RunicCraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new RunicCauldronItemRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new RunicCauldronFluidRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new RunicCauldronRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
@@ -41,16 +40,15 @@ public class JEIRunologyPlugin implements IModPlugin {
         List<IRunicRecipe> recipes = rm.getAllRecipesFor(RecipeInit.RUNICCRAFTING.get());
         registration.addRecipes(RUNICRECIPE, recipes);
         List<RunicCauldronItemRecipe> recipes2 = rm.getAllRecipesFor(RunicCauldronItemRecipe.Type.INSTANCE);
-        registration.addRecipes(RUNICCAULDRONITEMRECIPE, recipes2);
+        registration.addRecipes(RUNICCAULDRONRECIPE, recipes2);
         List<RunicCauldronFluidRecipe> recipes3 = rm.getAllRecipesFor(RunicCauldronFluidRecipe.Type.INSTANCE);
-        registration.addRecipes(RUNICCAULDRONFLUIDRECIPE, recipes3);
+        registration.addRecipes(RUNICCAULDRONRECIPE, recipes3);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ItemInit.RUNICWORKBENCHITEM.get()), RUNICRECIPE);
-        registration.addRecipeCatalyst(new ItemStack(ItemInit.RUNICCAULDRONITEM.get()), RUNICCAULDRONITEMRECIPE);
-        registration.addRecipeCatalyst(new ItemStack(ItemInit.RUNICCAULDRONITEM.get()), RUNICCAULDRONFLUIDRECIPE);
+        registration.addRecipeCatalyst(new ItemStack(ItemInit.RUNICCAULDRONITEM.get()), RUNICCAULDRONRECIPE);
     }
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {

@@ -15,21 +15,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class RunicCauldronFluidRecipe implements Recipe<SimpleContainer>, IHasRequiredKnowledge {
+public class RunicCauldronFluidRecipe implements IHasRequiredKnowledge, IRunicCauldronRecipe {
     private final ResourceLocation id;
     private final FluidStack output;
     private final Ingredient input;
     private final FluidStack fluidInput;
     private final String entry;
-    @Override
-    public boolean isSpecial() {
-        return true;
-    }
-    public static final ItemStack TOAST_SYMBOL = new ItemStack(ItemInit.RUNICCAULDRONITEM.get());
-    @Override
-    public ItemStack getToastSymbol() {
-        return TOAST_SYMBOL;
-    }
 
     public RunicCauldronFluidRecipe(ResourceLocation id, FluidStack output,
                                     Ingredient input, FluidStack fluidInput, String entry) {
@@ -65,10 +56,11 @@ public class RunicCauldronFluidRecipe implements Recipe<SimpleContainer>, IHasRe
     public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
         return ItemStack.EMPTY;
     }
-
+    @Override
     public FluidStack getFluidInput() {
         return fluidInput;
     }
+    @Override
     public FluidStack getFluidOutput() {
         return output;
     }
@@ -85,6 +77,11 @@ public class RunicCauldronFluidRecipe implements Recipe<SimpleContainer>, IHasRe
     @Override
     public RecipeType<?> getType() {
         return Type.INSTANCE;
+    }
+
+    @Override
+    public boolean isFluidOutput() {
+        return true;
     }
 
     @Override

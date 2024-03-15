@@ -66,7 +66,7 @@ public class RunicCauldronRenderer extends GeoBlockRenderer<RunicCauldronBlockEn
         drawVertex(builder, poseStack, x1, y0, z0, u1, v0, packedLight, color);
     }
     public float getFluidHeight() {
-        return 12f*(((float)animatable.getFluidAmount())/((float)animatable.getCapacity()));
+        return 11f*(((float)animatable.getFluidAmount())/((float)animatable.getCapacity()));
     }
     public static class Model extends GeoModel<RunicCauldronBlockEntity> {
         @Override
