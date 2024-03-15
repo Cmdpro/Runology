@@ -1,20 +1,20 @@
 {
   "type": "runology:shapedrunicrecipe",
-  "entry": "runology:runicmysteries/mysteriumgauntlet",
+  "entry": "runology:artifice/runiccauldron",
   "runicenergy": [
     {
-      "type": "runology:instability",
-      "amount": 80
+      "type": "runology:water",
+      "amount": 100
     }
   ],
   "pattern": [
-    "aaa",
     "a a",
-    "a a"
+    "a a",
+    "aaa"
   ],
   "key": {
     "a": {
-      "item": "runology:mysteriumingot"
+      "item": "minecraft:copper_ingot"
     }
   },
   "result": {

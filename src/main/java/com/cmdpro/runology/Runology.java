@@ -3,6 +3,7 @@ package com.cmdpro.runology;
 import com.cmdpro.runology.api.Spell;
 import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.init.*;
+import com.cmdpro.runology.integration.BookRunicCauldronItemRecipePage;
 import com.cmdpro.runology.integration.BookRunicRecipePage;
 import com.cmdpro.runology.integration.RunologyModonomiconConstants;
 import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
@@ -186,6 +187,7 @@ public class Runology
         event.enqueueWork(ModCriteriaTriggers::register);
         LoaderRegistry.registerPredicate(new ResourceLocation(Runology.MOD_ID, "empty"), (getter, pos, state) -> !state.isSolid());
         LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICRECIPE, BookRunicRecipePage::fromJson, BookRunicRecipePage::fromNetwork);
+        LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICCAULDRONITEM, BookRunicCauldronItemRecipePage::fromJson, BookRunicCauldronItemRecipePage::fromNetwork);
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockInit.SHATTERLEAF.getId(), BlockInit.POTTED_SHATTERLEAF);
         });

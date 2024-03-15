@@ -1,0 +1,15 @@
+{
+  "type": "runology:runiccauldronitem",
+  "entry": "runology:artifice/buddingamethyst",
+  "input": {
+    "item": "minecraft:amethyst_block"
+  },
+  "fluidInput": {
+    "id": "runology:transmutivesolution",
+    "amount": 1000
+  },
+  "output": {
+    "item": "minecraft:budding_amethyst",
+    "count": 1
+  }
+}

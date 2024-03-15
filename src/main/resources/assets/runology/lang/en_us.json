@@ -275,6 +275,12 @@
   "book.runology.runologyguide.spellcasting.summontotemspellcrystal.name": "Summon Totem Spell Crystal",
   "book.runology.runologyguide.spellcasting.summontotemspellcrystal.page1.title": "Summon Totem Spell Crystal",
   "book.runology.runologyguide.spellcasting.summontotemspellcrystal.page1.text": "Using Mysterium Ingots and Raw Mysterium, I can create a spell that will create a totem which will grant resistance to all players nearby, this is a Tier 2 Spell",
+  "book.runology.runologyguide.artifice.runiccauldron.name": "Runic Cauldron",
+  "book.runology.runologyguide.artifice.runiccauldron.page1.title": "Runic Cauldron",
+  "book.runology.runologyguide.artifice.runiccauldron.page1.text": "I can make a cauldron capable of melting items down and merging them with a fluid to create new things, I can empty it by using it while sneaking with an empty hand",
+  "book.runology.runologyguide.artifice.endertransporter.name": "Ender Transporter",
+  "book.runology.runologyguide.artifice.endertransporter.page1.title": "Ender Transporter",
+  "book.runology.runologyguide.artifice.endertransporter.page2.text": "By combining Copper and an Ender Pearl, I can create a device capable of transferring items or liquids, If I need to, I can attune it to a specific color using dye, I can use it to switch its mode and use it while sneaking with an empty hand to change the transport mode",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"

@@ -2,14 +2,17 @@
   "category": "runology:artifice",
   "description": "",
   "hide_while_locked": false,
-  "icon": "runology:enhancedbonemeal",
-  "name": "book.runology.runologyguide.artifice.enhancedbonemeal.name",
+  "icon": "runology:endertransporter",
+  "name": "book.runology.runologyguide.artifice.endertransporter.name",
   "pages": [
     {
       "type": "runology:runicrecipe",
-      "recipe_id_1": "runology:enhancedbonemeal",
-      "title1": "book.runology.runologyguide.artifice.enhancedbonemeal.page1.title",
-      "text": "book.runology.runologyguide.artifice.enhancedbonemeal.page1.text"
+      "recipe_id_1": "runology:endertransporter",
+      "title1": "book.runology.runologyguide.artifice.endertransporter.page1.title"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.runology.runologyguide.artifice.endertransporter.page2.text"
     }
   ],
   "parents": [
@@ -27,13 +30,13 @@
         "type": "runology:consumeitem",
         "items": [
           {
-            "item": "minecraft:bone_meal",
-            "count": 6
+            "item": "minecraft:ender_pearl",
+            "count": 2
           }
         ]
       }
     ]
   },
-  "x": 2,
-  "y": 0
+  "x": 0,
+  "y": 2
 }
