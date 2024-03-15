@@ -1,7 +1,6 @@
-package com.cmdpro.runology.integration;
+package com.cmdpro.runology.integration.jei;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.init.BlockInit;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.recipe.IRunicRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -16,10 +15,8 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.IShapedRecipe;
 
@@ -30,7 +27,7 @@ import java.util.Map;
 public class RunicCraftingRecipeCategory implements IRecipeCategory<IRunicRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(Runology.MOD_ID, "runiccrafting");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(Runology.MOD_ID, "textures/gui/runiccraftingjei.png");
+            new ResourceLocation(Runology.MOD_ID, "textures/gui/jeicrafting.png");
     private final IDrawable background;
     private final IDrawable icon;
     private final ICraftingGridHelper craftingGridHelper;

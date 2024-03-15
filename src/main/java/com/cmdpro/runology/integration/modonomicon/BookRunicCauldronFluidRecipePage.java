@@ -1,7 +1,6 @@
-package com.cmdpro.runology.integration;
+package com.cmdpro.runology.integration.modonomicon;
 
 import com.cmdpro.runology.recipe.RunicCauldronFluidRecipe;
-import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
@@ -11,10 +10,9 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 
-public class BookRunicCauldronFluidRecipePage extends BookRecipePage<Recipe<?>> {
+public class BookRunicCauldronFluidRecipePage extends BookRecipePage<RunicCauldronFluidRecipe> {
 
 
     public BookRunicCauldronFluidRecipePage(BookTextHolder title1, ResourceLocation recipeId1, BookTextHolder title2, ResourceLocation recipeId2, BookTextHolder text, String anchor, BookCondition condition) {
@@ -38,7 +36,7 @@ public class BookRunicCauldronFluidRecipePage extends BookRecipePage<Recipe<?>> 
     }
 
     @Override
-    protected ItemStack getRecipeOutput(Level level, Recipe<?> recipe) {
+    protected ItemStack getRecipeOutput(Level level, RunicCauldronFluidRecipe recipe) {
         return ItemStack.EMPTY;
     }
 

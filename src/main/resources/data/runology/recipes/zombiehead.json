@@ -2,14 +2,14 @@
   "type": "runology:runiccauldronitem",
   "entry": "runology:artifice/heads",
   "input": {
-    "item": "minecraft:skeleton_skull"
+    "item": "minecraft:rotten_flesh"
   },
   "fluidInput": {
-    "id": "runology:transmutativesolution",
+    "id": "runology:liquidsouls",
     "amount": 1000
   },
   "output": {
-    "item": "minecraft:wither_skeleton_skull",
+    "item": "minecraft:zombie_head",
     "count": 1
   }
 }

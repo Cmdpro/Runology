@@ -4,16 +4,12 @@ import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.init.ItemInit;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.klikli_dev.modonomicon.book.BookEntry;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

@@ -1,14 +1,14 @@
 {
   "type": "runology:runiccauldronfluid",
-  "entry": "runology:artifice/transmutativesolution",
+  "entry": "runology:artifice/liquidsouls",
   "input": {
-    "item": "minecraft:nether_wart"
+    "item": "minecraft:soul_sand"
   },
   "fluidInput": {
     "id": "minecraft:water"
   },
   "output": {
-    "id": "runology:transmutativesolution",
+    "id": "runology:liquidsouls",
     "amount": 100
   }
 }

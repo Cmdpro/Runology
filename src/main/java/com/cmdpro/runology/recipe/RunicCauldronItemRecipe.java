@@ -1,6 +1,7 @@
 package com.cmdpro.runology.recipe;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.init.ItemInit;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.fluid.ForgeFluidHelper;
 import com.klikli_dev.modonomicon.platform.services.FluidHelper;
@@ -27,6 +28,11 @@ public class RunicCauldronItemRecipe implements Recipe<SimpleContainer>, IHasReq
     @Override
     public boolean isSpecial() {
         return true;
+    }
+    public static final ItemStack TOAST_SYMBOL = new ItemStack(ItemInit.RUNICCAULDRONITEM.get());
+    @Override
+    public ItemStack getToastSymbol() {
+        return TOAST_SYMBOL;
     }
 
     public RunicCauldronItemRecipe(ResourceLocation id, ItemStack output,

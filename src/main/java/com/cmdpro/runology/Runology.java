@@ -1,23 +1,20 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.api.Spell;
 import com.cmdpro.runology.config.RunologyConfig;
 import com.cmdpro.runology.init.*;
-import com.cmdpro.runology.integration.BookRunicCauldronItemRecipePage;
-import com.cmdpro.runology.integration.BookRunicRecipePage;
-import com.cmdpro.runology.integration.RunologyModonomiconConstants;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.integration.modonomicon.BookRunicCauldronFluidRecipePage;
+import com.cmdpro.runology.integration.modonomicon.BookRunicCauldronItemRecipePage;
+import com.cmdpro.runology.integration.modonomicon.BookRunicRecipePage;
+import com.cmdpro.runology.integration.modonomicon.RunologyModonomiconConstants;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.LightTexture;
-import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -26,7 +23,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -188,6 +184,7 @@ public class Runology
         LoaderRegistry.registerPredicate(new ResourceLocation(Runology.MOD_ID, "empty"), (getter, pos, state) -> !state.isSolid());
         LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICRECIPE, BookRunicRecipePage::fromJson, BookRunicRecipePage::fromNetwork);
         LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICCAULDRONITEM, BookRunicCauldronItemRecipePage::fromJson, BookRunicCauldronItemRecipePage::fromNetwork);
+        LoaderRegistry.registerPageLoader(RunologyModonomiconConstants.Page.RUNICCAULDRONFLUID, BookRunicCauldronFluidRecipePage::fromJson, BookRunicCauldronFluidRecipePage::fromNetwork);
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BlockInit.SHATTERLEAF.getId(), BlockInit.POTTED_SHATTERLEAF);
         });

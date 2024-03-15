@@ -1,15 +1,13 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.RunologyUtil;
-import com.cmdpro.runology.entity.SparkAttack;
 import com.cmdpro.runology.init.*;
-import com.cmdpro.runology.integration.*;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.integration.modonomicon.*;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.*;
 import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
-import com.cmdpro.runology.recipe.RunicCauldronItemRecipe;
 import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.SpellTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
@@ -85,6 +83,7 @@ public class ClientModEvents {
         MenuScreens.register(MenuInit.SPELLTABLEMENU.get(), SpellTableScreen::new);
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICRECIPE, p -> new BookRunicRecipePageRenderer((BookRunicRecipePage) p));
         PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICCAULDRONITEM, p -> new BookRunicCauldronItemRecipePageRenderer((BookRunicCauldronItemRecipePage) p));
+        PageRendererRegistry.registerPageRenderer(RunologyModonomiconConstants.Page.RUNICCAULDRONFLUID, p -> new BookRunicCauldronFluidRecipePageRenderer((BookRunicCauldronFluidRecipePage) p));
         EntityRenderers.register(EntityInit.RUNICCONSTRUCT.get(), RunicConstructRenderer::new);
         EntityRenderers.register(EntityInit.RUNICSCOUT.get(), RunicScoutRenderer::new);
         EntityRenderers.register(EntityInit.RUNICOVERSEER.get(), RunicOverseerRenderer::new);

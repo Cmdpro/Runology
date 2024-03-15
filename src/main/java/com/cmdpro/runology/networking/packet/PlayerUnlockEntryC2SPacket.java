@@ -2,21 +2,15 @@ package com.cmdpro.runology.networking.packet;
 
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.ItemInit;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
-import com.cmdpro.runology.moddata.PlayerModDataProvider;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
-import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.commands.ClearInventoryCommands;
-import net.minecraft.server.commands.GiveCommand;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.network.NetworkEvent;
 
-import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class PlayerUnlockEntryC2SPacket {

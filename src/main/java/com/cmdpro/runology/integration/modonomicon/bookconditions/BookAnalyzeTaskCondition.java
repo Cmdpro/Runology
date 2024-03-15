@@ -1,12 +1,10 @@
-package com.cmdpro.runology.integration.bookconditions;
+package com.cmdpro.runology.integration.modonomicon.bookconditions;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.AnalyzeTask;
-import com.cmdpro.runology.api.AnalyzeTaskSerializer;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.moddata.PlayerModData;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
-import com.google.common.collect.Lists;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
@@ -16,10 +14,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.player.Player;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

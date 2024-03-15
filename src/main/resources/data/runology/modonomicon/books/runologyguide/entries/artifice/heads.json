@@ -1,0 +1,68 @@
+{
+  "category": "runology:artifice",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "minecraft:skeleton_skull",
+  "name": "book.runology.runologyguide.artifice.heads.name",
+  "pages": [
+    {
+      "type": "runology:runiccauldronitem",
+      "recipe_id_1": "runology:zombiehead",
+      "title1": "book.runology.runologyguide.artifice.heads.page1.title",
+      "recipe_id_2": "runology:skeletonskull",
+      "title2": "book.runology.runologyguide.artifice.heads.page1.title2"
+    },
+    {
+      "type": "runology:runiccauldronitem",
+      "recipe_id_1": "runology:creeperhead",
+      "title1": "book.runology.runologyguide.artifice.heads.page2.title",
+      "recipe_id_2": "runology:piglinhead",
+      "title2": "book.runology.runologyguide.artifice.heads.page2.title2"
+    },
+    {
+      "type": "runology:runiccauldronitem",
+      "recipe_id_1": "runology:dragonhead",
+      "title1": "book.runology.runologyguide.artifice.heads.page3.title",
+      "recipe_id_2": "runology:witherskeletonskull",
+      "title2": "book.runology.runologyguide.artifice.heads.page3.title2"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.runology.runologyguide.artifice.heads.page4.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:artifice/liquidsouls",
+      "line_enabled": true,
+      "line_reversed": false
+    },
+    {
+      "draw_arrow": true,
+      "entry": "runology:artifice/transmutativesolution",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "runology:liquidsoulsbucket",
+            "count": 1
+          },
+          {
+            "item": "runology:transmutativesolutionbucket",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  },
+  "x": 0,
+  "y": -6
+}

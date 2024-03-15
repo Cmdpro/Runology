@@ -2,20 +2,20 @@
   "category": "runology:artifice",
   "description": "",
   "hide_while_locked": false,
-  "icon": "minecraft:budding_amethyst",
-  "name": "book.runology.runologyguide.artifice.buddingamethyst.name",
+  "icon": "minecraft:ghast_tear",
+  "name": "book.runology.runologyguide.artifice.ghasttear.name",
   "pages": [
     {
       "type": "runology:runiccauldronitem",
-      "recipe_id_1": "runology:buddingamethyst",
-      "title1": "book.runology.runologyguide.artifice.buddingamethyst.page1.title",
-      "text": "book.runology.runologyguide.artifice.buddingamethyst.page1.text"
+      "recipe_id_1": "runology:ghasttear",
+      "title1": "book.runology.runologyguide.artifice.ghasttear.page1.title",
+      "text": "book.runology.runologyguide.artifice.ghasttear.page1.text"
     }
   ],
   "parents": [
     {
       "draw_arrow": true,
-      "entry": "runology:artifice/transmutativesolution",
+      "entry": "runology:artifice/liquidsouls",
       "line_enabled": true,
       "line_reversed": false
     }
@@ -27,13 +27,13 @@
         "type": "runology:consumeitem",
         "items": [
           {
-            "item": "minecraft:amethyst_block",
-            "count": 4
+            "item": "minecraft:fire_charge",
+            "count": 2
           }
         ]
       }
     ]
   },
-  "x": 3,
+  "x": -3,
   "y": -4
 }

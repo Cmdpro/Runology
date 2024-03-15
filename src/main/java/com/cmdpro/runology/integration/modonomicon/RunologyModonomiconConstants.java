@@ -1,4 +1,4 @@
-package com.cmdpro.runology.integration;
+package com.cmdpro.runology.integration.modonomicon;
 
 import com.cmdpro.runology.Runology;
 import net.minecraft.resources.ResourceLocation;

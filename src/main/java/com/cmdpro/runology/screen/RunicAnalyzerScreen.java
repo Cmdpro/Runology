@@ -4,16 +4,13 @@ import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.AnalyzeTask;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.init.ItemInit;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerClickAnalyzeButtonC2SPacket;
-import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.sun.jna.platform.win32.WinUser;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.MouseHandler;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -22,10 +19,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.client.event.InputEvent;
-import org.lwjgl.system.windows.MOUSEINPUT;
-
-import java.awt.*;
 
 public class RunicAnalyzerScreen extends AbstractContainerScreen<RunicAnalyzerMenu> {
     public static final ResourceLocation TEXTURE = new ResourceLocation(Runology.MOD_ID, "textures/gui/runicanalyzer.png");

@@ -1,7 +1,7 @@
 package com.cmdpro.runology.api;
 
 import com.cmdpro.runology.init.DimensionInit;
-import com.cmdpro.runology.integration.bookconditions.BookAnalyzeTaskCondition;
+import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.klikli_dev.modonomicon.book.BookEntry;
@@ -10,11 +10,9 @@ import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
 import com.klikli_dev.modonomicon.book.conditions.context.BookConditionContext;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.Musics;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
@@ -23,7 +21,6 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.awt.*;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;

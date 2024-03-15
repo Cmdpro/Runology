@@ -13,7 +13,7 @@ public class FluidInit {
     public static final DeferredRegister<Fluid> FLUIDS =
             DeferredRegister.create(ForgeRegistries.FLUIDS, Runology.MOD_ID);
 
-    public static final RegistryObject<FlowingFluid> SOURCELIQUIDSOULS = FLUIDS.register("sourceliquidsouls",
+    public static final RegistryObject<FlowingFluid> SOURCELIQUIDSOULS = FLUIDS.register("liquidsouls",
             () -> new ForgeFlowingFluid.Source(FluidInit.LIQUIDSOULSFLUIDPROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWINGLIQUIDSOULS = FLUIDS.register("flowingliquidsouls",
             () -> new ForgeFlowingFluid.Flowing(FluidInit.LIQUIDSOULSFLUIDPROPERTIES));
@@ -23,7 +23,7 @@ public class FluidInit {
             .bucket(ItemInit.LIQUIDSOULSBUCKET);
 
 
-    public static final RegistryObject<FlowingFluid> SOURCETRANSMUTATIVESOLUTION = FLUIDS.register("sourcetransmutativesolution",
+    public static final RegistryObject<FlowingFluid> SOURCETRANSMUTATIVESOLUTION = FLUIDS.register("transmutativesolution",
             () -> new ForgeFlowingFluid.Source(FluidInit.TRANSMUTATIVESOLUTIONFLUIDPROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWINGTRANSMUTATIVESOLUTION = FLUIDS.register("flowingtransmutativesolution",
             () -> new ForgeFlowingFluid.Flowing(FluidInit.TRANSMUTATIVESOLUTIONFLUIDPROPERTIES));

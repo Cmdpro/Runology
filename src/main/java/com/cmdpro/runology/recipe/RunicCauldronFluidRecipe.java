@@ -1,6 +1,7 @@
 package com.cmdpro.runology.recipe;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.init.ItemInit;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -23,6 +24,11 @@ public class RunicCauldronFluidRecipe implements Recipe<SimpleContainer>, IHasRe
     @Override
     public boolean isSpecial() {
         return true;
+    }
+    public static final ItemStack TOAST_SYMBOL = new ItemStack(ItemInit.RUNICCAULDRONITEM.get());
+    @Override
+    public ItemStack getToastSymbol() {
+        return TOAST_SYMBOL;
     }
 
     public RunicCauldronFluidRecipe(ResourceLocation id, FluidStack output,

@@ -5,7 +5,7 @@
     "item": "minecraft:amethyst_block"
   },
   "fluidInput": {
-    "id": "runology:transmutivesolution",
+    "id": "runology:transmutativesolution",
     "amount": 1000
   },
   "output": {
