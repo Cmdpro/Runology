@@ -1,6 +1,6 @@
 {
   "type": "runology:runiccauldronitem",
-  "entry": "runology:artifice/heads",
+  "entry": "runology:artifice/ghasttear",
   "input": {
     "item": "minecraft:fire_charge"
   },
