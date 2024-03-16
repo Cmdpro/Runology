@@ -6,7 +6,7 @@
   },
   "fluidInput": {
     "id": "runology:liquidsouls",
-    "amount": 1000
+    "amount": 500
   },
   "output": {
     "item": "minecraft:ghast_tear",

@@ -303,6 +303,18 @@
   "book.runology.runologyguide.artifice.heads.page3.title": "Dragon Head",
   "book.runology.runologyguide.artifice.heads.page3.title2": "Wither Skeleton Skull",
   "book.runology.runologyguide.artifice.heads.page4.text": "Using Liquid Souls, I can create heads and skulls from different mobs, This method should be much easier than the usual methods",
+  "book.runology.runologyguide.artifice.powdertransmutation.name": "Powder Transmutation",
+  "book.runology.runologyguide.artifice.powdertransmutation.page1.title": "Fire Powder",
+  "book.runology.runologyguide.artifice.powdertransmutation.page1.title2": "Water Powder",
+  "book.runology.runologyguide.artifice.powdertransmutation.page2.title": "Earth Powder",
+  "book.runology.runologyguide.artifice.powdertransmutation.page2.title2": "Air Powder",
+  "book.runology.runologyguide.artifice.powdertransmutation.page3.text": "It seems that transmutative solution can transmutate natural powders into their opposite type",
+  "book.runology.runologyguide.artifice.basictransmutation.name": "Basic Transmutation",
+  "book.runology.runologyguide.artifice.basictransmutation.page1.title": "Glowstone Dust",
+  "book.runology.runologyguide.artifice.basictransmutation.page1.title2": "Redstone Dust",
+  "book.runology.runologyguide.artifice.basictransmutation.page2.title": "Gold Ingot",
+  "book.runology.runologyguide.artifice.basictransmutation.page2.title2": "Iron Ingot",
+  "book.runology.runologyguide.artifice.basictransmutation.page3.text": "The similarities between some materials allow me to transmutate one material into another, I have managed to figure out how to properly use a few basic connections",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"
