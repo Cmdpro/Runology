@@ -1,12 +1,12 @@
 {
   "type": "runology:runiccauldronitem",
-  "entry": "runology:artifice/heads",
+  "entry": "runology:artifice/ghasttear",
   "input": {
     "item": "minecraft:fire_charge"
   },
   "fluidInput": {
     "id": "runology:liquidsouls",
-    "amount": 1000
+    "amount": 500
   },
   "output": {
     "item": "minecraft:ghast_tear",

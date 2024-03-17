@@ -1,0 +1,15 @@
+{
+  "type": "runology:runiccauldronitem",
+  "entry": "runology:artifice/basictransmutation",
+  "input": {
+    "item": "minecraft:iron_ingot"
+  },
+  "fluidInput": {
+    "id": "runology:transmutativesolution",
+    "amount": 100
+  },
+  "output": {
+    "item": "minecraft:gold_ingot",
+    "count": 1
+  }
+}

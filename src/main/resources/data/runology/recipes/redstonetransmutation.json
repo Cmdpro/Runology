@@ -1,0 +1,15 @@
+{
+  "type": "runology:runiccauldronitem",
+  "entry": "runology:artifice/basictransmutation",
+  "input": {
+    "item": "minecraft:glowstone_dust"
+  },
+  "fluidInput": {
+    "id": "runology:transmutativesolution",
+    "amount": 100
+  },
+  "output": {
+    "item": "minecraft:redstone",
+    "count": 1
+  }
+}
