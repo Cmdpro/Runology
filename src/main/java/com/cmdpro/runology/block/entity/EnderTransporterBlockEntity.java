@@ -3,12 +3,19 @@ package com.cmdpro.runology.block.entity;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.block.EnderTransporter;
 import com.cmdpro.runology.init.BlockEntityInit;
+import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.DisplayEnderTransporterParticleLineS2CPacket;
+import com.cmdpro.runology.networking.packet.PlayerDataSyncS2CPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.InstrumentItem;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
@@ -182,15 +190,25 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
                                         BlockState blockState2 = ent2.getLevel().getBlockState(ent2.getBlockPos());
                                         ent2.getLevel().sendBlockUpdated(ent2.getBlockPos(), blockState2, blockState2, 3);
                                         ent2.setChanged();
-                                        WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
-                                        options.colorData = ColorParticleData.create(new Color(pBlockEntity.color.getTextColor()), new Color(pBlockEntity.color.getTextColor())).build();
-                                        options.scaleData = GenericParticleData.create(0.25f).build();
-                                        RunologyUtil.drawLine(options, pPos.getCenter(), toInsert.getBlockPos().getCenter(), pLevel, 0.1f);
+                                        pBlockEntity.createParticles(pPos.getCenter(), toInsert.getBlockPos().getCenter(), new Color(pBlockEntity.color.getTextColor()));
                                     }
                                 }
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    public void createParticles(Vec3 pos1, Vec3 pos2, Color color) {
+        DisplayEnderTransporterParticleLineS2CPacket packet = new DisplayEnderTransporterParticleLineS2CPacket(pos1, pos2, color);
+        for(int j = 0; j < ((ServerLevel)level).players().size(); ++j) {
+            ServerPlayer serverplayer = ((ServerLevel)level).players().get(j);
+            if (serverplayer.level() == ((ServerLevel)level)) {
+                BlockPos blockpos = serverplayer.blockPosition();
+                if (blockpos.closerToCenterThan(pos1, 32.0D) || blockpos.closerToCenterThan(pos2, 32.0D)) {
+                    ModMessages.sendToPlayer(packet, serverplayer);
                 }
             }
         }
