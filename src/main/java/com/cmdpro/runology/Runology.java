@@ -144,6 +144,7 @@ public class Runology
             event.accept(ItemInit.LIQUIDSOULSBUCKET);
             event.accept(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
             event.accept(ItemInit.CONJURESPARKSPELLCRYSTAL);
+            event.accept(ItemInit.DIMENSIONALTHREATMUSICDISC);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
@@ -193,15 +194,18 @@ public class Runology
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         // Some example code to dispatch IMC to another mod
-        InterModComms.sendTo("runology", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        //InterModComms.sendTo("runology", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event)
     {
-        // Some example code to receive and process InterModComms from other mods
+
+        //Some example code to receive and process InterModComms from other mods
+        /*
         LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.messageSupplier().get()).
                 collect(Collectors.toList()));
+        */
     }
 
 
