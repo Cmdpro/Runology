@@ -58,7 +58,7 @@ public class ConsumeItemTask extends AnalyzeTask {
         int remaining = pStack.getCount();
         for(List<ItemStack> list : inv.compartments) {
             for(ItemStack itemstack : list) {
-                if (!itemstack.isEmpty() && ItemStack.isSameItemSameTags(itemstack, pStack)) {
+                if (!itemstack.isEmpty() && itemstack.isSameItemSameTags(itemstack, pStack)) {
                     remaining -= itemstack.getCount();
                 }
             }
