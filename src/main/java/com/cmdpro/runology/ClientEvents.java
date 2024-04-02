@@ -47,25 +47,9 @@ import static com.mojang.blaze3d.platform.GlConst.GL_DRAW_FRAMEBUFFER;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
     public static SimpleSoundInstance music;
-    public static ResourceLocation echoGoggles = new ResourceLocation(Runology.MOD_ID, "shaders/post/echogoggles.json");
-    public static PostChain echoGogglesChain;
     public static VFXBuilders.WorldVFXBuilder worldBuilder = VFXBuilders.createWorld();
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
-        if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_LEVEL)) {
-            if (echoGogglesChain == null) {
-                try {
-                    echoGogglesChain = new PostChain(Minecraft.getInstance().getTextureManager(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getMainRenderTarget(), echoGoggles);
-                } catch (IOException exception) {
-                    exception.printStackTrace();
-                }
-            }
-            if (echoGogglesChain != null && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.ECHOGOGGLES.get())) {
-                echoGogglesChain.resize(Minecraft.getInstance().getWindow().getWidth(), Minecraft.getInstance().getWindow().getHeight());
-                echoGogglesChain.process(event.getPartialTick());
-                GlStateManager._glBindFramebuffer(GL_DRAW_FRAMEBUFFER, Minecraft.getInstance().getMainRenderTarget().frameBufferId);
-            }
-        }
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
             for (Player i : Minecraft.getInstance().level.players()) {
                 if (i.getUseItem().is(ItemInit.LANTERNOFFLAMES.get())) {
@@ -80,6 +64,11 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event)
     {
+        boolean echoGogglesActive = false;
+        if (Minecraft.getInstance().player != null) {
+            echoGogglesActive = Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.HEAD).is(ItemInit.ECHOGOGGLES.get());
+        }
+        ClientModEvents.echoGogglesProcessor.setActive(echoGogglesActive);
         Minecraft mc = Minecraft.getInstance();
         if (event.phase == TickEvent.Phase.END && mc.level != null)
         {
