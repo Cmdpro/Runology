@@ -8,6 +8,7 @@ import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ClientPlayerData;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerUnlockEntryC2SPacket;
+import com.cmdpro.runology.postprocessors.EchoGogglesProcessor;
 import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.SpellTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
@@ -18,6 +19,7 @@ import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import com.klikli_dev.modonomicon.events.ModonomiconEvents;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -32,6 +34,8 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
+import team.lodestar.lodestone.systems.postprocess.PostProcessor;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -122,7 +126,10 @@ public class ClientModEvents {
                 });
             }
         });
+        echoGogglesProcessor = new EchoGogglesProcessor();
+        PostProcessHandler.addInstance(echoGogglesProcessor);
     }
+    public static PostProcessor echoGogglesProcessor;
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
 

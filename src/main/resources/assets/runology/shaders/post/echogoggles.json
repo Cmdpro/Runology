@@ -1,6 +1,7 @@
 {
   "targets": [
-    "final"
+    "final",
+    "depthMain"
   ],
   "passes": [
     {
@@ -10,7 +11,7 @@
       "auxtargets": [
         {
           "name": "MainDepthSampler",
-          "id": "minecraft:main:depth"
+          "id": "depthMain"
         }
       ],
       "uniforms": [
