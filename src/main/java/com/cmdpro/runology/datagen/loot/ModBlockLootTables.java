@@ -45,6 +45,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createElementalOreDrops(BlockInit.FIREORE.get(), ItemInit.FIREPOWDER.get()));
         this.add(BlockInit.MYSTERIUMORE.get(),
                 block -> createMysteriumOreDrops(BlockInit.MYSTERIUMORE.get(), ItemInit.RAWMYSTERIUM.get()));
+        this.add(BlockInit.PRISMATICCRYSTAL.get(),
+                block -> createPrismaticCrystalDrops(BlockInit.PRISMATICCRYSTAL.get(), ItemInit.PRISMATICGEM.get()));
         dropSelf(BlockInit.CHISELEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.CRACKEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.MYSTERIUMBLOCK.get());
@@ -88,6 +90,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 this.applyExplosionDecay(pBlock,
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 5.0F)))
+                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+    }
+    protected LootTable.Builder createPrismaticCrystalDrops(Block pBlock, Item item) {
+        return createSilkTouchDispatchTable(pBlock,
+                this.applyExplosionDecay(pBlock,
+                        LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
                                 .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
 

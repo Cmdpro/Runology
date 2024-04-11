@@ -17,6 +17,7 @@ public class TagInit {
         public static final TagKey<Block> SHATTERWOODREPLACEABLE = tag("shatterwoodreplaceable");
         public static final TagKey<Block> SHATTERREMOVES = tag("shatterremoves");
         public static final TagKey<Block> MYSTERIUMOREREPLACEABLE = tag("mysteriumorereplaceable");
+        public static final TagKey<Block> REALITYBREAKERMINEABLE = tag("realitybreakermineable");
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(Runology.MOD_ID, name));
         }

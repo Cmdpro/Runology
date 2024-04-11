@@ -3,7 +3,9 @@ package com.cmdpro.runology.renderers;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.item.RunicAnalyzerItem;
 import com.cmdpro.runology.item.RunicWorkbenchItem;
+import net.minecraft.client.model.ShieldModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ShieldItem;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
 

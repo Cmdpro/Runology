@@ -49,6 +49,8 @@ public class BlockInit {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).lightLevel((state) -> 2)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEBRICKS = register("shatterstonebricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICKS)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final RegistryObject<Block> PRISMATICORE = register("prismaticore",
+            () -> new PrismaticCrystal(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_LAPIS_ORE).requiresCorrectToolForDrops()), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> SHATTERSTONEPILLAR = register("shatterstonepillar",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICKS)), object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final RegistryObject<Block> CRACKEDSHATTERSTONEBRICKS = register("crackedshatterstonebricks",

@@ -18,6 +18,7 @@ public class ItemInit {
     public static final RegistryObject<Item> LIQUIDSOULSBUCKET = register("liquidsoulsbucket", () -> new BucketItem(FluidInit.SOURCELIQUIDSOULS, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRANSMUTATIVESOLUTIONBUCKET = register("transmutativesolutionbucket", () -> new BucketItem(FluidInit.SOURCETRANSMUTATIVESOLUTION, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> REALITYSLICER = register("realityslicer", () -> new RealitySlicer(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> REALITYBREAKER = register("realitybreaker", () -> new PickaxeItem(ModTiers.REALITY, -3, -2.4F, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> ANCIENTDRAGONSBLADE = register("ancientdragonsblade", () -> new AncientDragonsBlade(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> LANTERNOFFLAMES = register("lanternofflames", () -> new LanternOfFlames(new Item.Properties().stacksTo(1).defaultDurability(1000).fireResistant()));
     public static final RegistryObject<Item> AMETHYSTSTAFF = register("amethyststaff", () -> new Staff(new Item.Properties().stacksTo(1), 1, 200));
@@ -32,6 +33,7 @@ public class ItemInit {
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICANALYZERITEM = register("runicanalyzer", () -> new RunicAnalyzerItem(BlockInit.RUNICANALYZER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRISMATICGEM = register("prismaticgem", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new EarthRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "earth")));
     public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new FireRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "fire")));
     public static final RegistryObject<Item> WATERRUNE = register("waterrune", () -> new WaterRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "water")));

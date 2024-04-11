@@ -78,7 +78,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockInit.SHATTERCRYSTAL.get())
                 .add(BlockInit.RUNICANALYZER.get())
                 .add(BlockInit.RUNICCAULDRON.get())
-                .add(BlockInit.ENDERTRANSPORTER.get());
+                .add(BlockInit.ENDERTRANSPORTER.get())
+                .add(BlockInit.PRISMATICCRYSTAL.get());
 
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
@@ -88,6 +89,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockInit.EARTHORE.get())
                 .add(BlockInit.MYSTERIUMORE.get())
                 .add(BlockInit.MYSTERIUMBLOCK.get());
+        this.tag(TagInit.Blocks.REALITYBREAKERMINEABLE)
+                .add(BlockInit.PRISMATICCRYSTAL.get())
+                .addTags(BlockTags.NEEDS_DIAMOND_TOOL);
 
         this.tag(BlockTags.WALLS)
                 .add(BlockInit.SHATTERSTONEBRICKWALL.get())

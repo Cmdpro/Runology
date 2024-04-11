@@ -34,6 +34,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockInit.PETRIFIEDSHATTERWOOD);
         blockWithItem(BlockInit.RAWMYSTERIUMBLOCK);
         blockWithItem(BlockInit.SHATTERCRYSTAL);
+        blockWithItem(BlockInit.PRISMATICCRYSTAL);
         shatterleaf(BlockInit.SHATTERLEAF.get(), "shatterleaf", "shatterleaf");
 
         axisBlock((RotatedPillarBlock)BlockInit.SHATTERSTONEPILLAR.get(), new ResourceLocation(Runology.MOD_ID, "block/shatterstonepillar"), new ResourceLocation(Runology.MOD_ID, "block/shatterstonepillartop"));

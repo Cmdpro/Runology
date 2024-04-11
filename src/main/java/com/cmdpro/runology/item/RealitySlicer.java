@@ -25,7 +25,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class RealitySlicer extends SwordItem {
     public RealitySlicer(Properties pProperties) {
-        super(ModTiers.REALITYSLICER, 1, -2.4F, pProperties);
+        super(ModTiers.REALITY, 1, -2.4F, pProperties);
     }
 
     @Override
