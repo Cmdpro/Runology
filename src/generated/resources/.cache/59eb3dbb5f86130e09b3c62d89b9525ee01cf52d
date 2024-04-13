@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-11T16:35:03.2763707	Loot Tables
+// 1.20.1	2024-04-13T01:30:01.4977207	Loot Tables
 b3893579b954b9cc5f69044be66d166582d635bb data/runology/loot_tables/blocks/chiseledshatterstonebricks.json
 db685e930aec9b2436b6e3b91a4b66bc6a1bb65a data/runology/loot_tables/blocks/crackedshatterstonebricks.json
 42bb4677446eb04ab300bdefdff403dfd06e3763 data/runology/loot_tables/blocks/deepslateairore.json
@@ -11,7 +11,7 @@ be1eb2f6961fa64b8f53cda4608fb3fe8d086ed9 data/runology/loot_tables/blocks/myster
 288fe517612565535872e15cbfbb0af00ea60fe9 data/runology/loot_tables/blocks/mysteriumore.json
 316ba6108688ce0fcc370eaaf7123fc09829bbc2 data/runology/loot_tables/blocks/petrifiedshatterwood.json
 427c74e402d75d2e675aef192e596f6ff717896b data/runology/loot_tables/blocks/pottedshatterleaf.json
-b250deb665e62f53675e82f25be93c5db2b55d9d data/runology/loot_tables/blocks/prismaticcrystal.json
+c3f8c1e0b7ff94112d8bb1e110799cefcae3cc4f data/runology/loot_tables/blocks/prismaticore.json
 ab06fa980af705fcaf20a66d54ee58db39f3857a data/runology/loot_tables/blocks/rawmysteriumblock.json
 81c8a9e9e9b00ca3dae32a67a7d31a2efd1f57b5 data/runology/loot_tables/blocks/runicanalyzer.json
 28fb9328b34c74fd169f89cc516b1665b40f41f1 data/runology/loot_tables/blocks/runiccauldron.json
