@@ -141,7 +141,7 @@ public class ModEvents {
                     event.player.getCapability(PlayerModDataProvider.PLAYER_MODDATA).ifPresent(data2 -> {
                         data2.setInstabilityEventCooldown(data2.getInstabilityEventCooldown() + 1);
                         if (data2.getInstabilityEventCooldown() > 6000 - (3000 * (data.getInstability() / ChunkModData.MAX_INSTABILITY))) {
-                            int rand = event.player.level().random.nextInt(0, possibleEvents.size());
+                            int rand = event.player.getRandom().nextInt(0, possibleEvents.size());
                             ResourceLocation key = possibleEvents.keySet().toArray(new ResourceLocation[0])[rand];
                             InstabilityEvent instabilityevent = possibleEvents.get(key);
                             instabilityevent.run.run(event.player, data.getChunk());

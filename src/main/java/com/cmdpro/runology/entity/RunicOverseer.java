@@ -120,9 +120,9 @@ public class RunicOverseer extends Monster implements GeoEntity {
         super.customServerAiStep();
         atkTimer++;
         if (atkTimer >= 50) {
-            atk = level().random.nextInt(0, 2);
+            atk = getRandom().nextInt(0, 2);
             if (getHealth() <= getMaxHealth()/2) {
-                atk = level().random.nextInt(0, 4);
+                atk = getRandom().nextInt(0, 4);
             }
             atkTimer = 0;
             if (atk == 0) {

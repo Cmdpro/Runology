@@ -33,7 +33,7 @@ public class InstabilityEventInit {
     public static final RegistryObject<InstabilityEvent> RUNICSCOUT = register("runicscout", () -> new InstabilityEvent(new InstabilityEventRunnable() {
         @Override
         public void run(Player player, LevelChunk chunk) {
-            Vec3 pos = player.position().add(player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16));
+            Vec3 pos = player.position().add(player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16));
             RunicScout monster = EntityInit.RUNICSCOUT.get().create(player.level());
             monster.setPos(pos);
             while (pos.y < player.level().getMaxBuildHeight() && checkSpawnObstruction(player.level(), BlockPos.containing(pos), monster)) {
@@ -54,7 +54,7 @@ public class InstabilityEventInit {
     public static final RegistryObject<InstabilityEvent> RUNICCONSTRUCT = register("runicconstruct", () -> new InstabilityEvent(new InstabilityEventRunnable() {
         @Override
         public void run(Player player, LevelChunk chunk) {
-            Vec3 pos = player.position().add(player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16));
+            Vec3 pos = player.position().add(player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16));
             RunicConstruct monster = EntityInit.RUNICCONSTRUCT.get().create(player.level());
             monster.setPos(pos);
             while (pos.y < player.level().getMaxBuildHeight() && checkSpawnObstruction(player.level(), BlockPos.containing(pos), monster)) {
@@ -75,7 +75,7 @@ public class InstabilityEventInit {
     public static final RegistryObject<InstabilityEvent> SHATTER = register("shatter", () -> new InstabilityEvent(new InstabilityEventRunnable() {
         @Override
         public void run(Player player, LevelChunk chunk) {
-            Vec3 pos = player.position().add(player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16), player.level().random.nextInt(-16, 16));
+            Vec3 pos = player.position().add(player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16), player.getRandom().nextInt(-16, 16));
             Shatter monster = EntityInit.SHATTER.get().create(player.level());
             monster.setPos(pos);
             while (pos.y < player.level().getMaxBuildHeight() && checkSpawnObstruction(player.level(), BlockPos.containing(pos), monster)) {

@@ -1,2 +1,3 @@
 Changed the Shattered Soul sprite
 Fixed the Dimensional Threat Music Disc not being in the creative inventory
+Made the mod not always use the level random
