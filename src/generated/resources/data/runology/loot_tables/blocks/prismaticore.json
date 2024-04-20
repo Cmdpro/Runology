@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "runology:prismaticcrystal"
+              "name": "runology:prismaticore"
             },
             {
               "type": "minecraft:item",
@@ -55,5 +55,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "runology:blocks/prismaticcrystal"
+  "random_sequence": "runology:blocks/prismaticore"
 }
