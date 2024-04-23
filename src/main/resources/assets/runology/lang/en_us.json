@@ -155,6 +155,13 @@
   "book.runology.runologyguide.discover1": "This powder seems to be infused with one of the 4 elements, maybe I can find more types?",
   "book.runology.runologyguide.discover2": "This powder seems to react to powder infused with other elements, maybe combining all 4 types with a book will result in something useful?",
 
+  "advancements.runology.runology.title": "Runology",
+  "advancements.runology.runology.description": "The advancements for runology",
+  "advancements.runology.shatter.title": "What is this and how do I get rid of it?",
+  "advancements.runology.shatter.description": "Spawn a shatter",
+  "advancements.runology.shatteredsoul.title": "Shattered to pieces",
+  "advancements.runology.shatteredsoul.description": "Kill the Runic Overseer and obtain a Shattered Soul",
+
   "book.runology.runologyguide.name": "Runic Codex",
   "book.runology.runologyguide.basics.name": "Basics",
   "book.runology.runologyguide.artifice.name": "Artifice",

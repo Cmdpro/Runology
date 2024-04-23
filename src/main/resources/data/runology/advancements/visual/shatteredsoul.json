@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "runology:shatteredsoul"
+    },
+    "title": {
+      "translate": "advancements.runology.shatteredsoul.title"
+    },
+    "description": {
+      "translate": "advancements.runology.shatteredsoul.description"
+    }
+  },
+  "parent": "runology:visual/shatter",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "runology:shatteredsoul"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "modonomicon:modonomicon",
+      "nbt": "{\"modonomicon:book_id\":\"runology:runologyguide\"}"
+    },
+    "title": {
+      "translate": "advancements.runology.runology.title"
+    },
+    "description": {
+      "translate": "advancements.runology.runology.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "modonomicon:modonomicon"
+            ],
+            "nbt": "{\"modonomicon:book_id\":\"runology:runologyguide\"}"
+          }
+        ]
+      }
+    }
+  }
+}

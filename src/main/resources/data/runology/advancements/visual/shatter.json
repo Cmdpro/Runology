@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "runology:empoweredmysteriumgauntlet"
+    },
+    "title": {
+      "translate": "advancements.runology.shatter.title"
+    },
+    "description": {
+      "translate": "advancements.runology.shatter.description"
+    }
+  },
+  "parent": "runology:visual/runology",
+  "criteria": {
+    "requirement": {
+      "trigger": "runology:instabilityevent",
+      "conditions" : {
+        "instabilityEvent": "runology:shatter"
+      }
+    }
+  }
+}
