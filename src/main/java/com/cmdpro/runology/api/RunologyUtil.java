@@ -4,15 +4,20 @@ import com.cmdpro.runology.init.DimensionInit;
 import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.ChunkModData;
 import com.cmdpro.runology.moddata.ChunkModDataProvider;
+import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.DisplayEnderTransporterParticleLineS2CPacket;
+import com.cmdpro.runology.networking.packet.DisplayInstabilityGenerationS2CPacket;
 import com.klikli_dev.modonomicon.book.BookEntry;
 import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;
 import com.klikli_dev.modonomicon.book.conditions.context.BookConditionContext;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
@@ -160,6 +165,18 @@ public class RunologyUtil {
         for (Vec3 point = point1; length < distance; point = point.add(vector)) {
             ((ServerLevel)level).sendParticles(particle, point.x, point.y, point.z, 1, 0, 0, 0, 0);
             length += space;
+        }
+    }
+    public static void displayInstabilityGen(Level level, Vec3 pos, Vec3 dir) {
+        DisplayInstabilityGenerationS2CPacket packet = new DisplayInstabilityGenerationS2CPacket(pos, dir);
+        for(int j = 0; j < ((ServerLevel)level).players().size(); ++j) {
+            ServerPlayer serverplayer = ((ServerLevel)level).players().get(j);
+            if (serverplayer.level() == ((ServerLevel)level)) {
+                BlockPos blockpos = serverplayer.blockPosition();
+                if (blockpos.closerToCenterThan(pos, 32.0D)) {
+                    ModMessages.sendToPlayer(packet, serverplayer);
+                }
+            }
         }
     }
 }

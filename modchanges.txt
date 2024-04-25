@@ -1,3 +1,6 @@
 Changed the Shattered Soul sprite
 Fixed the Dimensional Threat Music Disc not being in the creative inventory
 Made the mod not always use the level random
+Changed the text for the runic workbench entry
+Fixed a bug with the Ender Transporter
+Added particles for when instability is generated

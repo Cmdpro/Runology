@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
@@ -39,6 +40,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
                 level.levelEvent(1505, blockpos, 0);
                 pContext.getItemInHand().shrink(1);
                 RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
+                RunologyUtil.displayInstabilityGen(level, blockpos1.getCenter(), new Vec3(0, 1, 0));
             }
 
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -52,6 +54,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
                     level.levelEvent(1505, blockpos1, 0);
                     pContext.getItemInHand().shrink(1);
                     RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
+                    RunologyUtil.displayInstabilityGen(level, blockpos1.getCenter(), new Vec3(0, 1, 0));
                 }
 
                 return InteractionResult.sidedSuccess(level.isClientSide);

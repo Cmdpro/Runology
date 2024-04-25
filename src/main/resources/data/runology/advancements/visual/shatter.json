@@ -8,7 +8,8 @@
     },
     "description": {
       "translate": "advancements.runology.shatter.description"
-    }
+    },
+    "hidden": true
   },
   "parent": "runology:visual/runology",
   "criteria": {

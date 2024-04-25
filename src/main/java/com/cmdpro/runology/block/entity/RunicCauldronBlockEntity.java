@@ -39,6 +39,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -194,6 +195,7 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
                 if ((itemRecipe == null || !RunologyUtil.playerHasEntry(player, itemRecipe.getEntry())) && (fluidRecipe == null || !RunologyUtil.playerHasEntry(player, fluidRecipe.getEntry()))) {
                     RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, (float)pBlockEntity.fluidHandler.getFluid().getAmount()/100f, 0, ChunkModData.MAX_INSTABILITY);
                     fluid.shrink(1000);
+                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
                     stack.shrink(1);
                     pBlockEntity.updateBlock();
                     pLevel.playSound(null, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS);
@@ -206,6 +208,7 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
                 } else if (itemRecipe != null) {
                     RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, (float)itemRecipe.getFluidInput().getAmount()/100f, 0, ChunkModData.MAX_INSTABILITY);
                     fluid.shrink(itemRecipe.getFluidInput().getAmount());
+                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
                     ItemEntity item = new ItemEntity(pLevel, pPos.getCenter().x, pPos.getCenter().y+0.25, pPos.getCenter().z, itemRecipe.getResultItem(pLevel.registryAccess()));
                     item.setNoGravity(true);
                     item.setDeltaMovement(0, 0, 0);

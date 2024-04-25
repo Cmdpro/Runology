@@ -39,6 +39,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -52,6 +53,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import team.lodestar.lodestone.registry.common.LodestonePacketRegistry;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -193,6 +195,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
                             waste += i.getValue();
                         }
                         waste /= 5;
+                        RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
                         RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, waste, 0, ChunkModData.MAX_INSTABILITY);
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("block.runology.runicworkbench.dontknowhow"));

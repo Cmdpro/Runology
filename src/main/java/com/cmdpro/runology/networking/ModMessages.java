@@ -47,6 +47,11 @@ public class ModMessages {
                 .encoder(DisplayEnderTransporterParticleLineS2CPacket::toBytes)
                 .consumerMainThread(DisplayEnderTransporterParticleLineS2CPacket::handle)
                 .add();
+        net.messageBuilder(DisplayInstabilityGenerationS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(DisplayInstabilityGenerationS2CPacket::new)
+                .encoder(DisplayInstabilityGenerationS2CPacket::toBytes)
+                .consumerMainThread(DisplayInstabilityGenerationS2CPacket::handle)
+                .add();
 
     }
     public static <MSG> void sendToServer(MSG message) {

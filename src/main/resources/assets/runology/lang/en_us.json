@@ -156,7 +156,7 @@
   "book.runology.runologyguide.discover2": "This powder seems to react to powder infused with other elements, maybe combining all 4 types with a book will result in something useful?",
 
   "advancements.runology.runology.title": "Runology",
-  "advancements.runology.runology.description": "The advancements for runology",
+  "advancements.runology.runology.description": "The advancements for Runology",
   "advancements.runology.shatter.title": "What is this and how do I get rid of it?",
   "advancements.runology.shatter.description": "Spawn a shatter",
   "advancements.runology.shatteredsoul.title": "Shattered to pieces",
@@ -173,7 +173,7 @@
   "book.runology.runologyguide.basics.runicworkbench.name": "Runic Workbench",
   "book.runology.runologyguide.basics.runicworkbench.page1.title": "Runic Workbench",
   "book.runology.runologyguide.basics.runicworkbench.page1.title2": "Copper Gauntlet",
-  "book.runology.runologyguide.basics.runicworkbench.page2.text": "Some things need runic energy to create. The runic workbench will allow me to use the runic energy obtained by consuming runes to craft these recipes. It can hold 1000 of each type of runic energy; however I feel like this form of magic doesn't come without a potentially destructive problem...",
+  "book.runology.runologyguide.basics.runicworkbench.page2.text": "Some things need runic energy to create. The runic workbench will allow me to use the runic energy obtained by consuming runes to craft these recipes, and is activated by using a gauntlet on it. It can hold 1000 of each type of runic energy; however I feel like this form of magic doesn't come without a potentially destructive problem...",
   "book.runology.runologyguide.basics.runicanalyzer.name": "Runic Analyzer",
   "book.runology.runologyguide.basics.runicanalyzer.page1.title": "Runic Analyzer",
   "book.runology.runologyguide.basics.runicanalyzer.page1.text": "While these first few things have been easy to figure out, for some other stuff, I will need to use the Runic Analyzer to figure out how to make.",

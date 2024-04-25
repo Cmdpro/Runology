@@ -141,10 +141,7 @@ public class EnderTransporterBlockEntity extends BlockEntity implements GeoBlock
                                         BlockState blockState2 = ent2.getLevel().getBlockState(ent2.getBlockPos());
                                         ent2.getLevel().sendBlockUpdated(ent2.getBlockPos(), blockState2, blockState2, 3);
                                         ent2.setChanged();
-                                        WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
-                                        options.colorData = ColorParticleData.create(new Color(pBlockEntity.color.getTextColor()), new Color(pBlockEntity.color.getTextColor())).build();
-                                        options.scaleData = GenericParticleData.create(0.25f).build();
-                                        RunologyUtil.drawLine(options, pPos.getCenter().relative(pBlockEntity.getDirection().getOpposite(), 0.25), toInsert.getBlockPos().getCenter().relative(toInsert.getDirection().getOpposite(), 0.25), pLevel, 0.1f);
+                                        pBlockEntity.createParticles(pPos.getCenter(), toInsert.getBlockPos().getCenter(), new Color(pBlockEntity.color.getTextColor()));
                                     }
                                 }
                             }
