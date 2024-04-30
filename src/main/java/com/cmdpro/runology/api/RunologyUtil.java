@@ -167,8 +167,8 @@ public class RunologyUtil {
             length += space;
         }
     }
-    public static void displayInstabilityGen(Level level, Vec3 pos, Vec3 dir) {
-        DisplayInstabilityGenerationS2CPacket packet = new DisplayInstabilityGenerationS2CPacket(pos, dir);
+    public static void displayInstabilityGen(Level level, Vec3 pos, Vec3 dir, float instabilityAmount) {
+        DisplayInstabilityGenerationS2CPacket packet = new DisplayInstabilityGenerationS2CPacket(pos, dir, instabilityAmount);
         for(int j = 0; j < ((ServerLevel)level).players().size(); ++j) {
             ServerPlayer serverplayer = ((ServerLevel)level).players().get(j);
             if (serverplayer.level() == ((ServerLevel)level)) {

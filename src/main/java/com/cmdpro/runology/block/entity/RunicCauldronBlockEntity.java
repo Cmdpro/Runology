@@ -181,10 +181,12 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
             FluidStack fluid = pBlockEntity.fluidHandler.getFluidInTank(0);
             if (stack.isEmpty() && !fluid.isEmpty()) {
                 for (ItemEntity i : pLevel.getEntitiesOfClass(ItemEntity.class, pBlockEntity.getRenderBoundingBox().deflate(0.25))) {
-                    ItemStack stack2 = pBlockEntity.itemHandler.getStackInSlot(0);
-                    if (stack2.isEmpty()) {
-                        pBlockEntity.itemHandler.setStackInSlot(0, i.getItem().copy());
-                        i.remove(Entity.RemovalReason.KILLED);
+                    if (!i.getItem().is(ItemInit.RUNICWASTE.get())) {
+                        ItemStack stack2 = pBlockEntity.itemHandler.getStackInSlot(0);
+                        if (stack2.isEmpty()) {
+                            pBlockEntity.itemHandler.setStackInSlot(0, i.getItem().copy());
+                            i.remove(Entity.RemovalReason.KILLED);
+                        }
                     }
                 }
             }
@@ -194,8 +196,8 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
                 Player player = pLevel.getServer().getPlayerList().getPlayer(pBlockEntity.owner);
                 if ((itemRecipe == null || !RunologyUtil.playerHasEntry(player, itemRecipe.getEntry())) && (fluidRecipe == null || !RunologyUtil.playerHasEntry(player, fluidRecipe.getEntry()))) {
                     RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, (float)pBlockEntity.fluidHandler.getFluid().getAmount()/100f, 0, ChunkModData.MAX_INSTABILITY);
+                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 0.1, 0), (float)pBlockEntity.fluidHandler.getFluid().getAmount()/100f);
                     fluid.shrink(1000);
-                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
                     stack.shrink(1);
                     pBlockEntity.updateBlock();
                     pLevel.playSound(null, pPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS);
@@ -207,8 +209,8 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
                     break;
                 } else if (itemRecipe != null) {
                     RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, (float)itemRecipe.getFluidInput().getAmount()/100f, 0, ChunkModData.MAX_INSTABILITY);
+                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 0.1, 0), (float)itemRecipe.getFluidInput().getAmount()/100f);
                     fluid.shrink(itemRecipe.getFluidInput().getAmount());
-                    RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
                     ItemEntity item = new ItemEntity(pLevel, pPos.getCenter().x, pPos.getCenter().y+0.25, pPos.getCenter().z, itemRecipe.getResultItem(pLevel.registryAccess()));
                     item.setNoGravity(true);
                     item.setDeltaMovement(0, 0, 0);
@@ -265,7 +267,6 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pPlayer.isShiftKeyDown()) {
             if (!fluidHandler.isEmpty()) {
-                RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, (float)fluidHandler.getFluid().getAmount()/100f, 0, ChunkModData.MAX_INSTABILITY);
                 fluidHandler.getFluid().shrink(1000);
                 itemHandler.getStackInSlot(0).setCount(0);
                 pLevel.playSound(null, pPos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS);

@@ -195,7 +195,7 @@ public class RunicWorkbenchBlockEntity extends BlockEntity implements MenuProvid
                             waste += i.getValue();
                         }
                         waste /= 5;
-                        RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 1, 0));
+                        RunologyUtil.displayInstabilityGen(pLevel, pPos.getCenter(), new Vec3(0, 0.1, 0), waste);
                         RunologyUtil.AddInstability(pLevel.getChunkAt(pPos).getPos(), pLevel, waste, 0, ChunkModData.MAX_INSTABILITY);
                     } else {
                         pPlayer.sendSystemMessage(Component.translatable("block.runology.runicworkbench.dontknowhow"));

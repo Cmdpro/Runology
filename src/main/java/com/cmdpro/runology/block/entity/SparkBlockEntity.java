@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -45,12 +46,12 @@ public class SparkBlockEntity extends BlockEntity {
             if (pBlockEntity.timer >= 20) {
                 pBlockEntity.timer = 0;
                 for (Entity i : ((ServerLevel)pLevel).getEntities().getAll()) {
-                    if (i != null && !(i instanceof Player)) {
+                    if (i != null && !(i instanceof Player) && i instanceof LivingEntity) {
                         if (i.position().distanceTo(pPos.getCenter()) <= 2.5) {
                             if (i.hurt(pLevel.damageSources().magic(), 2.5f)) {
                                 SparkAttack attack = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, pPos.getCenter(), i);
                                 pLevel.addFreshEntity(attack);
-                                for (Entity o : pLevel.getEntitiesOfClass(Entity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
+                                for (LivingEntity o : pLevel.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
                                     if (o != i) {
                                         if (o.hurt(pLevel.damageSources().magic(), 1.25f)) {
                                             SparkAttack attack2 = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, i.getBoundingBox().getCenter(), o);

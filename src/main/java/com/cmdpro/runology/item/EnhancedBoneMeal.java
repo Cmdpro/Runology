@@ -40,7 +40,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
                 level.levelEvent(1505, blockpos, 0);
                 pContext.getItemInHand().shrink(1);
                 RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
-                RunologyUtil.displayInstabilityGen(level, blockpos1.getCenter(), new Vec3(0, 1, 0));
+                RunologyUtil.displayInstabilityGen(level, blockpos.getCenter(), new Vec3(0, 0.1, 0), 2.5f);
             }
 
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -54,7 +54,7 @@ public class EnhancedBoneMeal extends BoneMealItem {
                     level.levelEvent(1505, blockpos1, 0);
                     pContext.getItemInHand().shrink(1);
                     RunologyUtil.AddInstability(level.getChunkAt(blockpos).getPos(), level, 2.5f, 0, ChunkModData.MAX_INSTABILITY);
-                    RunologyUtil.displayInstabilityGen(level, blockpos1.getCenter(), new Vec3(0, 1, 0));
+                    RunologyUtil.displayInstabilityGen(level, blockpos.getCenter(), new Vec3(0, 0.1, 0), 2.5f);
                 }
 
                 return InteractionResult.sidedSuccess(level.isClientSide);

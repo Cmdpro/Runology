@@ -11,7 +11,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class ModMessages {
 
-    private static SimpleChannel INSTANCE;
+    public static SimpleChannel INSTANCE;
 
     private static int packetId = 0;
     private static int id() {

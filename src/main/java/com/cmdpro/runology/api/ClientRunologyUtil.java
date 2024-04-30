@@ -22,7 +22,7 @@ public class ClientRunologyUtil {
         Vec3 vector = point2.subtract(point1).normalize().multiply(space, space, space);
         double length = 0;
         for (Vec3 point = point1; length < distance; point = point.add(vector)) {
-            level.addParticle(particle, point.x, point.y, point.z, 0, 0, 0);
+            level.addParticle(particle, true, point.x, point.y, point.z, 0, 0, 0);
             length += space;
         }
     }
