@@ -6,5 +6,5 @@ Fixed a bug with the Ender Transporter
 Added particles for when instability is generated
 Made it so that you can't make runic waste from runic waste
 Made shift right-clicking a runic cauldron not produce instability
-Made sparks only attack living entities
+Made sparks and shatters only attack living entities
 Added more content

@@ -65,10 +65,10 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
             pos2 = pos2.add(offset);
-            builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).renderBeam(consumer, pPoseStack.last().pose(), lastPos, pos2, 0.1f);
+            builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
             lastPos = pos2;
         }
-        builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).renderBeam(consumer, pPoseStack.last().pose(), lastPos, pos, 0.1f);
+        builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
         pPoseStack.translate(pEntity.position().x, pEntity.position().y, pEntity.position().z);
         pPoseStack.popPose();
     }

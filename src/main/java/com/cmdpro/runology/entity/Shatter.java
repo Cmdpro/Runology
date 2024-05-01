@@ -137,13 +137,13 @@ public class Shatter extends Entity implements GeoEntity {
                 if (exhaustion >= 20*(60*5)) {
                     entityData.set(EXHAUSTED, true);
                     for (Entity i : ((ServerLevel)level()).getEntities().getAll()) {
-                        if (i != null) {
+                        if (i != null && i instanceof LivingEntity) {
                             if (i.position().distanceTo(position()) <= 5) {
                                 if (i.hurt(damageSources().magic(), 5)) {
                                     ShatterAttack attack = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), i);
                                     level().addFreshEntity(attack);
                                     for (Entity o : level().getEntitiesOfClass(Entity.class, AABB.ofSize(i.position(), 5, 5, 5))) {
-                                        if (o != i) {
+                                        if (o != i && o instanceof LivingEntity) {
                                             if (o.hurt(damageSources().magic(), 2.5f)) {
                                                 ShatterAttack attack2 = new ShatterAttack(EntityInit.SHATTERATTACK.get(), this, level(), o);
                                                 attack2.setPos(i.getBoundingBox().getCenter());

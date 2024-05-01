@@ -51,8 +51,8 @@ public class SparkBlockEntity extends BlockEntity {
                             if (i.hurt(pLevel.damageSources().magic(), 2.5f)) {
                                 SparkAttack attack = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, pPos.getCenter(), i);
                                 pLevel.addFreshEntity(attack);
-                                for (LivingEntity o : pLevel.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
-                                    if (o != i) {
+                                for (Entity o : pLevel.getEntitiesOfClass(Entity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
+                                    if (o != i && o instanceof LivingEntity) {
                                         if (o.hurt(pLevel.damageSources().magic(), 1.25f)) {
                                             SparkAttack attack2 = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, i.getBoundingBox().getCenter(), o);
                                             pLevel.addFreshEntity(attack2);
