@@ -7,5 +7,5 @@ Added particles for when instability is generated
 Made it so that you can't make runic waste from runic waste
 Made shift right-clicking a runic cauldron not produce instability
 Made sparks and shatters only attack living entities
-Messed with particles
+Messed with particles a bit
 Added more content
