@@ -9,7 +9,9 @@ import com.cmdpro.runology.integration.modonomicon.RunologyModonomiconConstants;
 import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.networking.ModMessages;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -34,9 +36,18 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import software.bernie.geckolib.GeckoLib;
+import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
+import team.lodestar.lodestone.registry.client.LodestoneShaderRegistry;
+import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
+import team.lodestar.lodestone.systems.rendering.StateShards;
+import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
+import team.lodestar.lodestone.systems.rendering.shader.ShaderHolder;
 
 
 import java.util.stream.Collectors;
+
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("runology")

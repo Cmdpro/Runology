@@ -31,9 +31,11 @@ import net.minecraftforge.network.NetworkHooks;
 import org.apache.commons.lang3.RandomUtils;
 import org.checkerframework.checker.units.qual.C;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
+import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.options.WorldParticleOptions;
+import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 import team.lodestar.lodestone.systems.particle.type.LodestoneParticleType;
 
 import javax.annotation.Nullable;
@@ -131,10 +133,13 @@ public class FireballProjectile extends Projectile {
                     pos = pos.subtract(getDeltaMovement().x*(i/3d), getDeltaMovement().y*(i/3d), getDeltaMovement().z*(i/3d));
                     pos = pos.add(0, getBoundingBox().getYsize() / 2f, 0);
                     pos = pos.add(RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f);
-                    WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
-                    options.colorData = ColorParticleData.create(new Color(0xFF5900), Color.YELLOW).build();
-                    options.scaleData = GenericParticleData.create(0.25f).build();
-                    level().addAlwaysVisibleParticle(options, pos.x, pos.y, pos.z, 0, 0, 0);
+                    WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+                            .setScaleData(GenericParticleData.create(0.25f).build())
+                            .setColorData(ColorParticleData.create(new Color(0xFF5900), Color.YELLOW).build())
+                            .setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
+                            .setLifetime(20)
+                            .enableNoClip()
+                            .spawn(level(), pos.x, pos.y, pos.z);
                 }
             }
         }

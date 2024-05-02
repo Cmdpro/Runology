@@ -5,6 +5,7 @@ import com.cmdpro.runology.entity.ShatterAttack;
 import com.cmdpro.runology.entity.SparkAttack;
 import com.cmdpro.runology.init.BlockEntityInit;
 import com.cmdpro.runology.init.EntityInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -17,9 +18,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.apache.commons.lang3.RandomUtils;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
+import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.options.WorldParticleOptions;
+import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 
 import java.awt.*;
 
@@ -73,10 +76,12 @@ public class SparkBlockEntity extends BlockEntity {
             }
         } else {
             if (pLevel.random.nextInt(0, 2) == 0) {
-                WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.STAR_PARTICLE.get());
-                options.colorData = ColorParticleData.create(Color.YELLOW, Color.YELLOW).build();
-                options.scaleData = GenericParticleData.create(0.25f).build();
-                pLevel.addParticle(options, pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z, 0, 0, 0);
+                WorldParticleBuilder.create(LodestoneParticleRegistry.STAR_PARTICLE)
+                        .setScaleData(GenericParticleData.create(0.25f).build())
+                        .setColorData(ColorParticleData.create(Color.YELLOW, Color.YELLOW).build())
+                        .setLifetime(10)
+                        .enableNoClip()
+                        .spawn(pLevel, pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z);
             }
         }
     }
