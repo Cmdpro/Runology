@@ -13,7 +13,7 @@ import com.cmdpro.runology.renderers.*;
 import com.cmdpro.runology.screen.SpellTableScreen;
 import com.cmdpro.runology.screen.RunicAnalyzerScreen;
 import com.cmdpro.runology.screen.RunicWorkbenchScreen;
-import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.entries.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
@@ -68,7 +68,7 @@ public class ClientModEvents {
             if (condition != null) {
                 if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, entry)) {
                     if (RunologyUtil.conditionAllTrueExceptAnalyze(entry, Minecraft.getInstance().player)) {
-                        List<BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
+                        List<? extends BookEntryParent> parents = BookDataManager.get().getBook(e.getBookId()).getEntry(e.getEntryId()).getParents();
                         boolean canSee = true;
                         for (BookEntryParent i : parents) {
                             if (!BookUnlockStateManager.get().isUnlockedFor(Minecraft.getInstance().player, i.getEntry())) {

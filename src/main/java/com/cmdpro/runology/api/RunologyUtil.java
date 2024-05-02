@@ -7,7 +7,7 @@ import com.cmdpro.runology.moddata.ChunkModDataProvider;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.DisplayEnderTransporterParticleLineS2CPacket;
 import com.cmdpro.runology.networking.packet.DisplayInstabilityGenerationS2CPacket;
-import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.entries.BookEntry;
 import com.klikli_dev.modonomicon.book.conditions.BookAndCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookCondition;
 import com.klikli_dev.modonomicon.book.conditions.BookOrCondition;

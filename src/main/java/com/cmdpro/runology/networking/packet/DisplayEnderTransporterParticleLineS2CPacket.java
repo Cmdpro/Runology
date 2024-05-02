@@ -56,13 +56,16 @@ public class DisplayEnderTransporterParticleLineS2CPacket {
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
-                options.colorData = ColorParticleData.create(color, color).build();
-                options.scaleData = GenericParticleData.create(0.25f).build();
-                ClientRunologyUtil.drawLine(options, pos1, pos2, Minecraft.getInstance().player.level(), 0.1f);
-            });
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handlePacket(this, supplier));
         });
         context.setPacketHandled(true);
+    }
+    public static class ClientPacketHandler {
+        public static void handlePacket(DisplayEnderTransporterParticleLineS2CPacket msg, Supplier<NetworkEvent.Context> ctx) {
+            WorldParticleOptions options = new WorldParticleOptions(LodestoneParticleRegistry.WISP_PARTICLE.get());
+            options.colorData = ColorParticleData.create(msg.color, msg.color).build();
+            options.scaleData = GenericParticleData.create(0.25f).build();
+            ClientRunologyUtil.drawLine(options, msg.pos1, msg.pos2, Minecraft.getInstance().player.level(), 0.1f);
+        }
     }
 }

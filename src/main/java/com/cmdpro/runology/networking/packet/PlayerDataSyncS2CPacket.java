@@ -28,12 +28,14 @@ public class PlayerDataSyncS2CPacket {
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handlePacket(supplier));
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handlePacket(this, supplier));
         });
         context.setPacketHandled(true);
     }
 
-    public void handlePacket(Supplier<NetworkEvent.Context> supplier) {
-        ClientPlayerData.set(currentChunkInstability);
+    public static class ClientPacketHandler {
+        public static void handlePacket(PlayerDataSyncS2CPacket msg, Supplier<NetworkEvent.Context> ctx) {
+            ClientPlayerData.set(msg.currentChunkInstability);
+        }
     }
 }

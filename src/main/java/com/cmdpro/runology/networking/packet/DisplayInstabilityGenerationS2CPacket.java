@@ -49,19 +49,22 @@ public class DisplayInstabilityGenerationS2CPacket {
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                for (int i = 0; i < Math.clamp(instabilityAmount, 5, 50); i++) {
-                    WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
-                            .setScaleData(GenericParticleData.create(0.25f).build())
-                            .setColorData(ColorParticleData.create(Color.DARK_GRAY, Color.BLACK).build())
-                            .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                            .addMotion(dir.x + (RandomUtils.nextDouble(0d, 0.1d)-0.05d), dir.y + (RandomUtils.nextDouble(0d, 0.1d)-0.05d), dir.z + (RandomUtils.nextDouble(0d, 0.1d)-0.05d))
-                            .setLifetime(20)
-                            .enableNoClip()
-                            .spawn(Minecraft.getInstance().player.level(), pos.x+(RandomUtils.nextDouble(0d, 0.25d)-0.125d), pos.y, pos.z+(RandomUtils.nextDouble(0d, 0.25d)-0.125d));
-                }
-            });
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handlePacket(this, supplier));
         });
         context.setPacketHandled(true);
+    }
+    public static class ClientPacketHandler {
+        public static void handlePacket(DisplayInstabilityGenerationS2CPacket msg, Supplier<NetworkEvent.Context> ctx) {
+            for (int i = 0; i < Math.clamp(msg.instabilityAmount, 5, 50); i++) {
+                WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
+                        .setScaleData(GenericParticleData.create(0.25f).build())
+                        .setColorData(ColorParticleData.create(Color.DARK_GRAY, Color.BLACK).build())
+                        .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                        .addMotion(msg.dir.x + (RandomUtils.nextDouble(0d, 0.1d)-0.05d), msg.dir.y + (RandomUtils.nextDouble(0d, 0.1d)-0.05d), msg.dir.z + (RandomUtils.nextDouble(0d, 0.1d)-0.05d))
+                        .setLifetime(20)
+                        .enableNoClip()
+                        .spawn(Minecraft.getInstance().player.level(), msg.pos.x+(RandomUtils.nextDouble(0d, 0.25d)-0.125d), msg.pos.y, msg.pos.z+(RandomUtils.nextDouble(0d, 0.25d)-0.125d));
+            }
+        }
     }
 }

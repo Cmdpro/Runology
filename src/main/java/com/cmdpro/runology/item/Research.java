@@ -3,7 +3,7 @@ package com.cmdpro.runology.item;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
 import com.cmdpro.runology.moddata.PlayerModDataProvider;
-import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.entries.BookEntry;
 import com.klikli_dev.modonomicon.book.BookEntryParent;
 import com.klikli_dev.modonomicon.bookstate.BookUnlockStateManager;
 import com.klikli_dev.modonomicon.data.BookDataManager;
@@ -52,7 +52,7 @@ public class Research extends Item {
                 BookAnalyzeTaskCondition condition = RunologyUtil.getAnalyzeCondition(bookEntry.getCondition());
                 if (condition != null) {
                     if (RunologyUtil.conditionAllTrueExceptAnalyze(bookEntry, pPlayer)) {
-                        List<BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
+                        List<? extends BookEntryParent> parents = BookDataManager.get().getBook(book).getEntry(entry).getParents();
                         boolean canSee = true;
                         for (BookEntryParent i : parents) {
                             if (!BookUnlockStateManager.get().isUnlockedFor(pPlayer, i.getEntry())) {

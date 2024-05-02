@@ -51,7 +51,7 @@ public class BookAnalyzeTaskCondition extends BookCondition {
     }
 
     @Override
-    public List<Component> getTooltip(BookConditionContext context) {
+    public List<Component> getTooltip(Player player, BookConditionContext context) {
         List<Component> list = new ArrayList<>();
         if (!tooltip.getString().equals("")) {
             list.add(tooltip);

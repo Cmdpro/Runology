@@ -5,7 +5,7 @@ import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.block.entity.RunicAnalyzerBlockEntity;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.integration.modonomicon.bookconditions.BookAnalyzeTaskCondition;
-import com.klikli_dev.modonomicon.book.BookEntry;
+import com.klikli_dev.modonomicon.book.entries.BookEntry;
 import com.klikli_dev.modonomicon.data.BookDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
