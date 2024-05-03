@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 import team.lodestar.lodestone.handlers.RenderHandler;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.awt.*;
@@ -35,10 +36,10 @@ public class SparkAttackRenderer extends EntityRenderer<SparkAttack> {
     @Override
     public void render(SparkAttack pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
         Vector3f vector3f = pEntity.getEntityData().get(SparkAttack.VICTIMPOS);
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
-        VertexConsumer consumer = RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL)));
         double length = pEntity.position().distanceTo(pos);
         Vec3 lastPos = pEntity.position();
         List<Map.Entry<Float, Vec2>> entries = pEntity.offsets.entrySet().stream().sorted((a, b) -> a.getKey().compareTo(b.getKey())).toList();
@@ -48,10 +49,10 @@ public class SparkAttackRenderer extends EntityRenderer<SparkAttack> {
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
             pos2 = pos2.add(offset);
-            builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.025f);
+            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.025f);
             lastPos = pos2;
         }
-        builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.025f);
+        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.025f);
         pPoseStack.translate(pEntity.position().x, pEntity.position().y, pEntity.position().z);
         pPoseStack.popPose();
     }

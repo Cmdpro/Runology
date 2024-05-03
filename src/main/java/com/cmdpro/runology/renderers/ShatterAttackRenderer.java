@@ -4,6 +4,7 @@ import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.entity.BillboardProjectile;
 import com.cmdpro.runology.entity.IceShard;
 import com.cmdpro.runology.entity.ShatterAttack;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -55,7 +56,6 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
         Vector3f vector3f = pEntity.getEntityData().get(ShatterAttack.VICTIMPOS);
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
-        VertexConsumer consumer = RenderHandler.DELAYED_RENDER.getBuffer(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL)));
         double length = pEntity.position().distanceTo(pos);
         Vec3 lastPos = pEntity.position();
         List<Map.Entry<Float, Vec2>> entries = pEntity.offsets.entrySet().stream().sorted((a, b) -> a.getKey().compareTo(b.getKey())).toList();
@@ -65,10 +65,10 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
             pos2 = pos2.add(offset);
-            builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
+            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL))).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
             lastPos = pos2;
         }
-        builder.setPosColorTexLightmapDefaultFormat().setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setVertexConsumer(consumer).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
+        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL))).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
         pPoseStack.translate(pEntity.position().x, pEntity.position().y, pEntity.position().z);
         pPoseStack.popPose();
     }
