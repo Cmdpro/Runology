@@ -32,11 +32,11 @@ public class SparkAttackRenderer extends EntityRenderer<SparkAttack> {
     public ResourceLocation getTextureLocation(SparkAttack pEntity) {
         return new ResourceLocation(Runology.MOD_ID, "textures/entity/shatterattack.png");
     }
-    public VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
     @Override
     public void render(SparkAttack pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
-        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL));
+        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.apply(getTextureLocation(pEntity));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
         Vector3f vector3f = pEntity.getEntityData().get(SparkAttack.VICTIMPOS);
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
