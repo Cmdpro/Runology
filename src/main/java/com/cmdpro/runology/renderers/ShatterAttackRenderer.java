@@ -52,11 +52,14 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
     }
     @Override
     public void render(ShatterAttack pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+        if (pEntity.victimPos == null) {
+            return;
+        }
         pPoseStack.pushPose();
         VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
-        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.apply(getTextureLocation(pEntity));
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyAndCache(getTextureLocation(pEntity));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
-        Vector3f vector3f = pEntity.getEntityData().get(ShatterAttack.VICTIMPOS);
+        Vector3f vector3f = pEntity.victimPos;
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
         double length = pEntity.position().distanceTo(pos);
         Vec3 lastPos = pEntity.position();
@@ -67,10 +70,10 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
             pos2 = pos2.add(offset);
-            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
+            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.025f);
             lastPos = pos2;
         }
-        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
+        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.YELLOW).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.025f);
         pPoseStack.translate(pEntity.position().x, pEntity.position().y, pEntity.position().z);
         pPoseStack.popPose();
     }

@@ -34,11 +34,14 @@ public class SparkAttackRenderer extends EntityRenderer<SparkAttack> {
     }
     @Override
     public void render(SparkAttack pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+        if (pEntity.victimPos == null) {
+            return;
+        }
         pPoseStack.pushPose();
         VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
-        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.apply(getTextureLocation(pEntity));
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyAndCache(getTextureLocation(pEntity));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
-        Vector3f vector3f = pEntity.getEntityData().get(SparkAttack.VICTIMPOS);
+        Vector3f vector3f = pEntity.victimPos;
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
         double length = pEntity.position().distanceTo(pos);
         Vec3 lastPos = pEntity.position();

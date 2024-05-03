@@ -68,6 +68,7 @@ public class SparkAttack extends Entity {
         if (pKey.equals(VICTIMPOS)) {
             Vector3f vector3f = entityData.get(VICTIMPOS);
             if (vector3f != null) {
+                victimPos = vector3f;
                 Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
                 double distance = pos.distanceTo(position());
                 int amount = RandomUtils.nextInt(3, 8);

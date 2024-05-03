@@ -47,7 +47,6 @@ import static com.mojang.blaze3d.platform.GlConst.GL_DRAW_FRAMEBUFFER;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MOD_ID)
 public class ClientEvents {
     public static SimpleSoundInstance music;
-    public static VFXBuilders.WorldVFXBuilder worldBuilder = VFXBuilders.createWorld();
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
@@ -55,7 +54,7 @@ public class ClientEvents {
                 if (i.getUseItem().is(ItemInit.LANTERNOFFLAMES.get())) {
                     Vec3 pos = i.getBoundingBox().getCenter().subtract(event.getCamera().getPosition());
                     event.getPoseStack().translate(pos.x, pos.y, pos.z);
-                    ClientRunologyUtil.drawSphere(worldBuilder, event.getPoseStack(), Color.RED, 0.25f, 5, 30, 30);
+                    ClientRunologyUtil.drawSphere(VFXBuilders.createWorld(), event.getPoseStack(), Color.RED, 0.25f, 5, 30, 30);
                     event.getPoseStack().translate(-pos.x, -pos.y, -pos.z);
                 }
             }
