@@ -30,6 +30,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import team.lodestar.lodestone.handlers.RenderHandler;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.awt.*;
@@ -53,6 +54,7 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
     @Override
     public void render(ShatterAttack pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
         Vector3f vector3f = pEntity.getEntityData().get(ShatterAttack.VICTIMPOS);
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);
@@ -65,10 +67,10 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
             Vec2 rotVec = calculateRotationVector(pEntity.position(), pos);
             Vec3 offset = calculateViewVector(i.getValue().x, rotVec.y-90).multiply(i.getValue().y, i.getValue().y, i.getValue().y);
             pos2 = pos2.add(offset);
-            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL))).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
+            builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos2, 0.1f);
             lastPos = pos2;
         }
-        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyWithModifierAndCache(getTextureLocation(pEntity), b -> b.setCullState(LodestoneRenderTypeRegistry.NO_CULL))).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
+        builder.setAlpha(1f - ((float) pEntity.time / 20f)).setColor(Color.MAGENTA).setRenderType(renderType).renderBeam(pPoseStack.last().pose(), lastPos, pos, 0.1f);
         pPoseStack.translate(pEntity.position().x, pEntity.position().y, pEntity.position().z);
         pPoseStack.popPose();
     }
