@@ -8,4 +8,5 @@ Made it so that you can't make runic waste from runic waste
 Made shift right-clicking a runic cauldron not produce instability
 Made sparks and shatters only attack living entities
 Messed with particles a bit
+Changed the sprite for the Reality Slicer to fit better with the Reality Breaker
 Added more content

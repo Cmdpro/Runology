@@ -81,7 +81,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.PRISMATICGEM);
 
         handheldItem(ItemInit.REALITYSLICER);
-        //handheldItem(ItemInit.REALITYBREAKER);
+        handheldItem(ItemInit.REALITYBREAKER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
 
         withExistingParent(ItemInit.RUNICCONSTRUCTSPAWNEGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
