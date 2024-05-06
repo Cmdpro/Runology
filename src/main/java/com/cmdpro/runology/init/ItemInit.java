@@ -69,6 +69,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ANCIENTDRAGONSBLADETORNRESEARCH = register("ancientdragonsbladetornresearch", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ECHOGOGGLESTORNRESEARCH = register("echogogglestornresearch", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LANTERNOFFLAMESTORNRESEARCH = register("lanternofflamestornresearch", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRISMATICBLASTER = register("prismaticblaster", () -> new PrismaticBlaster(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> SUMMONTOTEMSPELLCRYSTAL = register("summontotemspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "summontotem")));
     public static final RegistryObject<Item> FIREBALLSPELLCRYSTAL = register("fireballspellcrystal", () -> new SpellCrystal(new Item.Properties().stacksTo(1), new ResourceLocation(Runology.MOD_ID, "fireball")));
