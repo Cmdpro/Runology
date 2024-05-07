@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-05T14:16:16.5034689	Item Models: runology
+// 1.20.1	2024-05-07T12:32:24.9118453	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 d29c06739b96489389a440127d840aa2e92fac46 assets/runology/models/item/ancientdragonsblade.json
@@ -48,6 +48,7 @@ c3af3e52b6b0390c07ad3bb379778c848e7260b8 assets/runology/models/item/mysteriumor
 3421a175f115d0dee3b81b21c6adcf7f1c2800c4 assets/runology/models/item/mysteriumtotem.json
 301a8a40656196d27740201dd8fe25ed6832660f assets/runology/models/item/petrifiedshatterwood.json
 eed527b94080923b9ee56eb2eb7dc784bf4776b3 assets/runology/models/item/plantrune.json
+f11089ebd23f209c6185fb3c600fe25ec139d80d assets/runology/models/item/prismaticblaster.json
 67bfae912dcf9ceab30d4a91da1869a8ccde6c2c assets/runology/models/item/prismaticgem.json
 8450d47da7c20e6e4172afd7c095732726b74514 assets/runology/models/item/purifiedflesh.json
 2c5d776e2154772796e7aeefcd151cf5086c49a6 assets/runology/models/item/purityarrow.json
@@ -85,3 +86,10 @@ d0a652afc7cd6ab1f6eee99d8f57777fcdf322b4 assets/runology/models/item/summontotem
 fc1ae0c137863ec07b0ea34db28dbb9ed490b935 assets/runology/models/item/waterpowder.json
 5022bc8aa20b82cc109233e11097d1b467840d99 assets/runology/models/item/waterrune.json
 321d2e7349367c8d9d8ea0ac5c7dd745d496595e assets/runology/models/item/writtenresearch.json
+5042a771c1ab7e42d0c4acbd9903dc8be1b42d9a assets/runology/models/prismaticblaster/charged.json
+2c16399364495d91753cfa2b83cdc1ddb1c114b3 assets/runology/models/prismaticblaster/charging2.json
+5f46cb0f1a7ad1f9993b3b2e2b45b635ff86edc4 assets/runology/models/prismaticblaster/charging3.json
+206dba0af5fd495e19f2a9a4b0e4a83548cc6f45 assets/runology/models/prismaticblaster/charging4.json
+9e12fb35f56f4be77859d4d0c80da94780a6951b assets/runology/models/prismaticblaster/charging5.json
+b8d8219f7e912ca76ae6b483613708c850e445c7 assets/runology/models/prismaticblaster/charging6.json
+2fd51455574647946908022bfe54147c02e571a8 assets/runology/models/prismaticblaster/charging7.json

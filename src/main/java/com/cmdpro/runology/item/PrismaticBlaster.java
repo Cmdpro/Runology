@@ -90,6 +90,11 @@ public class PrismaticBlaster extends SwordItem {
         }
         return InteractionResultHolder.consume(itemstack);
     }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
     @Override
     public int getUseDuration(ItemStack pStack) {
         return 70;

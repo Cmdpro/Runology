@@ -119,6 +119,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         tornResearch(ItemInit.ANCIENTDRAGONSBLADETORNRESEARCH);
         tornResearch(ItemInit.ECHOGOGGLESTORNRESEARCH);
         tornResearch(ItemInit.LANTERNOFFLAMESTORNRESEARCH);
+        prismaticBlaster(ItemInit.PRISMATICBLASTER);
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
@@ -165,6 +166,36 @@ public class ModItemModelProvider extends ItemModelProvider {
                 model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader8"))).end()
                 .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 1000).
                 model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader9"))).end();
+    }
+    public ItemModelBuilder prismaticBlasterPart(String name) {
+        return getBuilder(name).parent(getExistingFile(new ResourceLocation(Runology.MOD_ID, "item/reversehandheld")));
+    }
+    private ItemModelBuilder prismaticBlaster(RegistryObject<Item> item) {
+        prismaticBlasterPart("prismaticblaster/charging2").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging2"));
+        prismaticBlasterPart("prismaticblaster/charging3").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging3"));
+        prismaticBlasterPart("prismaticblaster/charging4").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging4"));
+        prismaticBlasterPart("prismaticblaster/charging5").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging5"));
+        prismaticBlasterPart("prismaticblaster/charging6").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging6"));
+        prismaticBlasterPart("prismaticblaster/charging7").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging7"));
+        prismaticBlasterPart("prismaticblaster/charged").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charged"));
+        return prismaticBlasterPart(item.getId().getPath()).texture("layer0",
+                        new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging1"))
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 0).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging2"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 2).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging3"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 3).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging4"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 4).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging5"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 5).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging6"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 6).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging7"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 7).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charged"))).end();
     }
     private ItemModelBuilder research(RegistryObject<Item> item) {
         withExistingParent("writtenresearch", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/writtenresearch"));

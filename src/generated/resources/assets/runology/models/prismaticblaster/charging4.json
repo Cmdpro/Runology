@@ -1,0 +1,6 @@
+{
+  "parent": "runology:item/reversehandheld",
+  "textures": {
+    "layer0": "runology:item/prismaticblaster/charging4"
+  }
+}

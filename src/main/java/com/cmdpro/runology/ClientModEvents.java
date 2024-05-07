@@ -115,6 +115,18 @@ public class ClientModEvents {
         });
         event.enqueueWork(new Runnable() {
             public void run() {
+                ItemProperties.register(ItemInit.PRISMATICBLASTER.get(), new ResourceLocation(Runology.MOD_ID, "charge"), (stack, level, entity, seed) -> {
+                    if (stack.hasTag()) {
+                        if (stack.getTag().contains("charge")) {
+                            return stack.getTag().getInt("charge");
+                        }
+                    }
+                    return 0;
+                });
+            }
+        });
+        event.enqueueWork(new Runnable() {
+            public void run() {
                 ItemProperties.register(ItemInit.RESEARCH.get(), new ResourceLocation(Runology.MOD_ID, "finished"), (stack, level, entity, seed) -> {
                     if (stack.hasTag()) {
                         if (stack.getTag().contains("finished")) {

@@ -1,0 +1,56 @@
+{
+  "parent": "runology:item/reversehandheld",
+  "overrides": [
+    {
+      "model": "runology:item/prismaticblaster",
+      "predicate": {
+        "runology:charge": 0.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging2",
+      "predicate": {
+        "runology:charge": 1.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging3",
+      "predicate": {
+        "runology:charge": 2.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging4",
+      "predicate": {
+        "runology:charge": 3.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging5",
+      "predicate": {
+        "runology:charge": 4.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging6",
+      "predicate": {
+        "runology:charge": 5.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charging7",
+      "predicate": {
+        "runology:charge": 6.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/charged",
+      "predicate": {
+        "runology:charge": 7.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "runology:item/prismaticblaster/charging1"
+  }
+}
