@@ -9,4 +9,5 @@ Made shift right-clicking a runic cauldron not produce instability
 Made sparks and shatters only attack living entities
 Messed with particles a bit
 Changed the sprite for the Reality Slicer to fit better with the Reality Breaker
+Made Dragonium Ingots a little bit more expensive
 Added more content

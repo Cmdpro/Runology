@@ -8,9 +8,9 @@
     }
   ],
   "pattern": [
-    "aaa",
+    " a ",
     "aAa",
-    "aaa"
+    " a "
   ],
   "key": {
     "a": {
@@ -22,6 +22,6 @@
   },
   "result": {
     "item": "runology:dragoniumingot",
-    "count": 8
+    "count": 4
   }
 }
