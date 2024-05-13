@@ -24,6 +24,7 @@ public class TagInit {
     }
     public static class Items {
         public static final TagKey<Item> GAUNTLETS = tag("gauntlets");
+        public static final TagKey<Item> REALITYBREAKERS = tag("realitybreakers");
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(Runology.MOD_ID, name));
         }

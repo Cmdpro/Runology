@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-07T12:32:24.9118453	Item Models: runology
+// 1.20.1	2024-05-12T20:41:15.84058	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 d29c06739b96489389a440127d840aa2e92fac46 assets/runology/models/item/ancientdragonsblade.json
@@ -49,7 +49,7 @@ c3af3e52b6b0390c07ad3bb379778c848e7260b8 assets/runology/models/item/mysteriumor
 301a8a40656196d27740201dd8fe25ed6832660f assets/runology/models/item/petrifiedshatterwood.json
 eed527b94080923b9ee56eb2eb7dc784bf4776b3 assets/runology/models/item/plantrune.json
 f11089ebd23f209c6185fb3c600fe25ec139d80d assets/runology/models/item/prismaticblaster.json
-67bfae912dcf9ceab30d4a91da1869a8ccde6c2c assets/runology/models/item/prismaticgem.json
+9dd7229728a4e71a1ecc3f22ed4e754808697eb2 assets/runology/models/item/prismaticshard.json
 8450d47da7c20e6e4172afd7c095732726b74514 assets/runology/models/item/purifiedflesh.json
 2c5d776e2154772796e7aeefcd151cf5086c49a6 assets/runology/models/item/purityarrow.json
 9a2b2a237efd6e7c2200ebfb57664cd6c39fe9f7 assets/runology/models/item/puritypowder.json

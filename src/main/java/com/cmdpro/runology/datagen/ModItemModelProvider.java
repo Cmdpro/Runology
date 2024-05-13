@@ -78,7 +78,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
         simpleItem(ItemInit.LIQUIDSOULSBUCKET);
         simpleItem(ItemInit.CONJURESPARKSPELLCRYSTAL);
-        simpleItem(ItemInit.PRISMATICGEM);
+        simpleItem(ItemInit.PRISMATICSHARD);
 
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.REALITYBREAKER);

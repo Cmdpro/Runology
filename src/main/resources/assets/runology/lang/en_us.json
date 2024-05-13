@@ -133,6 +133,11 @@
   "fluid_type.runology.liquidsouls": "Liquid Souls",
   "fluid_type.runology.transmutativesolution": "Transmutive Solution",
   "block.runology.spark": "Spark",
+  "item.runology.realitybreaker": "Reality Breaker",
+  "item.runology.prismaticshard": "Prismatic Shard",
+  "block.runology.prismaticore": "Prismatic Ore",
+  "item.runology.prismaticblaster": "Prismatic Blaster",
+  "item.runology.prismaticingot": "Prismatic Ingot",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",

@@ -46,7 +46,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(BlockInit.MYSTERIUMORE.get(),
                 block -> createMysteriumOreDrops(BlockInit.MYSTERIUMORE.get(), ItemInit.RAWMYSTERIUM.get()));
         this.add(BlockInit.PRISMATICORE.get(),
-                block -> createPrismaticCrystalDrops(BlockInit.PRISMATICORE.get(), ItemInit.PRISMATICGEM.get()));
+                block -> createPrismaticCrystalDrops(BlockInit.PRISMATICORE.get(), ItemInit.PRISMATICSHARD.get()));
         dropSelf(BlockInit.CHISELEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.CRACKEDSHATTERSTONEBRICKS.get());
         dropSelf(BlockInit.MYSTERIUMBLOCK.get());

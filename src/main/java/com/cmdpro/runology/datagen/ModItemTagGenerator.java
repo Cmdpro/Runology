@@ -37,5 +37,7 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ItemInit.PURITYARROW.get());
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(ItemInit.DIMENSIONALTHREATMUSICDISC.get());
+        this.tag(TagInit.Items.REALITYBREAKERS)
+                .add(ItemInit.REALITYBREAKER.get());
     }
 }

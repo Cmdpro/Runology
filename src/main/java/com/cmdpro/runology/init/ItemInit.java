@@ -33,7 +33,7 @@ public class ItemInit {
     public static final RegistryObject<Item> VOIDGLASSITEM = register("voidglass", () -> new VoidGlassItem(BlockInit.VOIDGLASS.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUNICANALYZERITEM = register("runicanalyzer", () -> new RunicAnalyzerItem(BlockInit.RUNICANALYZER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLANKRUNE = register("blankrune", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> PRISMATICGEM = register("prismaticgem", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRISMATICSHARD = register("prismaticshard", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> EARTHRUNE = register("earthrune", () -> new EarthRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "earth")));
     public static final RegistryObject<Item> FIRERUNE = register("firerune", () -> new FireRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "fire")));
     public static final RegistryObject<Item> WATERRUNE = register("waterrune", () -> new WaterRune(new Item.Properties(), new ResourceLocation(Runology.MOD_ID, "water")));
@@ -66,6 +66,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ENHANCEDBONEMEAL = register("enhancedbonemeal", () -> new EnhancedBoneMeal(new Item.Properties()));
     public static final RegistryObject<Item> ECHOGOGGLES = register("echogoggles", () -> new ArmorItem(ModArmorMaterials.ECHOGOGGLES, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DRAGONIUMINGOT = register("dragoniumingot", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PRISMATICINGOT = register("prismaticingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ANCIENTDRAGONSBLADETORNRESEARCH = register("ancientdragonsbladetornresearch", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ECHOGOGGLESTORNRESEARCH = register("echogogglestornresearch", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LANTERNOFFLAMESTORNRESEARCH = register("lanternofflamestornresearch", () -> new Item(new Item.Properties()));

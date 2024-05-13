@@ -156,6 +156,10 @@ public class Runology
             event.accept(ItemInit.TRANSMUTATIVESOLUTIONBUCKET);
             event.accept(ItemInit.CONJURESPARKSPELLCRYSTAL);
             event.accept(ItemInit.DIMENSIONALTHREATMUSICDISC);
+            event.accept(ItemInit.REALITYBREAKER);
+            event.accept(ItemInit.PRISMATICBLASTER);
+            event.accept(ItemInit.PRISMATICSHARD);
+            event.accept(ItemInit.PRISMATICINGOT);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
@@ -186,6 +190,7 @@ public class Runology
             event.accept(ItemInit.SPELLTABLEITEM);
             event.accept(ItemInit.RUNICCAULDRONITEM);
             event.accept(ItemInit.ENDERTRANSPORTERITEM);
+            event.accept(BlockInit.PRISMATICORE);
         }
     }
     private void setup(final FMLCommonSetupEvent event)

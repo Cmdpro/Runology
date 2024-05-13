@@ -52,6 +52,11 @@ public class ModMessages {
                 .encoder(DisplayInstabilityGenerationS2CPacket::toBytes)
                 .consumerMainThread(DisplayInstabilityGenerationS2CPacket::handle)
                 .add();
+        net.messageBuilder(DisplayPrismaticBulletEffectsS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(DisplayPrismaticBulletEffectsS2CPacket::new)
+                .encoder(DisplayPrismaticBulletEffectsS2CPacket::toBytes)
+                .consumerMainThread(DisplayPrismaticBulletEffectsS2CPacket::handle)
+                .add();
 
     }
     public static <MSG> void sendToServer(MSG message) {
