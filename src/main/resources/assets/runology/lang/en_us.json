@@ -336,6 +336,18 @@
   "book.runology.runologyguide.spellcasting.conjuresparkspellcrystal.name": "Conjure Spark Spell Crystal",
   "book.runology.runologyguide.spellcasting.conjuresparkspellcrystal.page1.title": "Conjure Spark Spell Crystal",
   "book.runology.runologyguide.spellcasting.conjuresparkspellcrystal.page1.text": "Using glowstone and lightning rods, I can conjure a ball of energy that zaps anything non-human that gets close to it. This spark will also give off light.",
+  "book.runology.runologyguide.runicmysteries.realitybreaker.name": "Reality Breaker",
+  "book.runology.runologyguide.runicmysteries.realitybreaker.page1.title": "Reality Breaker",
+  "book.runology.runologyguide.runicmysteries.realitybreaker.page1.text": "This pickaxe, it holds the power to warp reality. With this pickaxe, I am capable of harvesting that Prismatic Meteor.",
+  "book.runology.runologyguide.purity.prismaticmeteor.name": "Prismatic Meteor",
+  "book.runology.runologyguide.purity.prismaticmeteor.page1.title": "Prismatic Meteor",
+  "book.runology.runologyguide.purity.prismaticmeteor.page1.text": "This meteor feels incredibly pure, I have the feeling I may have a use for it later...",
+  "book.runology.runologyguide.purity.prismaticingot.name": "Prismatic Ingot",
+  "book.runology.runologyguide.purity.prismaticingot.page1.title": "Prismatic Ingot",
+  "book.runology.runologyguide.purity.prismaticingot.page1.text": "It seems that when Prismatic Shards are refined, it becomes truly prismatic, showing all the colors of the rainbow.",
+  "book.runology.runologyguide.purity.prismaticblaster.name": "Prismatic Blaster",
+  "book.runology.runologyguide.purity.prismaticblaster.page1.title": "Prismatic Blaster",
+  "book.runology.runologyguide.purity.prismaticblaster.page2.text": "Now that I have Prismatic Ingots, I am able to craft a powerful ranged weapon. To charge it, I must sneak and use it, it will take time to charge. The more charge it has, the more projectiles are shot.",
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"

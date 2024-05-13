@@ -1,0 +1,27 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:purity/prismaticingot",
+  "runicenergy": [
+    {
+      "type": "runology:purity",
+      "amount": 10
+    }
+  ],
+  "pattern": [
+    " a ",
+    "aAa",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "runology:prismaticshard"
+    },
+    "A": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "runology:prismaticingot",
+    "count": 1
+  }
+}

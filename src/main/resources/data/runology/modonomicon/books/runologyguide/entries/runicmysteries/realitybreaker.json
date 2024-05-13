@@ -2,14 +2,14 @@
   "category": "runology:runicmysteries",
   "description": "",
   "hide_while_locked": false,
-  "icon": "runology:realityslicer",
-  "name": "book.runology.runologyguide.runicmysteries.realityslicer.name",
+  "icon": "runology:realitybreaker",
+  "name": "book.runology.runologyguide.runicmysteries.realitybreaker.name",
   "pages": [
     {
       "type": "runology:runicrecipe",
-      "recipe_id_1": "runology:realityslicer",
-      "text": "book.runology.runologyguide.runicmysteries.realityslicer.page1.text",
-      "title1": "book.runology.runologyguide.runicmysteries.realityslicer.page1.title"
+      "recipe_id_1": "runology:realitybreaker",
+      "text": "book.runology.runologyguide.runicmysteries.realitybreaker.page1.text",
+      "title1": "book.runology.runologyguide.runicmysteries.realitybreaker.page1.title"
     }
   ],
   "condition": {
@@ -32,8 +32,14 @@
       "entry": "runology:runicmysteries/shatteredsoul",
       "line_enabled": true,
       "line_reversed": false
+    },
+    {
+      "draw_arrow": true,
+      "entry": "runology:purity/prismaticmeteor",
+      "line_enabled": true,
+      "line_reversed": false
     }
   ],
-  "x": 2,
+  "x": -2,
   "y": -10
 }

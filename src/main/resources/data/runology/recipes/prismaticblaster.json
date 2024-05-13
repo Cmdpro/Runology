@@ -1,0 +1,26 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:purity/prismaticblaster",
+  "runicenergy": [
+    {
+      "type": "runology:purity",
+      "amount": 250
+    }
+  ],
+  "pattern": [
+    "  A",
+    "aaa",
+    "a A"
+  ],
+  "key": {
+    "a": {
+      "item": "runology:prismaticingot"
+    },
+    "A": {
+      "item": "runology:prismaticshard"
+    }
+  },
+  "result": {
+    "item": "runology:prismaticblaster"
+  }
+}
