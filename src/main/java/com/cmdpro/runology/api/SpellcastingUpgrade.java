@@ -7,7 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import java.util.HashMap;
 
 public abstract class SpellcastingUpgrade {
-    public abstract int getPriority();
     public HashMap<ResourceLocation, Float> costChanges(HashMap<ResourceLocation, Float> cost) { return cost; }
     public void tick(Player player, ItemStack stack) {}
 }

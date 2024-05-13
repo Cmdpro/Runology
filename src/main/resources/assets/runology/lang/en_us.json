@@ -146,6 +146,12 @@
 
   "death.attack.magicprojectile": "%1$s was killed by %2$s using magic",
 
+  "upgrade.runology.fire": "Fire Upgrade",
+  "upgrade.runology.water": "Water Upgrade",
+  "upgrade.runology.air": "Air Upgrade",
+  "upgrade.runology.earth": "Earth Upgrade",
+  "upgrade.runology.transformation": "Transformation Upgrade",
+
   "rune.runology.fire": "Fire",
   "rune.runology.earth": "Earth",
   "rune.runology.air": "Air",

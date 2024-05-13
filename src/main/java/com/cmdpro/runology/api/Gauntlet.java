@@ -2,6 +2,7 @@ package com.cmdpro.runology.api;
 
 import com.cmdpro.runology.block.entity.EnderTransporterBlockEntity;
 import com.cmdpro.runology.init.SpellInit;
+import com.cmdpro.runology.init.UpgradeTypeInit;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +54,7 @@ public class Gauntlet extends Item {
                 float amount = ((CompoundTag) pStack.getTag().get("runicEnergy")).getFloat(i);
                 if (amount > 0) {
                     Color color = RunologyUtil.RUNIC_ENERGY_TYPES_REGISTRY.get().getValue(ResourceLocation.tryParse(i)).color;
-                    pTooltipComponents.add(Component.translatable("container.runology.runicworkbench.runicenergyamount", amount, maxRunicEnergy, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(i)))).withStyle(style -> style.withColor(color.getRGB())));
+                    pTooltipComponents.add(Component.translatable("container.runology.runicworkbench.runicenergyamount", Math.ceil(amount), maxRunicEnergy, Component.translatable(Util.makeDescriptionId("rune", ResourceLocation.tryParse(i)))).withStyle(style -> style.withColor(color.getRGB())));
                 }
             }
         }
@@ -66,16 +69,48 @@ public class Gauntlet extends Item {
     }
 
     @Override
+    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
+        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
+        if (pEntity instanceof Player player) {
+            if (pStack.hasTag()) {
+                CompoundTag tag = pStack.getTag();
+                if (tag.contains("upgrades")) {
+                    ListTag tag2 = (ListTag) tag.get("upgrades");
+                    for (Tag i : tag2) {
+                        CompoundTag tag3 = (CompoundTag) i;
+                        RunologyUtil.SPELLCASTING_UPGRADES_REGISTRY.get().getValue(ResourceLocation.tryParse(tag3.getString("upgrade"))).tick(player, pStack);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
+    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide) {
             Spell spell = getSpell(pLevel, pPlayer, pUsedHand);
             if (spell != null) {
                 if (spell.gauntletCastable() && magicLevel >= spell.magicLevel()) {
+                    HashMap<ResourceLocation, Float> cost = spell.getCost();
+                    if (pPlayer.getItemInHand(pUsedHand).hasTag()) {
+                        CompoundTag tag = pPlayer.getItemInHand(pUsedHand).getTag();
+                        if (tag.contains("upgrades")) {
+                            ListTag tag2 = (ListTag) tag.get("upgrades");
+                            for (Tag i : tag2) {
+                                CompoundTag tag3 = (CompoundTag) i;
+                                cost = RunologyUtil.SPELLCASTING_UPGRADES_REGISTRY.get().getValue(ResourceLocation.tryParse(tag3.getString("upgrade"))).costChanges(cost);
+                            }
+                        }
+                    }
                     if (pPlayer.getItemInHand(pUsedHand).hasTag() && pPlayer.getItemInHand(pUsedHand).getTag().contains("runicEnergy")) {
                         boolean hasAll = true;
                         CompoundTag tag = ((CompoundTag)pPlayer.getItemInHand(pUsedHand).getTag().get("runicEnergy"));
                         for (String i : tag.getAllKeys()) {
-                            for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
+                            for (Map.Entry<ResourceLocation, Float> o : cost.entrySet()) {
                                 if (i.equals(o.getKey().toString())) {
                                     if (tag.getFloat(i) < o.getValue()) {
                                         hasAll = false;
@@ -88,7 +123,7 @@ public class Gauntlet extends Item {
                         if (hasAll) {
                             if (spell.cast(pPlayer, false, true)) {
                                 for (String i : tag.getAllKeys()) {
-                                    for (Map.Entry<ResourceLocation, Float> o : spell.getCost().entrySet()) {
+                                    for (Map.Entry<ResourceLocation, Float> o : cost.entrySet()) {
                                         if (i.equals(o.getKey().toString())) {
                                             tag.putFloat(i, tag.getFloat(i) - o.getValue());
                                         }

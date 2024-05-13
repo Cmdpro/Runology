@@ -89,6 +89,7 @@ public class Runology
         FluidTypeInit.FLUID_TYPES.register(bus);
         StructureInit.register(bus);
         FeatureInit.register(bus);
+        UpgradeTypeInit.UPGRADES.register(bus);
         GeckoLib.initialize();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -160,6 +161,11 @@ public class Runology
             event.accept(ItemInit.PRISMATICBLASTER);
             event.accept(ItemInit.PRISMATICSHARD);
             event.accept(ItemInit.PRISMATICINGOT);
+            event.accept(ItemInit.FIREUPGRADE);
+            event.accept(ItemInit.EARTHUPGRADE);
+            event.accept(ItemInit.AIRUPGRADE);
+            event.accept(ItemInit.WATERUPGRADE);
+            event.accept(ItemInit.TRANSFORMATIONUPGRADE);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);
