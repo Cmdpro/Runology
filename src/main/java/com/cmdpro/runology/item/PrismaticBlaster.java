@@ -12,10 +12,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -43,7 +40,7 @@ public class PrismaticBlaster extends Item {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
         if (!pLivingEntity.level().isClientSide()) {
-            if (pRemainingUseDuration % 10 == 0 && pRemainingUseDuration < 80 && pStack.hasTag()) {
+            if (pRemainingUseDuration % 8 == 0 && pRemainingUseDuration < 64 && pStack.hasTag()) {
                 if (pStack.getTag().contains("charge") && pStack.getTag().getInt("charge") < 7) {
                     pStack.getTag().putInt("charge", pStack.getTag().getInt("charge")+1);
                     if (pStack.getTag().getInt("charge") >= 7) {
@@ -123,6 +120,6 @@ public class PrismaticBlaster extends Item {
     }
     @Override
     public int getUseDuration(ItemStack pStack) {
-        return 80;
+        return 64;
     }
 }

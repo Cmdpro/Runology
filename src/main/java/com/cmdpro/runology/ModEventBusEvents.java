@@ -66,6 +66,8 @@ public class ModEventBusEvents {
                 .setName(new ResourceLocation(Runology.MOD_ID, "analyzetasks")));
         RunologyUtil.SPELL_REGISTRY = event.create(new RegistryBuilder<Spell>()
                 .setName(new ResourceLocation(Runology.MOD_ID, "spells")));
+        RunologyUtil.SPELLCASTING_UPGRADES_REGISTRY = event.create(new RegistryBuilder<SpellcastingUpgrade>()
+                .setName(new ResourceLocation(Runology.MOD_ID, "spellcastingupgrades")));
     }
     @SubscribeEvent
     public static void entitySpawnRestriction(SpawnPlacementRegisterEvent event) {
