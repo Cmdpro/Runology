@@ -11,4 +11,5 @@ Messed with particles a bit
 Changed the sprite for the Reality Slicer to fit better with the Reality Breaker
 Made Dragonium Ingots a little bit more expensive
 Implemented Spellcasting Upgrades
-Added more content
+Added the Reality Breaker
+Added post-boss prismatic focused content
