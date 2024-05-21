@@ -138,6 +138,12 @@
   "block.runology.prismaticore": "Prismatic Ore",
   "item.runology.prismaticblaster": "Prismatic Blaster",
   "item.runology.prismaticingot": "Prismatic Ingot",
+  "item.runology.blankupgrade": "Blank Upgrade",
+  "item.runology.fireupgrade": "Fire Upgrade",
+  "item.runology.earthupgrade": "Earth Upgrade",
+  "item.runology.airupgrade": "Air Upgrade",
+  "item.runology.waterupgrade": "Water Upgrade",
+  "item.runology.transformationupgrade": "Transformation Upgrade",
 
   "runology.analyzetasks.runology.consumeitem": "Give Items",
   "runology.analyzetasks.runology.getitem": "Collect Items",
@@ -348,6 +354,19 @@
   "book.runology.runologyguide.purity.prismaticblaster.name": "Prismatic Blaster",
   "book.runology.runologyguide.purity.prismaticblaster.page1.title": "Prismatic Blaster",
   "book.runology.runologyguide.purity.prismaticblaster.page2.text": "Now that I have Prismatic Ingots, I am able to craft a powerful ranged weapon. To charge it, I must sneak and use it, it will take time to charge. The more charge it has, the more projectiles are shot.",
+  "book.runology.runologyguide.spellcasting.transformationupgrade.name": "Transformation Upgrade",
+  "book.runology.runologyguide.spellcasting.transformationupgrade.page1.title": "Transformation Upgrade",
+  "book.runology.runologyguide.spellcasting.transformationupgrade.page1.text": "I am unable to make upgrades for subtypes however I am able to make an upgrade that will transform the costs of spells into their core runic energy type.",
+  "book.runology.runologyguide.spellcasting.spellcastingupgrades.name": "Spellcasting Upgrades",
+  "book.runology.runologyguide.spellcasting.spellcastingupgrades.page1.title": "Spellcasting Upgrades",
+  "book.runology.runologyguide.spellcasting.spellcastingupgrades.page1.text": "With spellcasting upgrades, I am capable of improving my staffs and gauntlets! I am unable to remove a spellcasting upgrade so I will need to decide carefully...",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.name": "Elemental Upgrades",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.page1.title": "Earth Upgrade",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.page1.title2": "Air Upgrade",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.page2.title": "Water Upgrade",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.page2.title2": "Fire Upgrade",
+  "book.runology.runologyguide.spellcasting.elementalupgrades.page3.text": "With this, I can create a spellcasting upgrade capable of generating runic energy, it will take time but it is free runic energy.",
+
 
   "book.runology.condition.analyze.ln1": "Click with paper in your inventory to get research",
   "book.runology.condition.analyze.ln2": "Requires Advancement : %1$s"

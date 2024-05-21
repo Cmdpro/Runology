@@ -1,0 +1,21 @@
+{
+  "type": "runology:shapelessrunicrecipe",
+  "entry": "runology:spellcasting/elementalupgrades",
+  "runicenergy": [
+    {
+      "type": "runology:water",
+      "amount": 100
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "runology:blankupgrade"
+    },
+    {
+      "item": "runology:waterpowder"
+    }
+  ],
+  "result": {
+    "item": "runology:waterupgrade"
+  }
+}

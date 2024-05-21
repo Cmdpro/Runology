@@ -59,6 +59,13 @@ public class ClientModEvents {
     public static void registerDimensionEffects(BiConsumer<ResourceKey<Level>, ShatterRealmEffects> consumer) {
         consumer.accept(DimensionInit.SHATTERREALM, new ShatterRealmEffects());
     }
+    @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        for (String i : event.getSkins()) {
+            var skin = event.getSkin(i);
+            skin.addLayer(new CustomElytraLayer(skin, event.getEntityModels()));
+        }
+    }
 
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {

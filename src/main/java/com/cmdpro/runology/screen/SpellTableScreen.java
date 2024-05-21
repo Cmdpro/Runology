@@ -23,6 +23,9 @@ public class SpellTableScreen extends AbstractContainerScreen<SpellTableMenu> {
         int y = (height - imageHeight) / 2;
 
         pGuiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        if (!menu.invSlots.get(2).hasItem()) {
+            pGuiGraphics.blit(TEXTURE, x+127, y+33, 176, 0, 16, 16);
+        }
     }
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {

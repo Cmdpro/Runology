@@ -19,6 +19,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
@@ -161,6 +162,7 @@ public class Runology
             event.accept(ItemInit.PRISMATICBLASTER);
             event.accept(ItemInit.PRISMATICSHARD);
             event.accept(ItemInit.PRISMATICINGOT);
+            event.accept(ItemInit.BLANKUPGRADE);
             event.accept(ItemInit.FIREUPGRADE);
             event.accept(ItemInit.EARTHUPGRADE);
             event.accept(ItemInit.AIRUPGRADE);

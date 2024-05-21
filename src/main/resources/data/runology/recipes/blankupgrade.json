@@ -1,0 +1,36 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:spellcasting/spellcastingupgrades",
+  "runicenergy": [
+    {
+      "type": "runology:earth",
+      "amount": 25
+    },
+    {
+      "type": "runology:air",
+      "amount": 25
+    },
+    {
+      "type": "runology:water",
+      "amount": 25
+    },
+    {
+      "type": "runology:fire",
+      "amount": 25
+    }
+  ],
+  "pattern": [
+    " a ",
+    "a a",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "runology:blankupgrade",
+    "count": 1
+  }
+}
