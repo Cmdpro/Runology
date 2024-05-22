@@ -14,10 +14,10 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:copper_ingot"
+      "item": "minecraft:dragon_breath"
     },
     "A": {
-      "item": "minecraft:dragon_breath"
+      "item": "minecraft:copper_ingot"
     }
   },
   "result": {
