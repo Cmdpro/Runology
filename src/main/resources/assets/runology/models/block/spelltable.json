@@ -6,7 +6,7 @@
     64
   ],
   "textures": {
-    "particle": "runology:block/spelltable"
+    "particle": "runology:block/spelltableparticle"
   },
   "display": {
     "thirdperson_righthand": {

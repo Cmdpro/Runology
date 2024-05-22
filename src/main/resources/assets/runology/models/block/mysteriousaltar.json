@@ -3,7 +3,7 @@
 	"texture_size": [128, 128],
 	"textures": {
 		"0": "runology:block/mysteriousaltar",
-		"particle": "runology:block/mysteriousaltar"
+		"particle": "runology:block/mysteriousaltarparticle"
 	},
 	"elements": [
 		{

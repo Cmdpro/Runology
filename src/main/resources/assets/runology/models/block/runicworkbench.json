@@ -6,7 +6,7 @@
     64
   ],
   "textures": {
-    "particle": "runology:block/runicworkbench"
+    "particle": "minecraft:block/copper_block"
   },
   "display": {
     "thirdperson_righthand": {
