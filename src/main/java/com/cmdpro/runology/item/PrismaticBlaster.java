@@ -40,15 +40,19 @@ public class PrismaticBlaster extends Item {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
         if (!pLivingEntity.level().isClientSide()) {
-            if (pRemainingUseDuration % 8 == 0 && pRemainingUseDuration < 64 && pStack.hasTag()) {
-                if (pStack.getTag().contains("charge") && pStack.getTag().getInt("charge") < 7) {
-                    pStack.getTag().putInt("charge", pStack.getTag().getInt("charge")+1);
-                    if (pStack.getTag().getInt("charge") >= 7) {
-                        pLevel.playSound(null, pLivingEntity.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS);
-                        pLivingEntity.stopUsingItem();
+            if (pRemainingUseDuration % 8 == 0 && pRemainingUseDuration < 64) {
+                if (pStack.hasTag()) {
+                    if (pStack.getTag().contains("charge") && pStack.getTag().getInt("charge") < 7) {
+                        pStack.getTag().putInt("charge", pStack.getTag().getInt("charge") + 1);
+                        if (pStack.getTag().getInt("charge") >= 7) {
+                            pLevel.playSound(null, pLivingEntity.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS);
+                            pLivingEntity.stopUsingItem();
+                        }
+                    } else {
+                        pStack.getTag().putInt("charge", 1);
                     }
                 } else {
-                    pStack.getTag().putInt("charge", 1);
+                    pStack.getOrCreateTag().putInt("charge", 1);
                 }
                 pLevel.playSound(null, pLivingEntity.blockPosition(), SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.PLAYERS);
             }
