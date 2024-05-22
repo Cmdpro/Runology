@@ -168,6 +168,8 @@ public class Runology
             event.accept(ItemInit.AIRUPGRADE);
             event.accept(ItemInit.WATERUPGRADE);
             event.accept(ItemInit.TRANSFORMATIONUPGRADE);
+            event.accept(ItemInit.DRAGONIUMELYTRA);
+            event.accept(ItemInit.PRISMATICELYTRA);
         }
         if (event.getTabKey() == CreativeModeTabInit.BLOCKS.getKey()) {
             event.accept(ItemInit.RUNICWORKBENCHITEM);

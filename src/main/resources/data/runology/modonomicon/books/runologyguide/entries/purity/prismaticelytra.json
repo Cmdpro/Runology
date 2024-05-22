@@ -1,0 +1,45 @@
+{
+  "category": "runology:purity",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:prismaticelytra",
+  "name": "book.runology.runologyguide.purity.prismaticelytra.name",
+  "pages": [
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:prismaticelytra",
+      "title1": "book.runology.runologyguide.purity.prismaticelytra.page1.title",
+      "text": "book.runology.runologyguide.purity.prismaticelytra.page1.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:purity/prismaticingot",
+      "line_enabled": true,
+      "line_reversed": false
+    },
+    {
+      "draw_arrow": true,
+      "entry": "runology:ancientdiscovery/dragoniumelytra",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "runology:prismaticingot",
+            "count": 2
+          }
+        ]
+      }
+    ]
+  },
+  "x": -2,
+  "y": 4
+}

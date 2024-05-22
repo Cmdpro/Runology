@@ -1,18 +1,18 @@
 {
   "type": "runology:shapedrunicrecipe",
-  "entry": "runology:artifice/voidglass",
+  "entry": "runology:ancientdiscovery/dragoniumelytra",
   "runicenergy": [
     {
       "type": "runology:void",
-      "amount": 10
+      "amount": 100
     }
   ],
   "key": {
     "a": {
-      "item": "minecraft:dragon_breath"
+      "item": "minecraft:elytra"
     },
     "A": {
-      "item": "minecraft:glass"
+      "item": "runology:dragoniumingot"
     }
   },
   "pattern": [
@@ -21,7 +21,7 @@
     "AAA"
   ],
   "result": {
-    "item": "runology:voidglass",
-    "count": 8
+    "item": "runology:dragoniumelytra",
+    "count": 1
   }
 }

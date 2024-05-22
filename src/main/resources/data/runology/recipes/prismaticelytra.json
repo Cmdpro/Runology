@@ -1,0 +1,27 @@
+{
+  "type": "runology:shapedrunicrecipe",
+  "entry": "runology:purity/prismaticelytra",
+  "runicenergy": [
+    {
+      "type": "runology:purity",
+      "amount": 100
+    }
+  ],
+  "key": {
+    "a": {
+      "item": "runology:dragoniumelytra"
+    },
+    "A": {
+      "item": "runology:prismaticingot"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AaA",
+    "AAA"
+  ],
+  "result": {
+    "item": "runology:prismaticelytra",
+    "count": 1
+  }
+}

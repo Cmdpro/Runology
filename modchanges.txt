@@ -15,3 +15,4 @@ Fixed particle weirdness on some blocks
 Added the Reality Breaker
 Added the Dragonium Elytra
 Added post-boss prismatic focused content
+Fixed a recipes requiring the wrong entry

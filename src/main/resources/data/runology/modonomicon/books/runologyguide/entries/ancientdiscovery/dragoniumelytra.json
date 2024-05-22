@@ -1,0 +1,39 @@
+{
+  "category": "runology:ancientdiscovery",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:dragoniumelytra",
+  "name": "book.runology.runologyguide.ancientdiscovery.dragoniumelytra.name",
+  "pages": [
+    {
+      "type": "runology:runicrecipe",
+      "recipe_id_1": "runology:dragoniumelytra",
+      "title1": "book.runology.runologyguide.ancientdiscovery.dragoniumelytra.page1.title",
+      "text": "book.runology.runologyguide.ancientdiscovery.dragoniumelytra.page1.text"
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:ancientdiscovery/ancientdragonsblade",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "condition": {
+    "type": "runology:analyze",
+    "tasks": [
+      {
+        "type": "runology:consumeitem",
+        "items": [
+          {
+            "item": "runology:dragoniumingot",
+            "count": 2
+          }
+        ]
+      }
+    ]
+  },
+  "x": 0,
+  "y": -1
+}
