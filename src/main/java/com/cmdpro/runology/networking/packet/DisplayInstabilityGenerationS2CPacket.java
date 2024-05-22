@@ -47,7 +47,7 @@ public class DisplayInstabilityGenerationS2CPacket {
     }
     public static class ClientPacketHandler {
         public static void handlePacket(DisplayInstabilityGenerationS2CPacket msg, Supplier<NetworkEvent.Context> ctx) {
-            for (int i = 0; i < Math.clamp(msg.instabilityAmount, 5, 50); i++) {
+            for (int i = 0; i < Math.clamp(5, 50, msg.instabilityAmount); i++) {
                 WorldParticleBuilder.create(LodestoneParticleRegistry.SMOKE_PARTICLE)
                         .setScaleData(GenericParticleData.create(0.25f).build())
                         .setColorData(ColorParticleData.create(Color.DARK_GRAY, Color.BLACK).build())

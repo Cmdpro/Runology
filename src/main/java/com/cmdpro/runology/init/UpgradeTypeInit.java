@@ -33,7 +33,7 @@ public class UpgradeTypeInit {
                 max = staff.maxRunicEnergy;
             }
             CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
-            tag2.putFloat(id, Math.clamp(tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f, 0, max));
+            tag2.putFloat(id, Math.clamp(0, max, tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f));
             tag.put("runicEnergy", tag2);
         }
     });
@@ -51,7 +51,7 @@ public class UpgradeTypeInit {
                 max = staff.maxRunicEnergy;
             }
             CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
-            tag2.putFloat(id, Math.clamp(tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f, 0, max));
+            tag2.putFloat(id, Math.clamp(0, max, tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f));
             tag.put("runicEnergy", tag2);
         }
     });
@@ -69,7 +69,7 @@ public class UpgradeTypeInit {
                 max = staff.maxRunicEnergy;
             }
             CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
-            tag2.putFloat(id, Math.clamp(tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f, 0, max));
+            tag2.putFloat(id, Math.clamp(0, max, tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f));
             tag.put("runicEnergy", tag2);
         }
     });
@@ -88,7 +88,7 @@ public class UpgradeTypeInit {
                 max = staff.maxRunicEnergy;
             }
             CompoundTag tag2 = tag.contains("runicEnergy") ? (CompoundTag) tag.get("runicEnergy") : new CompoundTag();
-            tag2.putFloat(id, Math.clamp(tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f, 0, max));
+            tag2.putFloat(id, Math.clamp(0, max, tag2.contains(id) ? tag2.getFloat(id)+0.2f : 0.2f));
             tag.put("runicEnergy", tag2);
         }
     });
