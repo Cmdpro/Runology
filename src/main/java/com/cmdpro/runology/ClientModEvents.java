@@ -26,6 +26,8 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -119,10 +121,6 @@ public class ClientModEvents {
                         return ClientPlayerData.getPlayerChunkInstability();
                     }
                 });
-            }
-        });
-        event.enqueueWork(new Runnable() {
-            public void run() {
                 ItemProperties.register(ItemInit.PRISMATICBLASTER.get(), new ResourceLocation(Runology.MOD_ID, "charge"), (stack, level, entity, seed) -> {
                     if (stack.hasTag()) {
                         if (stack.getTag().contains("charge")) {
@@ -131,10 +129,6 @@ public class ClientModEvents {
                     }
                     return 0;
                 });
-            }
-        });
-        event.enqueueWork(new Runnable() {
-            public void run() {
                 ItemProperties.register(ItemInit.RESEARCH.get(), new ResourceLocation(Runology.MOD_ID, "finished"), (stack, level, entity, seed) -> {
                     if (stack.hasTag()) {
                         if (stack.getTag().contains("finished")) {
@@ -145,6 +139,9 @@ public class ClientModEvents {
                     }
                     return 0;
                 });
+                ItemProperties.register(ItemInit.DRAGONIUMELYTRA.get(), new ResourceLocation("broken"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
+                            return ElytraItem.isFlyEnabled(p_174590_) ? 0.0F : 1.0F;
+                        });
             }
         });
         echoGogglesProcessor = new EchoGogglesProcessor();

@@ -6,6 +6,7 @@ import com.cmdpro.runology.init.ItemInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
@@ -87,6 +88,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemInit.AIRUPGRADE);
         simpleItem(ItemInit.TRANSFORMATIONUPGRADE);
 
+
         handheldItem(ItemInit.REALITYSLICER);
         handheldItem(ItemInit.REALITYBREAKER);
         handheldItem(ItemInit.ANCIENTDRAGONSBLADE);
@@ -127,6 +129,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         tornResearch(ItemInit.ECHOGOGGLESTORNRESEARCH);
         tornResearch(ItemInit.LANTERNOFFLAMESTORNRESEARCH);
         prismaticBlaster(ItemInit.PRISMATICBLASTER);
+        elytra(ItemInit.DRAGONIUMELYTRA, new ResourceLocation(Runology.MOD_ID, "item/brokendragoniumelytra"));
+        simpleItem(ItemInit.PRISMATICELYTRA);
     }
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
@@ -173,6 +177,14 @@ public class ModItemModelProvider extends ItemModelProvider {
                 model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader8"))).end()
                 .override().predicate(new ResourceLocation(Runology.MOD_ID, "instability"), 1000).
                 model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "instabilityreader9"))).end();
+    }
+    private ItemModelBuilder elytra(RegistryObject<Item> item, ResourceLocation broken) {
+        withExistingParent("broken" + item.getId().getPath(), new ResourceLocation("item/generated")).texture("layer0", broken);
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                        new ResourceLocation(Runology.MOD_ID, "item/" + item.getId().getPath()))
+                .override().predicate(new ResourceLocation("broken"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "item/broken" + item.getId().getPath()))).end();
     }
     public ItemModelBuilder prismaticBlasterPart(String name) {
         return getBuilder(name).parent(getExistingFile(new ResourceLocation(Runology.MOD_ID, "item/reversehandheld")));
