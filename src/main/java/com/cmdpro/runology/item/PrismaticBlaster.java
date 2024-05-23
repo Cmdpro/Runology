@@ -97,6 +97,17 @@ public class PrismaticBlaster extends Item {
                         new Color(0x3951e0),
                         new Color(0x7d2da0)
                 };
+                if (itemstack.getDisplayName().getString().toLowerCase().contains("trans")) {
+                    colors = new Color[] {
+                            new Color(0x63ccfd),
+                            new Color(0xf4abba),
+                            new Color(0xFFFFFF),
+                            new Color(0xFFFFFF),
+                            new Color(0xFFFFFF),
+                            new Color(0xf4abba),
+                            new Color(0x63ccfd),
+                    };
+                }
                 int charge = itemstack.getOrCreateTag().contains("charge") ? itemstack.getOrCreateTag().getInt("charge") : 0;
                 int randomForward = pPlayer.getRandom().nextInt(0, charge);
                 pLevel.playSound(null, pPlayer.blockPosition(), SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS);

@@ -1,4 +1,4 @@
-// 1.20.1	2024-05-22T15:02:57.6527797	Item Models: runology
+// 1.20.1	2024-05-23T12:57:34.1344895	Item Models: runology
 7b51eb2c63dda59c1bcb1e101cf9d70dfbaaac0c assets/runology/models/item/airpowder.json
 3aef124f2787258d8ea6b74b37e244d2265fc49f assets/runology/models/item/airrune.json
 2b0316b82179efa9eda4d4677eb4edd6762fc1e7 assets/runology/models/item/airupgrade.json
@@ -54,7 +54,7 @@ c3af3e52b6b0390c07ad3bb379778c848e7260b8 assets/runology/models/item/mysteriumor
 3421a175f115d0dee3b81b21c6adcf7f1c2800c4 assets/runology/models/item/mysteriumtotem.json
 301a8a40656196d27740201dd8fe25ed6832660f assets/runology/models/item/petrifiedshatterwood.json
 eed527b94080923b9ee56eb2eb7dc784bf4776b3 assets/runology/models/item/plantrune.json
-f11089ebd23f209c6185fb3c600fe25ec139d80d assets/runology/models/item/prismaticblaster.json
+e526a0d90b8436c0b70d1486fac7daa7e264a229 assets/runology/models/item/prismaticblaster.json
 4b94eb973472a512dbc8d8f16951329354d6c78d assets/runology/models/item/prismaticelytra.json
 771d8f978579d0b4b4952ea7b1de8f4b94cf0b19 assets/runology/models/item/prismaticingot.json
 9dd7229728a4e71a1ecc3f22ed4e754808697eb2 assets/runology/models/item/prismaticshard.json
@@ -103,3 +103,11 @@ e2e88e55e6d704ebb161d39cfcf1bc353ad0e9da assets/runology/models/item/waterupgrad
 9e12fb35f56f4be77859d4d0c80da94780a6951b assets/runology/models/prismaticblaster/charging5.json
 b8d8219f7e912ca76ae6b483613708c850e445c7 assets/runology/models/prismaticblaster/charging6.json
 2fd51455574647946908022bfe54147c02e571a8 assets/runology/models/prismaticblaster/charging7.json
+85d3072d36fd1f588efa9b9d048905d48f528d71 assets/runology/models/prismaticblaster/transcharged.json
+772171c6b46485ea0b78cc4274bfca96bfd4ff1e assets/runology/models/prismaticblaster/transcharging1.json
+df1a014ab03902d5306ae7d69aea2c700a132f25 assets/runology/models/prismaticblaster/transcharging2.json
+e591ec4ee8da8e395c886b0b21d25d0a088b4c61 assets/runology/models/prismaticblaster/transcharging3.json
+8c5f326b3a5d24106d409965d00e179fac41ff34 assets/runology/models/prismaticblaster/transcharging4.json
+32863bfd1ee677db23d57a5e0bbe20da5d20568f assets/runology/models/prismaticblaster/transcharging5.json
+3def467feff8bd4222675220973be159d707b403 assets/runology/models/prismaticblaster/transcharging6.json
+60c550d7fd1c10cd262bed80095f9e61d4b53e69 assets/runology/models/prismaticblaster/transcharging7.json

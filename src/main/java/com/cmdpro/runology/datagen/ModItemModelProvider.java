@@ -197,6 +197,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         prismaticBlasterPart("prismaticblaster/charging6").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging6"));
         prismaticBlasterPart("prismaticblaster/charging7").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging7"));
         prismaticBlasterPart("prismaticblaster/charged").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charged"));
+        prismaticBlasterPart("prismaticblaster/transcharging1").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging1"));
+        prismaticBlasterPart("prismaticblaster/transcharging2").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging2"));
+        prismaticBlasterPart("prismaticblaster/transcharging3").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging3"));
+        prismaticBlasterPart("prismaticblaster/transcharging4").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging4"));
+        prismaticBlasterPart("prismaticblaster/transcharging5").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging5"));
+        prismaticBlasterPart("prismaticblaster/transcharging6").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging6"));
+        prismaticBlasterPart("prismaticblaster/transcharging7").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharging7"));
+        prismaticBlasterPart("prismaticblaster/transcharged").texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/transcharged"));
         return prismaticBlasterPart(item.getId().getPath()).texture("layer0",
                         new ResourceLocation(Runology.MOD_ID,"item/prismaticblaster/charging1"))
                 .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 0).
@@ -214,7 +222,24 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 6).
                 model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charging7"))).end()
                 .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 7).
-                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charged"))).end();
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/charged"))).end()
+
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 0).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging1"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 1).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging2"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 2).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging3"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 3).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging4"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 4).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging5"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 5).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging6"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 6).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharging7"))).end()
+                .override().predicate(new ResourceLocation(Runology.MOD_ID, "charge"), 7).predicate(new ResourceLocation(Runology.MOD_ID, "blastertype"), 1).
+                model(getExistingFile(new ResourceLocation(Runology.MOD_ID, "prismaticblaster/transcharged"))).end();
     }
     private ItemModelBuilder research(RegistryObject<Item> item) {
         withExistingParent("writtenresearch", new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(Runology.MOD_ID,"item/writtenresearch"));

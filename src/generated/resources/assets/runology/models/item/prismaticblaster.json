@@ -48,6 +48,62 @@
       "predicate": {
         "runology:charge": 7.0
       }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging1",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 0.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging2",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 1.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging3",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 2.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging4",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 3.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging5",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 4.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging6",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 5.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharging7",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 6.0
+      }
+    },
+    {
+      "model": "runology:prismaticblaster/transcharged",
+      "predicate": {
+        "runology:blastertype": 1.0,
+        "runology:charge": 7.0
+      }
     }
   ],
   "textures": {

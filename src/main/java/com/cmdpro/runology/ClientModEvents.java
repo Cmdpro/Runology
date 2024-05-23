@@ -140,8 +140,11 @@ public class ClientModEvents {
                     return 0;
                 });
                 ItemProperties.register(ItemInit.DRAGONIUMELYTRA.get(), new ResourceLocation("broken"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
-                            return ElytraItem.isFlyEnabled(p_174590_) ? 0.0F : 1.0F;
-                        });
+                    return ElytraItem.isFlyEnabled(p_174590_) ? 0.0F : 1.0F;
+                });
+                ItemProperties.register(ItemInit.PRISMATICBLASTER.get(), new ResourceLocation(Runology.MOD_ID, "blastertype"), (stack, level, entity, seed) -> {
+                    return stack.getDisplayName().getString().toLowerCase().contains("trans") ? 1 : 0;
+                });
             }
         });
         echoGogglesProcessor = new EchoGogglesProcessor();
