@@ -1,1 +1,2 @@
 Made the prismatic blaster change when "trans" is anywhere in its name
+Fixed a server crashing bug

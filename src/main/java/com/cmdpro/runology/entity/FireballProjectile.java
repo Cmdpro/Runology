@@ -133,13 +133,7 @@ public class FireballProjectile extends Projectile {
                     pos = pos.subtract(getDeltaMovement().x*(i/3d), getDeltaMovement().y*(i/3d), getDeltaMovement().z*(i/3d));
                     pos = pos.add(0, getBoundingBox().getYsize() / 2f, 0);
                     pos = pos.add(RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.2f) - 0.1f);
-                    WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
-                            .setScaleData(GenericParticleData.create(0.25f).build())
-                            .setColorData(ColorParticleData.create(new Color(0xFF5900), Color.YELLOW).build())
-                            .setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
-                            .setLifetime(20)
-                            .enableNoClip()
-                            .spawn(level(), pos.x, pos.y, pos.z);
+                    ClientMethods.particle(pos, level());
                 }
             }
         }
@@ -177,5 +171,15 @@ public class FireballProjectile extends Projectile {
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
-
+    public static class ClientMethods {
+        public static void particle(Vec3 pos, Level level) {
+            WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
+                    .setScaleData(GenericParticleData.create(0.25f).build())
+                    .setColorData(ColorParticleData.create(new Color(0xFF5900), Color.YELLOW).build())
+                    .setRenderType(LodestoneWorldParticleRenderType.ADDITIVE)
+                    .setLifetime(20)
+                    .enableNoClip()
+                    .spawn(level, pos.x, pos.y, pos.z);
+        }
+    }
 }
