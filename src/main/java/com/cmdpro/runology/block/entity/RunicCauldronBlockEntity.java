@@ -77,14 +77,11 @@ public class RunicCauldronBlockEntity extends BlockEntity implements GeoBlockEnt
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            if (slot == 0) {
-                return stack.getItem() instanceof Research;
-            }
             return super.isItemValid(slot, stack);
         }
     };
-    private final FluidTank fluidHandler = new FluidTank(1000);
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private final FluidTank fluidHandler = new FluidTank(1000);
     private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
     public RunicCauldronBlockEntity(BlockPos pos, BlockState state) {

@@ -1,1 +1,1 @@
-Fixed an issue with the last build
+Fixed a strange thing in the code
