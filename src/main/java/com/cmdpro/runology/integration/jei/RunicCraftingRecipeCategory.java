@@ -3,6 +3,7 @@ package com.cmdpro.runology.integration.jei;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.init.ItemInit;
 import com.cmdpro.runology.recipe.IRunicRecipe;
+import com.cmdpro.runology.recipe.ShapedRunicRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -44,8 +45,8 @@ public class RunicCraftingRecipeCategory implements IRecipeCategory<IRunicRecipe
         this.craftingGridHelper.createAndSetOutputs(builder, VanillaTypes.ITEM_STACK, List.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())));
 
         // Initialize recipe inputs
-        int width = (recipe instanceof IShapedRecipe<?> shapedRecipe) ? shapedRecipe.getRecipeWidth() : 0;
-        int height = (recipe instanceof IShapedRecipe<?> shapedRecipe) ? shapedRecipe.getRecipeHeight() : 0;
+        int width = (recipe instanceof ShapedRunicRecipe shapedRecipe) ? shapedRecipe.getWidth() : 0;
+        int height = (recipe instanceof ShapedRunicRecipe shapedRecipe) ? shapedRecipe.getHeight() : 0;
         List<List<ItemStack>> inputs = recipe.getIngredients().stream().map(ingredient -> List.of(ingredient.getItems())).toList();
         this.craftingGridHelper.createAndSetInputs(builder, VanillaTypes.ITEM_STACK, inputs, width, height);
     }

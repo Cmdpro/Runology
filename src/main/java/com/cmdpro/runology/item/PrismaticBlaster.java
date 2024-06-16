@@ -54,7 +54,7 @@ public class PrismaticBlaster extends Item {
                 } else {
                     pStack.getOrCreateTag().putInt("charge", 1);
                 }
-                pLevel.playSound(null, pLivingEntity.blockPosition(), SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.PLAYERS);
+                pLevel.playSound(null, pLivingEntity.blockPosition(), SoundEvents.UI_BUTTON_CLICK.get(), SoundSource.PLAYERS, 1f, ((float)pStack.getTag().getInt("charge")/7f)+0.5f);
             }
             if (pRemainingUseDuration <= 0 || !pLivingEntity.isShiftKeyDown()) {
                 pLivingEntity.stopUsingItem();

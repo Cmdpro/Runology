@@ -1,1 +1,3 @@
-Fixed a strange thing in the code
+Made the prismatic blaster charging sound go up in pitch the more charged it is
+Fixed tags on shatterstone slabs
+Fixed jei integration for runic crafting recipes

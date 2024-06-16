@@ -69,6 +69,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockInit.SHATTERSTONEBRICKWALL.get())
                 .add(BlockInit.SHATTERSTONEBRICKSTAIRS.get())
                 .add(BlockInit.SHATTERSTONEBRICKSLAB.get())
+                .add(BlockInit.SHATTERSTONESLAB.get())
                 .add(BlockInit.CRACKEDSHATTERSTONEBRICKS.get())
                 .add(BlockInit.CHISELEDSHATTERSTONEBRICKS.get())
                 .add(BlockInit.SHATTERSTONEPILLAR.get())
