@@ -48,14 +48,14 @@ public class SparkBlockEntity extends BlockEntity {
         if (!pLevel.isClientSide()) {
             if (pBlockEntity.timer >= 20) {
                 pBlockEntity.timer = 0;
-                for (Entity i : ((ServerLevel)pLevel).getEntities().getAll()) {
+                for (Entity i : pLevel.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(pPos.getCenter(), 5, 5, 5))) {
                     if (i != null && !(i instanceof Player) && i instanceof LivingEntity) {
                         if (i.position().distanceTo(pPos.getCenter()) <= 2.5) {
                             if (i.hurt(pLevel.damageSources().magic(), 2.5f)) {
                                 SparkAttack attack = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, pPos.getCenter(), i);
                                 pLevel.addFreshEntity(attack);
-                                for (Entity o : pLevel.getEntitiesOfClass(Entity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
-                                    if (o != i && o instanceof LivingEntity) {
+                                for (LivingEntity o : pLevel.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(i.position(), 2.5, 2.5, 2.5))) {
+                                    if (o != i) {
                                         if (o.hurt(pLevel.damageSources().magic(), 1.25f)) {
                                             SparkAttack attack2 = new SparkAttack(EntityInit.SPARKATTACK.get(), pLevel, i.getBoundingBox().getCenter(), o);
                                             pLevel.addFreshEntity(attack2);

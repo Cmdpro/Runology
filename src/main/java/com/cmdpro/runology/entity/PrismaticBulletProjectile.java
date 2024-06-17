@@ -82,7 +82,7 @@ public class PrismaticBulletProjectile extends Projectile {
         return ProjectileUtil.getEntityHitResult(this.level(), this, p_36758_, p_36759_, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), this::canHitEntity);
     }
 
-    public static final EntityDataAccessor<Vector3f> COLOR = SynchedEntityData.defineId(RunicOverseer.class, EntityDataSerializers.VECTOR3);
+    public static final EntityDataAccessor<Vector3f> COLOR = SynchedEntityData.defineId(PrismaticBulletProjectile.class, EntityDataSerializers.VECTOR3);
     @Override
     protected void defineSynchedData() {
         this.entityData.define(COLOR, new Vector3f(0, 0, 0));
