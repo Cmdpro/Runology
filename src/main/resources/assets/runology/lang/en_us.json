@@ -153,6 +153,8 @@
   "curios.identifier.runictrinket": "Runic Trinket",
 
   "death.attack.magicprojectile": "%1$s was killed by %2$s using magic",
+  "death.attack.magicprojectile.player": "%1$s was killed by %2$s using magic",
+  "death.attack.magicprojectile.item": "%1$s was killed by %2$s using the magic of %3$s",
 
   "upgrade.runology.fire": "Fire Upgrade",
   "upgrade.runology.water": "Water Upgrade",
