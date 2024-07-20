@@ -41,7 +41,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.options.WorldParticleOptions;
+import team.lodestar.lodestone.systems.particle.world.options.WorldParticleOptions;
 
 import java.awt.*;
 

@@ -32,6 +32,7 @@ import team.lodestar.lodestone.handlers.RenderHandler;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypeRegistry;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
 
 import java.awt.*;
 import java.util.List;
@@ -57,7 +58,7 @@ public class ShatterAttackRenderer extends EntityRenderer<ShatterAttack> {
         }
         pPoseStack.pushPose();
         VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
-        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyAndCache(getTextureLocation(pEntity));
+        LodestoneRenderType renderType = LodestoneRenderTypeRegistry.TRANSPARENT_TEXTURE.applyAndCache(RenderTypeToken.createCachedToken(getTextureLocation(pEntity)));
         pPoseStack.translate(-pEntity.position().x, -pEntity.position().y, -pEntity.position().z);
         Vector3f vector3f = pEntity.victimPos;
         Vec3 pos = new Vec3(vector3f.x, vector3f.y, vector3f.z);

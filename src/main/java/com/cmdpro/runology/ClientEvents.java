@@ -36,7 +36,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import team.lodestar.lodestone.LodestoneLib;
-import team.lodestar.lodestone.mixin.GameRendererMixin;
+import team.lodestar.lodestone.mixin.client.GameRendererMixin;
 import team.lodestar.lodestone.systems.postprocess.LodestoneGlslPreprocessor;
 import team.lodestar.lodestone.systems.postprocess.MultiInstancePostProcessor;
 import team.lodestar.lodestone.systems.postprocess.PostProcessHandler;
