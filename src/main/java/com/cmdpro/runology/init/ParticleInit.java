@@ -8,7 +8,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import team.lodestar.lodestone.systems.particle.type.LodestoneParticleType;
 
 public class ParticleInit {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =

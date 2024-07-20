@@ -34,9 +34,8 @@ import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistr
 import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.options.WorldParticleOptions;
 import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.type.LodestoneParticleType;
+import team.lodestar.lodestone.systems.particle.world.options.WorldParticleOptions;
 
 import javax.annotation.Nullable;
 import java.awt.*;
