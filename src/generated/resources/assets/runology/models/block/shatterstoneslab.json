@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "runology:block/shatterstone",
-    "side": "runology:block/shatterstone",
-    "top": "runology:block/shatterstone"
-  }
-}

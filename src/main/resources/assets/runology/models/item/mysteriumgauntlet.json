@@ -1,6 +1,0 @@
-{
-	"parent": "runology:item/coppergauntlet",
-	"textures": {
-		"0": "runology:item/mysteriumgauntlet"
-	}
-}

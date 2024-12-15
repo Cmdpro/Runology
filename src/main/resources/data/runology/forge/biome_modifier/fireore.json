@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#is_overworld",
-  "features": "runology:fireore",
-  "step": "underground_ores"
-}
