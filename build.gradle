@@ -97,6 +97,12 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven { url = "https://maven.terraformersmc.com/" }
+    maven {
+        url "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/"
+        content {
+            includeGroup "com.klikli_dev"
+        }
+    }
 }
 dependencies {
     // Specify the version of Minecraft to use.
@@ -110,6 +116,7 @@ dependencies {
     implementation "blank:databank-1.0.0"
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
     localRuntime "dev.emi:emi-neoforge:${emi_version}"
+    implementation ("com.klikli_dev:modonomicon-${minecraft_version}-neoforge:${modonomicon_version}"){transitive=false}
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
