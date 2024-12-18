@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Runology.MODID);
-
+    public static final Supplier<Item> GUIDEBOOK_ICON = register("guidebook_icon", () -> new Item(new Item.Properties()));
     private static <T extends Item> Supplier<T> register(final String name, final Supplier<T> item) {
         return ITEMS.register(name, item);
     }

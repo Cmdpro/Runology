@@ -1,8 +1,6 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.registry.BlockRegistry;
-import com.cmdpro.runology.registry.EntityRegistry;
-import com.cmdpro.runology.registry.ItemRegistry;
+import com.cmdpro.runology.registry.*;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -32,6 +30,8 @@ public class Runology
         ItemRegistry.ITEMS.register(modEventBus);
         BlockRegistry.BLOCKS.register(modEventBus);
         EntityRegistry.ENTITY_TYPES.register(modEventBus);
+        ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
+        AttachmentTypeRegistry.ATTACHMENT_TYPES.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

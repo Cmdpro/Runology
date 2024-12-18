@@ -48,7 +48,7 @@ vec4 sobel() {
     return vec4(G, G, G, alpha);
 }
 void main() {
-    vec3 color = vec3(1.0, 0.0, 0.0);
+    vec3 color = vec3(0.0, 1.0, 0.0);
     float blend = sobel().a;
     fragColor = mix(texture2D(DiffuseSampler, texCoord), vec4(color, 1), blend);
 }

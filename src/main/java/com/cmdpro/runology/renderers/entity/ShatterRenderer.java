@@ -44,8 +44,8 @@ public class ShatterRenderer extends EntityRenderer<Shatter> {
     @Override
     public void render(Shatter entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
-        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER), 1f);
-        renderSpikes(partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 1f);
+        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER), 2f);
+        renderSpikes(partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 2f);
     }
     private void renderSpikes(float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer, float scaled) {
         float rotatyThing = Math.toRadians(Minecraft.getInstance().level.getGameTime() + partialTick)*10f;
@@ -56,7 +56,7 @@ public class ShatterRenderer extends EntityRenderer<Shatter> {
             float zMult = (float)i.rotOffset.z;
             float size = i.size+(Math.sin((rotatyThing/20f)+(ind*3))*0.05f);
             poseStack.pushPose();
-            poseStack.translate(0, 0.5, 0);
+            poseStack.translate(0, 1, 0);
             poseStack.scale(scaled, scaled, scaled);
             poseStack.mulPose(Axis.XP.rotation((rotatyThing * xMult) * Mth.DEG_TO_RAD));
             poseStack.mulPose(Axis.YP.rotation((rotatyThing * yMult) * Mth.DEG_TO_RAD));

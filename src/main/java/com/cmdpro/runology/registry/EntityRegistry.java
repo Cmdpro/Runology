@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 @EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class EntityRegistry {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Runology.MODID);
-    public static final Supplier<EntityType<Shatter>> SHATTER = register("shatter", () -> EntityType.Builder.of(Shatter::new, MobCategory.MISC).sized(1F, 1F).build(Runology.MODID + ":" + "shatter"));
+    public static final Supplier<EntityType<Shatter>> SHATTER = register("shatter", () -> EntityType.Builder.of(Shatter::new, MobCategory.MISC).sized(2F, 2F).build(Runology.MODID + ":" + "shatter"));
     private static <T extends EntityType<?>> Supplier<T> register(final String name, final Supplier<T> entity) {
         return ENTITY_TYPES.register(name, entity);
     }

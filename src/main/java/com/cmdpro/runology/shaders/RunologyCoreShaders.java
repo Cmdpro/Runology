@@ -17,8 +17,13 @@ public class RunologyCoreShaders {
     public static ShaderInstance getShatter() {
         return SHATTER;
     }
+    public static ShaderInstance SHATTER_PARTICLE;
+    public static ShaderInstance getShatterParticle() {
+        return SHATTER_PARTICLE;
+    }
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) throws IOException {
         event.registerShader(new ShaderInstance(event.getResourceProvider(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shatter"), DefaultVertexFormat.PARTICLE), shader -> { SHATTER = shader; });
+        event.registerShader(new ShaderInstance(event.getResourceProvider(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shatter_particle"), DefaultVertexFormat.PARTICLE), shader -> { SHATTER_PARTICLE = shader; });
     }
 }

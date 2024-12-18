@@ -31,6 +31,7 @@ public class RenderEvents {
             Minecraft.getInstance().getMainRenderTarget().unbindWrite();
             getShatterTarget().bindWrite(true);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
+            createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
             getShatterTarget().unbindWrite();
             Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
             RenderSystem.getModelViewMatrix().set(oldMat);
@@ -49,6 +50,7 @@ public class RenderEvents {
         if (shatterOutlineBufferSource == null) {
             SequencedMap<RenderType, ByteBufferBuilder> buffers = new Object2ObjectLinkedOpenHashMap<>();
             buffers.put(RunologyRenderTypes.SHATTER, new ByteBufferBuilder(RunologyRenderTypes.SHATTER.bufferSize));
+            buffers.put(RunologyRenderTypes.SHATTER_PARTICLE, new ByteBufferBuilder(RunologyRenderTypes.SHATTER_PARTICLE.bufferSize));
             shatterOutlineBufferSource = MultiBufferSource.immediateWithBuffers(buffers, new ByteBufferBuilder(256));
         }
         return shatterOutlineBufferSource;
