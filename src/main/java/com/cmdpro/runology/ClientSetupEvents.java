@@ -1,5 +1,8 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.databank.shaders.PostShaderInstance;
+import com.cmdpro.databank.shaders.PostShaderManager;
+import com.cmdpro.runology.shaders.ShatterShader;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -12,6 +15,9 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event)
     {
-
+        shatterShader = new ShatterShader();
+        PostShaderManager.addShader(shatterShader);
+        shatterShader.setActive(true);
     }
+    public static PostShaderInstance shatterShader;
 }
