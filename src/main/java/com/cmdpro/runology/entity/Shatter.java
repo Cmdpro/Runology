@@ -48,6 +48,9 @@ public class Shatter extends Entity {
         List<ItemEntity> items = level().getEntitiesOfClass(ItemEntity.class, AABB.ofSize(position().add(0, 1, 0), 10, 10, 10));
         if (level().isClientSide) {
             for (ItemEntity i : items) {
+                if (!i.onGround()) {
+                    continue;
+                }
                 if (i.getItem().is(Items.BOOK)) {
                     Vec3 diff = i.position().add(0, 0.25, 0).subtract(position().add(0, 1, 0)).multiply(0.2f, 0.2f, 0.2f);
                     level().addParticle(ParticleRegistry.SHATTER.get(), position().x, position().y + 1, position().z, diff.x, diff.y, diff.z);
@@ -55,6 +58,9 @@ public class Shatter extends Entity {
             }
         } else {
             for (ItemEntity i : items) {
+                if (!i.onGround()) {
+                    continue;
+                }
                 if (i.getItem().is(Items.BOOK)) {
                     i.setData(AttachmentTypeRegistry.BOOK_CONVERSION_TIMER, i.getData(AttachmentTypeRegistry.BOOK_CONVERSION_TIMER)+1);
                     if (i.getData(AttachmentTypeRegistry.BOOK_CONVERSION_TIMER) >= 100) {
