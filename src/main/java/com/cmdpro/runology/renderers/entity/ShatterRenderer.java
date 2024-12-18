@@ -1,7 +1,11 @@
 package com.cmdpro.runology.renderers.entity;
 
+import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.runology.entity.Shatter;
+import com.cmdpro.runology.mixin.client.LevelRendererAccessor;
 import com.cmdpro.runology.shaders.DataNEssenceRenderTypes;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -13,8 +17,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import org.joml.*;
 import org.joml.Math;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +50,10 @@ public class ShatterRenderer extends EntityRenderer<Shatter> {
     @Override
     public void render(Shatter entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(DataNEssenceRenderTypes.SHATTER), 1f, false);
+        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(DataNEssenceRenderTypes.SHATTER_OUTLINE), 1.1f, true);
+    }
+    private void renderSpikes(float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer, float scaled, boolean inverted) {
         float rotatyThing = Math.toRadians(Minecraft.getInstance().level.getGameTime() + partialTick)*10f;
         int ind = 0;
         for (SpikeData i : rotOffsets) {
@@ -53,34 +63,48 @@ public class ShatterRenderer extends EntityRenderer<Shatter> {
             float size = i.size+(Math.sin((rotatyThing/20f)+(ind*3))*0.05f);
             poseStack.pushPose();
             poseStack.translate(0, 0.5, 0);
+            poseStack.scale(scaled, scaled, scaled);
             poseStack.mulPose(Axis.XP.rotation((rotatyThing * xMult) * Mth.DEG_TO_RAD));
             poseStack.mulPose(Axis.YP.rotation((rotatyThing * yMult) * Mth.DEG_TO_RAD));
             poseStack.mulPose(Axis.ZP.rotation((rotatyThing * zMult) * Mth.DEG_TO_RAD));
-            renderSpike(new Vec3(0, 0, 0), new Vec3(0, (i.size-(Math.sin((rotatyThing/30f)+(ind*3))*0.05f))*3f, 0), size, partialTick, poseStack, bufferSource, packedLight);
+            renderSpike(new Vec3(0, 0, 0), new Vec3(0, (i.size-(Math.sin((rotatyThing/30f)+(ind*3))*0.05f))*3f, 0), size, partialTick, poseStack, vertexConsumer, inverted);
             poseStack.popPose();
             ind++;
         }
     }
-    private void renderSpike(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+    private void renderSpike(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer, boolean inverted) {
         Vector3f diff = end.toVector3f().sub(start.toVector3f()).normalize().mul(thickness, thickness, thickness);
         Vector3f diffRotated = new Vector3f(diff).rotateX(Math.toRadians(90));
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(DataNEssenceRenderTypes.SHATTER);
         for (int i = 0; i < 4; i++) {
             Vector3f offset = new Vector3f(diffRotated).rotateY(Math.toRadians(90*i));
             Vector3f offset2 = new Vector3f(diffRotated).rotateY(Math.toRadians(90*(i+1)));
-            vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
-            vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
-            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
-            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
+            if (inverted) {
+                vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
+                vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
+                vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
+                vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
+            } else {
+                vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
+                vertexConsumer.addVertex(poseStack.last(), end.toVector3f());
+                vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
+                vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
+            }
         }
         Vector3f offset = new Vector3f(diffRotated);
         Vector3f offset2 = new Vector3f(diffRotated).rotateY(Math.toRadians(90));
         Vector3f offset3 = new Vector3f(diffRotated).rotateY(Math.toRadians(180));
         Vector3f offset4 = new Vector3f(diffRotated).rotateY(Math.toRadians(270));
-        vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset4));
-        vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset3));
-        vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
-        vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
+        if (inverted) {
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset3));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset4));
+        } else {
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset4));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset3));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
+            vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
+        }
     }
 
 }

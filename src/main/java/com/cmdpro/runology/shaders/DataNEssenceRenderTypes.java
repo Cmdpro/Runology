@@ -18,5 +18,12 @@ public class DataNEssenceRenderTypes extends RenderType {
             false,
             false,
             CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false));
-
+    public static final ShaderStateShard SHATTER_OUTLINE_SHADER = new ShaderStateShard(DataNEssenceCoreShaders::getShatterOutline);
+    public static final RenderType SHATTER_OUTLINE = create("shatter_outline",
+            DefaultVertexFormat.POSITION,
+            VertexFormat.Mode.QUADS,
+            256,
+            false,
+            false,
+            CompositeState.builder().setShaderState(SHATTER_OUTLINE_SHADER).createCompositeState(false));
 }

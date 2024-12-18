@@ -4,6 +4,7 @@ import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.EntityRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.shaders.DataNEssenceRenderTypes;
+import net.minecraft.client.renderer.OutlineBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import org.slf4j.Logger;
 

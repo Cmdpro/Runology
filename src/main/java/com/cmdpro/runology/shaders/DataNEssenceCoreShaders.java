@@ -19,8 +19,13 @@ public class DataNEssenceCoreShaders {
     public static ShaderInstance getShatter() {
         return SHATTER;
     }
+    public static ShaderInstance SHATTER_OUTLINE;
+    public static ShaderInstance getShatterOutline() {
+        return SHATTER_OUTLINE;
+    }
     @SubscribeEvent
     public static void shaderRegistry(RegisterShadersEvent event) throws IOException {
         event.registerShader(new ShaderInstance(event.getResourceProvider(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shatter"), DefaultVertexFormat.PARTICLE), shader -> { SHATTER = shader; });
+        event.registerShader(new ShaderInstance(event.getResourceProvider(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shatter_outline"), DefaultVertexFormat.PARTICLE), shader -> { SHATTER_OUTLINE = shader; });
     }
 }
