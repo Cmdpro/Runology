@@ -1,18 +1,17 @@
 package com.cmdpro.runology.renderers.entity;
 
 import com.cmdpro.runology.entity.Shatter;
+import com.cmdpro.runology.shaders.DataNEssenceRenderTypes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
+import net.minecraft.client.renderer.OutlineBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import org.joml.*;
 import org.joml.Math;
@@ -65,7 +64,7 @@ public class ShatterRenderer extends EntityRenderer<Shatter> {
     private void renderSpike(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         Vector3f diff = end.toVector3f().sub(start.toVector3f()).normalize().mul(thickness, thickness, thickness);
         Vector3f diffRotated = new Vector3f(diff).rotateX(Math.toRadians(90));
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.endPortal());
+        VertexConsumer vertexConsumer = bufferSource.getBuffer(DataNEssenceRenderTypes.SHATTER);
         for (int i = 0; i < 4; i++) {
             Vector3f offset = new Vector3f(diffRotated).rotateY(Math.toRadians(90*i));
             Vector3f offset2 = new Vector3f(diffRotated).rotateY(Math.toRadians(90*(i+1)));

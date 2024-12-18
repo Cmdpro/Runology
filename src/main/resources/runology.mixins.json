@@ -1,10 +1,11 @@
 {
   "required": true,
-  "package": "com.cmdpro.alchemicalend.mixin",
+  "package": "com.cmdpro.runology.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "mixins": [
   ],
   "client": [
+    "client.GameRendererMixin"
   ]
 }
