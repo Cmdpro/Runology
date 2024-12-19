@@ -3,15 +3,16 @@ package com.cmdpro.runology.entity;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.klikli_dev.modonomicon.registry.DataComponentRegistry;
-import com.klikli_dev.modonomicon.registry.ItemRegistry;
+import com.cmdpro.runology.registry.ItemRegistry;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -69,11 +70,17 @@ public class Shatter extends Entity {
                         if (i.getItem().isEmpty()) {
                             i.remove(RemovalReason.KILLED);
                         }
-                        ItemStack book = new ItemStack(ItemRegistry.MODONOMICON.get());
-                        book.set(DataComponentRegistry.BOOK_ID, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "guidebook"));
+                        ItemStack book = new ItemStack(ItemRegistry.GUIDEBOOK.get());
                         ItemEntity item = new ItemEntity(level(), i.position().x, i.position().y, i.position().z, book);
                         level().addFreshEntity(item);
                     }
+                }
+            }
+            List<Player> players = level().getEntitiesOfClass(Player.class, AABB.ofSize(position().add(0, 1, 0), 25, 25, 25));
+            for (Player i : players) {
+                if (!i.getData(AttachmentTypeRegistry.BOOK_ALERTED)) {
+                    i.setData(AttachmentTypeRegistry.BOOK_ALERTED, true);
+                    i.sendSystemMessage(Component.translatable("modonomicon.runology.guidebook.discover"));
                 }
             }
         }

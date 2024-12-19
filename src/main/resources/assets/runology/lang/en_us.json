@@ -1,9 +1,13 @@
 {
   "book.runology.guidebook.name": "Runic Codex",
 
+  "modonomicon.runology.guidebook.discover": "You feel a mysterious force coming out of that object, maybe you should infuse a book with that force?",
+
   "modonomicon.runology.guidebook.basics.name": "Basics",
 
   "modonomicon.runology.guidebook.basics.shatters.name": "Shatters",
   "modonomicon.runology.guidebook.shatters.page0.title": "Shatters",
-  "modonomicon.runology.guidebook.shatters.page0.text": "These holes in space appear to lead to somewhere else, while I may not be able to cross them, I may be able to extract energy from them."
+  "modonomicon.runology.guidebook.shatters.page0.text": "These holes in space appear to lead to somewhere else, while I may not be able to cross them, I may be able to extract energy from them.",
+
+  "emi.info.runology.guidebook": "Obtain a Runic Codex by dropping a book nearby a Shatter"
 }

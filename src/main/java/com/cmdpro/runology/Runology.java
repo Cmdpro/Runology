@@ -38,6 +38,8 @@ public class Runology
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-
+        if (event.getTabKey().equals(com.klikli_dev.modonomicon.registry.CreativeModeTabRegistry.MODONOMICON.getKey())) {
+            event.accept(ItemRegistry.GUIDEBOOK.get());
+        }
     }
 }

@@ -18,6 +18,8 @@ public class AttachmentTypeRegistry {
             Runology.MODID);
     public static final Supplier<AttachmentType<Integer>> BOOK_CONVERSION_TIMER =
             register("book_conversion_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+    public static final Supplier<AttachmentType<Boolean>> BOOK_ALERTED =
+            register("book_alerted", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build());
 
     private static <T extends AttachmentType<?>> Supplier<T> register(final String name, final Supplier<T> attachment) {
         return ATTACHMENT_TYPES.register(name, attachment);
