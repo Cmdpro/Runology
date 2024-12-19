@@ -1,0 +1,30 @@
+{
+  "category": "runology:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:textures/gui/basic_runes_icon.png",
+  "name": "modonomicon.runology.guidebook.basics.basic_runes.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.basic_runes.page0.title",
+      "text": "modonomicon.runology.guidebook.basic_runes.page0.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "images": [
+        "runology:textures/gui/basic_runes.png"
+      ]
+    }
+  ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:basics/shatters",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
+  "x": 0,
+  "y": -2
+}

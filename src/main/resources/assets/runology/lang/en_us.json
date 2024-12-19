@@ -8,6 +8,9 @@
   "modonomicon.runology.guidebook.basics.shatters.name": "Shatters",
   "modonomicon.runology.guidebook.shatters.page0.title": "Shatters",
   "modonomicon.runology.guidebook.shatters.page0.text": "These holes in space appear to lead to somewhere else, while I may not be able to cross them, I may be able to extract energy from them.",
+  "modonomicon.runology.guidebook.basics.basic_runes.name": "Basic Runes",
+  "modonomicon.runology.guidebook.basic_runes.page0.title": "Basic Runes",
+  "modonomicon.runology.guidebook.basic_runes.page0.text": "There is 4 runes I can utilize to manipulate the world: [#](ff5d00)Heat[#](), [#](00d1ff)Frost[#](), [#](00ff00)Shape[#]() and [#](ffd100)Motion[#](). Utilizing these 4 is powerful but there has to be more...",
 
   "emi.info.runology.guidebook": "Obtain a Runic Codex by dropping a book nearby a Shatter"
 }
