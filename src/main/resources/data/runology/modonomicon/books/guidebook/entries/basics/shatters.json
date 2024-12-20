@@ -7,8 +7,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "modonomicon.runology.guidebook.shatters.page0.title",
-      "text": "modonomicon.runology.guidebook.shatters.page0.text"
+      "title": "modonomicon.runology.guidebook.basics.shatters.page0.title",
+      "text": "modonomicon.runology.guidebook.basics.shatters.page0.text"
     }
   ],
   "parents": [

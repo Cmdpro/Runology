@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " WW",
+    " GW",
+    "G  "
+  ],
+  "key": {
+    "W": { "tag": "minecraft:planks" },
+    "G": { "tag": "c:ingots/gold" }
+  },
+  "result": { "id": "runology:gold_chisel" }
+}

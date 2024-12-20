@@ -1,0 +1,9 @@
+{
+  "type": "runology:shatter_imbuement",
+  "input": {
+    "item": "minecraft:book"
+  },
+  "result": {
+    "id": "runology:guidebook"
+  }
+}

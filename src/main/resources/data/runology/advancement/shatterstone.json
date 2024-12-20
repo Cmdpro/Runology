@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "runology:shatterstone"
+    },
+    "title": {
+      "translate": "advancements.runology.shatterstone.title"
+    },
+    "description": {
+      "translate": "advancements.runology.shatterstone.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "runology:shatter",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [],
+        "items": [
+          {
+            "items": [
+              "runology:shatterstone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

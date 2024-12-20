@@ -1,0 +1,9 @@
+{
+  "type": "runology:shatter_imbuement",
+  "input": {
+    "item": "runology:gold_chisel"
+  },
+  "result": {
+    "id": "runology:runic_chisel"
+  }
+}

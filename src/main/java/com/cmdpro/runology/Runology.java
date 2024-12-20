@@ -36,6 +36,8 @@ public class Runology
         FeatureRegistry.FEATURES.register(modEventBus);
         CriteriaTriggerRegistry.TRIGGERS.register(modEventBus);
         CreativeModeTabRegistry.CREATIVE_MODE_TABS.register(modEventBus);
+        RecipeRegistry.RECIPES.register(modEventBus);
+        RecipeRegistry.RECIPE_TYPES.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -48,6 +50,8 @@ public class Runology
         if (event.getTabKey().equals(CreativeModeTabRegistry.getKey(CreativeModeTabRegistry.RUNOLOGY.get()))) {
             event.accept(BlockRegistry.SHATTER.get());
             event.accept(BlockRegistry.SHATTERSTONE.get());
+            event.accept(ItemRegistry.GOLD_CHISEL.get());
+            event.accept(ItemRegistry.RUNIC_CHISEL.get());
         }
     }
 }
