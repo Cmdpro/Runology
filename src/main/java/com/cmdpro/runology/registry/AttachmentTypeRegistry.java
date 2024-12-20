@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import com.mojang.serialization.Codec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,6 +19,8 @@ public class AttachmentTypeRegistry {
             Runology.MODID);
     public static final Supplier<AttachmentType<Integer>> BOOK_CONVERSION_TIMER =
             register("book_conversion_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+    public static final Supplier<AttachmentType<ArrayList<ShatterBlockEntity>>> SHATTERS =
+            register("shatters", () -> AttachmentType.builder(() -> new ArrayList<ShatterBlockEntity>()).build());
 
     private static <T extends AttachmentType<?>> Supplier<T> register(final String name, final Supplier<T> attachment) {
         return ATTACHMENT_TYPES.register(name, attachment);

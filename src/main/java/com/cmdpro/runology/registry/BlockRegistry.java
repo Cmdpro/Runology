@@ -28,6 +28,10 @@ public class BlockRegistry {
             () -> new Shatter(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
+    public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+
     private static <T extends Block> Supplier<T> registerBlock(final String name,
                                                                      final Supplier<? extends T> block) {
         return BLOCKS.register(name, block);

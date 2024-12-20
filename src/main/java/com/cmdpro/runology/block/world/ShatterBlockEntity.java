@@ -35,6 +35,14 @@ public class ShatterBlockEntity extends BlockEntity {
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(tag, pRegistries);
     }
+    @Override
+    public void setLevel(Level pLevel) {
+        if (level != null) {
+            level.getData(AttachmentTypeRegistry.SHATTERS).remove(this);
+        }
+        super.setLevel(pLevel);
+        pLevel.getData(AttachmentTypeRegistry.SHATTERS).add(this);
+    }
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         Vec3 center = getBlockPos().getCenter();
         List<ItemEntity> items = pLevel.getEntitiesOfClass(ItemEntity.class, AABB.ofSize(center, 10, 10, 10));

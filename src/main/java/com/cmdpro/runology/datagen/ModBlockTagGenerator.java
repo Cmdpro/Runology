@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.registry.BlockRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -17,6 +18,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(BlockRegistry.SHATTERSTONE.get());
+        this.tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(BlockRegistry.SHATTERSTONE.get());
     }
 }

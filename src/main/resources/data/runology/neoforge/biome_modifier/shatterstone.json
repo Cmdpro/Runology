@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "#is_overworld",
-  "features": "runology:shatter",
-  "step": "surface_structures"
+  "features": "runology:shatterstone",
+  "step": "underground_ores"
 }

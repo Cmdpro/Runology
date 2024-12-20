@@ -47,6 +47,7 @@ public class Runology
         }
         if (event.getTabKey().equals(CreativeModeTabRegistry.getKey(CreativeModeTabRegistry.RUNOLOGY.get()))) {
             event.accept(BlockRegistry.SHATTER.get());
+            event.accept(BlockRegistry.SHATTERSTONE.get());
         }
     }
 }

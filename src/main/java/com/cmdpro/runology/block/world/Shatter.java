@@ -1,5 +1,6 @@
 package com.cmdpro.runology.block.world;
 
+import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
@@ -24,6 +25,13 @@ public class Shatter extends Block implements EntityBlock {
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
+    }
+    @Override
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
+        if (pLevel.getBlockEntity(pPos) instanceof ShatterBlockEntity ent) {
+            pLevel.getData(AttachmentTypeRegistry.SHATTERS).remove(ent);
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
     }
     @Override
     public RenderShape getRenderShape(BlockState pState) {
