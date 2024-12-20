@@ -35,6 +35,7 @@ public class Runology
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
         FeatureRegistry.FEATURES.register(modEventBus);
         CriteriaTriggerRegistry.TRIGGERS.register(modEventBus);
+        CreativeModeTabRegistry.CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -43,6 +44,9 @@ public class Runology
     {
         if (event.getTabKey().equals(com.klikli_dev.modonomicon.registry.CreativeModeTabRegistry.MODONOMICON.getKey())) {
             event.accept(ItemRegistry.GUIDEBOOK.get());
+        }
+        if (event.getTabKey().equals(CreativeModeTabRegistry.getKey(CreativeModeTabRegistry.RUNOLOGY.get()))) {
+            event.accept(BlockRegistry.SHATTER.get());
         }
     }
 }
