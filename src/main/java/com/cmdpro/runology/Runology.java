@@ -33,6 +33,7 @@ public class Runology
         ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
         AttachmentTypeRegistry.ATTACHMENT_TYPES.register(modEventBus);
         BlockEntityRegistry.BLOCK_ENTITIES.register(modEventBus);
+        FeatureRegistry.FEATURES.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
