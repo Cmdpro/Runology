@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "runology:shatter"
+    },
+    "title": {
+      "translate": "advancements.runology.shatter.title"
+    },
+    "description": {
+      "translate": "advancements.runology.shatter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "runology:runology",
+  "criteria": {
+    "requirement": {
+      "trigger": "runology:find_shatter"
+    }
+  }
+}

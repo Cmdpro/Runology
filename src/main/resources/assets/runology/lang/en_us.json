@@ -14,5 +14,10 @@
   "modonomicon.runology.guidebook.basic_runes.page0.title": "Basic Runes",
   "modonomicon.runology.guidebook.basic_runes.page0.text": "There is 4 runes I can utilize to manipulate the world: [#](ff5d00)Heat[#](), [#](00d1ff)Frost[#](), [#](00ff00)Shape[#]() and [#](ffd100)Motion[#](). Utilizing these 4 is powerful but there has to be more...",
 
-  "emi.info.runology.guidebook": "Obtain a Runic Codex by dropping a book nearby a Shatter"
+  "emi.info.runology.guidebook": "Obtain a Runic Codex by dropping a book nearby a Shatter",
+
+  "advancements.runology.runology.title": "Runology",
+  "advancements.runology.runology.description": "Runes powered by another world...",
+  "advancements.runology.shatter.title": "Shatters",
+  "advancements.runology.shatter.description": "Discover a shatter in the world"
 }

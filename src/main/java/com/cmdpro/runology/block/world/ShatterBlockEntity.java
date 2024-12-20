@@ -1,9 +1,6 @@
 package com.cmdpro.runology.block.world;
 
-import com.cmdpro.runology.registry.AttachmentTypeRegistry;
-import com.cmdpro.runology.registry.BlockEntityRegistry;
-import com.cmdpro.runology.registry.ItemRegistry;
-import com.cmdpro.runology.registry.ParticleRegistry;
+import com.cmdpro.runology.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -11,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -69,12 +67,9 @@ public class ShatterBlockEntity extends BlockEntity {
                     }
                 }
             }
-            List<Player> players = pLevel.getEntitiesOfClass(Player.class, AABB.ofSize(center, 25, 25, 25));
+            List<Player> players = pLevel.getEntitiesOfClass(Player.class, AABB.ofSize(center, 15, 15, 15));
             for (Player i : players) {
-                if (!i.getData(AttachmentTypeRegistry.BOOK_ALERTED)) {
-                    i.setData(AttachmentTypeRegistry.BOOK_ALERTED, true);
-                    i.sendSystemMessage(Component.translatable("modonomicon.runology.guidebook.discover").withStyle(ChatFormatting.DARK_PURPLE));
-                }
+                CriteriaTriggerRegistry.FIND_SHATTER.get().trigger((ServerPlayer)i);
             }
         }
     }

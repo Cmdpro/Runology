@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "runology:guidebook"
+    },
+    "title": {
+      "translate": "advancements.runology.runology.title"
+    },
+    "description": {
+      "translate": "advancements.runology.runology.description"
+    },
+    "background": "runology:textures/gui/advancement_background.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}
