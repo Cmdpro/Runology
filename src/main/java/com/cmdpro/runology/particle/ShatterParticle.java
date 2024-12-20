@@ -27,7 +27,7 @@ public class ShatterParticle extends TextureSheetParticle {
         this.lifetime = 20;
         this.setSpriteFromAge(spriteSet);
         rot = RandomUtils.nextFloat(0f, 2f)-1f;
-        this.hasPhysics = true;
+        this.hasPhysics = false;
     }
     @Override
     public void tick() {
