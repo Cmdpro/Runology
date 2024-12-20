@@ -1,0 +1,16 @@
+{
+  "category": "runology:basics",
+  "description": "",
+  "hide_while_locked": false,
+  "icon": "runology:guidebook",
+  "name": "modonomicon.runology.guidebook.basics.guidebook.name",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.guidebook.page0.title",
+      "text": "modonomicon.runology.guidebook.guidebook.page0.text"
+    }
+  ],
+  "x": 0,
+  "y": 0
+}

@@ -11,6 +11,14 @@
       "text": "modonomicon.runology.guidebook.shatters.page0.text"
     }
   ],
+  "parents": [
+    {
+      "draw_arrow": true,
+      "entry": "runology:basics/guidebook",
+      "line_enabled": true,
+      "line_reversed": false
+    }
+  ],
   "x": 0,
-  "y": 0
+  "y": -2
 }
