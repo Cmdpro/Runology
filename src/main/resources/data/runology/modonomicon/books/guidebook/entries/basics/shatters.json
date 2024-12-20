@@ -2,7 +2,7 @@
   "category": "runology:basics",
   "description": "",
   "hide_while_locked": false,
-  "icon": "runology:textures/gui/shatter.png",
+  "icon": "runology:shatter",
   "name": "modonomicon.runology.guidebook.basics.shatters.name",
   "pages": [
     {

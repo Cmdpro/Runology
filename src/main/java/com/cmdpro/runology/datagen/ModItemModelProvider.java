@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -39,6 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ItemRegistry.GUIDEBOOK);
+        flatBlockItemWithTexture(BlockRegistry.SHATTER, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "item/shatter"));
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

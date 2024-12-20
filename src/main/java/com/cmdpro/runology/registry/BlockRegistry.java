@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -22,6 +23,10 @@ public class BlockRegistry {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK,
             Runology.MODID);
     public static final DeferredRegister<Item> ITEMS = ItemRegistry.ITEMS;
+
+    public static final Supplier<Block> SHATTER = register("shatter",
+            () -> new Shatter(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     private static <T extends Block> Supplier<T> registerBlock(final String name,
                                                                      final Supplier<? extends T> block) {
