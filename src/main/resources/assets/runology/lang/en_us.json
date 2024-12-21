@@ -28,13 +28,12 @@
   "modonomicon.runology.guidebook.basics.runic_chisel.page0.title": "Runic Chisel",
   "modonomicon.runology.guidebook.basics.runic_chisel.page0.text": "While I know about runes, I do not have a method to create them, a Runic Chisel will work, to obtain one, I will have to imbue a gold chisel with Shattered Flow.",
 
-  "emi.info.runology.guidebook": "Obtain a Runic Codex by dropping a Book nearby a Shatter",
-  "emi.info.runology.runic_chisel": "Obtain a Runic Chisel by dropping a Gold Chisel nearby a Shatter",
-
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
   "advancements.runology.shatter.title": "Shatters",
   "advancements.runology.shatter.description": "Discover a shatter in the world",
   "advancements.runology.shatterstone.title": "Shatterstone",
-  "advancements.runology.shatterstone.description": "Obtain Shatterstone"
+  "advancements.runology.shatterstone.description": "Obtain Shatterstone",
+
+  "emi.category.runology.shatter_imbuement": "Shatter Imbuement"
 }
