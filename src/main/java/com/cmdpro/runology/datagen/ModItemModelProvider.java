@@ -43,6 +43,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         flatBlockItemWithTexture(BlockRegistry.SHATTER, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "item/shatter"));
         simpleItem(ItemRegistry.GOLD_CHISEL);
         simpleItem(ItemRegistry.RUNIC_CHISEL);
+        evenSimplerBlockItem(BlockRegistry.SHATTERED_FOCUS);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

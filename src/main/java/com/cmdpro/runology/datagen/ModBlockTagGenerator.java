@@ -19,7 +19,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BlockRegistry.SHATTERSTONE.get());
+                .add(BlockRegistry.SHATTERSTONE.get())
+                .add(BlockRegistry.SHATTERED_FOCUS.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get());
     }

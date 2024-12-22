@@ -1,11 +1,7 @@
-package com.cmdpro.runology.block.world;
+package com.cmdpro.runology.block.transmission;
 
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,42 +11,34 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class Shatter extends Block implements EntityBlock {
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 16, 16);
+public class ShatteredFocus extends Block implements EntityBlock {
+    private static final VoxelShape SHAPE =  Block.box(3, 0, 3, 13, 4, 13);
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
     }
     @Override
-    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-        if (pLevel.getBlockEntity(pPos) instanceof ShatterBlockEntity ent) {
-            pLevel.getData(AttachmentTypeRegistry.SHATTERS).remove(ent);
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-    }
-    @Override
     public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.INVISIBLE;
+        return RenderShape.MODEL;
     }
-    public Shatter(Properties pProperties) {
+    public ShatteredFocus(Properties pProperties) {
         super(pProperties);
     }
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new ShatterBlockEntity(pPos, pState);
+        return new ShatteredFocusBlockEntity(pPos, pState);
     }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
         return (level1, pos, state1, blockEntity) -> {
-            if (blockEntity instanceof ShatterBlockEntity ent) {
+            if (blockEntity instanceof ShatteredFocusBlockEntity ent) {
                 ent.tick(level1, pos, state1);
             }
         };

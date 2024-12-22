@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -15,6 +16,10 @@ public class BlockEntityRegistry {
             register("shatter", () ->
                     BlockEntityType.Builder.of(ShatterBlockEntity::new,
                             BlockRegistry.SHATTER.get()).build(null));
+    public static final Supplier<BlockEntityType<ShatteredFocusBlockEntity>> SHATTERED_FOCUS =
+            register("shattered_focus", () ->
+                    BlockEntityType.Builder.of(ShatteredFocusBlockEntity::new,
+                            BlockRegistry.SHATTERED_FOCUS.get()).build(null));
 
 
     private static <T extends BlockEntityType<?>> Supplier<T> register(final String name, final Supplier<T> blockentity) {

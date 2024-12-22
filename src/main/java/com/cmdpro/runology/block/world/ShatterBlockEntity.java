@@ -28,13 +28,22 @@ public class ShatterBlockEntity extends BlockEntity {
     public ShatterBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHATTER.get(), pos, state);
     }
-    @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider pRegistries) {
-        super.saveAdditional(tag, pRegistries);
+    private float power;
+    private float stability;
+    public float getPower() {
+        return power;
     }
-    @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(tag, pRegistries);
+    public float getStability() {
+        return stability;
+    }
+    public int getOutputShatteredFlow() {
+        return (int)Math.floor(100f*power);
+    }
+    private void calculatePower() {
+        power = 3;
+    }
+    private void calculateStability() {
+        stability = 3-power;
     }
     @Override
     public void setLevel(Level pLevel) {
@@ -59,6 +68,8 @@ public class ShatterBlockEntity extends BlockEntity {
                 }
             }
         } else {
+            calculatePower();
+            calculateStability();
             for (ItemEntity i : items) {
                 if (!i.onGround()) {
                     continue;

@@ -27,6 +27,7 @@ public class Runology
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
+        SoundRegistry.SOUND_EVENTS.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
         BlockRegistry.BLOCKS.register(modEventBus);
         EntityRegistry.ENTITY_TYPES.register(modEventBus);
@@ -52,6 +53,7 @@ public class Runology
             event.accept(BlockRegistry.SHATTERSTONE.get());
             event.accept(ItemRegistry.GOLD_CHISEL.get());
             event.accept(ItemRegistry.RUNIC_CHISEL.get());
+            event.accept(BlockRegistry.SHATTERED_FOCUS.get());
         }
     }
 }
