@@ -54,6 +54,7 @@ public class Runology
             event.accept(ItemRegistry.GOLD_CHISEL.get());
             event.accept(ItemRegistry.RUNIC_CHISEL.get());
             event.accept(BlockRegistry.SHATTERED_FOCUS.get());
+            event.accept(BlockRegistry.SHATTERED_RELAY.get());
         }
     }
 }

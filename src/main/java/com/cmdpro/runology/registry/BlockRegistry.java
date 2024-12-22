@@ -2,6 +2,7 @@ package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
+import com.cmdpro.runology.block.transmission.ShatteredRelay;
 import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -31,6 +32,9 @@ public class BlockRegistry {
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERED_FOCUS = register("shattered_focus",
             () -> new ShatteredFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERED_RELAY = register("shattered_relay",
+            () -> new ShatteredRelay(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",

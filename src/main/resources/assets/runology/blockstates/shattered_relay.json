@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "runology:block/shattered_relay",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "runology:block/shattered_relay",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "runology:block/shattered_relay",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "runology:block/shattered_relay",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "runology:block/shattered_relay"
+    },
+    "facing=west": {
+      "model": "runology:block/shattered_relay",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

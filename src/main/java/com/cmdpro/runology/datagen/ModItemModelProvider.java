@@ -44,6 +44,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemRegistry.GOLD_CHISEL);
         simpleItem(ItemRegistry.RUNIC_CHISEL);
         evenSimplerBlockItem(BlockRegistry.SHATTERED_FOCUS);
+        evenSimplerBlockItem(BlockRegistry.SHATTERED_RELAY);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

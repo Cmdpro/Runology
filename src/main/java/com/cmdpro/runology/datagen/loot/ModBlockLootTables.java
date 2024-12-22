@@ -17,6 +17,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(BlockRegistry.SHATTERSTONE.get());
         dropSelf(BlockRegistry.SHATTERED_FOCUS.get());
+        dropSelf(BlockRegistry.SHATTERED_RELAY.get());
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {
