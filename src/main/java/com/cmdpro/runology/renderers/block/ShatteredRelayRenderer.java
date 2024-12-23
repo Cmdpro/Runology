@@ -56,10 +56,10 @@ public class ShatteredRelayRenderer implements BlockEntityRenderer<ShatteredRela
         vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset2));
         vertexConsumer.addVertex(poseStack.last(), start.toVector3f().add(offset));
 
-        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset4));
-        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset3));
-        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset2));
         vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset));
+        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset2));
+        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset3));
+        vertexConsumer.addVertex(poseStack.last(), end.toVector3f().add(offset4));
     }
 
 }
