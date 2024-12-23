@@ -114,7 +114,7 @@ public class ShatteredRelay extends Block implements EntityBlock {
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
         for (BlockPos i : toUpdateNetworks) {
-            ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
+            ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>()), new ArrayList<>());
         }
     }
 

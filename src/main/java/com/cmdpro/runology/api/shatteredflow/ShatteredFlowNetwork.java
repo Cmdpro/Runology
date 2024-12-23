@@ -10,10 +10,8 @@ import java.util.List;
 
 public class ShatteredFlowNetwork {
     public List<BlockPos> starts;
-    public List<ShatteredFlowPathEnd> ends;
-    public ShatteredFlowNetwork(List<BlockPos> starts, List<ShatteredFlowPathEnd> ends) {
+    public ShatteredFlowNetwork(List<BlockPos> starts) {
         this.starts = starts;
-        this.ends = ends;
     }
     public static void updatePaths(Level level, BlockPos tryStart, ShatteredFlowNetwork network, List<BlockPos> alreadyChecked) {
         if (alreadyChecked.contains(tryStart)) {
@@ -36,39 +34,7 @@ public class ShatteredFlowNetwork {
             if (!network.starts.contains(tryStart)) {
                 network.starts.add(tryStart);
             }
-            network.ends.addAll(calculate(ent1).stream().filter((a) -> !network.ends.stream().anyMatch((b) -> b.entity == a.entity)).toList());
             ent1.path = network;
         }
-    }
-    public static List<ShatteredFlowPathEnd> calculate(ShatteredFocusBlockEntity start) {
-        List<BlockPos> alreadyVisited = new ArrayList<>();
-        BlockPos node = start.getBlockPos();
-        alreadyVisited.add(node);
-        List<ShatteredFlowPathEnd> ends = getEnds(start.getLevel(), node, alreadyVisited);
-        return ends;
-    }
-    public static List<ShatteredFlowPathEnd> getEnds(Level level, BlockPos node, List<BlockPos> alreadyVisited) {
-        List<ShatteredFlowPathEnd> ends = new ArrayList<>();
-        List<BlockPos> connected = null;
-        if (level.getBlockEntity(node) instanceof ShatteredFocusBlockEntity ent) {
-            connected = ent.connectedTo;
-        } else if (level.getBlockEntity(node) instanceof ShatteredRelayBlockEntity ent) {
-            connected = ent.connectedTo;
-        }
-        if (connected == null) {
-            return new ArrayList<>();
-        }
-        if (alreadyVisited.contains(node)) {
-            return new ArrayList<>();
-        }
-        for (BlockPos i : connected) {
-            if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent) {
-                if (!alreadyVisited.contains(ent)) {
-                    alreadyVisited.add(ent.getBlockPos());
-                    ends.addAll(getEnds(ent.getLevel(), ent.getBlockPos(), alreadyVisited));
-                }
-            }
-        }
-        return ends;
     }
 }

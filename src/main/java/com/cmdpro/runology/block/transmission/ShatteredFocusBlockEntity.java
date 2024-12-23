@@ -143,7 +143,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                 }
             }
         }
-        ShatteredFlowNetwork.updatePaths(level, getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
+        ShatteredFlowNetwork.updatePaths(level, getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>()), new ArrayList<>());
         updateBlock();
     }
     @Override
