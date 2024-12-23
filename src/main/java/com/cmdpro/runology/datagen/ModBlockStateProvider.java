@@ -21,6 +21,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(BlockRegistry.SHATTERSTONE);
+        blockWithItem(BlockRegistry.RUNE_HEAT_SHATTERSTONE);
+        blockWithItem(BlockRegistry.RUNE_SHAPE_SHATTERSTONE);
+        blockWithItem(BlockRegistry.RUNE_FROST_SHATTERSTONE);
+        blockWithItem(BlockRegistry.RUNE_MOTION_SHATTERSTONE);
     }
 
     private void blockWithItem(Supplier<Block> blockRegistryObject) {

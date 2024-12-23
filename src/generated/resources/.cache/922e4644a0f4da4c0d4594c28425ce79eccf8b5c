@@ -1,4 +1,16 @@
-// 1.21.1	2024-12-20T11:32:46.4270181	Block States: runology
+// 1.21.1	2024-12-23T15:03:53.883366	Block States: runology
+8dc77b918f1699fadb9decaace98c43237e235ed assets/runology/blockstates/rune_frost_shatterstone.json
+12c58f992e6e7ca90031560bd1c036addaddf708 assets/runology/blockstates/rune_heat_shatterstone.json
+3c46eb1888688b9fcabf4a351b365a5df7c4f150 assets/runology/blockstates/rune_motion_shatterstone.json
+c8ac53c05dbfe46dc94ccc384b88e505fed9703e assets/runology/blockstates/rune_shape_shatterstone.json
 6c36fd9243713f03654abff608aadc6522fa6a37 assets/runology/blockstates/shatterstone.json
+d347b95b4a63f6fc8ea6eba09bfa0edf0d39cedb assets/runology/models/block/rune_frost_shatterstone.json
+a7bc30bd253a3d3eb61eb8531f0db974bc91926f assets/runology/models/block/rune_heat_shatterstone.json
+f7c4043090979b6d3f995c71a0cd9c248b9979ca assets/runology/models/block/rune_motion_shatterstone.json
+3c25ea40e3497599101eabc91575e6ee25dc66c9 assets/runology/models/block/rune_shape_shatterstone.json
 ac474ec0789c86838fb4f32f9c1d60d953cdf1a1 assets/runology/models/block/shatterstone.json
+7758f69aee83790bc76617632f078a0b79b93b1a assets/runology/models/item/rune_frost_shatterstone.json
+b5432f1dc8afd77c3c462d952dbf9973aaa3a80a assets/runology/models/item/rune_heat_shatterstone.json
+8c453fde1285340c6c732d49a096601e63376c12 assets/runology/models/item/rune_motion_shatterstone.json
+6dffbb2a5f63236d9c4fa0d44a3383e8de1bdd8b assets/runology/models/item/rune_shape_shatterstone.json
 443b704ce803cbf593ee084a988f7dcf2c49c0a8 assets/runology/models/item/shatterstone.json

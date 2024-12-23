@@ -30,6 +30,9 @@
   "modonomicon.runology.guidebook.basics.runic_chisel.name": "Runic Chisel",
   "modonomicon.runology.guidebook.basics.runic_chisel.page0.title": "Runic Chisel",
   "modonomicon.runology.guidebook.basics.runic_chisel.page0.text": "While I know about runes, I do not have a method to create them, a Runic Chisel will work, to obtain one, I will have to imbue a gold chisel with Shattered Flow.",
+  "modonomicon.runology.guidebook.basics.shattered_flow.name": "Shattered Flow",
+  "modonomicon.runology.guidebook.basics.shattered_flow.page0.title": "Shattered Flow",
+  "modonomicon.runology.guidebook.basics.shattered_flow.page0.text": "That energy I felt nearby a Shatter... It was powerful yet dangerous and otherworldly, this energy... I will call it \"Shattered Flow\" however I will need a method to move it around, Shattered Focuses and Shattered Relays will work!",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -43,5 +46,5 @@
   "runology.rune_types.runology.heat": "Heat",
   "runology.rune_types.runology.frost": "Frost",
   "runology.rune_types.runology.shape": "Shape",
-  "runology.rune_types.runology.energy": "Energy"
+  "runology.rune_types.runology.motion": "Motion"
 }

@@ -22,6 +22,8 @@ public class ItemRegistry {
     public static final Supplier<Item> GUIDEBOOK = register("guidebook", () -> new ModonomiconItem(new Item.Properties().component(DataComponentRegistry.BOOK_ID, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "guidebook")).stacksTo(1)));
     public static final Supplier<Item> RUNIC_CHISEL = register("runic_chisel", () -> new RunicChisel(new Item.Properties().durability(25)));
     public static final Supplier<Item> GOLD_CHISEL = register("gold_chisel", () -> new Item(new Item.Properties().stacksTo(1)));
+
+    public static final Supplier<Item> SHATTERED_FLOW_ICON = register("shattered_flow_icon", () -> new Item(new Item.Properties()));
     private static <T extends Item> Supplier<T> register(final String name, final Supplier<T> item) {
         return ITEMS.register(name, item);
     }

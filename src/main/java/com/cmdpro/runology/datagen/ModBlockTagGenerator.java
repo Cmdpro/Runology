@@ -20,7 +20,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BlockRegistry.SHATTERSTONE.get())
-                .add(BlockRegistry.SHATTERED_FOCUS.get());
+                .add(BlockRegistry.SHATTERED_FOCUS.get())
+                .add(BlockRegistry.RUNE_HEAT_SHATTERSTONE.get())
+                .add(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get())
+                .add(BlockRegistry.RUNE_FROST_SHATTERSTONE.get())
+                .add(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get());
     }

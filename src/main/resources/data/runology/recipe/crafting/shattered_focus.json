@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "G G",
+    "GGG"
+  ],
+  "key": {
+    "G": { "tag": "c:ingots/gold" }
+  },
+  "result": { "id": "runology:shattered_focus" }
+}

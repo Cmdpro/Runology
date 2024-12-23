@@ -46,16 +46,18 @@ public class Runology
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey().equals(com.klikli_dev.modonomicon.registry.CreativeModeTabRegistry.MODONOMICON.getKey())) {
-            event.accept(ItemRegistry.GUIDEBOOK.get());
-        }
         if (event.getTabKey().equals(CreativeModeTabRegistry.getKey(CreativeModeTabRegistry.RUNOLOGY.get()))) {
+            event.accept(ItemRegistry.GUIDEBOOK.get());
             event.accept(BlockRegistry.SHATTER.get());
             event.accept(BlockRegistry.SHATTERSTONE.get());
             event.accept(ItemRegistry.GOLD_CHISEL.get());
             event.accept(ItemRegistry.RUNIC_CHISEL.get());
             event.accept(BlockRegistry.SHATTERED_FOCUS.get());
             event.accept(BlockRegistry.SHATTERED_RELAY.get());
+            event.accept(BlockRegistry.RUNE_HEAT_SHATTERSTONE.get());
+            event.accept(BlockRegistry.RUNE_FROST_SHATTERSTONE.get());
+            event.accept(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get());
+            event.accept(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
         }
     }
 }

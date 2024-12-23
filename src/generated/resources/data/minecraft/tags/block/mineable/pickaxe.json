@@ -1,6 +1,10 @@
 {
   "values": [
     "runology:shatterstone",
-    "runology:shattered_focus"
+    "runology:shattered_focus",
+    "runology:rune_heat_shatterstone",
+    "runology:rune_shape_shatterstone",
+    "runology:rune_frost_shatterstone",
+    "runology:rune_motion_shatterstone"
   ]
 }

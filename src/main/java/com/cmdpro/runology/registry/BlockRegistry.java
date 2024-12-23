@@ -40,6 +40,18 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> RUNE_HEAT_SHATTERSTONE = register("rune_heat_shatterstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> RUNE_SHAPE_SHATTERSTONE = register("rune_shape_shatterstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> RUNE_FROST_SHATTERSTONE = register("rune_frost_shatterstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> RUNE_MOTION_SHATTERSTONE = register("rune_motion_shatterstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 
     private static <T extends Block> Supplier<T> registerBlock(final String name,
