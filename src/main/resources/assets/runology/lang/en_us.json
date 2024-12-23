@@ -38,5 +38,10 @@
   "advancements.runology.shatterstone.title": "Shatterstone",
   "advancements.runology.shatterstone.description": "Obtain Shatterstone",
 
-  "emi.category.runology.shatter_imbuement": "Shatter Imbuement"
+  "emi.category.runology.shatter_imbuement": "Shatter Imbuement",
+
+  "runology.rune_types.runology.heat": "Heat",
+  "runology.rune_types.runology.frost": "Frost",
+  "runology.rune_types.runology.shape": "Shape",
+  "runology.rune_types.runology.energy": "Energy"
 }
