@@ -5,6 +5,7 @@ import com.cmdpro.databank.shaders.PostShaderManager;
 import com.cmdpro.runology.particle.ShatterParticle;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
+import com.cmdpro.runology.renderers.block.GoldPillarRenderer;
 import com.cmdpro.runology.renderers.block.ShatterRenderer;
 import com.cmdpro.runology.renderers.block.ShatteredFocusRenderer;
 import com.cmdpro.runology.renderers.block.ShatteredRelayRenderer;
@@ -37,6 +38,7 @@ public class ClientSetupEvents {
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTER.get(), ShatterRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_RELAY.get(), ShatteredRelayRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_FOCUS.get(), ShatteredFocusRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityRegistry.GOLD_PILLAR.get(), GoldPillarRenderer::new);
     }
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {

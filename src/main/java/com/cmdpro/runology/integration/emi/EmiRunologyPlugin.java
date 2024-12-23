@@ -1,6 +1,7 @@
 package com.cmdpro.runology.integration.emi;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.integration.emi.recipe.EmiShatterImbuementRecipe;
 import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
 import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.RecipeRegistry;
@@ -11,7 +12,6 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 

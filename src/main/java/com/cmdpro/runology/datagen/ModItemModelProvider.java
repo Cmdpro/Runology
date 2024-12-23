@@ -45,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemRegistry.RUNIC_CHISEL);
         evenSimplerBlockItem(BlockRegistry.SHATTERED_FOCUS);
         evenSimplerBlockItem(BlockRegistry.SHATTERED_RELAY);
+        evenSimplerBlockItem(BlockRegistry.GOLD_PILLAR);
         simpleItem(ItemRegistry.SHATTERED_FLOW_ICON);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {

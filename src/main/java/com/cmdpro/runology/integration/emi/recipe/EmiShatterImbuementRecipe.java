@@ -1,5 +1,6 @@
-package com.cmdpro.runology.integration.emi;
+package com.cmdpro.runology.integration.emi.recipe;
 
+import com.cmdpro.runology.integration.emi.EmiRunologyPlugin;
 import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;

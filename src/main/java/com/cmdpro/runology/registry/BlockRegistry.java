@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.misc.GoldPillar;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
 import com.cmdpro.runology.block.transmission.ShatteredRelay;
 import com.cmdpro.runology.block.world.Shatter;
@@ -35,6 +36,9 @@ public class BlockRegistry {
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERED_RELAY = register("shattered_relay",
             () -> new ShatteredRelay(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> GOLD_PILLAR = register("gold_pillar",
+            () -> new GoldPillar(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",

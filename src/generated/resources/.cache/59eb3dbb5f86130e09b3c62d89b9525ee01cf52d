@@ -1,4 +1,5 @@
-// 1.21.1	2024-12-23T15:03:53.8818494	Loot Tables
+// 1.21.1	2024-12-23T18:36:24.2975211	Loot Tables
+44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
 925f0a1ac30ffba489d4d1eedf2ae307e17c7de8 data/runology/loot_table/blocks/rune_heat_shatterstone.json
 f20d45f6fdf2b0b8b54894ca7b2a63d4671aad98 data/runology/loot_table/blocks/rune_motion_shatterstone.json

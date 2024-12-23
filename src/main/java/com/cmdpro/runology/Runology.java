@@ -58,6 +58,7 @@ public class Runology
             event.accept(BlockRegistry.RUNE_FROST_SHATTERSTONE.get());
             event.accept(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get());
             event.accept(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
+            event.accept(BlockRegistry.GOLD_PILLAR.get());
         }
     }
 }
