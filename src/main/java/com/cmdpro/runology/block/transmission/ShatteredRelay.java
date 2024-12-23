@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShatteredRelay extends Block implements EntityBlock {
 
@@ -96,53 +97,24 @@ public class ShatteredRelay extends Block implements EntityBlock {
         if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
             pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).remove(ent);
         }
+        List<BlockPos> toUpdateNetworks = new ArrayList<>();
         if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
             for (BlockPos i : ent.connectedTo) {
                 if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
                     ent2.connectedTo.remove(pPos);
+                    toUpdateNetworks.add(i);
                     ent2.updateBlock();
                 }
                 if (pLevel.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
                     ent2.connectedTo.remove(pPos);
+                    toUpdateNetworks.add(i);
                     ent2.updateBlock();
                 }
             }
-            ShatteredFlowNetwork.updatePaths(pLevel, ent.getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-    }
-
-    @Override
-    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        super.onPlace(state, level, pos, oldState, movedByPiston);
-        if (level.getBlockEntity(pos) instanceof ShatteredRelayBlockEntity ent) {
-            for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
-                if (i == ent) {
-                    continue;
-                }
-                if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
-                    if (!i.connectedTo.contains(pos)) {
-                        i.connectedTo.add(pos);
-                        i.updateBlock();
-                    }
-                    if (!ent.connectedTo.contains(i.getBlockPos())) {
-                        ent.connectedTo.add(i.getBlockPos());
-                    }
-                }
-            }
-            for (ShatteredFocusBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES)) {
-                if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
-                    if (!i.connectedTo.contains(pos)) {
-                        i.connectedTo.add(pos);
-                        i.updateBlock();
-                    }
-                    if (!ent.connectedTo.contains(i.getBlockPos())) {
-                        ent.connectedTo.add(i.getBlockPos());
-                    }
-                }
-            }
-            ShatteredFlowNetwork.updatePaths(level, ent.getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
-            ent.updateBlock();
+        for (BlockPos i : toUpdateNetworks) {
+            ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
         }
     }
 

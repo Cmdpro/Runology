@@ -51,7 +51,9 @@ public class ShatterBlockEntity extends BlockEntity {
             level.getData(AttachmentTypeRegistry.SHATTERS).remove(this);
         }
         super.setLevel(pLevel);
-        pLevel.getData(AttachmentTypeRegistry.SHATTERS).add(this);
+        if (!pLevel.getData(AttachmentTypeRegistry.SHATTERS).contains(this)) {
+            pLevel.getData(AttachmentTypeRegistry.SHATTERS).add(this);
+        }
     }
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         Vec3 center = getBlockPos().getCenter();

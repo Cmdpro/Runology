@@ -22,8 +22,8 @@ public class ShatteredFlowNetwork {
         alreadyChecked.add(tryStart);
         if (level.getBlockEntity(tryStart) instanceof ShatteredRelayBlockEntity ent1) {
             for (BlockPos i : ent1.connectedTo) {
-                if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent) {
-                    updatePaths(level, ent.getBlockPos(), network, alreadyChecked);
+                if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity || level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity) {
+                    updatePaths(level, i, network, alreadyChecked);
                 }
             }
             ent1.path = network;
@@ -32,6 +32,9 @@ public class ShatteredFlowNetwork {
                 if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent) {
                     updatePaths(level, ent.getBlockPos(), network, alreadyChecked);
                 }
+            }
+            if (!network.starts.contains(tryStart)) {
+                network.starts.add(tryStart);
             }
             network.ends.addAll(calculate(ent1).stream().filter((a) -> !network.ends.stream().anyMatch((b) -> b.entity == a.entity)).toList());
             ent1.path = network;
@@ -55,20 +58,15 @@ public class ShatteredFlowNetwork {
         if (connected == null) {
             return new ArrayList<>();
         }
+        if (alreadyVisited.contains(node)) {
+            return new ArrayList<>();
+        }
         for (BlockPos i : connected) {
             if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent) {
                 if (!alreadyVisited.contains(ent)) {
                     alreadyVisited.add(ent.getBlockPos());
-                    if (ent.connectedTo.isEmpty()) {
-                        ends.add(new ShatteredFlowPathEnd(ent.getBlockPos(), alreadyVisited.toArray(new BlockPos[0])));
-                    } else {
-                        ends.addAll(getEnds(ent.getLevel(), ent.getBlockPos(), alreadyVisited));
-                    }
-                } else {
-                    break;
+                    ends.addAll(getEnds(ent.getLevel(), ent.getBlockPos(), alreadyVisited));
                 }
-            } else {
-                break;
             }
         }
         return ends;

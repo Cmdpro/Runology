@@ -60,6 +60,38 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
         }
     }
 
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
+            if (i == this) {
+                continue;
+            }
+            if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                if (!i.connectedTo.contains(getBlockPos())) {
+                    i.connectedTo.add(getBlockPos());
+                    i.updateBlock();
+                }
+                if (!this.connectedTo.contains(i.getBlockPos())) {
+                    this.connectedTo.add(i.getBlockPos());
+                }
+            }
+        }
+        for (ShatteredFocusBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES)) {
+            if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                if (!i.connectedTo.contains(getBlockPos())) {
+                    i.connectedTo.add(getBlockPos());
+                    i.updateBlock();
+                }
+                if (!this.connectedTo.contains(i.getBlockPos())) {
+                    this.connectedTo.add(i.getBlockPos());
+                }
+            }
+        }
+        ShatteredFlowNetwork.updatePaths(level, getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
+        updateBlock();
+    }
+
     public void updateBlock() {
         BlockState blockState = level.getBlockState(this.getBlockPos());
         this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
@@ -72,12 +104,29 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).remove(this);
         }
         super.setLevel(pLevel);
-        pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).add(this);
+        if (!pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).contains(this)) {
+            pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).add(this);
+        }
     }
-    int particleTimer;
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (pLevel.isClientSide) {
-            pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1);
+            if (isPowered) {
+                pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1);
+            }
+        } else {
+            boolean powered = false;
+            for (BlockPos i : path.starts) {
+                if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent) {
+                    if (ent.storage.amount > 0) {
+                        powered = true;
+                        break;
+                    }
+                }
+            }
+            if (isPowered != powered) {
+                updateBlock();
+            }
+            isPowered = powered;
         }
     }
     @Override
@@ -85,15 +134,25 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
     @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider pRegistries) {
-        CompoundTag tag = pkt.getTag();
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        if (!pkt.getTag().isEmpty()) {
+            decodeUpdateTag(pkt.getTag(), lookupProvider);
+        }
+    }
+    @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+        decodeUpdateTag(tag, lookupProvider);
+    }
+    public void decodeUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         ListTag list = (ListTag)tag.get("link");
         connectedTo.clear();
         for (Tag i : list) {
             CompoundTag blockpos = (CompoundTag)i;
             connectedTo.add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
         }
+        isPowered = tag.getBoolean("isPowered");
     }
+    public boolean isPowered;
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
         CompoundTag tag = new CompoundTag();
@@ -106,6 +165,7 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             list.add(blockpos);
         }
         tag.put("link", list);
+        tag.putBoolean("isPowered", isPowered);
         return tag;
     }
 }

@@ -21,12 +21,14 @@ public class ShatteredRelayRenderer implements BlockEntityRenderer<ShatteredRela
     public void render(ShatteredRelayBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
-        for (BlockPos i : blockEntity.connectedTo) {
-            poseStack.pushPose();
-            ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter());
-            renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
-            renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
-            poseStack.popPose();
+        if (blockEntity.isPowered) {
+            for (BlockPos i : blockEntity.connectedTo) {
+                poseStack.pushPose();
+                ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter());
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
+                poseStack.popPose();
+            }
         }
         poseStack.popPose();
     }
