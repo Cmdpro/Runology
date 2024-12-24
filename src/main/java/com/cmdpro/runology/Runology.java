@@ -1,6 +1,13 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.runology.registry.*;
+import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.ComponentItemHandler;
+import org.apache.commons.lang3.IntegerRange;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,6 +33,7 @@ public class Runology
     {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::registerCapabilities);
 
         SoundRegistry.SOUND_EVENTS.register(modEventBus);
         ItemRegistry.ITEMS.register(modEventBus);
@@ -43,6 +51,10 @@ public class Runology
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.SHATTERED_INFUSER.get(), (o, direction) -> o.getItemHandler());
+
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {

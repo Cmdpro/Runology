@@ -41,6 +41,7 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            updateBlock();
         }
 
         @Override
@@ -121,7 +122,6 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                     newStack.shrink(1);
                     itemHandler.setStackInSlot(0, newStack);
                     craftingTime = 0;
-                    updateBlock();
                 }
             }
         } else {

@@ -22,7 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class ShatteredInfuser extends Block implements EntityBlock {
-    private static final VoxelShape SHAPE =  Block.box(3, 0, 3, 13, 2, 13);
+    private static final VoxelShape SHAPE =  Block.box(1, 0, 1, 15, 6, 15);
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -55,7 +55,6 @@ public class ShatteredInfuser extends Block implements EntityBlock {
                     pPlayer.getInventory().add(ent.itemHandler.getStackInSlot(0));
                     ent.itemHandler.setStackInSlot(0, ItemStack.EMPTY);
                 }
-                ent.updateBlock();
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
@@ -72,7 +71,6 @@ public class ShatteredInfuser extends Block implements EntityBlock {
                     pPlayer.getInventory().add(ent.itemHandler.getStackInSlot(0));
                     ent.itemHandler.setStackInSlot(0, ItemStack.EMPTY);
                 }
-                ent.updateBlock();
             }
         }
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
