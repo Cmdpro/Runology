@@ -1,0 +1,95 @@
+{
+  "mapping": {
+    "S": {
+      "type": "modonomicon:block",
+      "block": "runology:shatterstone"
+    },
+    "G": {
+      "type": "modonomicon:block",
+      "block": "minecraft:gold_block"
+    },
+    "C": {
+      "type": "modonomicon:block",
+      "block": "minecraft:copper_block"
+    },
+    "L": {
+      "type": "modonomicon:block",
+      "block": "minecraft:lava"
+    },
+    "1": {
+      "type": "modonomicon:block",
+      "block": "runology:rune_heat_shatterstone"
+    },
+    "2": {
+      "type": "modonomicon:block",
+      "block": "runology:rune_frost_shatterstone"
+    },
+    "3": {
+      "type": "modonomicon:block",
+      "block": "runology:rune_shape_shatterstone"
+    },
+    "4": {
+      "type": "modonomicon:block",
+      "block": "runology:rune_motion_shatterstone"
+    },
+    "0": {
+      "type": "modonomicon:block",
+      "block": "runology:gold_pillar"
+    }
+  },
+  "pattern": [
+    [
+      "___________",
+      "___________",
+      "__SS___SS__",
+      "__S_____S__",
+      "___________",
+      "___________",
+      "___________",
+      "__S_____S__",
+      "__SS___SS__",
+      "___________",
+      "___________"
+    ],
+    [
+      "    SSS    ",
+      "  SSSSSSS  ",
+      " SLLSSSLLS ",
+      " SLSCSCSLS ",
+      "SSSCCSCCSSS",
+      "SSSSSGSSSSS",
+      "SSSCCSCCSSS",
+      " SLSCSCSLS ",
+      " SLSSSLLS  ",
+      "  SSSSSSS  ",
+      "    SSS    "
+    ],
+    [
+      "    S S    ",
+      "     S     ",
+      "           ",
+      "   S   S   ",
+      "S         S",
+      " S   0   S ",
+      "S         S",
+      "   S   S   ",
+      "           ",
+      "     S     ",
+      "    S S    "
+    ],
+    [
+      "           ",
+      "     1     ",
+      "           ",
+      "           ",
+      "           ",
+      " 4       2 ",
+      "           ",
+      "           ",
+      "           ",
+      "     3     ",
+      "           "
+    ]
+  ],
+  "type": "modonomicon:dense"
+}

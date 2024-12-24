@@ -1,6 +1,7 @@
 package com.cmdpro.runology.block.misc;
 
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
+import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import net.minecraft.core.BlockPos;
@@ -80,6 +81,14 @@ public class GoldPillar extends Block implements EntityBlock {
             }
         }
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return (level1, pos, state1, blockEntity) -> {
+            if (blockEntity instanceof GoldPillarBlockEntity ent) {
+                ent.tick(level1, pos, state1);
+            }
+        };
     }
 
     @Nullable
