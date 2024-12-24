@@ -6,8 +6,6 @@
   "mixins": [
   ],
   "client": [
-    "client.GameRendererMixin",
-    "client.CameraMixin",
-    "client.CameraAccessor"
+    "client.GameRendererMixin"
   ]
 }
