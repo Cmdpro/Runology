@@ -25,7 +25,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_FROST_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get())
-                .add(BlockRegistry.GOLD_PILLAR.get());
+                .add(BlockRegistry.GOLD_PILLAR.get())
+                .add(BlockRegistry.SHATTERED_INFUSER.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get());
     }

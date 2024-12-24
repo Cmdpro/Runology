@@ -2,13 +2,12 @@ package com.cmdpro.runology;
 
 import com.cmdpro.databank.shaders.PostShaderInstance;
 import com.cmdpro.databank.shaders.PostShaderManager;
+import com.cmdpro.runology.block.machines.ShatteredInfuserBlockEntity;
 import com.cmdpro.runology.particle.ShatterParticle;
+import com.cmdpro.runology.particle.SmallShatterParticle;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.cmdpro.runology.renderers.block.GoldPillarRenderer;
-import com.cmdpro.runology.renderers.block.ShatterRenderer;
-import com.cmdpro.runology.renderers.block.ShatteredFocusRenderer;
-import com.cmdpro.runology.renderers.block.ShatteredRelayRenderer;
+import com.cmdpro.runology.renderers.block.*;
 import com.cmdpro.runology.shaders.ShatterShader;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -32,6 +31,8 @@ public class ClientSetupEvents {
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.SHATTER.get(),
                 ShatterParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.SMALL_SHATTER.get(),
+                SmallShatterParticle.Provider::new);
     }
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
@@ -39,6 +40,7 @@ public class ClientSetupEvents {
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_RELAY.get(), ShatteredRelayRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_FOCUS.get(), ShatteredFocusRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.GOLD_PILLAR.get(), GoldPillarRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_INFUSER.get(), ShatteredInfuserRenderer::new);
     }
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {

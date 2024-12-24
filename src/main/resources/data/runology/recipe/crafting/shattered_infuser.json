@@ -1,11 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    " G ",
     "G G",
     "GGG"
   ],
   "key": {
     "G": { "tag": "c:ingots/gold" }
   },
-  "result": { "id": "runology:shattered_focus" }
+  "result": { "id": "runology:shattered_infuser" }
 }

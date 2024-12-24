@@ -2,6 +2,7 @@ package com.cmdpro.runology.renderers.block;
 
 import com.cmdpro.databank.ClientDatabankUtils;
 import com.cmdpro.runology.RenderEvents;
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.*;
 import org.joml.Math;
@@ -29,14 +31,22 @@ public class ShatteredFocusRenderer implements BlockEntityRenderer<ShatteredFocu
         poseStack.translate(0.5, 0.5, 0.5);
         if (blockEntity.isPowered) {
             for (BlockPos i : blockEntity.connectedTo) {
+                Vec3 offset = Vec3.ZERO;
+                if (blockEntity.getLevel().getBlockEntity(i) instanceof ShatteredFlowConnectable connectable) {
+                    offset = connectable.getConnectOffset();
+                }
                 poseStack.pushPose();
-                ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter());
-                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
-                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
+                ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter().add(offset));
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
                 poseStack.popPose();
             }
         }
         poseStack.popPose();
+    }
+    @Override
+    public AABB getRenderBoundingBox(ShatteredFocusBlockEntity blockEntity) {
+        return AABB.INFINITE;
     }
     EntityRenderDispatcher renderDispatcher;
     public ShatteredFocusRenderer(BlockEntityRendererProvider.Context rendererProvider) {

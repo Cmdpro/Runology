@@ -1,9 +1,10 @@
-// 1.21.1	2024-12-23T18:36:24.2975211	Loot Tables
+// 1.21.1	2024-12-23T21:33:25.275835	Loot Tables
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
 925f0a1ac30ffba489d4d1eedf2ae307e17c7de8 data/runology/loot_table/blocks/rune_heat_shatterstone.json
 f20d45f6fdf2b0b8b54894ca7b2a63d4671aad98 data/runology/loot_table/blocks/rune_motion_shatterstone.json
 e04939b2e74c98519e5e4da80c377fa12d73df29 data/runology/loot_table/blocks/rune_shape_shatterstone.json
 2b151a5ee0c246844b4d1fbf923a341b8558e84d data/runology/loot_table/blocks/shattered_focus.json
+9a6b04c1e256b3975fc5fcd36fdeeed081455aed data/runology/loot_table/blocks/shattered_infuser.json
 7bb5895790f0e4b0e02cc8042ba20f6cb4f186be data/runology/loot_table/blocks/shattered_relay.json
 03945988d7a6b7fca553677052a12491504a3ed6 data/runology/loot_table/blocks/shatterstone.json

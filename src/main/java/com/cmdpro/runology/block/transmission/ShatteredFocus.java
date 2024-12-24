@@ -53,19 +53,23 @@ public class ShatteredFocus extends Block implements EntityBlock {
             pLevel.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES).remove(ent);
         }
         List<BlockPos> toUpdateNetworks = new ArrayList<>();
-        if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
-            for (BlockPos i : ent.connectedTo) {
-                if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
-                    ent2.connectedTo.remove(pPos);
-                    toUpdateNetworks.add(i);
-                    ent2.updateBlock();
+        if (pState.getBlock() != pNewState.getBlock()) {
+            if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
+                for (BlockPos i : ent.connectedTo) {
+                    if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                        ent2.connectedTo.remove(pPos);
+                        toUpdateNetworks.add(i);
+                        ent2.updateBlock();
+                    }
                 }
+                ent.updateBlock();
             }
-            ent.updateBlock();
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-        for (BlockPos i : toUpdateNetworks) {
-            ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>()), new ArrayList<>());
+        if (pState.getBlock() != pNewState.getBlock()) {
+            for (BlockPos i : toUpdateNetworks) {
+                ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
+            }
         }
     }
 }

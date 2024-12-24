@@ -4,6 +4,7 @@
   "block.runology.shattered_focus": "Shattered Focus",
   "block.runology.shattered_relay": "Shattered Relay",
   "block.runology.gold_pillar": "Gold Pillar",
+  "block.runology.shattered_infuser": "Shattered Infuser",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
@@ -34,6 +35,9 @@
   "modonomicon.runology.guidebook.basics.shattered_flow.name": "Shattered Flow",
   "modonomicon.runology.guidebook.basics.shattered_flow.page0.title": "Shattered Flow",
   "modonomicon.runology.guidebook.basics.shattered_flow.page0.text": "That energy I felt nearby a Shatter... It was powerful yet dangerous and otherworldly, this energy... I will call it \"Shattered Flow\" however I will need a method to move it around, Shattered Focuses and Shattered Relays will work!",
+  "modonomicon.runology.guidebook.basics.shattered_infuser.name": "Shattered Infuser",
+  "modonomicon.runology.guidebook.basics.shattered_infuser.page0.title": "Shattered Infuser",
+  "modonomicon.runology.guidebook.basics.shattered_infuser.page0.text": "Now that I am able to move around Shattered Flow, It may be useful to be able to charge items with it without having to walk all the way to a Shatter, the Shattered Infuser will allow me to do this.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

@@ -23,6 +23,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.RUNE_FROST_SHATTERSTONE.get());
         dropSelf(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
         dropSelf(BlockRegistry.GOLD_PILLAR.get());
+        dropSelf(BlockRegistry.SHATTERED_INFUSER.get());
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {
