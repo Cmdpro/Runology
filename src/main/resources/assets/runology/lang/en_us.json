@@ -5,6 +5,10 @@
   "block.runology.shattered_relay": "Shattered Relay",
   "block.runology.gold_pillar": "Gold Pillar",
   "block.runology.shattered_infuser": "Shattered Infuser",
+  "block.runology.rune_heat_shatterstone": "Shatterstone Heat Rune",
+  "block.runology.rune_frost_shatterstone": "Shatterstone Frost Rune",
+  "block.runology.rune_shape_shatterstone": "Shatterstone Shape Rune",
+  "block.runology.rune_motion_shatterstone": "Shatterstone Motion Rune",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",

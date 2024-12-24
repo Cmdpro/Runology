@@ -34,7 +34,7 @@ public class ShatteredInfuserRenderer implements BlockEntityRenderer<ShatteredIn
             pPoseStack.pushPose();
             pPoseStack.translate(0.5D, 0.75D, 0.5D);
             pPoseStack.mulPose(Axis.YP.rotationDegrees(pBlockEntity.getLevel().getLevelData().getGameTime() % 360));
-            pPoseStack.scale(0.25F, 0.25F, 0.25F);
+            pPoseStack.scale(0.5F, 0.5F, 0.5F);
             Minecraft.getInstance().getItemRenderer().renderStatic(pBlockEntity.item, ItemDisplayContext.GUI, pPackedLight, pPackedOverlay, pPoseStack, pBuffer, pBlockEntity.getLevel(), 0);
             pPoseStack.popPose();
         }
