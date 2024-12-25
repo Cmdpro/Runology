@@ -8,6 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -44,6 +45,7 @@ public class RenderEvents {
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
             getPlayerPowerTarget().unbindWrite();
             Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
+            createShatterOutlineBufferSource().endBatch();
         }
     }
     private static RenderTarget shatterTarget;
