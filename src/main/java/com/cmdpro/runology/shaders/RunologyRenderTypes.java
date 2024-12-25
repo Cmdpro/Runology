@@ -31,4 +31,18 @@ public class RunologyRenderTypes extends RenderType {
             true,
             true,
             RenderType.CompositeState.builder().setWriteMaskState(RenderStateShard.COLOR_DEPTH_WRITE).setLightmapState(RenderStateShard.LIGHTMAP).setTransparencyState(TRANSPARENCY).setTextureState(PARTICLE_SHEET).setShaderState(SHATTER_PARTICLE_SHADER).createCompositeState(false)), true);
+    public static final RenderType PLAYER_POWER = create(Runology.MODID + ":player_power",
+            DefaultVertexFormat.POSITION,
+            VertexFormat.Mode.QUADS,
+            256,
+            false,
+            false,
+            CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false));
+    public static final RenderType PLAYER_POWER_PARTICLE = RenderTypeHandler.registerRenderType(create(Runology.MODID + ":player_power_particle",
+            DefaultVertexFormat.PARTICLE,
+            VertexFormat.Mode.QUADS,
+            256,
+            true,
+            true,
+            RenderType.CompositeState.builder().setWriteMaskState(RenderStateShard.COLOR_DEPTH_WRITE).setLightmapState(RenderStateShard.LIGHTMAP).setTransparencyState(TRANSPARENCY).setTextureState(PARTICLE_SHEET).setShaderState(SHATTER_PARTICLE_SHADER).createCompositeState(false)), true);
 }

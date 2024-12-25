@@ -4,6 +4,7 @@ import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
+import com.cmdpro.runology.recipe.RecipeUtil;
 import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
@@ -96,9 +97,8 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
         } else {
             input = new SingleRecipeInput(itemHandler.getStackInSlot(0));
         }
-        Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = pLevel.getRecipeManager().getRecipeFor(RecipeRegistry.SHATTER_IMBUEMENT_TYPE.get(), input, level);
-        if (recipe.isPresent()) {
-            if (pLevel.isClientSide) {
+        if (pLevel.isClientSide) {
+            if (crafting) {
                 List<Vec3> starts = new ArrayList<>();
                 starts.add(pPos.getCenter().add(0.5, 0.25, 0));
                 starts.add(pPos.getCenter().add(-0.5, 0.25, 0));
@@ -108,10 +108,18 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                     Vec3 diff = pPos.getCenter().add(0, 0.25, 0).subtract(i).multiply(0.2f, 0.2f, 0.2f);
                     pLevel.addParticle(ParticleRegistry.SMALL_SHATTER.get(), i.x, i.y, i.z, diff.x, diff.y, diff.z);
                 }
-            } else {
+            }
+        } else {
+            Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, input);
+            if (recipe.isPresent()) {
+                if (!crafting) {
+                    crafting = true;
+                    updateBlock();
+                }
                 if (!recipe.get().id().equals(currentRecipe)) {
                     craftingTime = 0;
                 }
+                tryUseEnergy(50);
                 currentRecipe = recipe.get().id();
                 craftingTime++;
                 if (craftingTime >= 50) {
@@ -123,18 +131,24 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                     itemHandler.setStackInSlot(0, newStack);
                     craftingTime = 0;
                 }
+            } else {
+                if (crafting) {
+                    crafting = false;
+                    updateBlock();
+                }
+                craftingTime = -1;
+                currentRecipe = null;
             }
-        } else {
-            craftingTime = -1;
-            currentRecipe = null;
         }
     }
+    public boolean crafting;
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         decodeUpdateTag(tag, lookupProvider);
     }
     public void decodeUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
         item = ItemStack.parseOptional(lookupProvider, tag.getCompound("item"));
+        crafting = tag.getBoolean("crafting");
     }
 
 
@@ -149,6 +163,7 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
     public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag tag = new CompoundTag();
         tag.put("item", itemHandler.getStackInSlot(0).saveOptional(provider));
+        tag.putBoolean("crafting", crafting);
         return tag;
     }
     public ShatteredFlowNetwork path;

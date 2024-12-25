@@ -17,6 +17,8 @@ public class AttachmentTypeRegistry {
             Runology.MODID);
     public static final Supplier<AttachmentType<Integer>> SHATTER_ITEM_CONVERSION_TIMER =
             register("shatter_item_conversion_timer", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+    public static final Supplier<AttachmentType<Boolean>> PLAYER_POWER_MODE =
+            register("player_power_mode", () -> AttachmentType.builder(() -> false).build());
     public static final Supplier<AttachmentType<ArrayList<ShatterBlockEntity>>> SHATTERS =
             register("shatters", () -> AttachmentType.builder(() -> new ArrayList<ShatterBlockEntity>()).build());
     public static final Supplier<AttachmentType<ArrayList<ShatteredRelayBlockEntity>>> SHATTERED_RELAYS =

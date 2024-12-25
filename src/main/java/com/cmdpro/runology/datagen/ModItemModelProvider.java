@@ -48,6 +48,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.GOLD_PILLAR);
         evenSimplerBlockItem(BlockRegistry.SHATTERED_INFUSER);
         simpleItem(ItemRegistry.SHATTERED_FLOW_ICON);
+        simpleItem(ItemRegistry.SHATTER_READER);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

@@ -1,6 +1,7 @@
 package com.cmdpro.runology.recipe;
 
 import com.cmdpro.runology.registry.RecipeRegistry;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -15,11 +16,13 @@ import net.neoforged.neoforge.common.Tags;
 public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
     private final ItemStack output;
     private final Ingredient input;
+    private final int tier;
 
     public ShatterImbuementRecipe(ItemStack output,
-                                  Ingredient input) {
+                                  Ingredient input, int tier) {
         this.output = output;
         this.input = input;
+        this.tier = tier;
     }
     @Override
     public NonNullList<Ingredient> getIngredients() {
@@ -42,7 +45,9 @@ public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
         return true;
     }
 
-
+    public int getTier() {
+        return tier;
+    }
     @Override
     public ItemStack getResultItem(HolderLookup.Provider pRegistryAccess) {
         return output;
@@ -61,18 +66,21 @@ public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
     public static class Serializer implements RecipeSerializer<ShatterImbuementRecipe> {
         public static final MapCodec<ShatterImbuementRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 ItemStack.CODEC.fieldOf("result").forGetter(r -> r.output),
-                Ingredient.CODEC.fieldOf("input").forGetter(r -> r.input)
+                Ingredient.CODEC.fieldOf("input").forGetter(r -> r.input),
+                Codec.INT.optionalFieldOf("tier", 0).forGetter(r -> r.tier)
         ).apply(instance, ShatterImbuementRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, ShatterImbuementRecipe> STREAM_CODEC = StreamCodec.of(
                 (buf, obj) -> {
                     ItemStack.STREAM_CODEC.encode(buf, obj.output);
                     Ingredient.CONTENTS_STREAM_CODEC.encode(buf, obj.input);
+                    buf.writeInt(obj.tier);
                 },
                 (buf) -> {
                     ItemStack output = ItemStack.STREAM_CODEC.decode(buf);
                     Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-                    return new ShatterImbuementRecipe(output, input);
+                    int tier = buf.readInt();
+                    return new ShatterImbuementRecipe(output, input, tier);
                 }
         );
 

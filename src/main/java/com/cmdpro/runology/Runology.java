@@ -6,6 +6,8 @@ import net.minecraft.core.component.DataComponents;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.items.ComponentItemHandler;
 import org.apache.commons.lang3.IntegerRange;
 import org.slf4j.Logger;
@@ -54,7 +56,6 @@ public class Runology
     }
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.SHATTERED_INFUSER.get(), (o, direction) -> o.getItemHandler());
-
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
@@ -72,6 +73,7 @@ public class Runology
             event.accept(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
             event.accept(BlockRegistry.GOLD_PILLAR.get());
             event.accept(BlockRegistry.SHATTERED_INFUSER.get());
+            event.accept(ItemRegistry.SHATTER_READER.get());
         }
     }
 }

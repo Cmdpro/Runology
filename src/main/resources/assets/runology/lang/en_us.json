@@ -12,6 +12,10 @@
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
+  "item.runology.shatter_reader": "Shatter Reader",
+  "item.runology.shatter_reader.power": "%1$s Power",
+  "item.runology.shatter_reader.stability": "%1$s Stability",
+  "item.runology.shatter_reader.output": "%1$s Output",
 
   "creativemodetab.runology": "Runology",
 
@@ -26,7 +30,7 @@
   "modonomicon.runology.guidebook.basics.guidebook.page0.text": "After imbuing that strange power into a book, I have obtained powerful knowledge, this path, it may lead me to power! However... I can't help but wonder... What is that voice in my head telling me all of this?",
   "modonomicon.runology.guidebook.basics.shatters.name": "Shatters",
   "modonomicon.runology.guidebook.basics.shatters.page0.title": "Shatters",
-  "modonomicon.runology.guidebook.basics.shatters.page0.text": "These holes in space appear to lead to somewhere else, while I may not be able to cross them, I may be able to extract energy from them. I will call this energy \"Shattered Flow\"",
+  "modonomicon.runology.guidebook.basics.shatters.page0.text": "These holes in space appear to lead to somewhere else, while I may not be able to cross them, I may be able to extract energy from them. I will call this energy \"Shattered Flow\" however if I attempt to drain too much Shattered Flow from one, it may become unstable...",
   "modonomicon.runology.guidebook.basics.basic_runes.name": "Basic Runes",
   "modonomicon.runology.guidebook.basics.basic_runes.page0.title": "Basic Runes",
   "modonomicon.runology.guidebook.basics.basic_runes.page0.text": "There are 4 runes I can utilize to manipulate the world: [#](ff5d00)Heat[#](), [#](00d1ff)Frost[#](), [#](00ff00)Shape[#]() and [#](ffd100)Motion[#](). Utilizing these 4 is powerful but there has to be more...",
@@ -41,7 +45,10 @@
   "modonomicon.runology.guidebook.basics.shattered_flow.page0.text": "That energy I felt nearby a Shatter... It was powerful yet dangerous and otherworldly, this energy... I will call it \"Shattered Flow\" however I will need a method to move it around, Shattered Focuses and Shattered Relays will work!",
   "modonomicon.runology.guidebook.basics.shattered_infuser.name": "Shattered Infuser",
   "modonomicon.runology.guidebook.basics.shattered_infuser.page0.title": "Shattered Infuser",
-  "modonomicon.runology.guidebook.basics.shattered_infuser.page0.text": "Now that I am able to move around Shattered Flow, It may be useful to be able to charge items with it without having to walk all the way to a Shatter, the Shattered Infuser will allow me to do this.",
+  "modonomicon.runology.guidebook.basics.shattered_infuser.page0.text": "Now that I am able to move around Shattered Flow, It may be useful to be able to charge items with it without having to walk all the way to a Shatter, the Shattered Infuser will allow me to do this at the cost of 50 Shattered Flow to run.",
+  "modonomicon.runology.guidebook.basics.shatter_reader.name": "Shatter Reader",
+  "modonomicon.runology.guidebook.basics.shatter_reader.page0.title": "Shatter Reader",
+  "modonomicon.runology.guidebook.basics.shatter_reader.page0.text": "With how Shatters output a limited number of Shattered Flow and have stability to them, it may be useful to create a tool to let me measure a Shatters Stability, Power, and Output.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

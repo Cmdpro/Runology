@@ -16,6 +16,8 @@ public class ParticleRegistry {
             Runology.MODID);
     public static final Supplier<SimpleParticleType> SHATTER = register("shatter", () -> new SimpleParticleType(false));
     public static final Supplier<SimpleParticleType> SMALL_SHATTER = register("small_shatter", () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> PLAYER_POWER = register("player_power", () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> PLAYER_POWER_PUNCH = register("player_power_punch", () -> new SimpleParticleType(false));
 
     private static <T extends ParticleType<?>> Supplier<T> register(final String name, final Supplier<T> particle) {
         return PARTICLE_TYPES.register(name, particle);

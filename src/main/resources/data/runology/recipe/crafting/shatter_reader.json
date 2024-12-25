@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GgG",
+    "GGG"
+  ],
+  "key": {
+    "g": { "item": "minecraft:glass" },
+    "G": { "tag": "c:ingots/gold" }
+  },
+  "result": { "id": "runology:shatter_reader" }
+}

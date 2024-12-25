@@ -55,6 +55,7 @@ public class ModMessages {
 
         //S2C
         registrar.playToClient(RuneTypeSyncS2CPacket.TYPE, getNetworkCodec(RuneTypeSyncS2CPacket::read, RuneTypeSyncS2CPacket::write), Handler::handle);
+        registrar.playToClient(StartFalseDeathS2CPacket.TYPE, getNetworkCodec(StartFalseDeathS2CPacket::read, StartFalseDeathS2CPacket::write), Handler::handle);
         //C2S
     }
 
