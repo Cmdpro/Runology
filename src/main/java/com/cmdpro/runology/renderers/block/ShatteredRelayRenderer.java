@@ -31,8 +31,8 @@ public class ShatteredRelayRenderer implements BlockEntityRenderer<ShatteredRela
                 }
                 poseStack.pushPose();
                 ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter().add(offset));
-                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
                 renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
                 poseStack.popPose();
             }
         }

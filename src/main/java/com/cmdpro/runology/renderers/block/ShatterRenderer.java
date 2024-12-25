@@ -24,8 +24,8 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
     public void render(ShatterBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
-        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
         renderSpikes(partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
+        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
         poseStack.popPose();
     }
 

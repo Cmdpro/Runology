@@ -17,13 +17,13 @@ public class RunologyRenderTypes extends RenderType {
     }
     public static final ShaderStateShard SHATTER_SHADER = new ShaderStateShard(RunologyCoreShaders::getShatter);
     public static final ShaderStateShard SHATTER_PARTICLE_SHADER = new ShaderStateShard(RunologyCoreShaders::getShatterParticle);
-    public static final RenderType SHATTER = create(Runology.MODID + ":shatter",
+    public static final RenderType SHATTER = RenderTypeHandler.registerRenderType(create(Runology.MODID + ":shatter",
             DefaultVertexFormat.POSITION,
             VertexFormat.Mode.QUADS,
             256,
             false,
             false,
-            CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false));
+            CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false)), false);
     public static final RenderType SHATTER_PARTICLE = RenderTypeHandler.registerRenderType(create(Runology.MODID + ":shatter_particle",
             DefaultVertexFormat.PARTICLE,
             VertexFormat.Mode.QUADS,
@@ -31,13 +31,13 @@ public class RunologyRenderTypes extends RenderType {
             true,
             true,
             RenderType.CompositeState.builder().setWriteMaskState(RenderStateShard.COLOR_DEPTH_WRITE).setLightmapState(RenderStateShard.LIGHTMAP).setTransparencyState(TRANSPARENCY).setTextureState(PARTICLE_SHEET).setShaderState(SHATTER_PARTICLE_SHADER).createCompositeState(false)), true);
-    public static final RenderType PLAYER_POWER = create(Runology.MODID + ":player_power",
+    public static final RenderType PLAYER_POWER = RenderTypeHandler.registerRenderType(create(Runology.MODID + ":player_power",
             DefaultVertexFormat.POSITION,
             VertexFormat.Mode.QUADS,
             256,
             false,
             false,
-            CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false));
+            CompositeState.builder().setShaderState(SHATTER_SHADER).createCompositeState(false)), false);
     public static final RenderType PLAYER_POWER_PARTICLE = RenderTypeHandler.registerRenderType(create(Runology.MODID + ":player_power_particle",
             DefaultVertexFormat.PARTICLE,
             VertexFormat.Mode.QUADS,

@@ -10,6 +10,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,22 +26,24 @@ public class RenderEvents {
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
             Matrix4f oldMat = new Matrix4f(RenderSystem.getModelViewMatrix());
-            RenderSystem.getModelViewMatrix().set(RenderHandler.matrix4f);
             getShatterTarget().clear(Minecraft.ON_OSX);
             getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
             getPlayerPowerTarget().clear(Minecraft.ON_OSX);
             getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
             Minecraft.getInstance().getMainRenderTarget().unbindWrite();
             getShatterTarget().bindWrite(true);
+            RenderSystem.getModelViewMatrix().set(RenderHandler.matrix4f);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
+            RenderSystem.getModelViewMatrix().set(oldMat);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
             getShatterTarget().unbindWrite();
             getPlayerPowerTarget().bindWrite(true);
+            RenderSystem.getModelViewMatrix().set(RenderHandler.matrix4f);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
+            RenderSystem.getModelViewMatrix().set(oldMat);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
             getPlayerPowerTarget().unbindWrite();
             Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
-            RenderSystem.getModelViewMatrix().set(oldMat);
         }
     }
     private static RenderTarget shatterTarget;
