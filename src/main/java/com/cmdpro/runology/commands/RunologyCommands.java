@@ -1,6 +1,7 @@
 package com.cmdpro.runology.commands;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.RunologyUtil;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -36,7 +37,11 @@ public class RunologyCommands {
         if(command.getSource().getEntity() instanceof Player) {
             Player player = (Player) command.getSource().getEntity();
             boolean active = command.getArgument("active", Boolean.class);
-            player.setData(AttachmentTypeRegistry.PLAYER_POWER_MODE, active);
+            if (active) {
+                RunologyUtil.activatePowerMode(player);
+            } else {
+                RunologyUtil.deactivatePowerMode(player);
+            }
         }
         return Command.SINGLE_SUCCESS;
     }

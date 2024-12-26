@@ -2,6 +2,7 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.commands.RunologyCommands;
 import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.RuneTypeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.StartFalseDeathS2CPacket;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
@@ -9,7 +10,11 @@ import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.rune.RuneChiselingResultManager;
 import com.cmdpro.runology.rune.RuneTypeManager;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +22,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -30,9 +36,11 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.ArrayList;
@@ -56,9 +64,28 @@ public class GameEvents {
         if (event.getPlayer() == null) {
             for (ServerPlayer player : event.getPlayerList().getPlayers()) {
                 syncToPlayer(player);
+                ModMessages.sendToPlayersTrackingEntityAndSelf(new PlayerPowerModeSyncS2CPacket(player.getId(), player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), player);
             }
         } else {
             syncToPlayer(event.getPlayer());
+            ModMessages.sendToPlayer(new PlayerPowerModeSyncS2CPacket(event.getPlayer().getId(), event.getPlayer().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), event.getPlayer());
+        }
+    }
+    @SubscribeEvent
+    public static void playerStartTracking(PlayerEvent.StartTracking evt) {
+        Entity target = evt.getTarget();
+        Player player = evt.getEntity();
+
+        if (player instanceof ServerPlayer serverPlayer && target instanceof Player targetPlayer) {
+            ModMessages.sendToPlayer(new PlayerPowerModeSyncS2CPacket(target.getId(), targetPlayer.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), serverPlayer);
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
+        if(!event.getLevel().isClientSide()) {
+            if(event.getEntity() instanceof ServerPlayer player) {
+                ModMessages.sendToPlayer(new PlayerPowerModeSyncS2CPacket(player.getId(), player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), player);
+            }
         }
     }
     @SubscribeEvent
@@ -79,15 +106,24 @@ public class GameEvents {
                 if (event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).getModifier(PLAYER_POWER_SPEED_UUID) == null) {
                     event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).addPermanentModifier(new AttributeModifier(PLAYER_POWER_SPEED_UUID, 1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
                 }
-                List<Vec3> positions = new ArrayList<>();
-                positions.add(event.getEntity().position());
-                for (Vec3 i : positions) {
-                    ((ServerLevel) event.getEntity().level()).sendParticles(ParticleRegistry.PLAYER_POWER.get(), i.x, i.y, i.z, 25, 0.1, 0.1, 0.1, 0.5f);
-                }
                 event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, Math.clamp(event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY)-1, 0, Integer.MAX_VALUE));
             } else {
                 event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 0);
                 event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(PLAYER_POWER_SPEED_UUID);
+            }
+        } else {
+            if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
+                if (!event.getEntity().isLocalPlayer() || !ClientHandler.isFirstPerson()) {
+                    List<Vec3> positions = new ArrayList<>();
+                    positions.add(event.getEntity().position());
+                    for (Vec3 i : positions) {
+                        for (int j = 0; j < 25; j++) {
+                            Vec3 pos = i.add(new Vec3(event.getEntity().getRandom().nextFloat() - 0.5f, 0, event.getEntity().getRandom().nextFloat() - 0.5f));
+                            Vec3 velocity = new Vec3(event.getEntity().getRandom().nextFloat() - 0.5f, event.getEntity().getRandom().nextFloat() * 0.5f, event.getEntity().getRandom().nextFloat() - 0.5f);
+                            event.getEntity().level().addParticle(ParticleRegistry.PLAYER_POWER.get(), pos.x, pos.y, pos.z, velocity.x, velocity.y, velocity.z);
+                        }
+                    }
+                }
             }
         }
     }
@@ -134,6 +170,11 @@ public class GameEvents {
                     ModMessages.sendToPlayer(new StartFalseDeathS2CPacket(event.getSource().getLocalizedDeathMessage(player), player.level().getLevelData().isHardcore()), (ServerPlayer)player);
                 }
             }
+        }
+    }
+    public static class ClientHandler {
+        public static boolean isFirstPerson() {
+            return Minecraft.getInstance().options.getCameraType().isFirstPerson();
         }
     }
 }

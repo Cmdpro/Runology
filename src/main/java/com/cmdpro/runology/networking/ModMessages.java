@@ -7,6 +7,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -56,6 +57,7 @@ public class ModMessages {
         //S2C
         registrar.playToClient(RuneTypeSyncS2CPacket.TYPE, getNetworkCodec(RuneTypeSyncS2CPacket::read, RuneTypeSyncS2CPacket::write), Handler::handle);
         registrar.playToClient(StartFalseDeathS2CPacket.TYPE, getNetworkCodec(StartFalseDeathS2CPacket::read, StartFalseDeathS2CPacket::write), Handler::handle);
+        registrar.playToClient(PlayerPowerModeSyncS2CPacket.TYPE, getNetworkCodec(PlayerPowerModeSyncS2CPacket::read, PlayerPowerModeSyncS2CPacket::write), Handler::handle);
         //C2S
     }
 
