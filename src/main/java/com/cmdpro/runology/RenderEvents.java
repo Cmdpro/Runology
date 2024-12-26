@@ -26,6 +26,7 @@ public class RenderEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
+            RenderSystem.depthMask(true);
             createShatterInsideBufferSource().endBatch();
             getShatterTarget().clear(Minecraft.ON_OSX);
             getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
@@ -38,6 +39,7 @@ public class RenderEvents {
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
             Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+            RenderSystem.depthMask(false);
         }
     }
     private static RenderTarget shatterTarget;

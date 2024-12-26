@@ -77,6 +77,9 @@ public class GameEvents {
                 for (Vec3 i : positions) {
                     ((ServerLevel) event.getEntity().level()).sendParticles(ParticleRegistry.PLAYER_POWER.get(), i.x, i.y, i.z, 25, 0.1, 0.1, 0.1, 0.5f);
                 }
+                event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, Math.clamp(event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY)-1, 0, Integer.MAX_VALUE));
+            } else {
+                event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 0);
             }
         }
     }
@@ -96,6 +99,11 @@ public class GameEvents {
     @SubscribeEvent
     public static void onLivingHurt(LivingDamageEvent.Pre event) {
         if (!event.getEntity().level().isClientSide) {
+            if (event.getEntity() instanceof Player player) {
+                if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
+                    event.setNewDamage(0);
+                }
+            }
             if (event.getSource().getDirectEntity() instanceof Player player) {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                     if (player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
@@ -112,6 +120,7 @@ public class GameEvents {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                     event.setCanceled(true);
                     player.setHealth(player.getMaxHealth());
+                    player.setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 120);
                     ModMessages.sendToPlayer(new StartFalseDeathS2CPacket(event.getSource().getLocalizedDeathMessage(player), player.level().getLevelData().isHardcore()), (ServerPlayer)player);
                 }
             }
