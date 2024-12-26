@@ -62,5 +62,7 @@
   "runology.rune_types.runology.heat": "Heat",
   "runology.rune_types.runology.frost": "Frost",
   "runology.rune_types.runology.shape": "Shape",
-  "runology.rune_types.runology.motion": "Motion"
+  "runology.rune_types.runology.motion": "Motion",
+
+  "misc.runology.power_activate": "I feel power flowing through my body, building up at my fists, whatever this power is... It may be whats needed."
 }
