@@ -37,8 +37,10 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -144,9 +146,7 @@ public class GameEvents {
     public static void onLivingHurt(LivingDamageEvent.Pre event) {
         if (!event.getEntity().level().isClientSide) {
             if (event.getEntity() instanceof Player player) {
-                if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
-                    event.setNewDamage(0);
-                } else {
+                if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) <= 0) {
                     event.setNewDamage(event.getNewDamage()/10f);
                 }
             }
@@ -160,13 +160,23 @@ public class GameEvents {
         }
     }
     @SubscribeEvent
+    public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
+        if (!event.getEntity().level().isClientSide) {
+            if (event.getEntity() instanceof Player player) {
+                if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+    @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         if (!event.getEntity().level().isClientSide) {
             if (event.getEntity() instanceof Player player) {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                     event.setCanceled(true);
                     player.setHealth(1);
-                    player.setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 120);
+                    player.setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 80);
                     ModMessages.sendToPlayer(new StartFalseDeathS2CPacket(event.getSource().getLocalizedDeathMessage(player), player.level().getLevelData().isHardcore()), (ServerPlayer)player);
                 }
             }
