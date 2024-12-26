@@ -1,8 +1,10 @@
 package com.cmdpro.runology.renderers.block;
 
+import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.runology.RenderEvents;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -25,7 +27,7 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
         renderSpikes(partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
-        renderSpikes(partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
+        renderSpikes(partialTick, poseStack, RenderEvents.createShatterInsideBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
         poseStack.popPose();
     }
 

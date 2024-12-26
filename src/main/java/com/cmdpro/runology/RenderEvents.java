@@ -26,26 +26,18 @@ public class RenderEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
-            Matrix4f oldMat = new Matrix4f(RenderSystem.getModelViewMatrix());
+            createShatterInsideBufferSource().endBatch();
             getShatterTarget().clear(Minecraft.ON_OSX);
             getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
             getPlayerPowerTarget().clear(Minecraft.ON_OSX);
             getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-            Minecraft.getInstance().getMainRenderTarget().unbindWrite();
-            getShatterTarget().bindWrite(true);
-            RenderSystem.getModelViewMatrix().set(RenderHandler.matrix4f);
+            getShatterTarget().bindWrite(false);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
-            RenderSystem.getModelViewMatrix().set(oldMat);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
-            getShatterTarget().unbindWrite();
-            getPlayerPowerTarget().bindWrite(true);
-            RenderSystem.getModelViewMatrix().set(RenderHandler.matrix4f);
+            getPlayerPowerTarget().bindWrite(false);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
-            RenderSystem.getModelViewMatrix().set(oldMat);
             createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
-            getPlayerPowerTarget().unbindWrite();
-            Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
-            createShatterOutlineBufferSource().endBatch();
+            Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
         }
     }
     private static RenderTarget shatterTarget;
@@ -75,5 +67,17 @@ public class RenderEvents {
             shatterOutlineBufferSource = MultiBufferSource.immediateWithBuffers(buffers, new ByteBufferBuilder(256));
         }
         return shatterOutlineBufferSource;
+    }
+    static MultiBufferSource.BufferSource shatterInsideBufferSource = null;
+    public static MultiBufferSource.BufferSource createShatterInsideBufferSource() {
+        if (shatterInsideBufferSource == null) {
+            SequencedMap<RenderType, ByteBufferBuilder> buffers = new Object2ObjectLinkedOpenHashMap<>();
+            buffers.put(RunologyRenderTypes.SHATTER, new ByteBufferBuilder(RunologyRenderTypes.SHATTER.bufferSize));
+            buffers.put(RunologyRenderTypes.SHATTER_PARTICLE, new ByteBufferBuilder(RunologyRenderTypes.SHATTER_PARTICLE.bufferSize));
+            buffers.put(RunologyRenderTypes.PLAYER_POWER, new ByteBufferBuilder(RunologyRenderTypes.PLAYER_POWER.bufferSize));
+            buffers.put(RunologyRenderTypes.PLAYER_POWER_PARTICLE, new ByteBufferBuilder(RunologyRenderTypes.PLAYER_POWER_PARTICLE.bufferSize));
+            shatterInsideBufferSource = MultiBufferSource.immediateWithBuffers(buffers, new ByteBufferBuilder(256));
+        }
+        return shatterInsideBufferSource;
     }
 }

@@ -1,11 +1,13 @@
 package com.cmdpro.runology.renderers.block;
 
 import com.cmdpro.databank.ClientDatabankUtils;
+import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.runology.RenderEvents;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -32,7 +34,7 @@ public class ShatteredRelayRenderer implements BlockEntityRenderer<ShatteredRela
                 poseStack.pushPose();
                 ClientDatabankUtils.rotateStackToPoint(poseStack, blockEntity.getBlockPos().getCenter(), i.getCenter().add(offset));
                 renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
-                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, bufferSource.getBuffer(RunologyRenderTypes.SHATTER));
+                renderLine(Vec3.ZERO, new Vec3(0, i.getCenter().add(offset).distanceTo(blockEntity.getBlockPos().getCenter()), 0), 0.1f, partialTick, poseStack, RenderEvents.createShatterInsideBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
                 poseStack.popPose();
             }
         }
