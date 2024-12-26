@@ -66,7 +66,7 @@ public class ClientSetupEvents {
                 RenderSystem.disableDepthTest();
                 RenderSystem.depthMask(false);
                 RenderSystem.enableBlend();
-                guiGraphics.setColor(1.0F, 1.0F, 1.0F, Math.clamp(0.9f+((float)Math.sin(Math.toRadians(time*5))*0.1f), 0f, 1f));
+                guiGraphics.setColor(1.0F, 1.0F, 1.0F, Math.clamp(0.8f+((float)Math.sin(Math.toRadians(time*5))*0.1f), 0f, 1f));
                 guiGraphics.blit(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "textures/gui/player_power_overlay.png"), 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
                 RenderSystem.disableBlend();
                 RenderSystem.depthMask(true);
