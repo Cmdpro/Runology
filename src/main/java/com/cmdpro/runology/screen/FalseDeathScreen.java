@@ -33,12 +33,12 @@ public class FalseDeathScreen extends DeathScreen {
 
     @Override
     public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        if (timer >= 20) {
+        if (timer >= 20 && timer <= 50) {
             guiGraphics.pose().pushPose();
             guiGraphics.pose().translate(-Math.sin(Math.exp(timer)) * (timer - 20), 0, 0);
         }
         super.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-        if (timer >= 20) {
+        if (timer >= 20 && timer <= 50) {
             guiGraphics.pose().popPose();
         }
     }

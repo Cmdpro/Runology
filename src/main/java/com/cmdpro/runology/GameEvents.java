@@ -68,10 +68,17 @@ public class GameEvents {
     protected static void syncToPlayer(ServerPlayer player) {
         ModMessages.sendToPlayer(new RuneTypeSyncS2CPacket(RuneTypeManager.types), player);
     }
+    public static final ResourceLocation PLAYER_POWER_SPEED_UUID = ResourceLocation.fromNamespaceAndPath(Runology.MODID, "player_power_speed");
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         if (!event.getEntity().level().isClientSide) {
             if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
+                if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
+                    event.getEntity().heal(event.getEntity().getMaxHealth()/80f);
+                }
+                if (event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).getModifier(PLAYER_POWER_SPEED_UUID) == null) {
+                    event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).addPermanentModifier(new AttributeModifier(PLAYER_POWER_SPEED_UUID, 1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                }
                 List<Vec3> positions = new ArrayList<>();
                 positions.add(event.getEntity().position());
                 for (Vec3 i : positions) {
@@ -80,6 +87,7 @@ public class GameEvents {
                 event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, Math.clamp(event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY)-1, 0, Integer.MAX_VALUE));
             } else {
                 event.getEntity().setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 0);
+                event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(PLAYER_POWER_SPEED_UUID);
             }
         }
     }
@@ -102,6 +110,8 @@ public class GameEvents {
             if (event.getEntity() instanceof Player player) {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
                     event.setNewDamage(0);
+                } else {
+                    event.setNewDamage(event.getNewDamage()/10f);
                 }
             }
             if (event.getSource().getDirectEntity() instanceof Player player) {
@@ -119,7 +129,7 @@ public class GameEvents {
             if (event.getEntity() instanceof Player player) {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                     event.setCanceled(true);
-                    player.setHealth(player.getMaxHealth());
+                    player.setHealth(1);
                     player.setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 120);
                     ModMessages.sendToPlayer(new StartFalseDeathS2CPacket(event.getSource().getLocalizedDeathMessage(player), player.level().getLevelData().isHardcore()), (ServerPlayer)player);
                 }
