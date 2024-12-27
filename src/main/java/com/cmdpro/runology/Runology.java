@@ -56,6 +56,7 @@ public class Runology
     }
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.SHATTERED_INFUSER.get(), (o, direction) -> o.getItemHandler());
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.GOLD_PILLAR.get(), (o, direction) -> o.getItemHandler());
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
