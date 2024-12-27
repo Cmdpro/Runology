@@ -46,6 +46,7 @@ public class FalseDeathScreen extends DeathScreen {
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         if (timer >= 20) {
+            float timer2 = timer+partialTick;
             if (timer <= 50) {
                 guiGraphics.pose().pushPose();
                 guiGraphics.pose().translate(Math.sin(Math.exp(timer)) * (timer - 20), Math.cos(Math.exp(timer)) * (timer - 20), 0);
@@ -53,9 +54,9 @@ public class FalseDeathScreen extends DeathScreen {
                 guiGraphics.pose().popPose();
             } else if (timer <= 55) {
                 super.render(guiGraphics, mouseX, mouseY, partialTick);
-                guiGraphics.fill(0, 0, width, height, new Color(1f, 1f, 1f, (timer-50f)/10f).getRGB());
+                guiGraphics.fill(0, 0, width, height, new Color(1f, 1f, 1f, Math.clamp((timer2-50f)/10f, 0, 1)).getRGB());
             } else if (timer >= 65) {
-                guiGraphics.fill(0, 0, width, height, new Color(1f, 1f, 1f, 1f-((timer-65f)/10f)).getRGB());
+                guiGraphics.fill(0, 0, width, height, new Color(1f, 1f, 1f, Math.clamp(1f-((timer2-65f)/10f), 0, 1)).getRGB());
             } else {
                 guiGraphics.fill(0, 0, width, height, new Color(1f, 1f, 1f, 1f).getRGB());
             }
