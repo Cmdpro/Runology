@@ -103,6 +103,9 @@ repositories {
             includeGroup "com.klikli_dev"
         }
     }
+    maven {
+        url = "https://api.modrinth.com/maven"
+    }
 }
 dependencies {
     // Specify the version of Minecraft to use.
@@ -117,6 +120,9 @@ dependencies {
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
     localRuntime "dev.emi:emi-neoforge:${emi_version}"
     implementation ("com.klikli_dev:modonomicon-${minecraft_version}-neoforge:${modonomicon_version}"){transitive=false}
+    implementation "maven.modrinth:iris:1.8.1+1.21.1-neoforge"
+    implementation "maven.modrinth:sodium:mc1.21.1-0.6.5-neoforge"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
