@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S  ",
+    "SS ",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "runology:shatterstone_bricks" }
+  },
+  "result": { "id": "runology:shatterstone_brick_stairs", "count": 4 }
+}

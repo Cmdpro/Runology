@@ -1,6 +1,10 @@
 {
   "block.runology.shatter": "Shatter",
   "block.runology.shatterstone": "Shatterstone",
+  "block.runology.shatterstone_bricks": "Shatterstone Bricks",
+  "block.runology.shatterstone_brick_slab": "Shatterstone Brick Slab",
+  "block.runology.shatterstone_brick_stairs": "Shatterstone Brick Stairs",
+  "block.runology.shatterstone_brick_wall": "Shatterstone Brick Wall",
   "block.runology.shattered_focus": "Shattered Focus",
   "block.runology.shattered_relay": "Shattered Relay",
   "block.runology.gold_pillar": "Gold Pillar",
