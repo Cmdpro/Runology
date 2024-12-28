@@ -105,7 +105,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                 }
                 storage.addShatteredFlow(shatter.getOutputShatteredFlow());
                 Multiblock realityReshaperMultiblock = MultiblockDataManager.get().getMultiblock(realityReshaperId);
-                if (realityReshaperMultiblock.test(pLevel, pPos, 0, 1, 0, Rotation.NONE)) {
+                if (realityReshaperMultiblock.validate(pLevel, pPos.below(), Rotation.NONE)) {
                     if (realityReshaperProgress < 0) {
                         realityReshaperProgress = 0;
                     }
@@ -167,7 +167,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             if (realityReshaperProgress >= 0) {
                 realityReshaperProgress++;
                 Multiblock realityReshaperMultiblock = MultiblockDataManager.get().getMultiblock(realityReshaperId);
-                if (!realityReshaperMultiblock.test(pLevel, pPos, 0, 1, 0, Rotation.NONE)) {
+                if (!realityReshaperMultiblock.validate(pLevel, pPos.below(), Rotation.NONE)) {
                     realityReshaperProgress = -1;
                 }
                 if (realityReshaperProgress >= 170) {
