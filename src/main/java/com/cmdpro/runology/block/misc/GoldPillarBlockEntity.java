@@ -38,6 +38,7 @@ public class GoldPillarBlockEntity extends BlockEntity {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            updateBlock();
         }
 
         @Override
