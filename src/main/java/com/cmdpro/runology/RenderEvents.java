@@ -40,42 +40,32 @@ public class RenderEvents {
                 RenderSystem.getModelViewStack().pushMatrix().set(RenderHandler.matrix4f);
                 RenderSystem.applyModelViewMatrix();
                 RenderSystem.setShaderFogStart(RenderHandler.fogStart);
-                RenderSystem.depthMask(true);
-                createShatterInsideBufferSource().endBatch();
-                getShatterTarget().clear(Minecraft.ON_OSX);
-                getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-                getPlayerPowerTarget().clear(Minecraft.ON_OSX);
-                getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-                getShatterTarget().bindWrite(false);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
-                getPlayerPowerTarget().bindWrite(false);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
-                Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
-                RenderSystem.depthMask(false);
+                doEffectRendering(event);
                 FogRenderer.setupNoFog();
                 RenderSystem.getModelViewStack().popMatrix();
                 RenderSystem.applyModelViewMatrix();
             }
         } else {
             if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_WEATHER)) {
-                RenderSystem.depthMask(true);
-                createShatterInsideBufferSource().endBatch();
-                getShatterTarget().clear(Minecraft.ON_OSX);
-                getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-                getPlayerPowerTarget().clear(Minecraft.ON_OSX);
-                getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-                getShatterTarget().bindWrite(false);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
-                getPlayerPowerTarget().bindWrite(false);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
-                createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
-                Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
-                RenderSystem.depthMask(false);
+                doEffectRendering(event);
             }
         }
+    }
+    private static void doEffectRendering(RenderLevelStageEvent event) {
+        RenderSystem.depthMask(true);
+        createShatterInsideBufferSource().endBatch();
+        getShatterTarget().clear(Minecraft.ON_OSX);
+        getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
+        getPlayerPowerTarget().clear(Minecraft.ON_OSX);
+        getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
+        getShatterTarget().bindWrite(false);
+        createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
+        createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
+        getPlayerPowerTarget().bindWrite(false);
+        createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
+        createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
+        Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+        RenderSystem.depthMask(false);
     }
     private static RenderTarget shatterTarget;
     public static RenderTarget getShatterTarget() {

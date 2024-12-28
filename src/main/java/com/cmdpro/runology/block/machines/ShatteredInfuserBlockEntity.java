@@ -185,7 +185,7 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
     @Override
     public void onLoad() {
         super.onLoad();
-        onPlace(level, getBlockPos());
+        onLoad(level, getBlockPos());
     }
 
     @Override

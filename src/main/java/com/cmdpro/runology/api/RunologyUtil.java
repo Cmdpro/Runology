@@ -1,4 +1,4 @@
-package com.cmdpro.runology;
+package com.cmdpro.runology.api;
 
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
@@ -16,7 +16,7 @@ public class RunologyUtil {
             player.sendSystemMessage(Component.translatable("misc.runology.power_activate").withStyle(ChatFormatting.DARK_PURPLE));
         }
     }
-    public static  void deactivatePowerMode(Player player) {
+    public static void deactivatePowerMode(Player player) {
         if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
             player.setData(AttachmentTypeRegistry.PLAYER_POWER_MODE, false);
             ModMessages.sendToPlayersTrackingEntityAndSelf(new PlayerPowerModeSyncS2CPacket(player.getId(), player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), (ServerPlayer) player);

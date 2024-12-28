@@ -37,7 +37,7 @@ public interface ShatteredFlowConnectable {
             ShatteredFlowNetwork.updatePaths(level, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
         }
     }
-    default void onPlace(Level level, BlockPos pos) {
+    default void onLoad(Level level, BlockPos pos) {
         for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
             if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
                 if (!i.connectedTo.contains(pos)) {
@@ -68,6 +68,9 @@ public interface ShatteredFlowConnectable {
         }
     }
     default int tryUseEnergy(int amount, boolean cancelIfNotEnough) {
+        if (getNetwork() == null) {
+            return amount;
+        }
         if (cancelIfNotEnough) {
             int remaining = amount;
             for (BlockPos i : getNetwork().starts) {

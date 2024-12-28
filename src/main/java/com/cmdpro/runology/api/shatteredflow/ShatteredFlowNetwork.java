@@ -34,6 +34,18 @@ public class ShatteredFlowNetwork {
                 }
             }
             ent1.path = network;
+        } else if (level.getBlockEntity(tryStart) instanceof ShatteredFlowConnectable ent1) {
+            for (BlockPos i : ent1.getConnectedTo()) {
+                BlockEntity blockEntity = level.getBlockEntity(i);
+                if (blockEntity instanceof ShatteredRelayBlockEntity || blockEntity instanceof ShatteredFocusBlockEntity) {
+                    updatePaths(level, i, network, alreadyChecked);
+                } else if (blockEntity instanceof ContainsShatteredFlow) {
+                    if (!network.ends.contains(blockEntity.getBlockPos())) {
+                        network.ends.add(blockEntity.getBlockPos());
+                    }
+                }
+            }
+            ent1.setNetwork(network);
         } else if (level.getBlockEntity(tryStart) instanceof ShatteredFocusBlockEntity ent1) {
             for (BlockPos i : ent1.connectedTo) {
                 BlockEntity blockEntity = level.getBlockEntity(i);

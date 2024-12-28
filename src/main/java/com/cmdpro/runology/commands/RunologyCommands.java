@@ -1,24 +1,14 @@
 package com.cmdpro.runology.commands;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.RunologyUtil;
-import com.cmdpro.runology.registry.AttachmentTypeRegistry;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.SharedSuggestionProvider;
-import net.minecraft.commands.arguments.ResourceLocationArgument;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.List;
 
 public class RunologyCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher){
