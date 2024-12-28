@@ -147,7 +147,9 @@ public class GameEvents {
         if (!event.getEntity().level().isClientSide) {
             if (event.getEntity() instanceof Player player) {
                 if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) <= 0) {
-                    event.setNewDamage(event.getNewDamage()/10f);
+                    if (player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
+                        event.setNewDamage(event.getNewDamage() / 10f);
+                    }
                 }
             }
             if (event.getSource().getDirectEntity() instanceof Player player) {

@@ -20,6 +20,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BlockRegistry.SHATTERSTONE.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get())
                 .add(BlockRegistry.SHATTERED_FOCUS.get())
                 .add(BlockRegistry.RUNE_HEAT_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get())
@@ -28,6 +32,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.GOLD_PILLAR.get())
                 .add(BlockRegistry.SHATTERED_INFUSER.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(BlockRegistry.SHATTERSTONE.get());
+                .add(BlockRegistry.SHATTERSTONE.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
+                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
+        this.tag(BlockTags.WALLS)
+                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
     }
 }

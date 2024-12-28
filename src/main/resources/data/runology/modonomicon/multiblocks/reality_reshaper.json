@@ -1,0 +1,64 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "__     __",
+      "_   R   _",
+      "  R   R  ",
+      "         ",
+      " R  s  R ",
+      "         ",
+      "  R   R  ",
+      "_   R   _",
+      "__     __"
+    ],
+    [
+      "__     __",
+      "_   S   _",
+      "  S   S  ",
+      "         ",
+      " S  F  S ",
+      "         ",
+      "  S   S  ",
+      "_   S   _",
+      "__     __"
+    ],
+    [
+      "__SSSSS__",
+      "_ASSSSSA_",
+      "SSSSSSSSS",
+      "SSSSSSSSS",
+      "SSSS0SSSS",
+      "SSSSSSSSS",
+      "SSSSSSSSS",
+      "_ASSSSSA_",
+      "__SSSSS__"
+    ]
+  ],
+  "mapping": {
+    "0": {
+      "type": "modonomicon:block",
+      "block": "minecraft:amethyst_block"
+    },
+    "F": {
+      "type": "modonomicon:block",
+      "block": "runology:shattered_focus"
+    },
+    "S": {
+      "type": "modonomicon:block",
+      "block": "runology:shatterstone"
+    },
+    "s": {
+      "type": "modonomicon:block",
+      "block": "runology:shatter"
+    },
+    "R": {
+      "type": "modonomicon:block",
+      "block": "runology:rune_shape_shatterstone"
+    },
+    "A": {
+      "type": "modonomicon:block",
+      "block": "minecraft:amethyst_block"
+    }
+  }
+}

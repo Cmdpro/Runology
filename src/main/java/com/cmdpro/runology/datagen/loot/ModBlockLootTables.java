@@ -16,6 +16,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(BlockRegistry.SHATTERSTONE.get());
+        dropSelf(BlockRegistry.SHATTERSTONE_BRICKS.get());
+        dropSelf(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get());
+        dropSelf(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
+        dropSelf(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get());
         dropSelf(BlockRegistry.SHATTERED_FOCUS.get());
         dropSelf(BlockRegistry.SHATTERED_RELAY.get());
         dropSelf(BlockRegistry.RUNE_HEAT_SHATTERSTONE.get());

@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-23T21:33:25.275835	Loot Tables
+// 1.21.1	2024-12-28T03:08:12.4515374	Loot Tables
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
 925f0a1ac30ffba489d4d1eedf2ae307e17c7de8 data/runology/loot_table/blocks/rune_heat_shatterstone.json
@@ -8,3 +8,7 @@ e04939b2e74c98519e5e4da80c377fa12d73df29 data/runology/loot_table/blocks/rune_sh
 9a6b04c1e256b3975fc5fcd36fdeeed081455aed data/runology/loot_table/blocks/shattered_infuser.json
 7bb5895790f0e4b0e02cc8042ba20f6cb4f186be data/runology/loot_table/blocks/shattered_relay.json
 03945988d7a6b7fca553677052a12491504a3ed6 data/runology/loot_table/blocks/shatterstone.json
+adec08146222f8b693f1cb1f781b06369be4dda5 data/runology/loot_table/blocks/shatterstone_bricks.json
+c7e02b096edfa381d49fadeaf225e8815e210cd1 data/runology/loot_table/blocks/shatterstone_brick_slab.json
+1f5cb8ab9fa8c219c7f55c15209aa8d2f120941e data/runology/loot_table/blocks/shatterstone_brick_stairs.json
+3819dd825b0c95da7e6fe23dd05a61418f219255 data/runology/loot_table/blocks/shatterstone_brick_wall.json

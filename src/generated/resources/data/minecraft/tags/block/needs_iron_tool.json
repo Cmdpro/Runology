@@ -1,5 +1,9 @@
 {
   "values": [
-    "runology:shatterstone"
+    "runology:shatterstone",
+    "runology:shatterstone_bricks",
+    "runology:shatterstone_brick_stairs",
+    "runology:shatterstone_brick_slab",
+    "runology:shatterstone_brick_wall"
   ]
 }

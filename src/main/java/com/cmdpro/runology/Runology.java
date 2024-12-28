@@ -64,6 +64,10 @@ public class Runology
             event.accept(ItemRegistry.GUIDEBOOK.get());
             event.accept(BlockRegistry.SHATTER.get());
             event.accept(BlockRegistry.SHATTERSTONE.get());
+            event.accept(BlockRegistry.SHATTERSTONE_BRICKS.get());
+            event.accept(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get());
+            event.accept(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get());
+            event.accept(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
             event.accept(ItemRegistry.GOLD_CHISEL.get());
             event.accept(ItemRegistry.RUNIC_CHISEL.get());
             event.accept(BlockRegistry.SHATTERED_FOCUS.get());

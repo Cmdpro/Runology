@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-24T19:07:31.629068	Item Models: runology
+// 1.21.1	2024-12-28T03:11:22.9145582	Item Models: runology
 b023d12fe3881921e365f367d7526735b5c42e11 assets/runology/models/item/gold_chisel.json
 8fadb551d5e100f7c6765d239bfa13cd0fcc46d0 assets/runology/models/item/gold_pillar.json
 640c5f364bec4fe5f2b4f76b47fb33836598ee4c assets/runology/models/item/guidebook.json
@@ -8,4 +8,7 @@ add32390b1af7640bfdcf90532328f54194d1343 assets/runology/models/item/shatter.jso
 b4a5172774ec4bd664374bd460d342e7c775aaee assets/runology/models/item/shattered_focus.json
 1cf89357ae5e49d97915ff4a5b2470ff02b3a1a5 assets/runology/models/item/shattered_infuser.json
 72951d52486fec0fe88754880c30e438fdb3c317 assets/runology/models/item/shattered_relay.json
+064e6afd998ec73b545e775808b2e66a7e702d32 assets/runology/models/item/shatterstone_brick_slab.json
+e8b3bf0376d3f3f72348f3922d9ab98a477ef7e0 assets/runology/models/item/shatterstone_brick_stairs.json
+b00905096374f502cb8db8b5bc8034a98ece637a assets/runology/models/item/shatterstone_brick_wall.json
 4f8810c83eeffae94e0ba51a677af8e9f497f135 assets/runology/models/item/shatter_reader.json

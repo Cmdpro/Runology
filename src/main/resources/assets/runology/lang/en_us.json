@@ -49,6 +49,12 @@
   "modonomicon.runology.guidebook.basics.shatter_reader.name": "Shatter Reader",
   "modonomicon.runology.guidebook.basics.shatter_reader.page0.title": "Shatter Reader",
   "modonomicon.runology.guidebook.basics.shatter_reader.page0.text": "With how Shatters output a limited number of Shattered Flow and have stability to them, it may be useful to create a tool to let me measure a Shatters Stability, Power, and Output.",
+  "modonomicon.runology.guidebook.basics.shatterstone_runes.name": "Shatterstone Runes",
+  "modonomicon.runology.guidebook.basics.shatterstone_runes.page0.title": "Shatterstone Runes",
+  "modonomicon.runology.guidebook.basics.shatterstone_runes.page0.text": "Using the Runic Chisel, I can carve runes into Shatterstone, allowing me to channel Shattered Flow properly.",
+  "modonomicon.runology.guidebook.basics.reality_reshaper.name": "Reality Reshaper",
+  "modonomicon.runology.guidebook.basics.reality_reshaper.page0.title": "Reality Reshaper",
+  "modonomicon.runology.guidebook.basics.reality_reshaper.page0.text": "While Shatters are useful, sometimes they may be created at an inconvenient location. This Reality Reshaper structure will allow me to remove a Shatter... although... I feel as if it wont go peacefully...",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

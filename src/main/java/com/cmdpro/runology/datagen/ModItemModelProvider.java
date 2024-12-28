@@ -49,6 +49,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.SHATTERED_INFUSER);
         simpleItem(ItemRegistry.SHATTERED_FLOW_ICON);
         simpleItem(ItemRegistry.SHATTER_READER);
+        evenSimplerBlockItem(BlockRegistry.SHATTERSTONE_BRICK_STAIRS);
+        evenSimplerBlockItem(BlockRegistry.SHATTERSTONE_BRICK_SLAB);
+        wallItem(BlockRegistry.SHATTERSTONE_BRICK_WALL, BlockRegistry.SHATTERSTONE_BRICKS);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

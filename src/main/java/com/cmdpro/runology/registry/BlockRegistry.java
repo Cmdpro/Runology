@@ -48,6 +48,18 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERSTONE_BRICKS = register("shatterstone_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF_BRICKS)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERSTONE_BRICK_STAIRS = register("shatterstone_brick_stairs",
+            () -> new StairBlock(SHATTERSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF_BRICK_STAIRS)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERSTONE_BRICK_SLAB = register("shatterstone_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF_BRICK_SLAB)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERSTONE_BRICK_WALL = register("shatterstone_brick_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF_BRICK_WALL)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> RUNE_HEAT_SHATTERSTONE = register("rune_heat_shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
