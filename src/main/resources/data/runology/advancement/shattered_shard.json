@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "runology:shattered_shard"
+    },
+    "title": {
+      "translate": "advancements.runology.shattered_shard.title"
+    },
+    "description": {
+      "translate": "advancements.runology.shattered_shard.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "runology:shatterstone",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [],
+        "items": [
+          {
+            "items": [
+              "runology:shattered_shard"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

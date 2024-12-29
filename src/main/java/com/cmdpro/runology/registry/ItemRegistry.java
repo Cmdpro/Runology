@@ -24,6 +24,7 @@ public class ItemRegistry {
     public static final Supplier<Item> RUNIC_CHISEL = register("runic_chisel", () -> new RunicChisel(new Item.Properties().durability(25)));
     public static final Supplier<Item> GOLD_CHISEL = register("gold_chisel", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> SHATTER_READER = register("shatter_reader", () -> new ShatterReader(new Item.Properties().stacksTo(1)));
+    public static final Supplier<Item> SHATTERED_SHARD = register("shattered_shard", () -> new Item(new Item.Properties().fireResistant()));
 
     public static final Supplier<Item> SHATTERED_FLOW_ICON = register("shattered_flow_icon", () -> new Item(new Item.Properties()));
     private static <T extends Item> Supplier<T> register(final String name, final Supplier<T> item) {

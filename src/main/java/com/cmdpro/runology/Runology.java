@@ -79,6 +79,7 @@ public class Runology
             event.accept(BlockRegistry.GOLD_PILLAR.get());
             event.accept(BlockRegistry.SHATTERED_INFUSER.get());
             event.accept(ItemRegistry.SHATTER_READER.get());
+            event.accept(ItemRegistry.SHATTERED_SHARD.get());
         }
     }
 }

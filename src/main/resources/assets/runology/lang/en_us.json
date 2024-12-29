@@ -20,6 +20,7 @@
   "item.runology.shatter_reader.power": "%1$s Power",
   "item.runology.shatter_reader.stability": "%1$s Stability",
   "item.runology.shatter_reader.output": "%1$s Output",
+  "item.runology.shattered_shard": "Shattered Shard",
 
   "creativemodetab.runology": "Runology",
 
@@ -58,7 +59,10 @@
   "modonomicon.runology.guidebook.basics.shatterstone_runes.page0.text": "Using the Runic Chisel, I can carve runes into Shatterstone, allowing me to channel Shattered Flow properly.",
   "modonomicon.runology.guidebook.basics.reality_reshaper.name": "Reality Reshaper",
   "modonomicon.runology.guidebook.basics.reality_reshaper.page0.title": "Reality Reshaper",
-  "modonomicon.runology.guidebook.basics.reality_reshaper.page0.text": "While Shatters are useful, sometimes they may be created at an inconvenient location. This Reality Reshaper structure will allow me to remove a Shatter... although... I feel as if it wont go peacefully...",
+  "modonomicon.runology.guidebook.basics.reality_reshaper.page0.text": "While Shatters are useful, sometimes they may be created at an inconvenient location. This Reality Reshaper structure will allow me to remove a Shatter and potentially gain something useful... although... I feel as if it wont go peacefully...",
+  "modonomicon.runology.guidebook.basics.shattered_shard.name": "Shattered Shard",
+  "modonomicon.runology.guidebook.basics.shattered_shard.page0.title": "Shattered Shard",
+  "modonomicon.runology.guidebook.basics.shattered_shard.page0.text": "Shattered Shards... A physical manifestation of shattered flow. Utilizing this may be the key to more advanced magic.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -66,6 +70,8 @@
   "advancements.runology.shatter.description": "Discover a shatter in the world",
   "advancements.runology.shatterstone.title": "Shatterstone",
   "advancements.runology.shatterstone.description": "Obtain Shatterstone",
+  "advancements.runology.shattered_shard.title": "Shattered Shard",
+  "advancements.runology.shattered_shard.description": "Obtain a Shattered Shard",
 
   "emi.category.runology.shatter_imbuement": "Shatter Imbuement",
 

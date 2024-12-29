@@ -23,7 +23,8 @@ public class ShatterFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos shatterPos = origin.offset(0, 2, 0);
         if (pContext.level().getBlockState(shatterPos).canBeReplaced()) {
             setBlock(pContext.level(), shatterPos, BlockRegistry.SHATTER.get().defaultBlockState());
+            return true;
         }
-        return true;
+        return false;
     }
 }
