@@ -1,5 +1,5 @@
 {
-  "category": "runology:basics",
+  "category": "runology:shards",
   "description": "",
   "hide_while_locked": true,
   "icon": "runology:shattered_shard",
@@ -23,6 +23,6 @@
     "type": "modonomicon:advancement",
     "advancement_id": "runology:shattered_shard"
   },
-  "x": -8,
-  "y": -2
+  "x": 0,
+  "y": 0
 }
