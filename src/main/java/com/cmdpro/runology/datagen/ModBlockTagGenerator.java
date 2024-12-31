@@ -30,13 +30,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.RUNE_FROST_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get())
                 .add(BlockRegistry.GOLD_PILLAR.get())
-                .add(BlockRegistry.SHATTERED_INFUSER.get());
+                .add(BlockRegistry.SHATTERED_INFUSER.get())
+                .add(BlockRegistry.SHATTERED_SHARD_ORE.get())
+                .add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
-                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
+                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get())
+                .add(BlockRegistry.SHATTERED_SHARD_ORE.get())
+                .add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get());
         this.tag(BlockTags.WALLS)
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
     }

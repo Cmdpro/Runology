@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen.loot;
 
 import com.cmdpro.runology.registry.BlockRegistry;
+import com.cmdpro.runology.registry.ItemRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -28,6 +29,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
         dropSelf(BlockRegistry.GOLD_PILLAR.get());
         dropSelf(BlockRegistry.SHATTERED_INFUSER.get());
+        add(BlockRegistry.SHATTERED_SHARD_ORE.get(), (block) -> createOreDrop(block, ItemRegistry.SHATTERED_SHARD.get()));
+        add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get(), (block) -> createOreDrop(block, ItemRegistry.SHATTERED_SHARD.get()));
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

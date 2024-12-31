@@ -28,6 +28,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockRegistry.RUNE_SHAPE_SHATTERSTONE);
         blockWithItem(BlockRegistry.RUNE_FROST_SHATTERSTONE);
         blockWithItem(BlockRegistry.RUNE_MOTION_SHATTERSTONE);
+        blockWithItem(BlockRegistry.SHATTERED_SHARD_ORE);
+        blockWithItem(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE);
 
         blockWithItem(BlockRegistry.SHATTERSTONE_BRICKS);
         stairsBlock((StairBlock) BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/shatterstone_bricks"));

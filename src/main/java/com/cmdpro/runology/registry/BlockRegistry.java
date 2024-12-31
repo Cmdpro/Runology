@@ -45,6 +45,12 @@ public class BlockRegistry {
             () -> new ShatteredInfuser(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
+    public static final Supplier<Block> SHATTERED_SHARD_ORE = register("shattered_shard_ore",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> DEEPSLATE_SHATTERED_SHARD_ORE = register("deepslate_shattered_shard_ore",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "runology:block/deepslate_shattered_shard_ore"
+  }
+}

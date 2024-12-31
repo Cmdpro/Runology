@@ -80,6 +80,8 @@ public class Runology
             event.accept(BlockRegistry.SHATTERED_INFUSER.get());
             event.accept(ItemRegistry.SHATTER_READER.get());
             event.accept(ItemRegistry.SHATTERED_SHARD.get());
+            event.accept(BlockRegistry.SHATTERED_SHARD_ORE.get());
+            event.accept(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get());
         }
     }
 }

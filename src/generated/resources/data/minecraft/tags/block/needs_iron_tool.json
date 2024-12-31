@@ -4,6 +4,8 @@
     "runology:shatterstone_bricks",
     "runology:shatterstone_brick_stairs",
     "runology:shatterstone_brick_slab",
-    "runology:shatterstone_brick_wall"
+    "runology:shatterstone_brick_wall",
+    "runology:shattered_shard_ore",
+    "runology:deepslate_shattered_shard_ore"
   ]
 }
