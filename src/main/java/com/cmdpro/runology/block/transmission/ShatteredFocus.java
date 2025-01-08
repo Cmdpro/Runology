@@ -1,10 +1,13 @@
 package com.cmdpro.runology.block.transmission;
 
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
+import com.cmdpro.runology.chunkloading.ChunkloadingEventHandler;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -47,6 +50,13 @@ public class ShatteredFocus extends Block implements EntityBlock {
             }
         };
     }
+
+    @Override
+    public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
+        super.destroy(level, pos, state);
+        ChunkloadingEventHandler.shatterController.forceChunk((ServerLevel)level, pos, level.getChunk(pos).getPos().x, level.getChunk(pos).getPos().z, false, true);
+    }
+
     @Override
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {

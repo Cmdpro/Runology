@@ -6,6 +6,7 @@ import com.cmdpro.runology.api.shatteredflow.NormalShatteredFlowStorage;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.api.shatteredflow.SmartShatteredFlowStorage;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
+import com.cmdpro.runology.chunkloading.ChunkloadingEventHandler;
 import com.cmdpro.runology.registry.*;
 import com.ibm.icu.impl.coll.CollationKeys;
 import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.world.chunk.ForcedChunkManager;
 import org.apache.commons.lang3.RandomUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -102,7 +104,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             } else {
                 ServerLevel level = (ServerLevel)pLevel;
                 if (!level.getForcedChunks().contains(chunk.getPos().toLong())) {
-                    ((ServerLevel)pLevel).setChunkForced(chunk.getPos().x, chunk.getPos().z, true);
+                    ChunkloadingEventHandler.shatterController.forceChunk(level, getBlockPos(), chunk.getPos().x, chunk.getPos().z, true, true);
                 }
                 storage.addShatteredFlow(shatter.getOutputShatteredFlow());
                 Multiblock realityReshaperMultiblock = MultiblockDataManager.get().getMultiblock(realityReshaperId);
@@ -114,10 +116,8 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             }
         } else {
             if (!pLevel.isClientSide) {
-                ServerLevel level = (ServerLevel)pLevel;
-                if (level.getForcedChunks().contains(chunk.getPos().toLong())) {
-                    ((ServerLevel)pLevel).setChunkForced(chunk.getPos().x, chunk.getPos().z, false);
-                }
+                ServerLevel level = (ServerLevel) pLevel;
+                ChunkloadingEventHandler.shatterController.forceChunk(level, getBlockPos(), chunk.getPos().x, chunk.getPos().z, false, true);
             }
         }
         if (pLevel.isClientSide) {
