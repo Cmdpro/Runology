@@ -50,6 +50,7 @@ public class Runology
         RecipeRegistry.RECIPES.register(modEventBus);
         RecipeRegistry.RECIPE_TYPES.register(modEventBus);
         DataComponentRegistry.DATA_COMPONENTS.register(modEventBus);
+        ArmorMaterialRegistry.ARMOR_MATERIALS.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -82,6 +83,7 @@ public class Runology
             event.accept(ItemRegistry.SHATTERED_SHARD.get());
             event.accept(BlockRegistry.SHATTERED_SHARD_ORE.get());
             event.accept(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get());
+            event.accept(ItemRegistry.BLINK_BOOTS.get());
         }
     }
 }

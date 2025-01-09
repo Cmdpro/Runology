@@ -3,12 +3,12 @@
   "description": "",
   "hide_while_locked": true,
   "icon": "runology:shattered_shard",
-  "name": "modonomicon.runology.guidebook.basics.shattered_shard.name",
+  "name": "modonomicon.runology.guidebook.shards.shattered_shard.name",
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "modonomicon.runology.guidebook.basics.shattered_shard.page0.title",
-      "text": "modonomicon.runology.guidebook.basics.shattered_shard.page0.text"
+      "title": "modonomicon.runology.guidebook.shards.shattered_shard.page0.title",
+      "text": "modonomicon.runology.guidebook.shards.shattered_shard.page0.text"
     }
   ],
   "parents": [

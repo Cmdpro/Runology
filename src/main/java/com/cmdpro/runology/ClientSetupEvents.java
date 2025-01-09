@@ -13,7 +13,9 @@ import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.renderers.block.*;
 import com.cmdpro.runology.shaders.PlayerPowerShader;
 import com.cmdpro.runology.shaders.ShatterShader;
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -22,8 +24,11 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.common.util.Lazy;
+import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = Runology.MODID)
 public class ClientSetupEvents {
@@ -36,6 +41,12 @@ public class ClientSetupEvents {
         playerPowerShader = new PlayerPowerShader();
         PostShaderManager.addShader(playerPowerShader);
         playerPowerShader.setActive(true);
+    }
+    public static final Lazy<KeyMapping> BLINK_MAPPING = Lazy.of(() -> new KeyMapping("key.runology.blink", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, "key.categories.runology.runology"));
+
+    @SubscribeEvent
+    public static void registerBindings(RegisterKeyMappingsEvent event) {
+        event.register(BLINK_MAPPING.get());
     }
     public static PostShaderInstance shatterShader;
     public static PostShaderInstance playerPowerShader;

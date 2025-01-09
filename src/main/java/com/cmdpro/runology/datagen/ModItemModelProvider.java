@@ -53,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.SHATTERSTONE_BRICK_SLAB);
         wallItem(BlockRegistry.SHATTERSTONE_BRICK_WALL, BlockRegistry.SHATTERSTONE_BRICKS);
         simpleItem(ItemRegistry.SHATTERED_SHARD);
+        simpleItem(ItemRegistry.BLINK_BOOTS);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

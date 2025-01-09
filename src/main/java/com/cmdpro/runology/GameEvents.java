@@ -6,6 +6,7 @@ import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.RuneTypeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.StartFalseDeathS2CPacket;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
+import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.rune.RuneChiselingResultManager;
 import com.cmdpro.runology.rune.RuneTypeManager;
@@ -101,6 +102,7 @@ public class GameEvents {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         if (!event.getEntity().level().isClientSide) {
+            event.getEntity().setData(AttachmentTypeRegistry.BLINK_COOLDOWN, Math.clamp(event.getEntity().getData(AttachmentTypeRegistry.BLINK_COOLDOWN)-1, 0, Integer.MAX_VALUE));
             if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                 if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY) > 0) {
                     event.getEntity().heal(event.getEntity().getMaxHealth()/80f);
@@ -114,8 +116,19 @@ public class GameEvents {
                 event.getEntity().getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(PLAYER_POWER_SPEED_UUID);
             }
         } else {
-            if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
-                if (!event.getEntity().isLocalPlayer() || !ClientHandler.isFirstPerson()) {
+            if (!event.getEntity().isLocalPlayer() || !ClientHandler.isFirstPerson()) {
+                if (event.getEntity().getInventory().armor.stream().anyMatch((a) -> a.is(ItemRegistry.BLINK_BOOTS.get()))) {
+                    List<Vec3> positions = new ArrayList<>();
+                    positions.add(event.getEntity().position());
+                    for (Vec3 i : positions) {
+                        for (int j = 0; j < 10; j++) {
+                            Vec3 pos = i.add(new Vec3(event.getEntity().getRandom().nextFloat() - 0.5f, 0, event.getEntity().getRandom().nextFloat() - 0.5f));
+                            Vec3 velocity = new Vec3((event.getEntity().getRandom().nextFloat() - 0.5f)*0.2, event.getEntity().getRandom().nextFloat() * 0.2f, (event.getEntity().getRandom().nextFloat() - 0.5f)*0.2);
+                            event.getEntity().level().addParticle(ParticleRegistry.SHATTER.get(), pos.x, pos.y, pos.z, velocity.x, velocity.y, velocity.z);
+                        }
+                    }
+                }
+                if (event.getEntity().getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                     List<Vec3> positions = new ArrayList<>();
                     positions.add(event.getEntity().position());
                     for (Vec3 i : positions) {

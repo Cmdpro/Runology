@@ -59,6 +59,7 @@ public class ModMessages {
         registrar.playToClient(StartFalseDeathS2CPacket.TYPE, getNetworkCodec(StartFalseDeathS2CPacket::read, StartFalseDeathS2CPacket::write), Handler::handle);
         registrar.playToClient(PlayerPowerModeSyncS2CPacket.TYPE, getNetworkCodec(PlayerPowerModeSyncS2CPacket::read, PlayerPowerModeSyncS2CPacket::write), Handler::handle);
         //C2S
+        registrar.playToServer(BlinkC2SPacket.TYPE, getNetworkCodec(BlinkC2SPacket::read, BlinkC2SPacket::write), Handler::handle);
     }
 
     public static <T extends Message> StreamCodec<RegistryFriendlyByteBuf, T> getNetworkCodec(Handler.Reader<T> reader, Handler.Writer<T> writer) {

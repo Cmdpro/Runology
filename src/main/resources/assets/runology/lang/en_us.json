@@ -23,6 +23,9 @@
   "item.runology.shatter_reader.stability": "%1$s Stability",
   "item.runology.shatter_reader.output": "%1$s Output",
   "item.runology.shattered_shard": "Shattered Shard",
+  "item.runology.blink_boots": "Blink Boots",
+  "item.runology.blink_boots.tooltip": "Release %1$s to blink forward",
+  "item.runology.blink_boots.tooltip_2": "Holding %1$s will show where the target position will be",
 
   "creativemodetab.runology": "Runology",
 
@@ -63,9 +66,12 @@
   "modonomicon.runology.guidebook.basics.reality_reshaper.name": "Reality Reshaper",
   "modonomicon.runology.guidebook.basics.reality_reshaper.page0.title": "Reality Reshaper",
   "modonomicon.runology.guidebook.basics.reality_reshaper.page0.text": "While Shatters are useful, sometimes they may be created at an inconvenient location. This Reality Reshaper structure will allow me to remove a Shatter and potentially gain something useful... although... I feel as if it wont go peacefully...",
-  "modonomicon.runology.guidebook.basics.shattered_shard.name": "Shattered Shard",
-  "modonomicon.runology.guidebook.basics.shattered_shard.page0.title": "Shattered Shard",
-  "modonomicon.runology.guidebook.basics.shattered_shard.page0.text": "Shattered Shards... A physical manifestation of shattered flow. Utilizing this may be the key to more advanced magic.",
+  "modonomicon.runology.guidebook.shards.shattered_shard.name": "Shattered Shard",
+  "modonomicon.runology.guidebook.shards.shattered_shard.page0.title": "Shattered Shard",
+  "modonomicon.runology.guidebook.shards.shattered_shard.page0.text": "Shattered Shards... A physical manifestation of shattered flow. Utilizing this may be the key to more advanced magic.",
+  "modonomicon.runology.guidebook.shards.blink_boots.name": "Blink Boots",
+  "modonomicon.runology.guidebook.shards.blink_boots.page0.title": "Blink Boots",
+  "modonomicon.runology.guidebook.shards.blink_boots.page0.text": "Shattered Shards, when combined with gold, I can make boots capable of letting me teleport forwards, I will call this form of teleportation a \"Blink\"",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -83,5 +89,8 @@
   "runology.rune_types.runology.shape": "Shape",
   "runology.rune_types.runology.motion": "Motion",
 
-  "misc.runology.power_activate": "I feel power flowing through my body, building up at my fists, whatever this power is... It may be what is needed."
+  "misc.runology.power_activate": "I feel power flowing through my body, building up at my fists, whatever this power is... It may be what is needed.",
+
+  "key.categories.runology.runology": "Runology",
+  "key.runology.blink": "Blink"
 }
