@@ -26,7 +26,7 @@ public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implem
 
     @Override
     public void handleClient(Minecraft minecraft, Player player) {
-        minecraft.setScreen(new FalseDeathScreen(cause, hardcore));
+        ClientPacketHandler.openScreen(minecraft, player, this);
     }
 
     public static void write(RegistryFriendlyByteBuf buf, StartFalseDeathS2CPacket obj) {
@@ -38,4 +38,9 @@ public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implem
         return TYPE;
     }
     public static final Type<StartFalseDeathS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "start_false_death"));
+    public static class ClientPacketHandler {
+        public static void openScreen(Minecraft minecraft, Player player, StartFalseDeathS2CPacket packet) {
+            minecraft.setScreen(new FalseDeathScreen(packet.cause, packet.hardcore));
+        }
+    }
 }
