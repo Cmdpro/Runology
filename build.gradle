@@ -122,6 +122,7 @@ dependencies {
     implementation ("com.klikli_dev:modonomicon-${minecraft_version}-neoforge:${modonomicon_version}"){transitive=false}
     implementation "maven.modrinth:iris:1.8.1+1.21.1-neoforge"
     implementation "maven.modrinth:sodium:mc1.21.1-0.6.5-neoforge"
+    implementation "maven.modrinth:jade:15.9.2+neoforge"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
