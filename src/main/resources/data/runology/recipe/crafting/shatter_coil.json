@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "gSg",
+    "sss"
+  ],
+  "key": {
+    "s": { "item": "runology:shatterstone" },
+    "S": { "item": "runology:shattered_shard" },
+    "g": { "tag": "c:ingots/gold" }
+  },
+  "result": { "id": "runology:shatter_coil" }
+}

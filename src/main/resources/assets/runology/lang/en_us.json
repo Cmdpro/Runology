@@ -74,6 +74,9 @@
   "modonomicon.runology.guidebook.shards.blink_boots.name": "Blink Boots",
   "modonomicon.runology.guidebook.shards.blink_boots.page0.title": "Blink Boots",
   "modonomicon.runology.guidebook.shards.blink_boots.page0.text": "Shattered Shards, when combined with gold, I can make boots capable of letting me teleport forwards, I will call this form of teleportation a \"Blink\"",
+  "modonomicon.runology.guidebook.shards.shatter_coil.name": "Shatter Coil",
+  "modonomicon.runology.guidebook.shards.shatter_coil.page0.title": "Shatter Coil",
+  "modonomicon.runology.guidebook.shards.shatter_coil.page0.text": "Utilizing most of what I have learned so far about Shattered Flow, I have made a device capable of zapping every living thing that comes near it except for me and other people, it will however cost 10 Shattered Flow to run.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
