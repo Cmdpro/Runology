@@ -112,24 +112,32 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
         } else {
             Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, input);
             if (recipe.isPresent()) {
-                if (!crafting) {
-                    crafting = true;
-                    updateBlock();
-                }
-                if (!recipe.get().id().equals(currentRecipe)) {
-                    craftingTime = 0;
-                }
-                tryUseEnergy(50);
-                currentRecipe = recipe.get().id();
-                craftingTime++;
-                if (craftingTime >= 50) {
-                    ItemStack book = recipe.get().value().getResultItem(level.registryAccess());
-                    ItemEntity item = new ItemEntity(pLevel, getBlockPos().getCenter().x, getBlockPos().getCenter().y, getBlockPos().getCenter().z, book);
-                    pLevel.addFreshEntity(item);
-                    ItemStack newStack = itemHandler.getStackInSlot(0).copy();
-                    newStack.shrink(1);
-                    itemHandler.setStackInSlot(0, newStack);
-                    craftingTime = 0;
+                if (tryUseEnergy(level, 50) <= 0) {
+                    if (!crafting) {
+                        crafting = true;
+                        updateBlock();
+                    }
+                    if (!recipe.get().id().equals(currentRecipe)) {
+                        craftingTime = 0;
+                    }
+                    currentRecipe = recipe.get().id();
+                    craftingTime++;
+                    if (craftingTime >= 50) {
+                        ItemStack book = recipe.get().value().getResultItem(level.registryAccess());
+                        ItemEntity item = new ItemEntity(pLevel, getBlockPos().getCenter().x, getBlockPos().getCenter().y, getBlockPos().getCenter().z, book);
+                        pLevel.addFreshEntity(item);
+                        ItemStack newStack = itemHandler.getStackInSlot(0).copy();
+                        newStack.shrink(1);
+                        itemHandler.setStackInSlot(0, newStack);
+                        craftingTime = 0;
+                    }
+                } else {
+                    if (crafting) {
+                        crafting = false;
+                        updateBlock();
+                    }
+                    craftingTime = -1;
+                    currentRecipe = null;
                 }
             } else {
                 if (crafting) {

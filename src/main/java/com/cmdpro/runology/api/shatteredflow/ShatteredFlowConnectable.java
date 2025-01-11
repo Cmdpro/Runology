@@ -67,14 +67,14 @@ public interface ShatteredFlowConnectable {
             ent.setChanged();
         }
     }
-    default int tryUseEnergy(int amount, boolean cancelIfNotEnough) {
+    default int tryUseEnergy(Level level, int amount, boolean cancelIfNotEnough) {
         if (getNetwork() == null) {
             return amount;
         }
         if (cancelIfNotEnough) {
             int remaining = amount;
             for (BlockPos i : getNetwork().starts) {
-                if (i instanceof ContainsShatteredFlow container) {
+                if (level.getBlockEntity(i) instanceof ContainsShatteredFlow container) {
                     remaining -= container.getShatteredFlowStorage().amount;
                 }
             }
@@ -84,10 +84,11 @@ public interface ShatteredFlowConnectable {
         }
         int remaining = amount;
         for (BlockPos i : getNetwork().starts) {
-            if (i instanceof ContainsShatteredFlow container) {
+            if (level.getBlockEntity(i) instanceof ContainsShatteredFlow container) {
                 if (remaining > 0) {
-                    container.getShatteredFlowStorage().amount -= remaining;
-                    remaining -= container.getShatteredFlowStorage().amount;
+                    int amount2 = container.getShatteredFlowStorage().amount;
+                    container.getShatteredFlowStorage().amount = Math.clamp(container.getShatteredFlowStorage().amount-remaining, 0, Integer.MAX_VALUE);
+                    remaining -= amount2;
                 } else {
                     break;
                 }
@@ -95,7 +96,7 @@ public interface ShatteredFlowConnectable {
         }
         return Math.clamp(remaining, 0, Integer.MAX_VALUE);
     }
-    default int tryUseEnergy(int amount) {
-        return tryUseEnergy(amount, true);
+    default int tryUseEnergy(Level level, int amount) {
+        return tryUseEnergy(level, amount, true);
     }
 }

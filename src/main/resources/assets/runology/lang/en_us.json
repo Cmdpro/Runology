@@ -15,6 +15,8 @@
   "block.runology.rune_motion_shatterstone": "Shatterstone Motion Rune",
   "block.runology.shattered_shard_ore": "Shattered Shard Ore",
   "block.runology.deepslate_shattered_shard_ore": "Deepslate Shattered Shard Ore",
+  "block.runology.shatter_coil": "Shatter Coil",
+  "block.runology.shatter_coil_filler": "Shatter Coil",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
@@ -92,5 +94,9 @@
   "misc.runology.power_activate": "I feel power flowing through my body, building up at my fists, whatever this power is... It may be what is needed.",
 
   "key.categories.runology.runology": "Runology",
-  "key.runology.blink": "Blink"
+  "key.runology.blink": "Blink",
+
+  "death.attack.shatter_zap": "%1$s was zapped",
+  "death.attack.shatter_zap.player": "%2$s zapped %1$s",
+  "death.attack.shatter_zap.item": "%1$s got zapped by %2$s's %3$s"
 }

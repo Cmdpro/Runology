@@ -1,5 +1,6 @@
 package com.cmdpro.runology.block.transmission;
 
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.chunkloading.ChunkloadingEventHandler;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
@@ -54,7 +55,9 @@ public class ShatteredFocus extends Block implements EntityBlock {
     @Override
     public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
         super.destroy(level, pos, state);
-        ChunkloadingEventHandler.shatterController.forceChunk((ServerLevel)level, pos, level.getChunk(pos).getPos().x, level.getChunk(pos).getPos().z, false, true);
+        if (level instanceof ServerLevel serverLevel) {
+            ChunkloadingEventHandler.shatterController.forceChunk(serverLevel, pos, level.getChunk(pos).getPos().x, level.getChunk(pos).getPos().z, false, true);
+        }
     }
 
     @Override

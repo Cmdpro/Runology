@@ -27,10 +27,11 @@ public class ShatteredFlowNetwork {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity || blockEntity instanceof ShatteredFocusBlockEntity) {
                     updatePaths(level, i, network, alreadyChecked);
-                } else if (blockEntity instanceof ContainsShatteredFlow) {
+                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
                     if (!network.ends.contains(blockEntity.getBlockPos())) {
                         network.ends.add(blockEntity.getBlockPos());
                     }
+                    shatteredFlowConnectable.setNetwork(network);
                 }
             }
             ent1.path = network;
@@ -39,10 +40,11 @@ public class ShatteredFlowNetwork {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity || blockEntity instanceof ShatteredFocusBlockEntity) {
                     updatePaths(level, i, network, alreadyChecked);
-                } else if (blockEntity instanceof ContainsShatteredFlow) {
+                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
                     if (!network.ends.contains(blockEntity.getBlockPos())) {
                         network.ends.add(blockEntity.getBlockPos());
                     }
+                    shatteredFlowConnectable.setNetwork(network);
                 }
             }
             ent1.setNetwork(network);
@@ -51,11 +53,11 @@ public class ShatteredFlowNetwork {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity ent) {
                     updatePaths(level, ent.getBlockPos(), network, alreadyChecked);
-                } else if (blockEntity instanceof ShatteredFlowConnectable containsShatteredFlow) {
+                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
                     if (!network.ends.contains(blockEntity.getBlockPos())) {
                         network.ends.add(blockEntity.getBlockPos());
                     }
-                    containsShatteredFlow.setNetwork(network);
+                    shatteredFlowConnectable.setNetwork(network);
                 }
             }
             if (!network.starts.contains(tryStart)) {

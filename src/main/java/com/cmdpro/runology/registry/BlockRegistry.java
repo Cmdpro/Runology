@@ -1,6 +1,9 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.machines.shattercoil.ShatterCoil;
+import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockItem;
+import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilFiller;
 import com.cmdpro.runology.block.machines.ShatteredInfuser;
 import com.cmdpro.runology.block.misc.GoldPillar;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
@@ -10,15 +13,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.MapColor;
-import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Function;
@@ -44,6 +43,11 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTERED_INFUSER = register("shattered_infuser",
             () -> new ShatteredInfuser(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTER_COIL = register("shatter_coil",
+            () -> new ShatterCoil(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
+            object -> () -> new ShatterCoilBlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTER_COIL_FILLER = registerBlock("shatter_coil_filler",
+            () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
 
     public static final Supplier<Block> SHATTERED_SHARD_ORE = register("shattered_shard_ore",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)),

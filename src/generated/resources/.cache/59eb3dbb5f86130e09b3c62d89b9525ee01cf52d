@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-30T19:45:26.9994543	Loot Tables
+// 1.21.1	2025-01-11T15:50:51.4719986	Loot Tables
 2f10b427e8a7fa0c0d19b3d33c7392f799d5cc07 data/runology/loot_table/blocks/deepslate_shattered_shard_ore.json
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
@@ -14,3 +14,4 @@ adec08146222f8b693f1cb1f781b06369be4dda5 data/runology/loot_table/blocks/shatter
 c7e02b096edfa381d49fadeaf225e8815e210cd1 data/runology/loot_table/blocks/shatterstone_brick_slab.json
 1f5cb8ab9fa8c219c7f55c15209aa8d2f120941e data/runology/loot_table/blocks/shatterstone_brick_stairs.json
 3819dd825b0c95da7e6fe23dd05a61418f219255 data/runology/loot_table/blocks/shatterstone_brick_wall.json
+5233c61d55fd74a9e6af142684e63de42b1561ae data/runology/loot_table/blocks/shatter_coil.json
