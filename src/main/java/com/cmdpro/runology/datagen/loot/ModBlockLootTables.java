@@ -32,6 +32,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         add(BlockRegistry.SHATTERED_SHARD_ORE.get(), (block) -> createOreDrop(block, ItemRegistry.SHATTERED_SHARD.get()));
         add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get(), (block) -> createOreDrop(block, ItemRegistry.SHATTERED_SHARD.get()));
         dropSelf(BlockRegistry.SHATTER_COIL.get());
+        add(BlockRegistry.SHATTER_COIL_FILLER.get(), (block) -> noDrop());
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

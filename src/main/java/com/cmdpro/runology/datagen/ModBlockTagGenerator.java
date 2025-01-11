@@ -33,7 +33,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SHATTERED_INFUSER.get())
                 .add(BlockRegistry.SHATTERED_SHARD_ORE.get())
                 .add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get())
-                .add(BlockRegistry.SHATTER_COIL.get());
+                .add(BlockRegistry.SHATTER_COIL.get())
+                .add(BlockRegistry.SHATTER_COIL_FILLER.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
