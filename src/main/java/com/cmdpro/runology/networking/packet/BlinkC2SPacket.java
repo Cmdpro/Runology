@@ -52,5 +52,5 @@ public record BlinkC2SPacket() implements Message {
     public Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
-    public static final Type<BlinkC2SPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "blink"));
+    public static final Type<BlinkC2SPacket> TYPE = new Type<>(Runology.locate("blink"));
 }

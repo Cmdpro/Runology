@@ -92,7 +92,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
     public int realityReshaperProgress;
     public List<BlockPos> connectedTo;
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        ResourceLocation realityReshaperId = ResourceLocation.fromNamespaceAndPath(Runology.MODID, "reality_reshaper");
+        ResourceLocation realityReshaperId = Runology.locate("reality_reshaper");
         LevelChunk chunk = pLevel.getChunkAt(pPos);
         if (pLevel.getBlockEntity(pPos.above()) instanceof ShatterBlockEntity shatter) {
             if (pLevel.isClientSide) {

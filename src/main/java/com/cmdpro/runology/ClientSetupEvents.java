@@ -71,14 +71,14 @@ public class ClientSetupEvents {
     }
     @SubscribeEvent
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
-        event.registerAbove(ResourceLocation.withDefaultNamespace("camera_overlays"), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "player_power_overlay"), (guiGraphics, deltaTracker) -> {
+        event.registerAbove(ResourceLocation.withDefaultNamespace("camera_overlays"), Runology.locate("player_power_overlay"), (guiGraphics, deltaTracker) -> {
             if (Minecraft.getInstance().player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
                 float time = (Minecraft.getInstance().level.getGameTime()+deltaTracker.getGameTimeDeltaPartialTick(true));
                 RenderSystem.disableDepthTest();
                 RenderSystem.depthMask(false);
                 RenderSystem.enableBlend();
                 guiGraphics.setColor(1.0F, 1.0F, 1.0F, Math.clamp(0.8f+((float)Math.sin(Math.toRadians(time*5))*0.1f), 0f, 1f));
-                guiGraphics.blit(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "textures/gui/player_power_overlay.png"), 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
+                guiGraphics.blit(Runology.locate("textures/gui/player_power_overlay.png"), 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
                 RenderSystem.disableBlend();
                 RenderSystem.depthMask(true);
                 RenderSystem.enableDepthTest();

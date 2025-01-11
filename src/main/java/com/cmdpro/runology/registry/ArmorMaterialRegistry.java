@@ -29,7 +29,7 @@ public class ArmorMaterialRegistry {
             SoundEvents.ARMOR_EQUIP_GOLD,
             () -> Ingredient.of(Tags.Items.INGOTS_GOLD), List.of(
                     new ArmorMaterial.Layer(
-                            ResourceLocation.fromNamespaceAndPath(Runology.MODID, "blink")
+                            Runology.locate("blink")
                     )
             ),
             0,

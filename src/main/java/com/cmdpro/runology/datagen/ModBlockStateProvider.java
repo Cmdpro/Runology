@@ -32,9 +32,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE);
 
         blockWithItem(BlockRegistry.SHATTERSTONE_BRICKS);
-        stairsBlock((StairBlock) BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/shatterstone_bricks"));
-        slabBlock((SlabBlock) BlockRegistry.SHATTERSTONE_BRICK_SLAB.get(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/shatterstone_bricks"), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/shatterstone_bricks"));
-        wallBlock((WallBlock) BlockRegistry.SHATTERSTONE_BRICK_WALL.get(), ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/shatterstone_bricks"));
+        stairsBlock((StairBlock) BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get(), Runology.locate("block/shatterstone_bricks"));
+        slabBlock((SlabBlock) BlockRegistry.SHATTERSTONE_BRICK_SLAB.get(), Runology.locate("block/shatterstone_bricks"), Runology.locate("block/shatterstone_bricks"));
+        wallBlock((WallBlock) BlockRegistry.SHATTERSTONE_BRICK_WALL.get(), Runology.locate("block/shatterstone_bricks"));
     }
 
     private void blockWithItem(Supplier<Block> blockRegistryObject) {

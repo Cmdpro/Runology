@@ -33,5 +33,5 @@ public record RuneTypeSyncS2CPacket(Map<ResourceLocation, RuneType> entries) imp
     public Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
-    public static final Type<RuneTypeSyncS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "rune_type_sync"));
+    public static final Type<RuneTypeSyncS2CPacket> TYPE = new Type<>(Runology.locate("rune_type_sync"));
 }

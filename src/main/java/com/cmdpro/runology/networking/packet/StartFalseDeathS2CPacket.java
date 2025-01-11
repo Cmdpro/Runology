@@ -37,7 +37,7 @@ public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implem
     public Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
-    public static final Type<StartFalseDeathS2CPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "start_false_death"));
+    public static final Type<StartFalseDeathS2CPacket> TYPE = new Type<>(Runology.locate("start_false_death"));
     public static class ClientPacketHandler {
         public static void openScreen(Minecraft minecraft, Player player, StartFalseDeathS2CPacket packet) {
             minecraft.setScreen(new FalseDeathScreen(packet.cause, packet.hardcore));

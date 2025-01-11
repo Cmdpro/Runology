@@ -25,7 +25,7 @@ public record PlayerPowerModeSyncS2CPacket(int id, boolean active) implements Me
     public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
-    public static final CustomPacketPayload.Type<PlayerPowerModeSyncS2CPacket> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "player_power_mode_sync"));
+    public static final CustomPacketPayload.Type<PlayerPowerModeSyncS2CPacket> TYPE = new CustomPacketPayload.Type<>(Runology.locate("player_power_mode_sync"));
 
     public static PlayerPowerModeSyncS2CPacket read(RegistryFriendlyByteBuf buf) {
         int id = buf.readInt();

@@ -40,7 +40,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ItemRegistry.GUIDEBOOK);
-        flatBlockItemWithTexture(BlockRegistry.SHATTER, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "item/shatter"));
+        flatBlockItemWithTexture(BlockRegistry.SHATTER, Runology.locate("item/shatter"));
         simpleItem(ItemRegistry.GOLD_CHISEL);
         simpleItem(ItemRegistry.RUNIC_CHISEL);
         evenSimplerBlockItem(BlockRegistry.SHATTERED_FOCUS);
@@ -77,7 +77,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
     public void wallItem(Supplier<Block> block, Supplier<Block> baseBlock) {
         this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))
-                .texture("wall",  ResourceLocation.fromNamespaceAndPath(Runology.MODID, "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
+                .texture("wall",  Runology.locate("block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
     }
 
     private ItemModelBuilder handheldItem(Supplier<Item> item) {

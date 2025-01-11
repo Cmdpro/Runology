@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Runology.MODID);
-    public static final Supplier<Item> GUIDEBOOK = register("guidebook", () -> new ModonomiconItem(new Item.Properties().component(DataComponentRegistry.BOOK_ID, ResourceLocation.fromNamespaceAndPath(Runology.MODID, "guidebook")).stacksTo(1)));
+    public static final Supplier<Item> GUIDEBOOK = register("guidebook", () -> new ModonomiconItem(new Item.Properties().component(DataComponentRegistry.BOOK_ID, Runology.locate("guidebook")).stacksTo(1)));
     public static final Supplier<Item> RUNIC_CHISEL = register("runic_chisel", () -> new RunicChisel(new Item.Properties().durability(25)));
     public static final Supplier<Item> GOLD_CHISEL = register("gold_chisel", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> SHATTER_READER = register("shatter_reader", () -> new ShatterReader(new Item.Properties().stacksTo(1)));

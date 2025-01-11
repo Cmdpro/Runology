@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 public class PlayerPowerShader extends PostShaderInstance {
     @Override
     public ResourceLocation getShaderLocation() {
-        return ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shaders/post/player_power_post.json");
+        return Runology.locate("shaders/post/player_power_post.json");
     }
     @Override
     public void setUniforms(PostPass instance) {

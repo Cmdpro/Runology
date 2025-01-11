@@ -3,6 +3,7 @@ package com.cmdpro.runology;
 import com.cmdpro.runology.registry.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -54,6 +55,9 @@ public class Runology
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+    public static ResourceLocation locate(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.SHATTERED_INFUSER.get(), (o, direction) -> o.getItemHandler());

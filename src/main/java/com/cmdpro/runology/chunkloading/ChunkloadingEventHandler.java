@@ -12,7 +12,7 @@ public class ChunkloadingEventHandler {
     public static TicketController shatterController;
     @SubscribeEvent
     public static void registerTicketControllers(RegisterTicketControllersEvent event) {
-        shatterController = new TicketController(ResourceLocation.fromNamespaceAndPath(Runology.MODID, "shatter_controller"));
+        shatterController = new TicketController(Runology.locate("shatter_controller"));
         event.register(shatterController);
     }
 }
