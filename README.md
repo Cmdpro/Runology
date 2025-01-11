@@ -1,7 +1,7 @@
 # Credits
 Cmdpro - Owner
 
-David_rarria - Sprites
+David_rarria - Sprites & Music
 
 buzzoblehhh - Sprites
 

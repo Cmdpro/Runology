@@ -1,3 +1,0 @@
-Fixed a bug with the prismatic bullet projectiles
-(hopefully) fixed a bug with sparks
-Fixed an unlocalized death message
