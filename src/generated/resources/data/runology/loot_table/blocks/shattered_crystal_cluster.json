@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "runology:deepslate_shattered_shard_ore"
+              "name": "runology:shattered_crystal_cluster"
             },
             {
               "type": "minecraft:item",
@@ -48,5 +48,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "runology:blocks/deepslate_shattered_shard_ore"
+  "random_sequence": "runology:blocks/shattered_crystal_cluster"
 }

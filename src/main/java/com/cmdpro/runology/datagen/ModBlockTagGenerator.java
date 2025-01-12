@@ -31,8 +31,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get())
                 .add(BlockRegistry.GOLD_PILLAR.get())
                 .add(BlockRegistry.SHATTERED_INFUSER.get())
-                .add(BlockRegistry.SHATTERED_SHARD_ORE.get())
-                .add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get())
+                .add(BlockRegistry.SHATTERED_CRYSTAL_BLOCK.get())
+                .add(BlockRegistry.BUDDING_SHATTERED_CRYSTAL.get())
+                .add(BlockRegistry.SHATTERED_CRYSTAL_CLUSTER.get())
+                .add(BlockRegistry.LARGE_SHATTERED_CRYSTAL_BUD.get())
+                .add(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD.get())
+                .add(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get())
                 .add(BlockRegistry.SHATTER_COIL.get())
                 .add(BlockRegistry.SHATTER_COIL_FILLER.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
@@ -40,9 +44,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
-                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get())
-                .add(BlockRegistry.SHATTERED_SHARD_ORE.get())
-                .add(BlockRegistry.DEEPSLATE_SHATTERED_SHARD_ORE.get());
+                .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
         this.tag(BlockTags.WALLS)
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
     }

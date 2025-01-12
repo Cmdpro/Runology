@@ -8,6 +8,7 @@ import com.cmdpro.runology.block.machines.ShatteredInfuser;
 import com.cmdpro.runology.block.misc.GoldPillar;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
 import com.cmdpro.runology.block.transmission.ShatteredRelay;
+import com.cmdpro.runology.block.world.BuddingShatteredCrystal;
 import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -49,12 +50,6 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTER_COIL_FILLER = registerBlock("shatter_coil_filler",
             () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
 
-    public static final Supplier<Block> SHATTERED_SHARD_ORE = register("shattered_shard_ore",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)),
-            object -> () -> new BlockItem(object.get(), new Item.Properties()));
-    public static final Supplier<Block> DEEPSLATE_SHATTERED_SHARD_ORE = register("deepslate_shattered_shard_ore",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)),
-            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
@@ -81,6 +76,24 @@ public class BlockRegistry {
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> RUNE_MOTION_SHATTERSTONE = register("rune_motion_shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERED_CRYSTAL_BLOCK = register("shattered_crystal_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> BUDDING_SHATTERED_CRYSTAL = register("budding_shattered_crystal",
+            () -> new BuddingShatteredCrystal(BlockBehaviour.Properties.ofFullCopy(Blocks.BUDDING_AMETHYST)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERED_CRYSTAL_CLUSTER = register("shattered_crystal_cluster",
+            () -> new AmethystClusterBlock(7.0f, 3.0f, BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_CLUSTER)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> LARGE_SHATTERED_CRYSTAL_BUD = register("large_shattered_crystal_bud",
+            () -> new AmethystClusterBlock(5.0f, 3.0f, BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_AMETHYST_BUD)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> MEDIUM_SHATTERED_CRYSTAL_BUD = register("medium_shattered_crystal_bud",
+            () -> new AmethystClusterBlock(4.0f, 3.0f, BlockBehaviour.Properties.ofFullCopy(Blocks.MEDIUM_AMETHYST_BUD)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SMALL_SHATTERED_CRYSTAL_BUD = register("small_shattered_crystal_bud",
+            () -> new AmethystClusterBlock(3.0f, 4.0f, BlockBehaviour.Properties.ofFullCopy(Blocks.SMALL_AMETHYST_BUD)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 

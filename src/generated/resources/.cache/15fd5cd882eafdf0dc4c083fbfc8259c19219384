@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-11T18:01:24.4096383	Tags for minecraft:block mod id runology
-4b0c4e601e973e5f6c33d4780e6888946563f6ca data/minecraft/tags/block/mineable/pickaxe.json
-20ca21d8058c26709273a9b29eb1744d2b117559 data/minecraft/tags/block/needs_iron_tool.json
+// 1.21.1	2025-01-11T23:09:21.9432096	Tags for minecraft:block mod id runology
+3ce14a74aa91e412fc2f17648d071c10070daf48 data/minecraft/tags/block/mineable/pickaxe.json
+99a0cfc2ac0aa8c337f2401768c340be90335a98 data/minecraft/tags/block/needs_iron_tool.json
 126463c97e8c5156199ed5186ab0535df069c81d data/minecraft/tags/block/walls.json

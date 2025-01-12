@@ -17,6 +17,12 @@
   "block.runology.deepslate_shattered_shard_ore": "Deepslate Shattered Shard Ore",
   "block.runology.shatter_coil": "Shatter Coil",
   "block.runology.shatter_coil_filler": "Shatter Coil",
+  "block.runology.shattered_crystal_block": "Shattered Crystal Block",
+  "block.runology.budding_shattered_crystal": "Budding Shattered Crystal",
+  "block.runology.shattered_crystal_cluster": "Shattered Crystal Cluster",
+  "block.runology.large_shattered_crystal_bud": "Large Shattered Crystal Bud",
+  "block.runology.medium_shattered_crystal_bud": "Medium Shattered Crystal Bud",
+  "block.runology.small_shattered_crystal_bud": "Small Shattered Crystal Bud",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
