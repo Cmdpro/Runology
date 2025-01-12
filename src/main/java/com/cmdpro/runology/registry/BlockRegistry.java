@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.machines.HeatFocus;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoil;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockItem;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilFiller;
@@ -49,6 +50,9 @@ public class BlockRegistry {
             object -> () -> new ShatterCoilBlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTER_COIL_FILLER = registerBlock("shatter_coil_filler",
             () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
+    public static final Supplier<Block> HEAT_FOCUS = register("heat_focus",
+            () -> new HeatFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF)),

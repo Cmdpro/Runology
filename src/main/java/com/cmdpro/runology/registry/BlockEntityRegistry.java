@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.block.machines.HeatFocusBlockEntity;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockEntity;
 import com.cmdpro.runology.block.machines.ShatteredInfuserBlockEntity;
 import com.cmdpro.runology.block.misc.GoldPillarBlockEntity;
@@ -40,6 +41,10 @@ public class BlockEntityRegistry {
             register("shatter_coil", () ->
                     BlockEntityType.Builder.of(ShatterCoilBlockEntity::new,
                             BlockRegistry.SHATTER_COIL.get()).build(null));
+    public static final Supplier<BlockEntityType<HeatFocusBlockEntity>> HEAT_FOCUS =
+            register("heat_focus", () ->
+                    BlockEntityType.Builder.of(HeatFocusBlockEntity::new,
+                            BlockRegistry.HEAT_FOCUS.get()).build(null));
 
 
     private static <T extends BlockEntityType<?>> Supplier<T> register(final String name, final Supplier<T> blockentity) {

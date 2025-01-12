@@ -23,6 +23,7 @@
   "block.runology.large_shattered_crystal_bud": "Large Shattered Crystal Bud",
   "block.runology.medium_shattered_crystal_bud": "Medium Shattered Crystal Bud",
   "block.runology.small_shattered_crystal_bud": "Small Shattered Crystal Bud",
+  "block.runology.heat_focus": "Heat Focus",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
@@ -83,6 +84,9 @@
   "modonomicon.runology.guidebook.shards.shatter_coil.name": "Shatter Coil",
   "modonomicon.runology.guidebook.shards.shatter_coil.page0.title": "Shatter Coil",
   "modonomicon.runology.guidebook.shards.shatter_coil.page0.text": "Utilizing most of what I have learned so far about Shattered Flow, I have made a device capable of zapping every living thing that comes near it except for those like me. It will cost 10 Shattered Flow to run.",
+  "modonomicon.runology.guidebook.shards.heat_focus.name": "Heat Focus",
+  "modonomicon.runology.guidebook.shards.heat_focus.page0.title": "Heat Focus",
+  "modonomicon.runology.guidebook.shards.heat_focus.page0.text": "By mixing the magical properties of blaze powder with a shattered shard along with gold to channel it, I can create a beam of fire capable of smelting batches of anything I throw into it. It will cost 50 Shattered Flow to run.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

@@ -1,6 +1,7 @@
-// 1.21.1	2025-01-11T23:09:21.94421	Loot Tables
+// 1.21.1	2025-01-12T16:03:03.3053019	Loot Tables
 447b25a2410a0be48d52d139dfbf49f021ebb2c8 data/runology/loot_table/blocks/budding_shattered_crystal.json
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
+4689b04add47930d1bf76d92fbcdf1c1f228cd5a data/runology/loot_table/blocks/heat_focus.json
 2d6254948c3e650bbc567946642c7dcecab1580e data/runology/loot_table/blocks/large_shattered_crystal_bud.json
 35b790cf240b48a2af1ae565e84c103ef6bf9f01 data/runology/loot_table/blocks/medium_shattered_crystal_bud.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json

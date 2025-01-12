@@ -38,7 +38,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD.get())
                 .add(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get())
                 .add(BlockRegistry.SHATTER_COIL.get())
-                .add(BlockRegistry.SHATTER_COIL_FILLER.get());
+                .add(BlockRegistry.SHATTER_COIL_FILLER.get())
+                .add(BlockRegistry.HEAT_FOCUS.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())

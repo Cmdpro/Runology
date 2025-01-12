@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "runology:block/heat_focus"
+    }
+  }
+}

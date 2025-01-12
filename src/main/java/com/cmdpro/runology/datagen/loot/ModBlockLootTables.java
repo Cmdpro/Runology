@@ -37,6 +37,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         add(BlockRegistry.BUDDING_SHATTERED_CRYSTAL.get(), (block) -> noDrop());
         dropSelf(BlockRegistry.SHATTER_COIL.get());
         add(BlockRegistry.SHATTER_COIL_FILLER.get(), (block) -> noDrop());
+        dropSelf(BlockRegistry.HEAT_FOCUS.get());
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

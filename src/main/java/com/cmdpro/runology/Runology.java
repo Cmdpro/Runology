@@ -93,6 +93,7 @@ public class Runology
             event.accept(BlockRegistry.LARGE_SHATTERED_CRYSTAL_BUD.get());
             event.accept(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD.get());
             event.accept(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get());
+            event.accept(BlockRegistry.HEAT_FOCUS.get());
         }
     }
 }
