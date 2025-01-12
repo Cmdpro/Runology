@@ -3,6 +3,6 @@
   "conditionData": {
     "advancement": "runology:shattered_shard"
   },
-  "hiddenAs": "minecraft:stone",
-  "originalBlock": "runology:shattered_shard_ore"
+  "hiddenAs": "minecraft:budding_amethyst",
+  "originalBlock": "runology:budding_shattered_crystal"
 }
