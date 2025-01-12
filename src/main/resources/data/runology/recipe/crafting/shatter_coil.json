@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " s ",
-    "gSg",
-    "sss"
+    " S ",
+    "gWg",
+    " s "
   ],
   "key": {
-    "s": { "item": "runology:shatterstone" },
+    "s": { "item": "runology:shatterstone_brick_slab" },
+    "W": { "item": "runology:shatterstone_brick_wall" },
     "S": { "item": "runology:shattered_shard" },
     "g": { "tag": "c:ingots/gold" }
   },

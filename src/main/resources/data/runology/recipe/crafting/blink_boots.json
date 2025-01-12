@@ -1,12 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "G G",
-    "S S"
+    "SGS"
   ],
   "key": {
     "S": { "item": "runology:shattered_shard" },
-    "G": { "tag": "c:ingots/gold" }
+    "G": { "item": "minecraft:golden_boots" }
   },
   "result": { "id": "runology:blink_boots" }
 }

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "GGG",
+    " G ",
     "GgG",
-    "GGG"
+    " G "
   ],
   "key": {
     "g": { "item": "minecraft:glass" },

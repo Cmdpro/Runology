@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gGg",
+    " G ",
+    "gGg"
+  ],
+  "key": {
+    "g": { "tag": "c:nuggets/gold" },
+    "G": { "tag": "c:ingots/gold" }
+  },
+  "result": { "id": "runology:gold_pillar" }
+}
