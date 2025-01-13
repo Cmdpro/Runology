@@ -74,14 +74,14 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         tag.put("inventory", itemHandler.serializeNBT(provider));
-        addToTag(tag);
+        addToTag(level, tag);
         super.saveAdditional(tag, provider);
     }
     @Override
     public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
         super.loadAdditional(nbt, provider);
         itemHandler.deserializeNBT(provider, nbt.getCompound("inventory"));
-        getFromTag(level, nbt);
+        getFromTag(getBlockPos(), nbt, provider);
     }
 
     @Override

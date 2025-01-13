@@ -5,12 +5,16 @@ import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
 import com.cmdpro.runology.registry.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -23,11 +27,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class ShatteredRelayBlockEntity extends BlockEntity {
     public ShatteredRelayBlockEntity(BlockPos pos, BlockState state) {
@@ -49,6 +55,7 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
         tag.put("link", list);
         if (path != null) {
             tag.putUUID("network", path.uuid);
+            tag.putString("networkLevel", level.dimension().location().toString());
         }
     }
     @Override
@@ -62,9 +69,21 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                 connectedTo.add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
             }
         }
-        if (tag.contains("network")) {
-            if (level != null) {
-                path = RunologyUtil.getShatteredFlowNetworkFromUUID(level, tag.getUUID("network"));
+        if (tag.contains("network") && tag.contains("networkLevel")) {
+            if (ServerLifecycleHooks.getCurrentServer() != null) {
+                Level level = ServerLifecycleHooks.getCurrentServer().getLevel(ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse(tag.getString("networkLevel"))));
+                if (level != null) {
+                    if (path != null) {
+                        path.ends.remove(getBlockPos());
+                        path.midpoints.remove(getBlockPos());
+                        path.starts.remove(getBlockPos());
+                        path.nodes.remove(getBlockPos());
+                        if (path.nodes.isEmpty()) {
+                            level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_NETWORKS).remove(path);
+                        }
+                    }
+                    path = RunologyUtil.getShatteredFlowNetworkFromUUID(level, tag.getUUID("network"));
+                }
             }
         }
     }

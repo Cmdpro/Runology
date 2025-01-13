@@ -64,12 +64,12 @@ public class ShatterCoilBlockEntity extends BlockEntity implements ShatteredFlow
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        addToTag(tag);
+        addToTag(level, tag);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        getFromTag(level, tag);
+        getFromTag(getBlockPos(), tag, registries);
     }
 }
