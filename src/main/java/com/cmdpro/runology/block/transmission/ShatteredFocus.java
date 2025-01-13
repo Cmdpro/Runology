@@ -67,12 +67,12 @@ public class ShatteredFocus extends Block implements EntityBlock {
         }
         if (pState.getBlock() != pNewState.getBlock()) {
             if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
+                if (ent.path != null) {
+                    ent.path.disconnectFromNetwork(pLevel, pPos);
+                }
                 for (BlockPos i : ent.connectedTo) {
                     if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
                         ent2.connectedTo.remove(pPos);
-                        if (ent2.path != null) {
-                            ent2.path.disconnectFromNetwork(pLevel, pPos);
-                        }
                         ent2.updateBlock();
                     }
                 }

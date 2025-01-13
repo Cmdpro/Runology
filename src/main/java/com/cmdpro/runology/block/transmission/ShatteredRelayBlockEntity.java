@@ -81,6 +81,8 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                     i.connectedTo.add(getBlockPos());
                     if (i.path != null) {
                         i.path.connectToNetwork(level, getBlockPos());
+                    } else if (path != null) {
+                        path.connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
                 }
@@ -95,6 +97,8 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                     i.connectedTo.add(getBlockPos());
                     if (i.path != null) {
                         i.path.connectToNetwork(level, getBlockPos());
+                    } else if (path != null) {
+                        path.connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
                 }

@@ -27,6 +27,16 @@ public interface ShatteredFlowConnectable {
         if (getNetwork() != null) {
             getNetwork().disconnectFromNetwork(level, pos);
         }
+        for (BlockPos i : getConnectedTo()) {
+            if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                ent2.connectedTo.remove(pos);
+                ent2.updateBlock();
+            }
+            if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
+                ent2.connectedTo.remove(pos);
+                ent2.updateBlock();
+            }
+        }
         getConnectedTo().clear();
     }
     default void onLoad(Level level, BlockPos pos) {
