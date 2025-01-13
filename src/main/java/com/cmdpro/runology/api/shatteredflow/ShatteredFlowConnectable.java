@@ -42,15 +42,17 @@ public interface ShatteredFlowConnectable {
     default void onLoad(Level level, BlockPos pos) {
         for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
             if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
+                if (!getConnectedTo().contains(i.getBlockPos())) {
+                    getConnectedTo().add(i.getBlockPos());
+                }
                 if (!i.connectedTo.contains(pos)) {
                     i.connectedTo.add(pos);
                     if (i.path != null) {
                         i.path.connectToNetwork(level, pos);
+                    } else if (getNetwork() != null) {
+                        getNetwork().connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
-                }
-                if (!getConnectedTo().contains(i.getBlockPos())) {
-                    getConnectedTo().add(i.getBlockPos());
                 }
             }
         }

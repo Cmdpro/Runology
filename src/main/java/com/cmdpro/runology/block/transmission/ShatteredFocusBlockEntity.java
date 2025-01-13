@@ -211,6 +211,9 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
         super.onLoad();
         for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                if (!connectedTo.contains(i.getBlockPos())) {
+                    connectedTo.add(i.getBlockPos());
+                }
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
                     if (i.path != null) {
@@ -219,9 +222,6 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                         path.connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
-                }
-                if (!connectedTo.contains(i.getBlockPos())) {
-                    connectedTo.add(i.getBlockPos());
                 }
             }
         }

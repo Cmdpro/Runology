@@ -49,6 +49,12 @@ public class ShatteredFocusRenderer implements BlockEntityRenderer<ShatteredFocu
     public AABB getRenderBoundingBox(ShatteredFocusBlockEntity blockEntity) {
         return AABB.INFINITE;
     }
+
+    @Override
+    public boolean shouldRender(ShatteredFocusBlockEntity blockEntity, Vec3 cameraPos) {
+        return true;
+    }
+
     EntityRenderDispatcher renderDispatcher;
     public ShatteredFocusRenderer(BlockEntityRendererProvider.Context rendererProvider) {
         renderDispatcher = rendererProvider.getEntityRenderer();

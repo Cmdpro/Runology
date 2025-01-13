@@ -77,6 +77,9 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                 continue;
             }
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                if (!this.connectedTo.contains(i.getBlockPos())) {
+                    this.connectedTo.add(i.getBlockPos());
+                }
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
                     if (i.path != null) {
@@ -85,14 +88,14 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                         path.connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
-                }
-                if (!this.connectedTo.contains(i.getBlockPos())) {
-                    this.connectedTo.add(i.getBlockPos());
                 }
             }
         }
         for (ShatteredFocusBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES)) {
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                if (!this.connectedTo.contains(i.getBlockPos())) {
+                    this.connectedTo.add(i.getBlockPos());
+                }
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
                     if (i.path != null) {
@@ -101,9 +104,6 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                         path.connectToNetwork(level, i.getBlockPos());
                     }
                     i.updateBlock();
-                }
-                if (!this.connectedTo.contains(i.getBlockPos())) {
-                    this.connectedTo.add(i.getBlockPos());
                 }
             }
         }

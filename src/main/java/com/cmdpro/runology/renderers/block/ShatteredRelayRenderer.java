@@ -46,6 +46,11 @@ public class ShatteredRelayRenderer implements BlockEntityRenderer<ShatteredRela
         return AABB.INFINITE;
     }
 
+    @Override
+    public boolean shouldRender(ShatteredRelayBlockEntity blockEntity, Vec3 cameraPos) {
+        return true;
+    }
+
     EntityRenderDispatcher renderDispatcher;
     public ShatteredRelayRenderer(BlockEntityRendererProvider.Context rendererProvider) {
         renderDispatcher = rendererProvider.getEntityRenderer();
