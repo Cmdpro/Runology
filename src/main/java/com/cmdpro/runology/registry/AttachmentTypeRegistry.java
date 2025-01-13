@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
@@ -10,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class AttachmentTypeRegistry {
@@ -31,6 +33,13 @@ public class AttachmentTypeRegistry {
             register("shattered_relays", () -> AttachmentType.builder(() -> new ArrayList<ShatteredRelayBlockEntity>()).build());
     public static final Supplier<AttachmentType<ArrayList<ShatteredFocusBlockEntity>>> SHATTERED_FOCUSES =
             register("shattered_focuses", () -> AttachmentType.builder(() -> new ArrayList<ShatteredFocusBlockEntity>()).build());
+    public static final Supplier<AttachmentType<ArrayList<ShatteredFlowNetwork>>> SHATTERED_FLOW_NETWORKS =
+            register("shattered_flow_networks", () -> AttachmentType.builder(() -> new ArrayList<ShatteredFlowNetwork>()).serialize(ShatteredFlowNetwork.CODEC.listOf().xmap((a) -> {
+                if (a instanceof ArrayList<ShatteredFlowNetwork> array) {
+                    return array;
+                }
+                return new ArrayList<>(a);
+            }, (a) -> (List<ShatteredFlowNetwork>)a)).build());
 
     private static <T extends AttachmentType<?>> Supplier<T> register(final String name, final Supplier<T> attachment) {
         return ATTACHMENT_TYPES.register(name, attachment);

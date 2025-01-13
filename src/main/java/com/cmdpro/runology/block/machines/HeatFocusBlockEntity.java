@@ -52,11 +52,6 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
         this.setChanged();
     }
     @Override
-    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
-        super.loadAdditional(nbt, provider);
-    }
-
-    @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
         if (!pkt.getTag().isEmpty()) {
             decodeUpdateTag(pkt.getTag(), lookupProvider);
@@ -87,6 +82,7 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                     updateBlock();
                 }
             }
+            tryUseEnergy(level, 50);
             if (hasEnergy) {
                 for (ItemEntity i : level.getEntitiesOfClass(ItemEntity.class, AABB.ofSize(pPos.getBottomCenter().add(0, 1.5f, 0), 0.75f, 3f, 0.75f))) {
                     SingleRecipeInput input = new SingleRecipeInput(i.getItem());
@@ -155,5 +151,16 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
     @Override
     public Vec3 getConnectOffset() {
         return new Vec3(0, -0.5, 0);
+    }
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        addToTag(tag);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        getFromTag(level, tag);
     }
 }

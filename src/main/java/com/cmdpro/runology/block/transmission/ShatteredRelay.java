@@ -97,29 +97,28 @@ public class ShatteredRelay extends Block implements EntityBlock {
         if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
             pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).remove(ent);
         }
-        List<BlockPos> toUpdateNetworks = new ArrayList<>();
         if (pState.getBlock() != pNewState.getBlock()) {
             if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
                 for (BlockPos i : ent.connectedTo) {
                     if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
                         ent2.connectedTo.remove(pPos);
-                        toUpdateNetworks.add(i);
+                        if (ent2.path != null) {
+                            ent2.path.disconnectFromNetwork(pLevel, pPos);
+                        }
                         ent2.updateBlock();
                     }
                     if (pLevel.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
                         ent2.connectedTo.remove(pPos);
-                        toUpdateNetworks.add(i);
+                        if (ent2.path != null) {
+                            ent2.path.disconnectFromNetwork(pLevel, pPos);
+                        }
                         ent2.updateBlock();
                     }
                 }
+                ent.connectedTo.clear();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-        if (pState.getBlock() != pNewState.getBlock()) {
-            for (BlockPos i : toUpdateNetworks) {
-                ShatteredFlowNetwork.updatePaths(pLevel, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
-            }
-        }
     }
 
     @Override

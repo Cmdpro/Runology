@@ -1,5 +1,6 @@
 package com.cmdpro.runology.block.transmission;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
 import com.cmdpro.runology.registry.*;
@@ -46,6 +47,9 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             list.add(blockpos);
         }
         tag.put("link", list);
+        if (path != null) {
+            tag.putUUID("network", path.uuid);
+        }
     }
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
@@ -56,6 +60,11 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             for (Tag i : list) {
                 CompoundTag blockpos = (CompoundTag) i;
                 connectedTo.add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
+            }
+        }
+        if (tag.contains("network")) {
+            if (level != null) {
+                path = RunologyUtil.getShatteredFlowNetworkFromUUID(level, tag.getUUID("network"));
             }
         }
     }
@@ -70,6 +79,9 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
+                    if (i.path != null) {
+                        i.path.connectToNetwork(level, getBlockPos());
+                    }
                     i.updateBlock();
                 }
                 if (!this.connectedTo.contains(i.getBlockPos())) {
@@ -81,6 +93,9 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
+                    if (i.path != null) {
+                        i.path.connectToNetwork(level, getBlockPos());
+                    }
                     i.updateBlock();
                 }
                 if (!this.connectedTo.contains(i.getBlockPos())) {
@@ -88,7 +103,6 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
                 }
             }
         }
-        ShatteredFlowNetwork.updatePaths(level, getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
         updateBlock();
     }
     public void updateBlock() {
@@ -114,11 +128,13 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
             }
         } else {
             boolean powered = false;
-            for (BlockPos i : path.starts) {
-                if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent) {
-                    if (ent.storage.amount > 0) {
-                        powered = true;
-                        break;
+            if (path != null) {
+                for (BlockPos i : path.starts) {
+                    if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent) {
+                        if (ent.storage.amount > 0) {
+                            powered = true;
+                            break;
+                        }
                     }
                 }
             }

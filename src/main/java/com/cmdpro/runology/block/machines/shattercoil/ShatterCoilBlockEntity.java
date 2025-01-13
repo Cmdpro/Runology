@@ -7,6 +7,8 @@ import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.DamageTypeRegistry;
 import com.cmdpro.runology.registry.EntityRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -57,5 +59,17 @@ public class ShatterCoilBlockEntity extends BlockEntity implements ShatteredFlow
     public void onLoad() {
         super.onLoad();
         onLoad(level, getBlockPos());
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        addToTag(tag);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        getFromTag(level, tag);
     }
 }

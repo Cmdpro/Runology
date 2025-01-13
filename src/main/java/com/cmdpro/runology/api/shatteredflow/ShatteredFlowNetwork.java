@@ -2,22 +2,204 @@ package com.cmdpro.runology.api.shatteredflow;
 
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
+import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ShatteredFlowNetwork {
-    public List<BlockPos> starts;
-    public List<BlockPos> ends;
-    public ShatteredFlowNetwork(List<BlockPos> starts, List<BlockPos> ends) {
-        this.starts = starts;
-        this.ends = ends;
+    public static Codec<ShatteredFlowNetwork> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            Codec.STRING.fieldOf("uuid").forGetter((obj) -> obj.uuid.toString()),
+            BlockPos.CODEC.listOf().fieldOf("starts").forGetter((obj) -> obj.starts),
+            BlockPos.CODEC.listOf().fieldOf("midpoints").forGetter((obj) -> obj.midpoints),
+            BlockPos.CODEC.listOf().fieldOf("ends").forGetter((obj) -> obj.ends),
+            BlockPos.CODEC.listOf().fieldOf("nodes").forGetter((obj) -> obj.nodes)
+    ).apply(instance, (uuid, starts, midpoints, ends, nodes) -> {
+        ShatteredFlowNetwork network = new ShatteredFlowNetwork(UUID.fromString(uuid));
+        network.starts = starts;
+        network.midpoints = midpoints;
+        network.ends = ends;
+        network.nodes = nodes;
+        return network;
+    }));
+    public ShatteredFlowNetwork() {
+        uuid = UUID.randomUUID();
     }
-    public static void updatePaths(Level level, BlockPos tryStart, ShatteredFlowNetwork network, List<BlockPos> alreadyChecked) {
+    public ShatteredFlowNetwork(UUID uuid) {
+        this.uuid = uuid;
+    }
+    public UUID uuid;
+    public List<BlockPos> starts = new ArrayList<>();
+    public List<BlockPos> midpoints = new ArrayList<>();
+    public List<BlockPos> ends = new ArrayList<>();
+    public List<BlockPos> nodes = new ArrayList<>();
+    public void connectToNetwork(Level level, BlockPos pos) {
+        List<BlockPos> toDisconnect = new ArrayList<>();
+        connectToNetwork(level, pos, toDisconnect);
+        for (BlockPos i : toDisconnect) {
+            if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent1) {
+                ent1.path.disconnectFromNetwork(level, pos);
+            } else if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent1) {
+                ent1.path.disconnectFromNetwork(level, pos);
+            } else if (level.getBlockEntity(i) instanceof ShatteredFlowConnectable ent1) {
+                ent1.getNetwork().disconnectFromNetwork(level, pos);
+            }
+        }
+    }
+    private void connectToNetwork(Level level, BlockPos pos, List<BlockPos> toDisconnect) {
+        if (level.getBlockEntity(pos) instanceof ShatteredRelayBlockEntity ent1) {
+            if (ent1.path == this) {
+                return;
+            } else if (ent1.path != null) {
+                toDisconnect.add(pos);
+            }
+            ent1.path = this;
+            if (!midpoints.contains(pos)) {
+                midpoints.add(pos);
+            }
+            if (!nodes.contains(pos)) {
+                nodes.add(pos);
+            }
+            for (BlockPos i : ent1.connectedTo) {
+                connectToNetwork(level, i, toDisconnect);
+            }
+        } else if (level.getBlockEntity(pos) instanceof ShatteredFlowConnectable ent1) {
+            if (ent1.getNetwork() == this) {
+                return;
+            } else if (ent1.getNetwork() != null) {
+                toDisconnect.add(pos);
+            }
+            ent1.setNetwork(this);
+            if (!ends.contains(pos)) {
+                ends.add(pos);
+            }
+            if (!nodes.contains(pos)) {
+                nodes.add(pos);
+            }
+        } else if (level.getBlockEntity(pos) instanceof ShatteredFocusBlockEntity ent1) {
+            if (ent1.path == this) {
+                return;
+            } else if (ent1.path != null) {
+                toDisconnect.add(pos);
+            }
+            ent1.path = this;
+            if (!starts.contains(pos)) {
+                starts.add(pos);
+            }
+            if (!nodes.contains(pos)) {
+                nodes.add(pos);
+            }
+            for (BlockPos i : ent1.connectedTo) {
+                connectToNetwork(level, i, toDisconnect);
+            }
+        }
+    }
+    public void disconnectFromNetwork(Level level, BlockPos pos) {
+        starts.remove(pos);
+        midpoints.remove(pos);
+        ends.remove(pos);
+        nodes.remove(pos);
+        List<BlockPos> toRemove = new ArrayList<>();
+        if (level.getBlockEntity(pos) instanceof ShatteredRelayBlockEntity ent1) {
+            for (BlockPos i : ent1.connectedTo) {
+                if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFlowConnectable ent2) {
+                    ent2.getConnectedTo().remove(pos);
+                    BlockState blockState = level.getBlockState(pos);
+                    level.sendBlockUpdated(pos, blockState, blockState, 3);
+                    ((BlockEntity)ent2).setChanged();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                }
+                List<BlockPos> starts = searchForStarts(level, i, new ArrayList<>(), new ArrayList<>());
+                if (starts.size() < this.starts.size()) {
+                    toRemove.addAll(generateNetwork(level, pos).nodes);
+                }
+            }
+        } else if (level.getBlockEntity(pos) instanceof ShatteredFlowConnectable ent1) {
+            for (BlockPos i : ent1.getConnectedTo()) {
+                if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFlowConnectable ent2) {
+                    ent2.getConnectedTo().remove(pos);
+                    BlockState blockState = level.getBlockState(pos);
+                    level.sendBlockUpdated(pos, blockState, blockState, 3);
+                    ((BlockEntity)ent2).setChanged();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                }
+                List<BlockPos> starts = searchForStarts(level, i, new ArrayList<>(), new ArrayList<>());
+                if (starts.size() < this.starts.size()) {
+                    toRemove.addAll(generateNetwork(level, pos).nodes);
+                }
+            }
+        } else if (level.getBlockEntity(pos) instanceof ShatteredFocusBlockEntity ent1) {
+            for (BlockPos i : ent1.connectedTo) {
+                if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFlowConnectable ent2) {
+                    ent2.getConnectedTo().remove(pos);
+                    BlockState blockState = level.getBlockState(pos);
+                    level.sendBlockUpdated(pos, blockState, blockState, 3);
+                    ((BlockEntity)ent2).setChanged();
+                } else if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
+                    ent2.connectedTo.remove(pos);
+                    ent2.updateBlock();
+                }
+                List<BlockPos> starts = searchForStarts(level, i, new ArrayList<>(), new ArrayList<>());
+                if (starts.size() < this.starts.size()) {
+                    toRemove.addAll(generateNetwork(level, pos).nodes);
+                }
+            }
+        }
+        starts.removeAll(toRemove);
+        midpoints.removeAll(toRemove);
+        ends.removeAll(toRemove);
+        nodes.removeAll(toRemove);
+    }
+    private static List<BlockPos> searchForStarts(Level level, BlockPos searchFrom, List<BlockPos> starts, List<BlockPos> alreadyVisited) {
+        if (alreadyVisited.contains(searchFrom)) {
+            return starts;
+        }
+        alreadyVisited.add(searchFrom);
+        if (level.getBlockEntity(searchFrom) instanceof ShatteredRelayBlockEntity ent1) {
+            for (BlockPos i : ent1.connectedTo) {
+                searchForStarts(level, i, starts, alreadyVisited);
+            }
+        } else if (level.getBlockEntity(searchFrom) instanceof ShatteredFlowConnectable ent1) {
+            for (BlockPos i : ent1.getConnectedTo()) {
+                searchForStarts(level, i, starts, alreadyVisited);
+            }
+        } else if (level.getBlockEntity(searchFrom) instanceof ShatteredFocusBlockEntity ent1) {
+            starts.add(searchFrom);
+        }
+        return starts;
+    }
+    public static ShatteredFlowNetwork generateNetwork(Level level, BlockPos tryStart) {
+        ShatteredFlowNetwork network = new ShatteredFlowNetwork();
+        List<BlockPos> connectToNetwork = new ArrayList<>();
+        generateNetwork(level, tryStart, network, new ArrayList<>(), connectToNetwork);
+        for (BlockPos i : connectToNetwork) {
+            network.connectToNetwork(level, i);
+        }
+        level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_NETWORKS).add(network);
+        return network;
+    }
+    private static void generateNetwork(Level level, BlockPos tryStart, ShatteredFlowNetwork network, List<BlockPos> alreadyChecked, List<BlockPos> connectToNetwork) {
         if (alreadyChecked.contains(tryStart)) {
             return;
         }
@@ -26,12 +208,10 @@ public class ShatteredFlowNetwork {
             for (BlockPos i : ent1.connectedTo) {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity || blockEntity instanceof ShatteredFocusBlockEntity) {
-                    updatePaths(level, i, network, alreadyChecked);
-                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
-                    if (!network.ends.contains(blockEntity.getBlockPos())) {
-                        network.ends.add(blockEntity.getBlockPos());
-                    }
-                    shatteredFlowConnectable.setNetwork(network);
+                    generateNetwork(level, i, network, alreadyChecked, connectToNetwork);
+                }
+                if (!connectToNetwork.contains(i)) {
+                    connectToNetwork.add(i);
                 }
             }
             ent1.path = network;
@@ -39,12 +219,10 @@ public class ShatteredFlowNetwork {
             for (BlockPos i : ent1.getConnectedTo()) {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity || blockEntity instanceof ShatteredFocusBlockEntity) {
-                    updatePaths(level, i, network, alreadyChecked);
-                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
-                    if (!network.ends.contains(blockEntity.getBlockPos())) {
-                        network.ends.add(blockEntity.getBlockPos());
-                    }
-                    shatteredFlowConnectable.setNetwork(network);
+                    generateNetwork(level, i, network, alreadyChecked, connectToNetwork);
+                }
+                if (!connectToNetwork.contains(i)) {
+                    connectToNetwork.add(i);
                 }
             }
             ent1.setNetwork(network);
@@ -52,12 +230,10 @@ public class ShatteredFlowNetwork {
             for (BlockPos i : ent1.connectedTo) {
                 BlockEntity blockEntity = level.getBlockEntity(i);
                 if (blockEntity instanceof ShatteredRelayBlockEntity ent) {
-                    updatePaths(level, ent.getBlockPos(), network, alreadyChecked);
-                } else if (blockEntity instanceof ShatteredFlowConnectable shatteredFlowConnectable) {
-                    if (!network.ends.contains(blockEntity.getBlockPos())) {
-                        network.ends.add(blockEntity.getBlockPos());
-                    }
-                    shatteredFlowConnectable.setNetwork(network);
+                    generateNetwork(level, ent.getBlockPos(), network, alreadyChecked, connectToNetwork);
+                }
+                if (!connectToNetwork.contains(i)) {
+                    connectToNetwork.add(i);
                 }
             }
             if (!network.starts.contains(tryStart)) {

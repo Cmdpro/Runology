@@ -1,6 +1,7 @@
 package com.cmdpro.runology.block.transmission;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.shatteredflow.ContainsShatteredFlow;
 import com.cmdpro.runology.api.shatteredflow.NormalShatteredFlowStorage;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
@@ -64,6 +65,9 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             list.add(blockpos);
         }
         tag.put("link", list);
+        if (path != null) {
+            tag.putUUID("network", path.uuid);
+        }
     }
     public boolean isPowered;
     @Override
@@ -86,6 +90,11 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             for (Tag i : list) {
                 CompoundTag blockpos = (CompoundTag) i;
                 connectedTo.add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
+            }
+        }
+        if (tag.contains("network")) {
+            if (level != null) {
+                path = RunologyUtil.getShatteredFlowNetworkFromUUID(level, tag.getUUID("network"));
             }
         }
     }
@@ -153,11 +162,13 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             }
         } else {
             boolean powered = false;
-            for (BlockPos i : path.starts) {
-                if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent) {
-                    if (ent.storage.amount > 0) {
-                        powered = true;
-                        break;
+            if (path != null) {
+                for (BlockPos i : path.starts) {
+                    if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent) {
+                        if (ent.storage.amount > 0) {
+                            powered = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -202,6 +213,9 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
                 if (!i.connectedTo.contains(getBlockPos())) {
                     i.connectedTo.add(getBlockPos());
+                    if (i.path != null) {
+                        i.path.connectToNetwork(level, getBlockPos());
+                    }
                     i.updateBlock();
                 }
                 if (!connectedTo.contains(i.getBlockPos())) {
@@ -209,7 +223,9 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                 }
             }
         }
-        ShatteredFlowNetwork.updatePaths(level, getBlockPos(), new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
+        if (path == null) {
+            path = ShatteredFlowNetwork.generateNetwork(level, getBlockPos());
+        }
         updateBlock();
     }
     @Override

@@ -1,9 +1,13 @@
 package com.cmdpro.runology.api.shatteredflow;
 
+import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,28 +24,19 @@ public interface ShatteredFlowConnectable {
     void setNetwork(ShatteredFlowNetwork network);
     ShatteredFlowNetwork getNetwork();
     default void onRemove(Level level, BlockPos pos) {
-        List<BlockPos> toUpdateNetworks = new ArrayList<>();
-        for (BlockPos i : getConnectedTo()) {
-            BlockEntity entity = level.getBlockEntity(i);
-            if (entity instanceof ShatteredFocusBlockEntity ent) {
-                ent.connectedTo.remove(pos);
-                toUpdateNetworks.add(i);
-                ent.updateBlock();
-            } else if (entity instanceof ShatteredRelayBlockEntity ent) {
-                ent.connectedTo.remove(pos);
-                toUpdateNetworks.add(i);
-                ent.updateBlock();
-            }
+        if (getNetwork() != null) {
+            getNetwork().disconnectFromNetwork(level, pos);
         }
-        for (BlockPos i : toUpdateNetworks) {
-            ShatteredFlowNetwork.updatePaths(level, i, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
-        }
+        getConnectedTo().clear();
     }
     default void onLoad(Level level, BlockPos pos) {
         for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
             if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
                 if (!i.connectedTo.contains(pos)) {
                     i.connectedTo.add(pos);
+                    if (i.path != null) {
+                        i.path.connectToNetwork(level, pos);
+                    }
                     i.updateBlock();
                 }
                 if (!getConnectedTo().contains(i.getBlockPos())) {
@@ -53,6 +48,9 @@ public interface ShatteredFlowConnectable {
             if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
                 if (!i.connectedTo.contains(pos)) {
                     i.connectedTo.add(pos);
+                    if (i.path != null) {
+                        i.path.connectToNetwork(level, pos);
+                    }
                     i.updateBlock();
                 }
                 if (!getConnectedTo().contains(i.getBlockPos())) {
@@ -60,11 +58,37 @@ public interface ShatteredFlowConnectable {
                 }
             }
         }
-        ShatteredFlowNetwork.updatePaths(level, pos, new ShatteredFlowNetwork(new ArrayList<>(), new ArrayList<>()), new ArrayList<>());
         BlockState blockState = level.getBlockState(pos);
         level.sendBlockUpdated(pos, blockState, blockState, 3);
         if (this instanceof BlockEntity ent) {
             ent.setChanged();
+        }
+    }
+    default void addToTag(CompoundTag tag) {
+        ListTag list = new ListTag();
+        for (BlockPos i : getConnectedTo()) {
+            CompoundTag blockpos = new CompoundTag();
+            blockpos.putInt("linkX", i.getX());
+            blockpos.putInt("linkY", i.getY());
+            blockpos.putInt("linkZ", i.getZ());
+            list.add(blockpos);
+        }
+        tag.put("link", list);
+        if (getNetwork() != null) {
+            tag.putUUID("network", getNetwork().uuid);
+        }
+    }
+    default void getFromTag(Level level, CompoundTag tag) {
+        getConnectedTo().clear();
+        if (tag.contains("link")) {
+            ListTag list = (ListTag) tag.get("link");
+            for (Tag i : list) {
+                CompoundTag blockpos = (CompoundTag) i;
+                getConnectedTo().add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
+            }
+        }
+        if (tag.contains("network")) {
+            setNetwork(RunologyUtil.getShatteredFlowNetworkFromUUID(level, tag.getUUID("network")));
         }
     }
     default int tryUseEnergy(Level level, int amount, boolean cancelIfNotEnough) {
@@ -97,6 +121,9 @@ public interface ShatteredFlowConnectable {
         return Math.clamp(remaining, 0, Integer.MAX_VALUE);
     }
     default int hasEnergy(Level level, int amount) {
+        if (getNetwork() == null) {
+            return amount;
+        }
         int remaining = amount;
         for (BlockPos i : getNetwork().starts) {
             if (level.getBlockEntity(i) instanceof ContainsShatteredFlow container) {

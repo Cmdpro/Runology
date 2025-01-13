@@ -1,5 +1,6 @@
 package com.cmdpro.runology.api;
 
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
@@ -7,6 +8,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+
+import java.util.UUID;
 
 public class RunologyUtil {
     public static void activatePowerMode(Player player) {
@@ -21,5 +25,13 @@ public class RunologyUtil {
             player.setData(AttachmentTypeRegistry.PLAYER_POWER_MODE, false);
             ModMessages.sendToPlayersTrackingEntityAndSelf(new PlayerPowerModeSyncS2CPacket(player.getId(), player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)), (ServerPlayer) player);
         }
+    }
+    public static ShatteredFlowNetwork getShatteredFlowNetworkFromUUID(Level level, UUID uuid) {
+        for (ShatteredFlowNetwork i : level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_NETWORKS)) {
+            if (i.uuid.equals(uuid)) {
+                return i;
+            }
+        }
+        return null;
     }
 }
