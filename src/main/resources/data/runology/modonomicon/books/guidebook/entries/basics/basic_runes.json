@@ -15,6 +15,26 @@
       "images": [
         "runology:textures/gui/basic_runes.png"
       ]
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.basics.basic_runes.page2.title",
+      "text": "modonomicon.runology.guidebook.basics.basic_runes.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.basics.basic_runes.page3.title",
+      "text": "modonomicon.runology.guidebook.basics.basic_runes.page3.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.basics.basic_runes.page4.title",
+      "text": "modonomicon.runology.guidebook.basics.basic_runes.page4.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "modonomicon.runology.guidebook.basics.basic_runes.page5.title",
+      "text": "modonomicon.runology.guidebook.basics.basic_runes.page5.text"
     }
   ],
   "parents": [
