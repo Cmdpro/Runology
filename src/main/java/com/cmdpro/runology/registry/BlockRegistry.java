@@ -99,6 +99,9 @@ public class BlockRegistry {
     public static final Supplier<Block> SMALL_SHATTERED_CRYSTAL_BUD = register("small_shattered_crystal_bud",
             () -> new AmethystClusterBlock(3.0f, 4.0f, BlockBehaviour.Properties.ofFullCopy(Blocks.SMALL_AMETHYST_BUD)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHATTERED_BLOCK = register("shattered_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 
     private static <T extends Block> Supplier<T> registerBlock(final String name,

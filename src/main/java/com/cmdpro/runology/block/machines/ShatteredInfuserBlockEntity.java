@@ -2,14 +2,10 @@ package com.cmdpro.runology.block.machines;
 
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
-import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
-import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.recipe.RecipeUtil;
-import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
-import com.cmdpro.runology.registry.AttachmentTypeRegistry;
+import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.cmdpro.runology.registry.RecipeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -90,6 +86,9 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
             decodeUpdateTag(pkt.getTag(), lookupProvider);
         }
     }
+    public int getMaxShatteredFlowUsage() {
+        return 150;
+    }
     public int craftingTime = -1;
     public ResourceLocation currentRecipe;
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
@@ -112,9 +111,9 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                 }
             }
         } else {
-            Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, input);
+            Optional<RecipeHolder<ShatterInfusionRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, Math.clamp(getEnergy(level), 0, getMaxShatteredFlowUsage()), input);
             if (recipe.isPresent()) {
-                if (tryUseEnergy(level, 50) <= 0) {
+                if (tryUseEnergy(level, recipe.get().value().getShatteredFlowCost()) <= 0) {
                     if (!crafting) {
                         crafting = true;
                         updateBlock();

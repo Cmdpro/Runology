@@ -11,18 +11,17 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.Tags;
 
-public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
+public class ShatterInfusionRecipe implements Recipe<RecipeInput> {
     private final ItemStack output;
     private final Ingredient input;
-    private final int tier;
+    private final int shatteredFlow;
 
-    public ShatterImbuementRecipe(ItemStack output,
-                                  Ingredient input, int tier) {
+    public ShatterInfusionRecipe(ItemStack output,
+                                 Ingredient input, int shatteredFlow) {
         this.output = output;
         this.input = input;
-        this.tier = tier;
+        this.shatteredFlow = shatteredFlow;
     }
     @Override
     public NonNullList<Ingredient> getIngredients() {
@@ -45,8 +44,8 @@ public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
         return true;
     }
 
-    public int getTier() {
-        return tier;
+    public int getShatteredFlowCost() {
+        return shatteredFlow;
     }
     @Override
     public ItemStack getResultItem(HolderLookup.Provider pRegistryAccess) {
@@ -60,39 +59,39 @@ public class ShatterImbuementRecipe implements Recipe<RecipeInput> {
 
     @Override
     public RecipeType<?> getType() {
-        return RecipeRegistry.SHATTER_IMBUEMENT_TYPE.get();
+        return RecipeRegistry.SHATTER_INFUSION_TYPE.get();
     }
 
-    public static class Serializer implements RecipeSerializer<ShatterImbuementRecipe> {
-        public static final MapCodec<ShatterImbuementRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+    public static class Serializer implements RecipeSerializer<ShatterInfusionRecipe> {
+        public static final MapCodec<ShatterInfusionRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 ItemStack.CODEC.fieldOf("result").forGetter(r -> r.output),
                 Ingredient.CODEC.fieldOf("input").forGetter(r -> r.input),
-                Codec.INT.optionalFieldOf("tier", 0).forGetter(r -> r.tier)
-        ).apply(instance, ShatterImbuementRecipe::new));
+                Codec.INT.fieldOf("shatteredFlow").forGetter(r -> r.shatteredFlow)
+        ).apply(instance, ShatterInfusionRecipe::new));
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, ShatterImbuementRecipe> STREAM_CODEC = StreamCodec.of(
+        public static final StreamCodec<RegistryFriendlyByteBuf, ShatterInfusionRecipe> STREAM_CODEC = StreamCodec.of(
                 (buf, obj) -> {
                     ItemStack.STREAM_CODEC.encode(buf, obj.output);
                     Ingredient.CONTENTS_STREAM_CODEC.encode(buf, obj.input);
-                    buf.writeInt(obj.tier);
+                    buf.writeInt(obj.shatteredFlow);
                 },
                 (buf) -> {
                     ItemStack output = ItemStack.STREAM_CODEC.decode(buf);
                     Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
-                    int tier = buf.readInt();
-                    return new ShatterImbuementRecipe(output, input, tier);
+                    int shatteredFlow = buf.readInt();
+                    return new ShatterInfusionRecipe(output, input, shatteredFlow);
                 }
         );
 
         public static final Serializer INSTANCE = new Serializer();
 
         @Override
-        public MapCodec<ShatterImbuementRecipe> codec() {
+        public MapCodec<ShatterInfusionRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public StreamCodec<RegistryFriendlyByteBuf, ShatterImbuementRecipe> streamCodec() {
+        public StreamCodec<RegistryFriendlyByteBuf, ShatterInfusionRecipe> streamCodec() {
             return STREAM_CODEC;
         }
     }

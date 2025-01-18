@@ -1,7 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
+import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -14,11 +14,11 @@ import java.util.function.Supplier;
 public class RecipeRegistry {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPES = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, Runology.MODID);
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, Runology.MODID);
-    public static final Supplier<RecipeSerializer<ShatterImbuementRecipe>> SHATTER_IMBUEMENT =
-            registerSerializer("shatter_imbuement", () -> ShatterImbuementRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<ShatterInfusionRecipe>> SHATTER_INFUSION =
+            registerSerializer("shatter_infusion", () -> ShatterInfusionRecipe.Serializer.INSTANCE);
 
-    public static final Supplier<RecipeType<ShatterImbuementRecipe>> SHATTER_IMBUEMENT_TYPE =
-            registerBasicRecipeType("shatter_imbuement");
+    public static final Supplier<RecipeType<ShatterInfusionRecipe>> SHATTER_INFUSION_TYPE =
+            registerBasicRecipeType("shatter_infusion");
     private static <T extends RecipeType<?>> Supplier<T> registerType(final String name, final Supplier<T> recipe) {
         return RECIPE_TYPES.register(name, recipe);
     }

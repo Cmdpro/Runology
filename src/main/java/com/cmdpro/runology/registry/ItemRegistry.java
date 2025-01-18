@@ -24,6 +24,7 @@ public class ItemRegistry {
     public static final Supplier<Item> SHATTER_READER = register("shatter_reader", () -> new ShatterReader(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> SHATTERED_SHARD = register("shattered_shard", () -> new Item(new Item.Properties().fireResistant()));
     public static final Supplier<Item> BLINK_BOOTS = register("blink_boots", () -> new BlinkBoots(new Item.Properties().stacksTo(1).durability(ArmorItem.Type.BOOTS.getDurability(15))));
+    public static final Supplier<Item> SHATTERED_INGOT = register("shattered_ingot", () -> new Item(new Item.Properties()));
 
     public static final Supplier<Item> SHATTERED_FLOW_ICON = register("shattered_flow_icon", () -> new Item(new Item.Properties()));
     private static <T extends Item> Supplier<T> register(final String name, final Supplier<T> item) {

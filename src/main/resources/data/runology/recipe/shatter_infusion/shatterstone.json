@@ -1,0 +1,10 @@
+{
+  "type": "runology:shatter_infusion",
+  "input": {
+    "tag": "c:stones"
+  },
+  "result": {
+    "id": "runology:shatterstone"
+  },
+  "shatteredFlow": 50
+}

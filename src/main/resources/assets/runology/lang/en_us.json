@@ -24,6 +24,7 @@
   "block.runology.medium_shattered_crystal_bud": "Medium Shattered Crystal Bud",
   "block.runology.small_shattered_crystal_bud": "Small Shattered Crystal Bud",
   "block.runology.heat_focus": "Heat Focus",
+  "block.runology.shattered_block": "Shattered Block",
 
   "item.runology.gold_chisel": "Gold Chisel",
   "item.runology.runic_chisel": "Runic Chisel",
@@ -35,6 +36,7 @@
   "item.runology.blink_boots": "Blink Boots",
   "item.runology.blink_boots.tooltip": "Release %1$s to blink forward",
   "item.runology.blink_boots.tooltip_2": "Holding %1$s will show where the target position will be",
+  "item.runology.shattered_ingot": "Shattered Ingot",
 
   "creativemodetab.runology": "Runology",
 
@@ -50,7 +52,7 @@
   "modonomicon.runology.guidebook.basics.guidebook.page0.text": "After imbuing that strange power into a book, I have obtained powerful knowledge. This path may lead me to power! However... I can't help but wonder... What is that voice in my head telling me all of this?",
   "modonomicon.runology.guidebook.basics.shatters.name": "Shatters",
   "modonomicon.runology.guidebook.basics.shatters.page0.title": "Shatters",
-  "modonomicon.runology.guidebook.basics.shatters.page0.text": "These holes in space appear to lead to somewhere else. While I may not be able to cross them, I may be able to extract energy from them. I will call this energy \"Shattered Flow\". If I attempt to drain too much Shattered Flow from one, it may become unstable...",
+  "modonomicon.runology.guidebook.basics.shatters.page0.text": "These holes in space appear to lead to somewhere else. While I may not be able to cross them, I may be able to extract energy from them. I will call this energy \"Shattered Flow\". If I attempt to drain too much Shattered Flow from one, it may become unstable... When unfocused, I can only infuse 20 Shattered Flow into an item, it may be useful to find a better method...",
   "modonomicon.runology.guidebook.basics.basic_runes.name": "Basic Runes",
   "modonomicon.runology.guidebook.basics.basic_runes.page0.title": "Basic Runes",
   "modonomicon.runology.guidebook.basics.basic_runes.page0.text": "There are 4 runes I can utilize to manipulate the world: [#](ff5d00)Heat[#](), [#](00d1ff)Frost[#](), [#](00ff00)Shape[#](), and [#](ffd100)Motion[#](). Utilizing these 4 is powerful but there has to be more...",
@@ -73,7 +75,7 @@
   "modonomicon.runology.guidebook.shards.shattered_flow.page0.text": "That energy I felt nearby a Shatter... It was powerful, yet dangerous and otherworldly. This energy... I will call it \"Shattered Flow\". I will need a method to move it around - Shattered Focuses and Relays will work!",
   "modonomicon.runology.guidebook.shards.shattered_infuser.name": "Shattered Infuser",
   "modonomicon.runology.guidebook.shards.shattered_infuser.page0.title": "Shattered Infuser",
-  "modonomicon.runology.guidebook.shards.shattered_infuser.page0.text": "Now that I am able to move around Shattered Flow, it may be useful to imbue items without having to walk all the way to a Shatter. The Shattered Infuser will allow me to do just this! It requires 50 Shattered Flow to run.",
+  "modonomicon.runology.guidebook.shards.shattered_infuser.page0.text": "Now that I am able to move around Shattered Flow, it may be useful to imbue items without having to walk all the way to a Shatter. The Shattered Infuser will allow me to do just this! It can infuse up to 150 Shattered Flow.",
   "modonomicon.runology.guidebook.basics.shatter_reader.name": "Shatter Reader",
   "modonomicon.runology.guidebook.basics.shatter_reader.page0.title": "Shatter Reader",
   "modonomicon.runology.guidebook.basics.shatter_reader.page0.text": "With how Shatters output a limited quantity of Shattered Flow and have stability to them, it may be useful to create a tool to let me measure this. With this Reader, I can see a Shatter's Stability, Power, and Output.",
@@ -95,6 +97,9 @@
   "modonomicon.runology.guidebook.shards.heat_focus.name": "Heat Focus",
   "modonomicon.runology.guidebook.shards.heat_focus.page0.title": "Heat Focus",
   "modonomicon.runology.guidebook.shards.heat_focus.page0.text": "By mixing the magical properties of blaze powder with a shattered shard along with gold to channel it, I can create a beam of fire capable of smelting batches of anything I throw into it. It will cost 50 Shattered Flow to run.",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.name": "Shattered Ingot",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.title": "Shattered Ingot",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.text": "Gold, while it is a good material, it is not quite as good as it can be. I can make gold channel Shattered Flow better by imbuing it into the gold.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -105,7 +110,8 @@
   "advancements.runology.shattered_shard.title": "Shattered Shard",
   "advancements.runology.shattered_shard.description": "Obtain a Shattered Shard",
 
-  "emi.category.runology.shatter_imbuement": "Shatter Imbuement",
+  "emi.category.runology.shatter_infusion": "Shatter Infusion",
+  "emi.category.runology.shatter_infusion.cost": "%1$s Shattered Flow",
 
   "runology.rune_types.runology.heat": "Heat",
   "runology.rune_types.runology.frost": "Frost",

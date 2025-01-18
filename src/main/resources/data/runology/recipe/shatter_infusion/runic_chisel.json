@@ -1,9 +1,10 @@
 {
-  "type": "runology:shatter_imbuement",
+  "type": "runology:shatter_infusion",
   "input": {
     "item": "runology:gold_chisel"
   },
   "result": {
     "id": "runology:runic_chisel"
-  }
+  },
+  "shatteredFlow": 20
 }

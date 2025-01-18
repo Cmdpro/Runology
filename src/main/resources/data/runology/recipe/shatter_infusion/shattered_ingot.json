@@ -1,0 +1,10 @@
+{
+  "type": "runology:shatter_infusion",
+  "input": {
+    "tag": "c:ingots/gold"
+  },
+  "result": {
+    "id": "runology:shattered_ingot"
+  },
+  "shatteredFlow": 150
+}

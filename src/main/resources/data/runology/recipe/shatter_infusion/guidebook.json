@@ -1,9 +1,10 @@
 {
-  "type": "runology:shatter_imbuement",
+  "type": "runology:shatter_infusion",
   "input": {
     "item": "minecraft:book"
   },
   "result": {
     "id": "runology:guidebook"
-  }
+  },
+  "shatteredFlow": 20
 }

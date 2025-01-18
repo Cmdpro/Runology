@@ -39,13 +39,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get())
                 .add(BlockRegistry.SHATTER_COIL.get())
                 .add(BlockRegistry.SHATTER_COIL_FILLER.get())
-                .add(BlockRegistry.HEAT_FOCUS.get());
+                .add(BlockRegistry.HEAT_FOCUS.get())
+                .add(BlockRegistry.SHATTERED_BLOCK.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_STAIRS.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
+        this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(BlockRegistry.SHATTERED_BLOCK.get());
         this.tag(BlockTags.WALLS)
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
     }
