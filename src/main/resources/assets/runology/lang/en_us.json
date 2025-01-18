@@ -35,6 +35,7 @@
   "item.runology.blink_boots": "Blink Boots",
   "item.runology.blink_boots.tooltip": "Release %1$s to blink forward",
   "item.runology.blink_boots.tooltip_2": "Holding %1$s will show where the target position will be",
+  "item.runology.shattered_ingot": "Shattered Ingot",
 
   "creativemodetab.runology": "Runology",
 
@@ -95,6 +96,9 @@
   "modonomicon.runology.guidebook.shards.heat_focus.name": "Heat Focus",
   "modonomicon.runology.guidebook.shards.heat_focus.page0.title": "Heat Focus",
   "modonomicon.runology.guidebook.shards.heat_focus.page0.text": "By mixing the magical properties of blaze powder with a shattered shard along with gold to channel it, I can create a beam of fire capable of smelting batches of anything I throw into it. It will cost 50 Shattered Flow to run.",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.name": "Shattered Ingot",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.title": "Shattered Ingot",
+  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.text": "Gold, while it is a good material, it is not quite as good as it can be. I can make gold channel Shattered Flow better by imbuing it into the gold.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -105,8 +109,8 @@
   "advancements.runology.shattered_shard.title": "Shattered Shard",
   "advancements.runology.shattered_shard.description": "Obtain a Shattered Shard",
 
-  "emi.category.runology.shatter_imbuement": "Shatter Imbuement",
-  "emi.category.runology.shatter_imbuement.cost": "%1$s Shattered Flow",
+  "emi.category.runology.shatter_infusion": "Shatter Infusion",
+  "emi.category.runology.shatter_infusion.cost": "%1$s Shattered Flow",
 
   "runology.rune_types.runology.heat": "Heat",
   "runology.rune_types.runology.frost": "Frost",

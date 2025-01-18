@@ -2,7 +2,7 @@ package com.cmdpro.runology.integration.emi;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.integration.emi.recipe.EmiShatterImbuementRecipe;
-import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
+import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.RecipeRegistry;
 import dev.emi.emi.api.EmiEntrypoint;
@@ -22,18 +22,18 @@ public class EmiRunologyPlugin implements EmiPlugin {
     public static final EmiStack SHATTER_WORKSTATION = EmiStack.of(BlockRegistry.SHATTER.get());
     public static final EmiStack SHATTERED_INFUSER_WORKSTATION = EmiStack.of(BlockRegistry.SHATTERED_INFUSER.get());
 
-    public static final EmiRecipeCategory SHATTER_IMBUEMENT = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(Runology.MODID,"shatter_imbuement"), SHATTER_WORKSTATION, new EmiTexture(EMI_ICONS, 0, 0, 16, 16));
+    public static final EmiRecipeCategory SHATTER_INFUSION = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(Runology.MODID,"shatter_infusion"), SHATTER_WORKSTATION, new EmiTexture(EMI_ICONS, 0, 0, 16, 16));
 
     @Override
     public void register(EmiRegistry emiRegistry) {
-        emiRegistry.addCategory(SHATTER_IMBUEMENT);
+        emiRegistry.addCategory(SHATTER_INFUSION);
 
-        emiRegistry.addWorkstation(SHATTER_IMBUEMENT, SHATTER_WORKSTATION);
-        emiRegistry.addWorkstation(SHATTER_IMBUEMENT, SHATTERED_INFUSER_WORKSTATION);
+        emiRegistry.addWorkstation(SHATTER_INFUSION, SHATTER_WORKSTATION);
+        emiRegistry.addWorkstation(SHATTER_INFUSION, SHATTERED_INFUSER_WORKSTATION);
 
         RecipeManager manager = emiRegistry.getRecipeManager();
 
-        for (RecipeHolder<ShatterImbuementRecipe> recipe : manager.getAllRecipesFor(RecipeRegistry.SHATTER_IMBUEMENT_TYPE.get())) {
+        for (RecipeHolder<ShatterInfusionRecipe> recipe : manager.getAllRecipesFor(RecipeRegistry.SHATTER_INFUSION_TYPE.get())) {
             emiRegistry.addRecipe(new EmiShatterImbuementRecipe(recipe.id(), recipe.value()));
         }
     }

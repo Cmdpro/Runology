@@ -13,6 +13,10 @@
     {
       "type": "modonomicon:crafting_recipe",
       "recipe_id_1": "runology:crafting/gold_chisel"
+    },
+    {
+      "type": "runology:shatter_infusion_recipe",
+      "recipe_id_1": "runology:shatter_infusion/runic_chisel"
     }
   ],
   "parents": [

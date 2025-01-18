@@ -1,14 +1,13 @@
 package com.cmdpro.runology.integration.emi.recipe;
 
 import com.cmdpro.runology.integration.emi.EmiRunologyPlugin;
-import com.cmdpro.runology.recipe.ShatterImbuementRecipe;
+import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +20,7 @@ public class EmiShatterImbuementRecipe  implements EmiRecipe {
     private final EmiStack output;
     private final int shatteredFlow;
 
-    public EmiShatterImbuementRecipe(ResourceLocation id, ShatterImbuementRecipe recipe) {
+    public EmiShatterImbuementRecipe(ResourceLocation id, ShatterInfusionRecipe recipe) {
         this.id = id;
         this.input = EmiIngredient.of(recipe.getIngredients().get(0));
         this.output = EmiStack.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
@@ -30,7 +29,7 @@ public class EmiShatterImbuementRecipe  implements EmiRecipe {
 
     @Override
     public EmiRecipeCategory getCategory() {
-        return EmiRunologyPlugin.SHATTER_IMBUEMENT;
+        return EmiRunologyPlugin.SHATTER_INFUSION;
     }
 
     @Override
@@ -63,7 +62,7 @@ public class EmiShatterImbuementRecipe  implements EmiRecipe {
         widgets.addTexture(EmiTexture.EMPTY_ARROW, 44, 1);
         widgets.addSlot(input, 22, 0);
         widgets.addSlot(output, 72, 0).recipeContext(this);
-        Component text = Component.translatable("emi.category.runology.shatter_imbuement.cost", shatteredFlow);
+        Component text = Component.translatable("emi.category.runology.shatter_infusion.cost", shatteredFlow);
         widgets.addText(text, 56-(Minecraft.getInstance().font.width(text)/2), 22, 0xFFFFFFFF, true);
     }
 }
