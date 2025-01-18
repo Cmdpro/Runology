@@ -19,10 +19,30 @@ import java.util.UUID;
 public class ShatteredFlowNetwork {
     public static Codec<ShatteredFlowNetwork> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             Codec.STRING.fieldOf("uuid").forGetter((obj) -> obj.uuid.toString()),
-            BlockPos.CODEC.listOf().fieldOf("starts").forGetter((obj) -> obj.starts),
-            BlockPos.CODEC.listOf().fieldOf("midpoints").forGetter((obj) -> obj.midpoints),
-            BlockPos.CODEC.listOf().fieldOf("ends").forGetter((obj) -> obj.ends),
-            BlockPos.CODEC.listOf().fieldOf("nodes").forGetter((obj) -> obj.nodes)
+            BlockPos.CODEC.listOf().fieldOf("starts").xmap((a) -> {
+                if (a instanceof ArrayList<BlockPos> array) {
+                    return array;
+                }
+                return new ArrayList<>(a);
+            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.starts)),
+            BlockPos.CODEC.listOf().fieldOf("midpoints").xmap((a) -> {
+                if (a instanceof ArrayList<BlockPos> array) {
+                    return array;
+                }
+                return new ArrayList<>(a);
+            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.midpoints)),
+            BlockPos.CODEC.listOf().fieldOf("ends").xmap((a) -> {
+                if (a instanceof ArrayList<BlockPos> array) {
+                    return array;
+                }
+                return new ArrayList<>(a);
+            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.ends)),
+            BlockPos.CODEC.listOf().fieldOf("nodes").xmap((a) -> {
+                if (a instanceof ArrayList<BlockPos> array) {
+                    return array;
+                }
+                return new ArrayList<>(a);
+            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.nodes))
     ).apply(instance, (uuid, starts, midpoints, ends, nodes) -> {
         ShatteredFlowNetwork network = new ShatteredFlowNetwork(UUID.fromString(uuid));
         network.starts = starts;

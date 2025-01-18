@@ -1,10 +1,10 @@
 {
   "type": "runology:shatter_imbuement",
   "input": {
-    "item": "minecraft:book"
+    "tag": "c:stones"
   },
   "result": {
-    "id": "runology:guidebook"
+    "id": "runology:shatterstone"
   },
-  "shatteredFlow": 20
+  "shatteredFlow": 50
 }

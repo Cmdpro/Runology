@@ -64,7 +64,7 @@ public class ShatterBlockEntity extends BlockEntity {
                 if (!i.onGround()) {
                     continue;
                 }
-                Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, new SingleRecipeInput(i.getItem()));
+                Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, 20, new SingleRecipeInput(i.getItem()));
                 if (recipe.isPresent()) {
                     Vec3 diff = i.position().add(0, 0.25, 0).subtract(center).multiply(0.2f, 0.2f, 0.2f);
                     pLevel.addParticle(ParticleRegistry.SHATTER.get(), center.x, center.y, center.z, diff.x, diff.y, diff.z);
@@ -77,7 +77,7 @@ public class ShatterBlockEntity extends BlockEntity {
                 if (!i.onGround()) {
                     continue;
                 }
-                Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, new SingleRecipeInput(i.getItem()));
+                Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, 20, new SingleRecipeInput(i.getItem()));
                 if (recipe.isPresent()) {
                     i.setData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER, i.getData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER)+1);
                     if (i.getData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER) >= 100) {

@@ -169,6 +169,18 @@ public interface ShatteredFlowConnectable {
         }
         return Math.max(remaining, 0);
     }
+    default int getEnergy(Level level) {
+        if (getNetwork() == null) {
+            return 0;
+        }
+        int energy = 0;
+        for (BlockPos i : getNetwork().starts) {
+            if (level.getBlockEntity(i) instanceof ContainsShatteredFlow container) {
+                energy += container.getShatteredFlowStorage().amount;
+            }
+        }
+        return energy;
+    }
     default int tryUseEnergy(Level level, int amount) {
         return tryUseEnergy(level, amount, true);
     }

@@ -112,9 +112,9 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                 }
             }
         } else {
-            Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, input);
+            Optional<RecipeHolder<ShatterImbuementRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, Math.clamp(getEnergy(level), 0, 150), input);
             if (recipe.isPresent()) {
-                if (tryUseEnergy(level, 50) <= 0) {
+                if (tryUseEnergy(level, recipe.get().value().getShatteredFlowCost()) <= 0) {
                     if (!crafting) {
                         crafting = true;
                         updateBlock();
