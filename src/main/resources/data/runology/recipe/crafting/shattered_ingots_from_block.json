@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "runology:shattered_block"
+    }
+  ],
+  "result": { "id": "runology:shattered_ingot", "count": 9 }
+}

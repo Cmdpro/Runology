@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "runology:shattered_ingot" }
+  },
+  "result": { "id": "runology:shattered_block", "count": 1 }
+}
