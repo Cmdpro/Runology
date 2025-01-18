@@ -1,5 +1,7 @@
 package com.cmdpro.runology.recipe;
 
+import com.cmdpro.runology.registry.BlockRegistry;
+import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.RecipeRegistry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -29,6 +31,12 @@ public class ShatterInfusionRecipe implements Recipe<RecipeInput> {
         list.add(input);
         return list;
     }
+
+    @Override
+    public ItemStack getToastSymbol() {
+        return new ItemStack(BlockRegistry.SHATTER.get());
+    }
+
     @Override
     public boolean matches(RecipeInput pContainer, Level pLevel) {
         return input.test(pContainer.getItem(0));

@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
-public abstract class ShatterInfusionRecipePageRenderer extends BookRecipePageRenderer<ShatterInfusionRecipe, ShatterInfusionRecipePage> {
+public class ShatterInfusionRecipePageRenderer extends BookRecipePageRenderer<ShatterInfusionRecipe, ShatterInfusionRecipePage> {
     public ShatterInfusionRecipePageRenderer(ShatterInfusionRecipePage page) {
         super(page);
     }

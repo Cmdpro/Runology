@@ -46,8 +46,7 @@ public class ClientSetupEvents {
         PostShaderManager.addShader(playerPowerShader);
         playerPowerShader.setActive(true);
 
-        PageRendererRegistry.registerPageRenderer(ShatterInfusionRecipePage.ID, p -> new ShatterInfusionRecipePageRenderer((ShatterInfusionRecipePage) p) {
-        });
+        PageRendererRegistry.registerPageRenderer(ShatterInfusionRecipePage.ID, p -> new ShatterInfusionRecipePageRenderer((ShatterInfusionRecipePage) p));
     }
     public static final Lazy<KeyMapping> BLINK_MAPPING = Lazy.of(() -> new KeyMapping("key.runology.blink", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, "key.categories.runology.runology"));
 
