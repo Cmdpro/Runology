@@ -38,6 +38,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.SHATTER_COIL.get());
         add(BlockRegistry.SHATTER_COIL_FILLER.get(), (block) -> noDrop());
         dropSelf(BlockRegistry.HEAT_FOCUS.get());
+        dropSelf(BlockRegistry.SHATTERED_BLOCK.get());
     }
     @Override
     protected Iterable<Block> getKnownBlocks() {

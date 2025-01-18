@@ -29,6 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(BlockRegistry.RUNE_MOTION_SHATTERSTONE);
         blockWithItem(BlockRegistry.SHATTERED_CRYSTAL_BLOCK);
         blockWithItem(BlockRegistry.BUDDING_SHATTERED_CRYSTAL);
+        blockWithItem(BlockRegistry.SHATTERED_BLOCK);
 
         shatteredCrystalCluster(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD);
         shatteredCrystalCluster(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD);
