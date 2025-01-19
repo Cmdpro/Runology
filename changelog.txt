@@ -1,2 +1,2 @@
-Fixed the neoforge.mods.toml to include Databank as a dependency
-Fixed a progression issue caused from a recipe change done later on in the mods development
+Made Shatterstone much more common
+Added entry for gold pillar

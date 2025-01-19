@@ -101,6 +101,9 @@
   "modonomicon.runology.guidebook.shards.shattered_ingot.name": "Shattered Ingot",
   "modonomicon.runology.guidebook.shards.shattered_ingot.page0.title": "Shattered Ingot",
   "modonomicon.runology.guidebook.shards.shattered_ingot.page0.text": "Gold, while it is a good material, it is not quite as good as it can be. I can make gold channel Shattered Flow better by imbuing it into the gold.",
+  "modonomicon.runology.guidebook.basics.gold_pillar.name": "Gold Pillar",
+  "modonomicon.runology.guidebook.basics.gold_pillar.page0.title": "Gold Pillar",
+  "modonomicon.runology.guidebook.basics.gold_pillar.page0.text": "Gold can be used to create pillars meant for putting items on. While Gold Pillars will just be decoration for now, they will be useful later.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
