@@ -1,2 +1,3 @@
 Made Shatterstone much more common
-Added entry for gold pillar
+Added entry for Gold Pillar
+Fixed Reality Focus hitbox

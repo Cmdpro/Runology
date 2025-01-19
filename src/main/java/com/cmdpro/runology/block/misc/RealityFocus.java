@@ -20,7 +20,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class RealityFocus extends Block implements EntityBlock {
-    private static final VoxelShape SHAPE =  Block.box(3, 0, 3, 13, 4, 13);
+    private static final VoxelShape SHAPE =  Block.box(2, 0, 2, 14, 8, 14);
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
