@@ -11,6 +11,10 @@
       "text": "modonomicon.runology.guidebook.basics.reality_reshaper.page0.text"
     },
     {
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "runology:crafting/reality_focus"
+    },
+    {
       "type": "modonomicon:multiblock",
       "multiblock_id": "runology:reality_reshaper"
     }

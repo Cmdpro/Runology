@@ -49,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.SHATTERED_INFUSER);
         evenSimplerBlockItem(BlockRegistry.SHATTER_COIL);
         evenSimplerBlockItem(BlockRegistry.HEAT_FOCUS);
+        evenSimplerBlockItem(BlockRegistry.REALITY_FOCUS);
         simpleItem(ItemRegistry.SHATTERED_FLOW_ICON);
         simpleItem(ItemRegistry.SHATTER_READER);
         evenSimplerBlockItem(BlockRegistry.SHATTERSTONE_BRICK_STAIRS);

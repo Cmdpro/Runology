@@ -104,6 +104,7 @@ public class Runology
             event.accept(BlockRegistry.HEAT_FOCUS.get());
             event.accept(ItemRegistry.SHATTERED_INGOT.get());
             event.accept(BlockRegistry.SHATTERED_BLOCK.get());
+            event.accept(BlockRegistry.REALITY_FOCUS.get());
         }
     }
 }

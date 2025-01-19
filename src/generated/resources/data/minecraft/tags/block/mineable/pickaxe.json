@@ -21,6 +21,7 @@
     "runology:shatter_coil",
     "runology:shatter_coil_filler",
     "runology:heat_focus",
-    "runology:shattered_block"
+    "runology:shattered_block",
+    "runology:reality_focus"
   ]
 }

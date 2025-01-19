@@ -7,6 +7,7 @@ import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockItem;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilFiller;
 import com.cmdpro.runology.block.machines.ShatteredInfuser;
 import com.cmdpro.runology.block.misc.GoldPillar;
+import com.cmdpro.runology.block.misc.RealityFocus;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
 import com.cmdpro.runology.block.transmission.ShatteredRelay;
 import com.cmdpro.runology.block.world.BuddingShatteredCrystal;
@@ -52,6 +53,9 @@ public class BlockRegistry {
             () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
     public static final Supplier<Block> HEAT_FOCUS = register("heat_focus",
             () -> new HeatFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> REALITY_FOCUS = register("reality_focus",
+            () -> new RealityFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
