@@ -1,3 +1,4 @@
 Made Shatterstone much more common
 Added entry for Gold Pillar
 Fixed Reality Focus hitbox
+Shattered Block resprite
