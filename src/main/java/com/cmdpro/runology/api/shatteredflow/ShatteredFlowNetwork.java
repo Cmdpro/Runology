@@ -85,7 +85,7 @@ public class ShatteredFlowNetwork {
         for (BlockPos i : nodes) {
             ChunkPos chunkPos = new ChunkPos(i);
             if (level.hasChunk(chunkPos.x, chunkPos.z)) {
-                level.playSound(null, i, SoundEvents.ALLAY_HURT, SoundSource.BLOCKS);
+                level.playSound(null, i, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS);
                 for (Player j : level.players()) {
                     if (j.position().distanceTo(i.getCenter()) <= 30) {
                         CriteriaTriggerRegistry.NEARBY_SURGE.get().trigger((ServerPlayer)j);
@@ -98,7 +98,7 @@ public class ShatteredFlowNetwork {
         for (BlockPos i : nodes) {
             ChunkPos chunkPos = new ChunkPos(i);
             if (level.hasChunk(chunkPos.x, chunkPos.z)) {
-                level.playSound(null, i, SoundEvents.ALLAY_AMBIENT_WITH_ITEM, SoundSource.BLOCKS);
+                level.playSound(null, i, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS);
             }
         }
     }

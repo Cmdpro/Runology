@@ -1,9 +1,1 @@
-Made Shatterstone much more common
-Added entry for Gold Pillar
-Fixed Reality Focus hitbox
-Shattered Block resprite
-Added Power Focus & Greater Power Focus
-Fixed a potential issue with Shatter Infusion recipes
-Added Power Surges
-Made instability actually cause issues
-Added Shatter Upgrades
+Changed sounds for power surges
