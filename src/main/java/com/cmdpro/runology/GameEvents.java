@@ -1,6 +1,8 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.commands.RunologyCommands;
+import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.RuneTypeSyncS2CPacket;
@@ -8,29 +10,19 @@ import com.cmdpro.runology.networking.packet.StartFalseDeathS2CPacket;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.cmdpro.runology.rune.RuneChiselingResultManager;
-import com.cmdpro.runology.rune.RuneTypeManager;
+import com.cmdpro.runology.data.runechiseling.RuneChiselingResultManager;
+import com.cmdpro.runology.data.runetypes.RuneTypeManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -38,12 +30,12 @@ import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.ArrayList;
@@ -61,6 +53,7 @@ public class GameEvents {
     public static void addReloadListenerEvent(AddReloadListenerEvent event) {
         event.addListener(RuneTypeManager.getOrCreateInstance());
         event.addListener(RuneChiselingResultManager.getOrCreateInstance());
+        event.addListener(ShatterUpgradeManager.getOrCreateInstance());
     }
     @SubscribeEvent
     public static void onDatapackSync(OnDatapackSyncEvent event) {
@@ -194,6 +187,14 @@ public class GameEvents {
                     player.setData(AttachmentTypeRegistry.PLAYER_POWER_INVINCIBILITY, 80);
                     ModMessages.sendToPlayer(new StartFalseDeathS2CPacket(event.getSource().getLocalizedDeathMessage(player), player.level().getLevelData().isHardcore()), (ServerPlayer)player);
                 }
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void onLevelTick(LevelTickEvent.Pre event) {
+        if (!event.getLevel().isClientSide) {
+            for (ShatteredFlowNetwork i : event.getLevel().getData(AttachmentTypeRegistry.SHATTERED_FLOW_NETWORKS)) {
+                i.tick(event.getLevel());
             }
         }
     }

@@ -44,7 +44,7 @@ public class ShatterInfusionRecipe implements Recipe<RecipeInput> {
 
     @Override
     public ItemStack assemble(RecipeInput pContainer, HolderLookup.Provider pRegistryAccess) {
-        return output;
+        return output.copy();
     }
 
     @Override

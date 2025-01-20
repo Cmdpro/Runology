@@ -104,6 +104,12 @@
   "modonomicon.runology.guidebook.basics.gold_pillar.name": "Gold Pillar",
   "modonomicon.runology.guidebook.basics.gold_pillar.page0.title": "Gold Pillar",
   "modonomicon.runology.guidebook.basics.gold_pillar.page0.text": "Gold can be used to create pillars meant for putting items on. While Gold Pillars will just be decoration for now, they will be useful later.",
+  "modonomicon.runology.guidebook.shards.power_focus.name": "Power Focus",
+  "modonomicon.runology.guidebook.shards.power_focus.page0.title": "Power Focus",
+  "modonomicon.runology.guidebook.shards.power_focus.page0.text": "Now that I have a material better than gold for harnessing Shattered Flow, I can create a structure to extract more power from a shatter!",
+  "modonomicon.runology.guidebook.shards.greater_power_focus.name": "Greater Power Focus",
+  "modonomicon.runology.guidebook.shards.greater_power_focus.page0.title": "Greater Power Focus",
+  "modonomicon.runology.guidebook.shards.greater_power_focus.page0.text": "While the Power Focus is good, it can be better. With the Greater Power Focus, I can extract even more power. I feel like it is rather inefficient but I don't know what will go wrong.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",
@@ -113,6 +119,8 @@
   "advancements.runology.shatterstone.description": "Obtain Shatterstone",
   "advancements.runology.shattered_shard.title": "Shattered Shard",
   "advancements.runology.shattered_shard.description": "Obtain a Shattered Shard",
+  "advancements.runology.surge.title": "Power Surge",
+  "advancements.runology.surge.description": "Experience a power surge across your Shattered Flow network",
 
   "emi.category.runology.shatter_infusion": "Shatter Infusion",
   "emi.category.runology.shatter_infusion.cost": "%1$s Shattered Flow",

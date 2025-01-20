@@ -1,4 +1,4 @@
-package com.cmdpro.runology.rune;
+package com.cmdpro.runology.data.runechiseling;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;

@@ -4,9 +4,15 @@ import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
+import com.cmdpro.runology.registry.CriteriaTriggerRegistry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,13 +48,15 @@ public class ShatteredFlowNetwork {
                     return array;
                 }
                 return new ArrayList<>(a);
-            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.nodes))
-    ).apply(instance, (uuid, starts, midpoints, ends, nodes) -> {
+            }, (a) -> (List<BlockPos>)a).forGetter((obj) -> new ArrayList<>(obj.nodes)),
+            Codec.INT.fieldOf("surgeTime").forGetter((obj) -> obj.surgeTime)
+    ).apply(instance, (uuid, starts, midpoints, ends, nodes, surgeTime) -> {
         ShatteredFlowNetwork network = new ShatteredFlowNetwork(UUID.fromString(uuid));
         network.starts = starts;
         network.midpoints = midpoints;
         network.ends = ends;
         network.nodes = nodes;
+        network.surgeTime = surgeTime;
         return network;
     }));
     public ShatteredFlowNetwork() {
@@ -62,12 +70,43 @@ public class ShatteredFlowNetwork {
     public List<BlockPos> midpoints = new ArrayList<>();
     public List<BlockPos> ends = new ArrayList<>();
     public List<BlockPos> nodes = new ArrayList<>();
+    public int surgeTime;
     public void connectToNetwork(Level level, BlockPos pos) {
         List<Map.Entry<BlockPos, ShatteredFlowNetwork>> toDisconnect = new ArrayList<>();
         connectToNetwork(level, pos, toDisconnect);
         for (Map.Entry<BlockPos, ShatteredFlowNetwork> i : toDisconnect) {
             if (level.getBlockEntity(i.getKey()) instanceof ShatteredRelayBlockEntity || level.getBlockEntity(i.getKey()) instanceof ShatteredFlowConnectable || level.getBlockEntity(i.getKey()) instanceof ShatteredFocusBlockEntity) {
                 i.getValue().disconnectFromNetwork(level, pos);
+            }
+        }
+    }
+    public void startSurge(Level level, int time) {
+        surgeTime = time;
+        for (BlockPos i : nodes) {
+            ChunkPos chunkPos = new ChunkPos(i);
+            if (level.hasChunk(chunkPos.x, chunkPos.z)) {
+                level.playSound(null, i, SoundEvents.ALLAY_HURT, SoundSource.BLOCKS);
+                for (Player j : level.players()) {
+                    if (j.position().distanceTo(i.getCenter()) <= 30) {
+                        CriteriaTriggerRegistry.NEARBY_SURGE.get().trigger((ServerPlayer)j);
+                    }
+                }
+            }
+        }
+    }
+    public void onSurgeEnd(Level level) {
+        for (BlockPos i : nodes) {
+            ChunkPos chunkPos = new ChunkPos(i);
+            if (level.hasChunk(chunkPos.x, chunkPos.z)) {
+                level.playSound(null, i, SoundEvents.ALLAY_AMBIENT_WITH_ITEM, SoundSource.BLOCKS);
+            }
+        }
+    }
+    public void tick(Level level) {
+        if (surgeTime > 0) {
+            surgeTime--;
+            if (surgeTime <= 0) {
+                onSurgeEnd(level);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.cmdpro.runology.rune;
+package com.cmdpro.runology.data.runechiseling;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;

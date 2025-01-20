@@ -2,9 +2,9 @@ package com.cmdpro.runology.networking.packet;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.networking.Message;
-import com.cmdpro.runology.rune.RuneType;
-import com.cmdpro.runology.rune.RuneTypeManager;
-import com.cmdpro.runology.rune.RuneTypeSerializer;
+import com.cmdpro.runology.data.runetypes.RuneType;
+import com.cmdpro.runology.data.runetypes.RuneTypeManager;
+import com.cmdpro.runology.data.runetypes.RuneTypeSerializer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;

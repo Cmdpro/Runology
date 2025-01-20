@@ -124,7 +124,7 @@ public class ShatteredInfuserBlockEntity extends BlockEntity implements Shattere
                     currentRecipe = recipe.get().id();
                     craftingTime++;
                     if (craftingTime >= 50) {
-                        ItemStack book = recipe.get().value().getResultItem(level.registryAccess());
+                        ItemStack book = recipe.get().value().assemble(input, level.registryAccess());
                         ItemEntity item = new ItemEntity(pLevel, getBlockPos().getCenter().x, getBlockPos().getCenter().y, getBlockPos().getCenter().z, book);
                         pLevel.addFreshEntity(item);
                         ItemStack newStack = itemHandler.getStackInSlot(0).copy();

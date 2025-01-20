@@ -1,4 +1,4 @@
-package com.cmdpro.runology.rune;
+package com.cmdpro.runology.data.runetypes;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

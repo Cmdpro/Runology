@@ -130,7 +130,9 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                 if (!level.getForcedChunks().contains(chunk.getPos().toLong())) {
                     ChunkloadingEventHandler.shatterController.forceChunk(level, getBlockPos(), chunk.getPos().x, chunk.getPos().z, true, true);
                 }
+                if (path.surgeTime <= 0) {
                 storage.addShatteredFlow(shatter.getOutputShatteredFlow());
+                }
             }
         } else {
             if (!pLevel.isClientSide) {
@@ -139,6 +141,11 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             }
         }
         if (!pLevel.isClientSide) {
+            if (path.surgeTime > 0) {
+                if (storage.amount > 0) {
+                    storage.removeShatteredFlow(storage.amount);
+                }
+            }
             boolean powered = false;
             if (path != null) {
                 for (BlockPos i : path.starts) {

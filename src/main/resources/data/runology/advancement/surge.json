@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "runology:shattered_block"
+    },
+    "title": {
+      "translate": "advancements.runology.surge.title"
+    },
+    "description": {
+      "translate": "advancements.runology.surge.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "runology:shattered_shard",
+  "criteria": {
+    "requirement": {
+      "trigger": "runology:nearby_surge"
+    }
+  }
+}

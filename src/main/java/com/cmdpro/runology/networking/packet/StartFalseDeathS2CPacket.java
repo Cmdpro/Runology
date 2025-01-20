@@ -2,20 +2,13 @@ package com.cmdpro.runology.networking.packet;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.networking.Message;
-import com.cmdpro.runology.rune.RuneType;
-import com.cmdpro.runology.rune.RuneTypeManager;
-import com.cmdpro.runology.rune.RuneTypeSerializer;
 import com.cmdpro.runology.screen.FalseDeathScreen;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-
-import java.util.Map;
 
 public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implements Message {
     public static StartFalseDeathS2CPacket read(RegistryFriendlyByteBuf buf) {

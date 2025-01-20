@@ -1,12 +1,11 @@
 package com.cmdpro.runology.item;
 
 import com.cmdpro.runology.registry.DataComponentRegistry;
-import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.cmdpro.runology.rune.RuneChiselingResult;
-import com.cmdpro.runology.rune.RuneChiselingResultManager;
-import com.cmdpro.runology.rune.RuneType;
-import com.cmdpro.runology.rune.RuneTypeManager;
+import com.cmdpro.runology.data.runechiseling.RuneChiselingResult;
+import com.cmdpro.runology.data.runechiseling.RuneChiselingResultManager;
+import com.cmdpro.runology.data.runetypes.RuneType;
+import com.cmdpro.runology.data.runetypes.RuneTypeManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;

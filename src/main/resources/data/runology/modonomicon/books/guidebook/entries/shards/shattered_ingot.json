@@ -12,7 +12,8 @@
     },
     {
       "type": "runology:shatter_infusion_recipe",
-      "recipe_id_1": "runology:shatter_infusion/shattered_ingot"
+      "recipe_id_1": "runology:shatter_infusion/shattered_ingot",
+      "recipe_id_2": "runology:crafting/shattered_block"
     }
   ],
   "parents": [

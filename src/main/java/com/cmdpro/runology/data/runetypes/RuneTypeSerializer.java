@@ -1,4 +1,4 @@
-package com.cmdpro.runology.rune;
+package com.cmdpro.runology.data.runetypes;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
@@ -10,9 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ColorRGBA;
-import net.minecraft.util.ExtraCodecs;
-import net.minecraft.world.item.ItemStack;
 
 import java.awt.*;
 import java.util.Optional;
