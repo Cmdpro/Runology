@@ -1,0 +1,10 @@
+{
+  "type": "runology:shatter_infusion",
+  "input": {
+    "item": "minecraft:gold_block"
+  },
+  "result": {
+    "id": "runology:shattered_block"
+  },
+  "shatteredFlow": 150
+}
