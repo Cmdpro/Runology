@@ -25,6 +25,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SHATTERSTONE_BRICK_SLAB.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get())
                 .add(BlockRegistry.SHATTERED_FOCUS.get())
+                .add(BlockRegistry.SHATTERED_RELAY.get())
                 .add(BlockRegistry.RUNE_HEAT_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_SHAPE_SHATTERSTONE.get())
                 .add(BlockRegistry.RUNE_FROST_SHATTERSTONE.get())

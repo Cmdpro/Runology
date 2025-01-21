@@ -1,2 +1,3 @@
 Changed sounds for power surges
 Fixed a guidebook entry
+Fixed a bug where Shattered Relays would not drop
