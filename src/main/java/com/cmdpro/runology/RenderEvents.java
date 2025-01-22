@@ -7,18 +7,20 @@ import com.cmdpro.runology.shaders.RunologyRenderTypes;
 import com.mojang.blaze3d.pipeline.MainTarget;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.ByteBufferBuilder;
+import com.mojang.blaze3d.vertex.*;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
+import net.caffeinemc.mods.sodium.client.render.immediate.CloudRenderer;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,14 +28,18 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.SequencedMap;
 
 @EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MODID)
 public class RenderEvents {
+    public static float fogEnd;
     @SubscribeEvent
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_PARTICLES)) {
+            fogEnd = RenderSystem.getShaderFogEnd();
         }
         if (ShaderHelper.shouldUseAlternateRendering()) {
             if (event.getStage().equals(RenderLevelStageEvent.Stage.AFTER_LEVEL)) {
@@ -54,18 +60,42 @@ public class RenderEvents {
     private static void doEffectRendering(RenderLevelStageEvent event) {
         RenderSystem.depthMask(true);
         createShatterInsideBufferSource().endBatch();
+        getShatteredSkyBgTarget().clear(Minecraft.ON_OSX);
         getShatterTarget().clear(Minecraft.ON_OSX);
         getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
         getPlayerPowerTarget().clear(Minecraft.ON_OSX);
         getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
+        getShatteredSkyTarget().clear(Minecraft.ON_OSX);
+        getShatteredSkyTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
         getShatterTarget().bindWrite(false);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
         getPlayerPowerTarget().bindWrite(false);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
+        getShatteredSkyTarget().bindWrite(false);
+        createShatteredSkyBufferSource().endBatch(RunologyRenderTypes.SHATTER);
+        createShatteredSkyBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
+        getShatteredSkyBgTarget().bindWrite(false);
+        // TODO : effects
         Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
         RenderSystem.depthMask(false);
+    }
+    private static RenderTarget shatteredSkyBgTarget;
+    public static RenderTarget getShatteredSkyBgTarget() {
+        if (shatteredSkyBgTarget == null) {
+            shatteredSkyBgTarget = new MainTarget(Minecraft.getInstance().getMainRenderTarget().width, Minecraft.getInstance().getMainRenderTarget().height);
+            shatteredSkyBgTarget.setClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        }
+        return shatteredSkyBgTarget;
+    }
+    private static RenderTarget shatteredSkyTarget;
+    public static RenderTarget getShatteredSkyTarget() {
+        if (shatteredSkyTarget == null) {
+            shatteredSkyTarget = new MainTarget(Minecraft.getInstance().getMainRenderTarget().width, Minecraft.getInstance().getMainRenderTarget().height);
+            shatteredSkyTarget.setClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+        return shatteredSkyTarget;
     }
     private static RenderTarget shatterTarget;
     public static RenderTarget getShatterTarget() {
@@ -82,6 +112,16 @@ public class RenderEvents {
             playerPowerTarget.setClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         }
         return playerPowerTarget;
+    }
+    static MultiBufferSource.BufferSource shatteredSkyBufferSource = null;
+    public static MultiBufferSource.BufferSource createShatteredSkyBufferSource() {
+        if (shatteredSkyBufferSource == null) {
+            SequencedMap<RenderType, ByteBufferBuilder> buffers = new Object2ObjectLinkedOpenHashMap<>();
+            buffers.put(RunologyRenderTypes.SHATTER, new ByteBufferBuilder(RunologyRenderTypes.SHATTER.bufferSize));
+            buffers.put(RunologyRenderTypes.SHATTER_PARTICLE, new ByteBufferBuilder(RunologyRenderTypes.SHATTER_PARTICLE.bufferSize));
+            shatteredSkyBufferSource = MultiBufferSource.immediateWithBuffers(buffers, new ByteBufferBuilder(256));
+        }
+        return shatteredSkyBufferSource;
     }
     static MultiBufferSource.BufferSource shatterOutlineBufferSource = null;
     public static MultiBufferSource.BufferSource createShatterOutlineBufferSource() {
