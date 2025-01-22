@@ -15,7 +15,6 @@ import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.renderers.block.*;
 import com.cmdpro.runology.shaders.PlayerPowerShader;
 import com.cmdpro.runology.shaders.ShatterShader;
-import com.cmdpro.runology.shaders.ShatteredSkyShader;
 import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.mojang.blaze3d.platform.InputConstants;
@@ -40,9 +39,6 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event)
     {
-        shatteredSkyShader = new ShatteredSkyShader();
-        PostShaderManager.addShader(shatteredSkyShader);
-        shatteredSkyShader.setActive(true);
         shatterShader = new ShatterShader();
         PostShaderManager.addShader(shatterShader);
         shatterShader.setActive(true);
@@ -58,7 +54,6 @@ public class ClientSetupEvents {
     public static void registerBindings(RegisterKeyMappingsEvent event) {
         event.register(BLINK_MAPPING.get());
     }
-    public static PostShaderInstance shatteredSkyShader;
     public static PostShaderInstance shatterShader;
     public static PostShaderInstance playerPowerShader;
     @SubscribeEvent
