@@ -110,6 +110,9 @@
   "modonomicon.runology.guidebook.shards.greater_power_focus.name": "Greater Power Focus",
   "modonomicon.runology.guidebook.shards.greater_power_focus.page0.title": "Greater Power Focus",
   "modonomicon.runology.guidebook.shards.greater_power_focus.page0.text": "While the Power Focus is good, it can be better. With the Greater Power Focus, I can extract even more power. I feel like it is rather inefficient but I don't know what will go wrong.",
+  "modonomicon.runology.guidebook.shards.weak_stabilizer.name": "Weak Stabilizer",
+  "modonomicon.runology.guidebook.shards.weak_stabilizer.page0.title": "Weak Stabilizer",
+  "modonomicon.runology.guidebook.shards.weak_stabilizer.page0.text": "It appears I have attempted to extract too much power from a shatter leading to a Power Surge, I will need a structure to stabilize the shatter.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

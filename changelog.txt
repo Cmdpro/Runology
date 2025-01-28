@@ -1,4 +1,1 @@
-Added Shattered Block Shattered Infusion recipe
-Made Shatter Zaps not deal knockback
-Fixed a small issue in a guidebook entry
-Cleaned up code in the ShatteredFlowNetwork class
+Added the Weak Stabilizer

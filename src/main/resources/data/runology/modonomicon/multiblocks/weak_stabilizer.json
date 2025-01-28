@@ -1,0 +1,49 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "_____g_____",
+      "___a___a___",
+      "___________",
+      "_a_______a_",
+      "___________",
+      "g____0____g",
+      "___________",
+      "_a_______a_",
+      "___________",
+      "___a___a___",
+      "_____g_____"
+    ],
+    [
+      "_____S_____",
+      "___S___S___",
+      "___________",
+      "_S_______S_",
+      "___________",
+      "S_________S",
+      "___________",
+      "_S_______S_",
+      "___________",
+      "___S___S___",
+      "_____S_____"
+    ]
+  ],
+  "mapping": {
+    "g": {
+      "type": "modonomicon:block",
+      "block": "minecraft:gold_block"
+    },
+    "a": {
+      "type": "modonomicon:block",
+      "block": "minecraft:amethyst_block"
+    },
+    "S": {
+      "type": "modonomicon:block",
+      "block": "runology:shatterstone"
+    },
+    "0": {
+      "type": "modonomicon:block",
+      "block": "runology:shatter"
+    }
+  }
+}
