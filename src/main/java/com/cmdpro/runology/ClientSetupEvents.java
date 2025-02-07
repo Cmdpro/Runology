@@ -13,6 +13,7 @@ import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.renderers.block.*;
+import com.cmdpro.runology.shaders.PlayerPowerModeShader;
 import com.cmdpro.runology.shaders.PlayerPowerShader;
 import com.cmdpro.runology.shaders.ShatterShader;
 import com.klikli_dev.modonomicon.api.ModonomiconAPI;
@@ -45,6 +46,9 @@ public class ClientSetupEvents {
         playerPowerShader = new PlayerPowerShader();
         PostShaderManager.addShader(playerPowerShader);
         playerPowerShader.setActive(true);
+        playerPowerModeShader = new PlayerPowerModeShader();
+        PostShaderManager.addShader(playerPowerModeShader);
+        playerPowerModeShader.setActive(true);
 
         PageRendererRegistry.registerPageRenderer(ShatterInfusionRecipePage.ID, p -> new ShatterInfusionRecipePageRenderer((ShatterInfusionRecipePage) p));
     }
@@ -56,6 +60,7 @@ public class ClientSetupEvents {
     }
     public static PostShaderInstance shatterShader;
     public static PostShaderInstance playerPowerShader;
+    public static PostShaderInstance playerPowerModeShader;
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.SHATTER.get(),
@@ -74,23 +79,6 @@ public class ClientSetupEvents {
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_FOCUS.get(), ShatteredFocusRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.GOLD_PILLAR.get(), GoldPillarRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.SHATTERED_INFUSER.get(), ShatteredInfuserRenderer::new);
-    }
-    @SubscribeEvent
-    public static void registerGuiLayers(RegisterGuiLayersEvent event) {
-        event.registerAbove(ResourceLocation.withDefaultNamespace("camera_overlays"), Runology.locate("player_power_overlay"), (guiGraphics, deltaTracker) -> {
-            if (Minecraft.getInstance().player.getData(AttachmentTypeRegistry.PLAYER_POWER_MODE)) {
-                float time = (Minecraft.getInstance().level.getGameTime()+deltaTracker.getGameTimeDeltaPartialTick(true));
-                RenderSystem.disableDepthTest();
-                RenderSystem.depthMask(false);
-                RenderSystem.enableBlend();
-                guiGraphics.setColor(1.0F, 1.0F, 1.0F, Math.clamp(0.8f+((float)Math.sin(Math.toRadians(time*5))*0.1f), 0f, 1f));
-                guiGraphics.blit(Runology.locate("textures/gui/player_power_overlay.png"), 0, 0, -90, 0.0F, 0.0F, guiGraphics.guiWidth(), guiGraphics.guiHeight(), guiGraphics.guiWidth(), guiGraphics.guiHeight());
-                RenderSystem.disableBlend();
-                RenderSystem.depthMask(true);
-                RenderSystem.enableDepthTest();
-                guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-            }
-        });
     }
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {

@@ -1,0 +1,21 @@
+{
+  "targets": [
+    "final"
+  ],
+  "passes": [
+    {
+      "name": "runology:player_power_mode",
+      "intarget": "minecraft:main",
+      "outtarget": "final",
+      "uniforms": [
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "final",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}
+
+
