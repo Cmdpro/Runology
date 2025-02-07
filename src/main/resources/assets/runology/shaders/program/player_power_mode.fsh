@@ -25,7 +25,7 @@ bool pointInTriangle(vec2 s, vec2 a, vec2 b, vec2 c)
 }
 
 vec4 getColorForPos(vec3 color, vec3 outlineColor) {
-    vec2 change = vec2(0.002, 0.002);
+    vec2 change = normalize(oneTexel)*0.002;
     vec2 offsets[8] = vec2[](
     vec2(-change.x, change.y),
     vec2(0, change.y),
