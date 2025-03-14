@@ -1,8 +1,7 @@
-// 1.21.1	2025-01-18T20:29:27.1874902	Item Models: runology
+// 1.21.1	2025-03-14T16:43:42.9000952	Item Models: runology
 88ef814429d5bf31ec57219502ee9cabacf33f5b assets/runology/models/item/blink_boots.json
 b023d12fe3881921e365f367d7526735b5c42e11 assets/runology/models/item/gold_chisel.json
 8fadb551d5e100f7c6765d239bfa13cd0fcc46d0 assets/runology/models/item/gold_pillar.json
-640c5f364bec4fe5f2b4f76b47fb33836598ee4c assets/runology/models/item/guidebook.json
 8503b23879d16448a10bf03b8fb80fe9a2b1ddb3 assets/runology/models/item/heat_focus.json
 eebd3e3f4df3958a337ce2b894c16c59352eb34c assets/runology/models/item/reality_focus.json
 08a7abf874f07ce2ee9903ac771a4f8ec9fbff1d assets/runology/models/item/runic_chisel.json

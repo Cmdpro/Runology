@@ -39,7 +39,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ItemRegistry.GUIDEBOOK);
         flatBlockItemWithTexture(BlockRegistry.SHATTER, Runology.locate("item/shatter"));
         simpleItem(ItemRegistry.GOLD_CHISEL);
         simpleItem(ItemRegistry.RUNIC_CHISEL);
