@@ -38,6 +38,11 @@
   "item.runology.blink_boots.tooltip": "Release %1$s to blink forward",
   "item.runology.blink_boots.tooltip_2": "Holding %1$s will show where the target position will be",
   "item.runology.shattered_ingot": "Shattered Ingot",
+  "item.runology.guidebook": "Runic Codex",
+
+  "entity.runology.shatter_zap": "Shatter Zap",
+  "entity.runology.runic_codex": "Runic Codex",
+  "entity.runology.runic_codex_entry": "Runic Codex Entry",
 
   "creativemodetab.runology": "Runology",
 

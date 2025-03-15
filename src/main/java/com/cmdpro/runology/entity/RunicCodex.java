@@ -26,7 +26,7 @@ public class RunicCodex extends Entity {
         super(entityType, level);
     }
     public RunicCodex(Level level) {
-        super(EntityRegistry.RUNIC_CODEX.get(), level);
+        this(EntityRegistry.RUNIC_CODEX.get(), level);
     }
     @Override
     public boolean isPickable() {
@@ -58,17 +58,20 @@ public class RunicCodex extends Entity {
                 }
                 entryEntities.clear();
             } else if (entryEntities.isEmpty()) {
-                createEntryEntity(position().add(0, 2, 0));
-                createEntryEntity(position().add(0, 4, 0));
-                createEntryEntity(position().add(2, 3, 1));
-                createEntryEntity(position().add(-4, 3, -1));
+                var ent1 = createEntryEntity(position().add(0, 2, 0), new ArrayList<>());
+                var ent2 = createEntryEntity(position().add(1, 4, 0), new ArrayList<>() { { add(ent1); } });
+                var ent3 = createEntryEntity(position().add(2, 3, 1), new ArrayList<>() { { add(ent1); } });
+                var ent4 = createEntryEntity(position().add(-1, 3, -2), new ArrayList<>() { { add(ent1); } });
+                var ent5 = createEntryEntity(position().add(-4, 3, -1), new ArrayList<>() { { add(ent2); add(ent4); } });
             }
         }
     }
-    public RunicCodexEntry createEntryEntity(Vec3 position) {
+    public RunicCodexEntry createEntryEntity(Vec3 position, List<RunicCodexEntry> parentEntities) {
         RunicCodexEntry entity = new RunicCodexEntry(level());
         entity.setPos(position);
         entity.codex = this;
+        entity.parentEntities = parentEntities;
+        entity.entryDataDirty = true;
         entryEntities.add(entity);
         level().addFreshEntity(entity);
         return entity;

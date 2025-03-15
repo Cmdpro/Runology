@@ -23,9 +23,9 @@ import java.util.function.Supplier;
 @EventBusSubscriber(value = Dist.CLIENT, modid = Runology.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class EntityRegistry {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Runology.MODID);
-    public static final Supplier<EntityType<ShatterZap>> SHATTER_ZAP = register("shatter_zap", () -> EntityType.Builder.of((EntityType.EntityFactory<ShatterZap>) ShatterZap::new, MobCategory.MISC).sized(0f, 0f).build(Runology.MODID + ":" + "shatter_zap"));
-    public static final Supplier<EntityType<RunicCodex>> RUNIC_CODEX = register("runic_codex", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodex>) RunicCodex::new, MobCategory.MISC).sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex"));
-    public static final Supplier<EntityType<RunicCodexEntry>> RUNIC_CODEX_ENTRY = register("runic_codex_entry", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodexEntry>) RunicCodexEntry::new, MobCategory.MISC).sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex_entry"));
+    public static final Supplier<EntityType<ShatterZap>> SHATTER_ZAP = register("shatter_zap", () -> EntityType.Builder.of((EntityType.EntityFactory<ShatterZap>) ShatterZap::new, MobCategory.MISC).noSave().noSummon().sized(0f, 0f).build(Runology.MODID + ":" + "shatter_zap"));
+    public static final Supplier<EntityType<RunicCodex>> RUNIC_CODEX = register("runic_codex", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodex>) RunicCodex::new, MobCategory.MISC).noSummon().sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex"));
+    public static final Supplier<EntityType<RunicCodexEntry>> RUNIC_CODEX_ENTRY = register("runic_codex_entry", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodexEntry>) RunicCodexEntry::new, MobCategory.MISC).noSave().noSummon().sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex_entry"));
     private static <T extends EntityType<?>> Supplier<T> register(final String name, final Supplier<T> entity) {
         return ENTITY_TYPES.register(name, entity);
     }
