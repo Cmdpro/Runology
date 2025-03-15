@@ -66,15 +66,6 @@
               "interpolation": "linear"
             },
             {
-              "timestamp": 0.5,
-              "target": [
-                0,
-                0,
-                -57.5
-              ],
-              "interpolation": "smooth"
-            },
-            {
               "timestamp": 1,
               "target": [
                 0,
@@ -99,15 +90,6 @@
               "interpolation": "linear"
             },
             {
-              "timestamp": 0.5,
-              "target": [
-                0,
-                0,
-                55
-              ],
-              "interpolation": "smooth"
-            },
-            {
               "timestamp": 1,
               "target": [
                 0,
@@ -115,6 +97,36 @@
                 50
               ],
               "interpolation": "smooth"
+            }
+          ]
+        },
+        {
+          "bone": "page",
+          "target": "rotation",
+          "keyframes": [
+            {
+              "timestamp": 0,
+              "target": [
+                0,
+                0,
+                -50
+              ],
+              "interpolation": "linear"
+            }
+          ]
+        },
+        {
+          "bone": "page",
+          "target": "position",
+          "keyframes": [
+            {
+              "timestamp": 0,
+              "target": [
+                0.779,
+                0.355,
+                0
+              ],
+              "interpolation": "linear"
             }
           ]
         }
@@ -278,7 +290,7 @@
             2,
             12
           ],
-          "inflate": 0
+          "inflate": 0.002
         },
         {
           "name": "side1",
@@ -398,7 +410,7 @@
                 1,
                 12
               ],
-              "inflate": 0
+              "inflate": 0.001
             },
             {
               "name": "cube4",
@@ -428,7 +440,7 @@
                 1,
                 10
               ],
-              "inflate": 0.01
+              "inflate": 0.001
             }
           ]
         },
