@@ -13,6 +13,7 @@ import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
 import com.cmdpro.runology.renderers.block.*;
+import com.cmdpro.runology.renderers.entity.RunicCodexRenderer;
 import com.cmdpro.runology.shaders.PlayerPowerModeShader;
 import com.cmdpro.runology.shaders.PlayerPowerShader;
 import com.cmdpro.runology.shaders.ShatterShader;
@@ -27,6 +28,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
@@ -40,6 +42,10 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event)
     {
+        event.enqueueWork(() -> {
+            ClientHooks.registerLayerDefinition(RunicCodexRenderer.runicCodexLocation, RunicCodexRenderer.Model::createLayer);
+        });
+
         shatterShader = new ShatterShader();
         PostShaderManager.addShader(shatterShader);
         shatterShader.setActive(true);

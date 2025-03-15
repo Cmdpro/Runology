@@ -1,8 +1,12 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.entity.RunicCodex;
+import com.cmdpro.runology.entity.RunicCodexEntry;
 import com.cmdpro.runology.entity.ShatterZap;
 import com.cmdpro.runology.renderers.block.ShatterRenderer;
+import com.cmdpro.runology.renderers.entity.RunicCodexEntryRenderer;
+import com.cmdpro.runology.renderers.entity.RunicCodexRenderer;
 import com.cmdpro.runology.renderers.entity.ShatterZapRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,11 +24,15 @@ import java.util.function.Supplier;
 public class EntityRegistry {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Runology.MODID);
     public static final Supplier<EntityType<ShatterZap>> SHATTER_ZAP = register("shatter_zap", () -> EntityType.Builder.of((EntityType.EntityFactory<ShatterZap>) ShatterZap::new, MobCategory.MISC).sized(0f, 0f).build(Runology.MODID + ":" + "shatter_zap"));
+    public static final Supplier<EntityType<RunicCodex>> RUNIC_CODEX = register("runic_codex", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodex>) RunicCodex::new, MobCategory.MISC).sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex"));
+    public static final Supplier<EntityType<RunicCodexEntry>> RUNIC_CODEX_ENTRY = register("runic_codex_entry", () -> EntityType.Builder.of((EntityType.EntityFactory<RunicCodexEntry>) RunicCodexEntry::new, MobCategory.MISC).sized(0.8f, 0.8f).build(Runology.MODID + ":" + "runic_codex_entry"));
     private static <T extends EntityType<?>> Supplier<T> register(final String name, final Supplier<T> entity) {
         return ENTITY_TYPES.register(name, entity);
     }
     @SubscribeEvent
     public static void clientEntityRenderers(FMLClientSetupEvent event) {
         EntityRenderers.register(EntityRegistry.SHATTER_ZAP.get(), ShatterZapRenderer::new);
+        EntityRenderers.register(EntityRegistry.RUNIC_CODEX.get(), RunicCodexRenderer::new);
+        EntityRenderers.register(EntityRegistry.RUNIC_CODEX_ENTRY.get(), RunicCodexEntryRenderer::new);
     }
 }

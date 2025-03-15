@@ -129,6 +129,21 @@
               "interpolation": "linear"
             }
           ]
+        },
+        {
+          "bone": "page",
+          "target": "scale",
+          "keyframes": [
+            {
+              "timestamp": 0,
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "interpolation": "linear"
+            }
+          ]
         }
       ]
     },
@@ -241,6 +256,21 @@
                 0
               ],
               "interpolation": "smooth"
+            }
+          ]
+        },
+        {
+          "bone": "page",
+          "target": "scale",
+          "keyframes": [
+            {
+              "timestamp": 0,
+              "target": [
+                1,
+                1,
+                1
+              ],
+              "interpolation": "linear"
             }
           ]
         }
