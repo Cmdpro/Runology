@@ -4,13 +4,17 @@ import com.cmdpro.databank.ClientDatabankUtils;
 import com.cmdpro.runology.RenderEvents;
 import com.cmdpro.runology.entity.RunicCodexEntry;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Math;
 import org.joml.Vector3f;
@@ -34,6 +38,11 @@ public class RunicCodexEntryRenderer extends EntityRenderer<RunicCodexEntry> {
             renderLine(Vec3.ZERO, new Vec3(0, entity.getBoundingBox().getCenter().distanceTo(i), 0), 0.05f, partialTick, poseStack, RenderEvents.createShatterInsideBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
             poseStack.popPose();
         }
+        poseStack.pushPose();
+        poseStack.translate(0, entity.getBoundingBox().getYsize()/2, 0);
+        poseStack.scale(0.2f, 0.2f, 0.2f);
+        Minecraft.getInstance().getItemRenderer().renderStatic(entity.icon, ItemDisplayContext.GUI, packedLight, OverlayTexture.NO_OVERLAY, poseStack, RenderEvents.createSpecialBypassBufferSource(), entity.level(), 0);
+        poseStack.popPose();
     }
     private void renderLine(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer) {
         Vector3f diff = end.toVector3f().sub(start.toVector3f()).normalize().mul(thickness, thickness, thickness);

@@ -17,6 +17,7 @@ import com.cmdpro.runology.renderers.entity.RunicCodexRenderer;
 import com.cmdpro.runology.shaders.PlayerPowerModeShader;
 import com.cmdpro.runology.shaders.PlayerPowerShader;
 import com.cmdpro.runology.shaders.ShatterShader;
+import com.cmdpro.runology.shaders.SpecialBypassShader;
 import com.klikli_dev.modonomicon.api.ModonomiconAPI;
 import com.klikli_dev.modonomicon.client.render.page.PageRendererRegistry;
 import com.mojang.blaze3d.platform.InputConstants;
@@ -55,6 +56,9 @@ public class ClientSetupEvents {
         playerPowerModeShader = new PlayerPowerModeShader();
         PostShaderManager.addShader(playerPowerModeShader);
         playerPowerModeShader.setActive(true);
+        specialBypassShader = new SpecialBypassShader();
+        PostShaderManager.addShader(specialBypassShader);
+        specialBypassShader.setActive(true);
 
         PageRendererRegistry.registerPageRenderer(ShatterInfusionRecipePage.ID, p -> new ShatterInfusionRecipePageRenderer((ShatterInfusionRecipePage) p));
     }
@@ -67,6 +71,7 @@ public class ClientSetupEvents {
     public static PostShaderInstance shatterShader;
     public static PostShaderInstance playerPowerShader;
     public static PostShaderInstance playerPowerModeShader;
+    public static PostShaderInstance specialBypassShader;
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.SHATTER.get(),

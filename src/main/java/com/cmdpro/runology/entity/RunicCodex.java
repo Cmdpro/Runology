@@ -1,5 +1,6 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.EntityRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import net.minecraft.nbt.CompoundTag;
@@ -58,20 +59,21 @@ public class RunicCodex extends Entity {
                 }
                 entryEntities.clear();
             } else if (entryEntities.isEmpty()) {
-                var ent1 = createEntryEntity(position().add(0, 2, 0), new ArrayList<>());
-                var ent2 = createEntryEntity(position().add(1, 4, 0), new ArrayList<>() { { add(ent1); } });
-                var ent3 = createEntryEntity(position().add(2, 3, 1), new ArrayList<>() { { add(ent1); } });
-                var ent4 = createEntryEntity(position().add(-1, 3, -2), new ArrayList<>() { { add(ent1); } });
-                var ent5 = createEntryEntity(position().add(-4, 3, -1), new ArrayList<>() { { add(ent2); add(ent4); } });
+                var ent1 = createEntryEntity(position().add(0, 1, 0), new ItemStack(ItemRegistry.GUIDEBOOK.get()), new ArrayList<>());
+                var ent2 = createEntryEntity(position().add(1, 3, 0), new ItemStack(ItemRegistry.SHATTERED_SHARD.get()), new ArrayList<>() { { add(ent1); } });
+                var ent3 = createEntryEntity(position().add(2, 2, 1), new ItemStack(ItemRegistry.SHATTER_READER.get()), new ArrayList<>() { { add(ent1); } });
+                var ent4 = createEntryEntity(position().add(-1, 2, -2), new ItemStack(BlockRegistry.SHATTERED_BLOCK.get()), new ArrayList<>() { { add(ent1); } });
+                var ent5 = createEntryEntity(position().add(-4, 2, -1), new ItemStack(ItemRegistry.SHATTERED_INGOT.get()), new ArrayList<>() { { add(ent2); add(ent4); } });
             }
         }
     }
-    public RunicCodexEntry createEntryEntity(Vec3 position, List<RunicCodexEntry> parentEntities) {
+    public RunicCodexEntry createEntryEntity(Vec3 position, ItemStack icon, List<RunicCodexEntry> parentEntities) {
         RunicCodexEntry entity = new RunicCodexEntry(level());
         entity.setPos(position);
         entity.codex = this;
         entity.parentEntities = parentEntities;
         entity.entryDataDirty = true;
+        entity.icon = icon;
         entryEntities.add(entity);
         level().addFreshEntity(entity);
         return entity;

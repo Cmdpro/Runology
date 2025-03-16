@@ -16,5 +16,6 @@ public abstract class GameRendererMixin {
     private void Runology$resize(int pWidth, int pHeight, CallbackInfo ci) {
         RenderEvents.getShatterTarget().resize(pWidth, pHeight, Minecraft.ON_OSX);
         RenderEvents.getPlayerPowerTarget().resize(pWidth, pHeight, Minecraft.ON_OSX);
+        RenderEvents.getSpecialBypassTarget().resize(pWidth, pHeight, Minecraft.ON_OSX);
     }
 }

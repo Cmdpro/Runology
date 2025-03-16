@@ -1,13 +1,18 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.databank.multiblock.MultiblockRenderer;
 import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.databank.rendering.ShaderHelper;
+import com.cmdpro.runology.mixin.client.BufferSourceMixin;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
 import com.mojang.blaze3d.pipeline.MainTarget;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.ByteBufferBuilder;
+import com.mojang.blaze3d.vertex.MeshData;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -53,6 +58,9 @@ public class RenderEvents {
     }
     private static void doEffectRendering(RenderLevelStageEvent event) {
         RenderSystem.depthMask(true);
+        getSpecialBypassTarget().clear(Minecraft.ON_OSX);
+        getSpecialBypassTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
+        Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
         createShatterInsideBufferSource().endBatch();
         getShatterTarget().clear(Minecraft.ON_OSX);
         getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
@@ -64,6 +72,8 @@ public class RenderEvents {
         getPlayerPowerTarget().bindWrite(false);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
+        getSpecialBypassTarget().bindWrite(false);
+        createSpecialBypassBufferSource().endBatch();
         Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
         RenderSystem.depthMask(false);
     }
@@ -74,6 +84,14 @@ public class RenderEvents {
             shatterTarget.setClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         }
         return shatterTarget;
+    }
+    private static RenderTarget specialBypassTarget;
+    public static RenderTarget getSpecialBypassTarget() {
+        if (specialBypassTarget == null) {
+            specialBypassTarget = new MainTarget(Minecraft.getInstance().getMainRenderTarget().width, Minecraft.getInstance().getMainRenderTarget().height);
+            specialBypassTarget.setClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        }
+        return specialBypassTarget;
     }
     private static RenderTarget playerPowerTarget;
     public static RenderTarget getPlayerPowerTarget() {
@@ -106,5 +124,25 @@ public class RenderEvents {
             shatterInsideBufferSource = MultiBufferSource.immediateWithBuffers(buffers, new ByteBufferBuilder(256));
         }
         return shatterInsideBufferSource;
+    }
+    static MultiBufferSource.BufferSource specialBypassBufferSource = null;
+    public static MultiBufferSource.BufferSource createSpecialBypassBufferSource() {
+        if (specialBypassBufferSource == null) {
+            specialBypassBufferSource = new SpecialBypassBuffers(((BufferSourceMixin)Minecraft.getInstance().renderBuffers().bufferSource()).getSharedBuffer());
+        }
+        return specialBypassBufferSource;
+    }
+    private static class SpecialBypassBuffers extends MultiBufferSource.BufferSource {
+        protected SpecialBypassBuffers(ByteBufferBuilder fallback) {
+            super(fallback, new Object2ObjectLinkedOpenHashMap<>());
+        }
+
+        @Override
+        public VertexConsumer getBuffer(RenderType type) {
+            if (!fixedBuffers.containsKey(type)) {
+                fixedBuffers.put(type, new ByteBufferBuilder(type.bufferSize));
+            }
+            return super.getBuffer(type);
+        }
     }
 }

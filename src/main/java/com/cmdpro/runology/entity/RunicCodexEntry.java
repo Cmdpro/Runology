@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class RunicCodexEntry extends Entity {
     public RunicCodex codex;
+    public ItemStack icon;
     public List<RunicCodexEntry> parentEntities = new ArrayList<>();
     public List<Vec3> parentEntityLocations = new ArrayList<>();
     public RunicCodexEntry(EntityType<?> entityType, Level level) {
@@ -96,6 +98,7 @@ public class RunicCodexEntry extends Entity {
             entryPositions.add(pos);
         }
         tag.put("entryPositions", entryPositions);
+        tag.put("icon", icon.save(level().registryAccess()));
         return tag;
     }
     public void parseEntryData(CompoundTag tag) {
@@ -105,6 +108,7 @@ public class RunicCodexEntry extends Entity {
             CompoundTag compound = (CompoundTag)i;
             parentEntityLocations.add(new Vec3(compound.getDouble("x"), compound.getDouble("y"), compound.getDouble("z")));
         }
+        ItemStack.parse(level().registryAccess(), tag.get("icon")).ifPresent((stack) -> icon = stack);
     }
     public static final EntityDataAccessor<CompoundTag> ENTRY_DATA = SynchedEntityData.defineId(RunicCodexEntry.class, EntityDataSerializers.COMPOUND_TAG);
     @Override
@@ -125,7 +129,10 @@ public class RunicCodexEntry extends Entity {
     private static class ClientHandler {
         public static void spawnParticles(Level level, Vec3 position) {
             if (Minecraft.getInstance().level == level) {
-                Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.y + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.z + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.1f) - 0.05f, RandomUtils.nextFloat(0.1f, 0.2f), RandomUtils.nextFloat(0, 0.1f) - 0.05f);
+                for (int i = 0; i < 3; i++) {
+                    Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.y + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.z + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.1f) - 0.05f, RandomUtils.nextFloat(0.05f, 0.1f), RandomUtils.nextFloat(0, 0.1f) - 0.05f);
+                }
+                Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x, position.y, position.z, RandomUtils.nextFloat(0, 0.1f) - 0.05f, RandomUtils.nextFloat(0.1f, 0.2f), RandomUtils.nextFloat(0, 0.1f) - 0.05f);
             }
         }
     }

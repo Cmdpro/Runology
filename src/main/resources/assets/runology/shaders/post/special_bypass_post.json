@@ -1,0 +1,21 @@
+{
+  "targets": [
+    "final"
+  ],
+  "passes": [
+    {
+      "name": "runology:special_bypass_post",
+      "intarget": "minecraft:main",
+      "outtarget": "final",
+      "uniforms": [
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "final",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}
+
+
