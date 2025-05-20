@@ -1,9 +1,9 @@
 package com.cmdpro.runology;
 
+import com.cmdpro.databank.mixin.client.BufferSourceMixin;
 import com.cmdpro.databank.multiblock.MultiblockRenderer;
 import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.databank.rendering.ShaderHelper;
-import com.cmdpro.runology.mixin.client.BufferSourceMixin;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.shaders.RunologyRenderTypes;
 import com.mojang.blaze3d.pipeline.MainTarget;
