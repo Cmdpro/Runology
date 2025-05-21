@@ -1,7 +1,10 @@
 package com.cmdpro.runology.commands;
 
+import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.TestWorldGuiType;
 import com.cmdpro.runology.api.RunologyUtil;
+import com.cmdpro.runology.registry.WorldGuiRegistry;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -16,10 +19,14 @@ public class RunologyCommands {
                 .requires(source -> source.hasPermission(4))
                 .then(Commands.literal("set_power_mode")
                         .then(Commands.argument("active", BoolArgumentType.bool())
-                            .executes((command) -> {
-                                return setpowermode(command);
-                            })
+                                .executes((command) -> {
+                                    return setpowermode(command);
+                                })
                         )
+                ).then(Commands.literal("guiTest")
+                        .executes((command) -> {
+                            return guitest(command);
+                        })
                 )
         );
     }
@@ -32,6 +39,14 @@ public class RunologyCommands {
             } else {
                 RunologyUtil.deactivatePowerMode(player);
             }
+        }
+        return Command.SINGLE_SUCCESS;
+    }
+    private static int guitest(CommandContext<CommandSourceStack> command){
+        if(command.getSource().getEntity() instanceof Player) {
+            Player player = (Player) command.getSource().getEntity();
+            WorldGuiEntity entity = new WorldGuiEntity(player.level(), player.getEyePosition(), WorldGuiRegistry.TEST.get());
+            player.level().addFreshEntity(entity);
         }
         return Command.SINGLE_SUCCESS;
     }
