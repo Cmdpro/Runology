@@ -33,11 +33,16 @@ import java.util.List;
 public class TestWorldGui extends WorldGui {
     public boolean active = false;
     public int time = 0;
-    public List<String> text;
+    public List<List<FormattedCharSequence>> text;
 
     public TestWorldGui(WorldGuiEntity entity) {
         super(entity);
-        text = ClientHandler.getText();
+        List<String> text = ClientHandler.getText();
+        this.text = new ArrayList<>();
+        for (String i : text) {
+            List<FormattedCharSequence> lines = ClientHandler.getFont().split(Component.literal(i), 480);
+            this.text.add(lines);
+        }
     }
 
     @Override
@@ -90,10 +95,12 @@ public class TestWorldGui extends WorldGui {
         } else {
             guiGraphics.fill(0, 0, 500, 300, 0xFF000000);
             int yShift = 300-time;
-            for (String i : text) {
-                List<FormattedCharSequence> lines = ClientHandler.getFont().split(Component.literal(i), 480);
-                for (FormattedCharSequence j : lines) {
-                    guiGraphics.drawCenteredString(ClientHandler.getFont(), j, 250, yShift, 0xFFFFFFFF);
+            for (List<FormattedCharSequence> i : text) {
+                for (FormattedCharSequence j : i) {
+                    if (isPosInBounds(250, yShift, 0, 0, 500, 300)
+                    || isPosInBounds(250, yShift+ClientHandler.getFont().lineHeight, 0, 0, 500, 300)) {
+                        guiGraphics.drawCenteredString(ClientHandler.getFont(), j, 250, yShift, 0xFFFFFFFF);
+                    }
                     yShift += ClientHandler.getFont().lineHeight+2;
                 }
                 yShift += 4;
