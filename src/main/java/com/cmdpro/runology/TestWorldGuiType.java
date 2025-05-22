@@ -14,11 +14,11 @@ public class TestWorldGuiType extends WorldGuiType {
 
     @Override
     public Vec2 getMenuWorldSize(WorldGuiEntity worldGuiEntity) {
-        return new Vec2(1, 1);
+        return new Vec2(5, 3);
     }
 
     @Override
     public Vec2 getRenderSize() {
-        return new Vec2(100, 100);
+        return new Vec2(500, 300);
     }
 }
