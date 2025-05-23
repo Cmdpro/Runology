@@ -1,29 +1,19 @@
-package com.cmdpro.runology;
+package com.cmdpro.runology.worldgui;
 
-import com.cmdpro.databank.ClientDatabankUtils;
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.cmdpro.runology.worldgui.components.TestButtonComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
-import net.minecraft.network.chat.Style;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix3f;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,6 +24,7 @@ public class TestWorldGui extends WorldGui {
     public boolean active = false;
     public int time = 0;
     public List<List<FormattedCharSequence>> text;
+    public TestButtonComponent testButtonComponent;
 
     public TestWorldGui(WorldGuiEntity entity) {
         super(entity);
@@ -43,6 +34,16 @@ public class TestWorldGui extends WorldGui {
             List<FormattedCharSequence> lines = ClientHandler.getFont().split(Component.literal(i), 480);
             this.text.add(lines);
         }
+    }
+
+    @Override
+    public void addInitialComponents() {
+        int buttonCenterX = 250;
+        int buttonCenterY = 150;
+        int buttonWidth = 60;
+        int buttonHeight = 30;
+        testButtonComponent = new TestButtonComponent(this, buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonWidth, buttonHeight);
+        addComponent(testButtonComponent);
     }
 
     @Override
@@ -70,28 +71,9 @@ public class TestWorldGui extends WorldGui {
     }
 
     @Override
-    public void drawGui(GuiGraphics guiGraphics) {
-        Vec2 normal = getClientTargetNormal();
+    public void renderGui(GuiGraphics guiGraphics) {
         if (!active) {
-            int buttonColor = 0xFFaaaaaa;
-            int buttonOutlineColor = 0xFFaaaaaa;
-            int buttonCenterX = 250;
-            int buttonCenterY = 150;
-            int buttonWidth = 60;
-            int buttonHeight = 30;
-            int textOffset = -4;
-            int outlinePixels = 2;
-            if (normal != null) {
-                int x = normalXIntoGuiX(normal.x);
-                int y = normalYIntoGuiY(normal.y);
-                if (isPosInBounds(x, y, buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonCenterX+(buttonWidth/2), buttonCenterY+(buttonHeight/2))) {
-                    buttonOutlineColor = 0xFFFFFFFF;
-                }
-            }
             guiGraphics.fill(0, 0, 500, 300, 0xFF000000);
-            guiGraphics.fill(buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonCenterX+(buttonWidth/2), buttonCenterY+(buttonHeight/2), buttonOutlineColor);
-            guiGraphics.fill(buttonCenterX-(buttonWidth/2)+outlinePixels, buttonCenterY-(buttonHeight/2)+outlinePixels, buttonCenterX+(buttonWidth/2)-outlinePixels, buttonCenterY+(buttonHeight/2)-outlinePixels, buttonColor);
-            guiGraphics.drawCenteredString(ClientHandler.getFont(), Component.literal("Press me!"), buttonCenterX, buttonCenterY+textOffset, 0xFFFFFFFF);
         } else {
             guiGraphics.fill(0, 0, 500, 300, 0xFF000000);
             int yShift = 300-time;
@@ -106,20 +88,7 @@ public class TestWorldGui extends WorldGui {
                 yShift += 4;
             }
         }
-    }
-
-    @Override
-    public void leftClick(Player player, int x, int y) {
-        int buttonCenterX = 250;
-        int buttonCenterY = 150;
-        int buttonWidth = 60;
-        int buttonHeight = 30;
-        if (!player.level().isClientSide) {
-            if (isPosInBounds(x, y, buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonCenterX+(buttonWidth/2), buttonCenterY+(buttonHeight/2))) {
-                active = true;
-                sync();
-            }
-        }
+        renderComponents(guiGraphics);
     }
 
     @Override

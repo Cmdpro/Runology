@@ -2,7 +2,6 @@ package com.cmdpro.runology.commands;
 
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.TestWorldGuiType;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
 import com.mojang.brigadier.Command;

@@ -1,9 +1,8 @@
-package com.cmdpro.runology;
+package com.cmdpro.runology.worldgui;
 
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.phys.Vec2;
 
 public class TestWorldGuiType extends WorldGuiType {

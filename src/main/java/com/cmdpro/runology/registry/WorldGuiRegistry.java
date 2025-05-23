@@ -3,7 +3,7 @@ package com.cmdpro.runology.registry;
 import com.cmdpro.databank.Databank;
 import com.cmdpro.databank.worldgui.WorldGuiType;
 import com.cmdpro.runology.Runology;
-import com.cmdpro.runology.TestWorldGuiType;
+import com.cmdpro.runology.worldgui.TestWorldGuiType;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

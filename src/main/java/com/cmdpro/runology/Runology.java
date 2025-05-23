@@ -51,6 +51,7 @@ public class Runology
         DataComponentRegistry.DATA_COMPONENTS.register(modEventBus);
         ArmorMaterialRegistry.ARMOR_MATERIALS.register(modEventBus);
         WorldGuiRegistry.WORLD_GUI_TYPES.register(modEventBus);
+        WorldGuiComponentRegistry.WORLD_GUI_COMPONENTS.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
