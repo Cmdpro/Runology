@@ -1,0 +1,200 @@
+package com.cmdpro.runology.worldgui;
+
+import com.cmdpro.databank.worldgui.WorldGui;
+import com.cmdpro.databank.worldgui.WorldGuiEntity;
+import com.cmdpro.databank.worldgui.WorldGuiType;
+import com.cmdpro.runology.registry.WorldGuiRegistry;
+import com.cmdpro.runology.worldgui.components.TestButtonComponent;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.phys.Vec2;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class PageWorldGui extends WorldGui {
+    public int time = 0;
+    public TestButtonComponent testButtonComponent;
+
+    public PageWorldGui(WorldGuiEntity entity) {
+        super(entity);
+    }
+
+    @Override
+    public void addInitialComponents() {
+        int buttonCenterX = 250;
+        int buttonCenterY = 150;
+        int buttonWidth = 60;
+        int buttonHeight = 30;
+        //testButtonComponent = new TestButtonComponent(this, buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonWidth, buttonHeight);
+        //addComponent(testButtonComponent);
+    }
+
+    @Override
+    public WorldGuiType getType() {
+        return WorldGuiRegistry.TEST.get();
+    }
+
+    @Override
+    public List<Matrix3f> getMatrixs() {
+        List<Matrix3f> matrixs = new ArrayList<>();
+        addMatrixsForFacingPlayer(matrixs, true, false);
+        return matrixs;
+    }
+
+    @Override
+    public void sendData(CompoundTag compoundTag) {
+
+    }
+
+    @Override
+    public void recieveData(CompoundTag compoundTag) {
+
+    }
+
+    @Override
+    public void renderGui(GuiGraphics guiGraphics) {
+        Vec2 renderSize = getType().getRenderSize();
+        int outlineSize = 5;
+        int guiWidth = 200;
+        int guiHeight = 300;
+        int guiX = (int)(renderSize.x-guiWidth)/2;
+        int guiY = (int)(renderSize.y-guiHeight)/2;
+        int horizontalSpikes = 4;
+        int verticalSpikes = 6;
+        int pixelScale = 10;
+        int spikeHeight = 70;
+        drawSpikes(guiGraphics, horizontalSpikes, verticalSpikes, 0, 0xFF00FF00, guiWidth, guiHeight, guiX, guiY, pixelScale, spikeHeight);
+        drawSpikes(guiGraphics, horizontalSpikes, verticalSpikes, outlineSize, 0xFF000000, guiWidth, guiHeight, guiX, guiY, pixelScale, spikeHeight);
+
+        guiGraphics.fill(guiX-outlineSize, guiY-outlineSize, guiX+guiWidth+outlineSize, guiY+guiHeight+outlineSize, 0xFF000000);
+
+        renderComponents(guiGraphics);
+    }
+    private void drawSpikes(GuiGraphics guiGraphics, int horizontalSpikes, int verticalSpikes, int shiftInward, int color, int guiWidth, int guiHeight, int guiX, int guiY, int pixelScale, int spikeHeight) {
+        int mathOffset = 0;
+        int offsetBounds = 10;
+        float timeScale = 1f;
+        Random rand = new Random(0);
+        for (float x = 0; x <= horizontalSpikes-1; x += 0.5f) {
+            Vec2 pointA = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x), guiY);
+            Vec2 pointB = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*((float)x+1f)), guiY);
+            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY-spikeHeight);
+            pointC = pointC.add(new Vec2(rand.nextInt(-offsetBounds, offsetBounds), 0));
+            pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
+            drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);
+            timeScale = rand.nextFloat(0.5f, 2f) * (rand.nextBoolean() ? 1 : -1);
+            mathOffset += rand.nextInt(-360, 360);
+        }
+        for (float x = 0; x <= horizontalSpikes-1; x += 0.5f) {
+            Vec2 pointA = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x), guiY+guiHeight);
+            Vec2 pointB = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*((float)x+1f)), guiY+guiHeight);
+            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY+guiHeight+spikeHeight);
+            pointC = pointC.add(new Vec2(rand.nextInt(-offsetBounds, offsetBounds), 0));
+            pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
+            drawTriangle(guiGraphics, pointC, pointB, pointA, 0, color, shiftInward);
+            timeScale = rand.nextFloat(0.5f, 2f) * (rand.nextBoolean() ? 1 : -1);
+            mathOffset += rand.nextInt(-360, 360);
+        }
+
+        for (float y = 0; y <= verticalSpikes-1; y += 0.5f) {
+            Vec2 pointA = new Vec2(guiX, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y));
+            Vec2 pointB = new Vec2(guiX, guiY+(((float)guiHeight/(float)verticalSpikes)*((float)y+1f)));
+            Vec2 pointC = new Vec2(guiX-spikeHeight, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
+            pointC = pointC.add(new Vec2(0, rand.nextInt(-offsetBounds, offsetBounds)));
+            pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
+            drawTriangle(guiGraphics, pointC, pointB, pointA, 0, color, shiftInward);
+            timeScale = rand.nextFloat(0.5f, 2f) * (rand.nextBoolean() ? 1 : -1);
+            mathOffset += rand.nextInt(-360, 360);
+        }
+        for (float y = 0; y <= verticalSpikes-1; y += 0.5f) {
+            Vec2 pointA = new Vec2(guiX+guiWidth, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y));
+            Vec2 pointB = new Vec2(guiX+guiWidth, guiY+(((float)guiHeight/(float)verticalSpikes)*((float)y+1f)));
+            Vec2 pointC = new Vec2(guiX+guiWidth+spikeHeight, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
+            pointC = pointC.add(new Vec2(0, rand.nextInt(-offsetBounds, offsetBounds)));
+            pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
+            drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);
+            timeScale = rand.nextFloat(0.5f, 2f) * (rand.nextBoolean() ? 1 : -1);
+            mathOffset += rand.nextInt(-360, 360);
+        }
+        int cornerWidth = 60;
+        for (int i = 0; i < 4; i++) {
+            Vec2 pointA = new Vec2(guiX, guiY);
+            Vec2 pointB = new Vec2(guiX, guiY);
+            Vec2 pointC = new Vec2(guiX, guiY);
+            if (i == 0) {
+                pointA = new Vec2(pointA.x, pointA.y+(cornerWidth/2));
+                pointB = new Vec2(pointB.x+(cornerWidth/2), pointB.y);
+                pointC = new Vec2(pointC.x, pointC.y);
+            }
+            if (i == 1) {
+                pointA = new Vec2(guiX+guiWidth-(cornerWidth/2), pointA.y);
+                pointB = new Vec2(guiX+guiWidth, pointB.y+(cornerWidth/2));
+                pointC = new Vec2(guiX+guiWidth, pointC.y);
+            }
+            if (i == 2) {
+                pointA = new Vec2(guiX+guiWidth, guiY+guiHeight-(cornerWidth/2));
+                pointB = new Vec2(guiX+guiWidth-(cornerWidth/2), guiY+guiHeight);
+                pointC = new Vec2(guiX+guiWidth, guiY+guiHeight);
+            }
+            if (i == 3) {
+                pointA = new Vec2(pointA.x+(cornerWidth/2), guiY+guiHeight);
+                pointB = new Vec2(pointB.x, guiY+guiHeight-(cornerWidth/2));
+                pointC = new Vec2(pointC.x, guiY+guiHeight);
+            }
+            Vec2 offset = new Vec2((guiX+(guiWidth/2))-pointC.x, (guiY+(guiHeight/2))-pointC.y).normalized().scale(-spikeHeight);
+            pointC = pointC.add(offset);
+            pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians(timeScale+mathOffset))).scale(pixelScale));
+            drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);
+            timeScale = rand.nextFloat(0.5f, 2f) * (rand.nextBoolean() ? 1 : -1);
+            mathOffset += rand.nextInt(-360, 360);
+        }
+    }
+    private void drawTriangle(GuiGraphics graphics, Vec2 pointA, Vec2 pointB, Vec2 pointC, int z, int color, int shiftInward) {
+        Matrix4f matrix4f = graphics.pose().last().pose();
+
+        Vec2 center = new Vec2((pointA.x+pointB.x+pointC.x)/3f, (pointA.y+pointB.y+pointC.y)/3f);
+
+        Vec2 insidePointA = pointA.add(new Vec2(center.x-pointA.x, center.y-pointA.y).normalized().scale(shiftInward));
+        Vec2 insidePointB = pointB.add(new Vec2(center.x-pointB.x, center.y-pointB.y).normalized().scale(shiftInward));
+        Vec2 insidePointC = pointC.add(new Vec2(center.x-pointC.x, center.y-pointC.y).normalized().scale(shiftInward));
+
+        VertexConsumer vertexconsumer = graphics.bufferSource().getBuffer(RenderType.gui());
+        vertexconsumer.addVertex(matrix4f, insidePointA.x, insidePointA.y, z).setColor(color);
+        vertexconsumer.addVertex(matrix4f, insidePointB.x, insidePointB.y, z).setColor(color);
+        vertexconsumer.addVertex(matrix4f, insidePointC.x, insidePointC.y, z).setColor(color);
+        vertexconsumer.addVertex(matrix4f, insidePointC.x, insidePointC.y, z).setColor(color);
+    }
+    @Override
+    public void tick() {
+        time++;
+    }
+    private static class ClientHandler {
+        public static Font getFont() {
+            return Minecraft.getInstance().font;
+        }
+        public static List<String> getText() {
+            List<String> text = new ArrayList<>();
+            Path path = Minecraft.getInstance().gameDirectory.toPath();
+            path = path.resolve("silly_test.txt");
+            try {
+                if (!Files.exists(path)) {
+                    Files.createFile(path);
+                }
+                text = Files.readAllLines(path);
+            } catch (Exception ignored) {}
+            return text;
+        }
+    }
+}

@@ -5,19 +5,19 @@ import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
 import net.minecraft.world.phys.Vec2;
 
-public class TestWorldGuiType extends WorldGuiType {
+public class PageWorldGuiType extends WorldGuiType {
     @Override
     public WorldGui createGui(WorldGuiEntity worldGuiEntity) {
-        return new TestWorldGui(worldGuiEntity);
+        return new PageWorldGui(worldGuiEntity);
     }
 
     @Override
     public Vec2 getMenuWorldSize(WorldGuiEntity worldGuiEntity) {
-        return new Vec2(5, 3);
+        return new Vec2(3, 4);
     }
 
     @Override
     public Vec2 getRenderSize() {
-        return new Vec2(500, 300);
+        return new Vec2(450, 600);
     }
 }

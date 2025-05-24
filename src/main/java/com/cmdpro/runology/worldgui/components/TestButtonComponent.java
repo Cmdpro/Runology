@@ -4,17 +4,12 @@ import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.components.WorldGuiComponentType;
 import com.cmdpro.databank.worldgui.components.types.WorldGuiButtonComponent;
 import com.cmdpro.runology.registry.WorldGuiComponentRegistry;
-import com.cmdpro.runology.worldgui.TestWorldGui;
+import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestButtonComponent extends WorldGuiButtonComponent {
     public TestButtonComponent(WorldGui gui, int x, int y, int width, int height) {
@@ -45,8 +40,7 @@ public class TestButtonComponent extends WorldGuiButtonComponent {
 
     @Override
     public void leftClickButton(boolean b, Player player, int i, int i1) {
-        if (gui instanceof TestWorldGui gui) {
-            gui.active = true;
+        if (gui instanceof PageWorldGui gui) {
             gui.removeComponent(this);
             sync();
         }
