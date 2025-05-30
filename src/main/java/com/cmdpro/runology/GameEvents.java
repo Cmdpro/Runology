@@ -3,8 +3,10 @@ package com.cmdpro.runology;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.commands.RunologyCommands;
 import com.cmdpro.runology.data.entries.EntryManager;
+import com.cmdpro.runology.data.entries.EntryTabManager;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.EntrySyncS2CPacket;
 import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.RuneTypeSyncS2CPacket;
 import com.cmdpro.runology.networking.packet.StartFalseDeathS2CPacket;
@@ -56,6 +58,7 @@ public class GameEvents {
         event.addListener(RuneChiselingResultManager.getOrCreateInstance());
         event.addListener(ShatterUpgradeManager.getOrCreateInstance());
         event.addListener(EntryManager.getOrCreateInstance());
+        event.addListener(EntryTabManager.getOrCreateInstance());
     }
     @SubscribeEvent
     public static void onDatapackSync(OnDatapackSyncEvent event) {
@@ -92,6 +95,7 @@ public class GameEvents {
     }
     protected static void syncToPlayer(ServerPlayer player) {
         ModMessages.sendToPlayer(new RuneTypeSyncS2CPacket(RuneTypeManager.types), player);
+        ModMessages.sendToPlayer(new EntrySyncS2CPacket(EntryManager.entries, EntryTabManager.tabs), player);
     }
     public static final ResourceLocation PLAYER_POWER_SPEED_UUID = Runology.locate("player_power_speed");
     @SubscribeEvent

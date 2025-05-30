@@ -11,25 +11,25 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EntryManager extends SimpleJsonResourceReloadListener {
+public class EntryTabManager extends SimpleJsonResourceReloadListener {
     protected static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 
-    public static EntryManager instance;
-    protected EntryManager() {
-        super(GSON, "runology/guidebook/entries");
+    public static EntryTabManager instance;
+    protected EntryTabManager() {
+        super(GSON, "runology/guidebook/tabs");
     }
-    public static EntryManager getOrCreateInstance() {
+    public static EntryTabManager getOrCreateInstance() {
         if (instance == null) {
-            instance = new EntryManager();
+            instance = new EntryTabManager();
         }
         return instance;
     }
-    public static Map<ResourceLocation, Entry> entries = new HashMap<>();
+    public static Map<ResourceLocation, EntryTab> tabs = new HashMap<>();
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> pObject, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
-        entries.clear();
-        Runology.LOGGER.info("Adding Runology Entries");
+        tabs.clear();
+        Runology.LOGGER.info("Adding Runology Tabs");
         for (Map.Entry<ResourceLocation, JsonElement> i : pObject.entrySet()) {
             ResourceLocation location = i.getKey();
             if (location.getPath().startsWith("_")) {
@@ -37,21 +37,21 @@ public class EntryManager extends SimpleJsonResourceReloadListener {
             }
 
             try {
-                Entry tab = deserializeEntry(location, GsonHelper.convertToJsonObject(i.getValue(), "top member"));
+                EntryTab tab = deserializeTab(location, GsonHelper.convertToJsonObject(i.getValue(), "top member"));
                 if (tab == null) {
-                    Runology.LOGGER.info("Skipping loading element {} as its serializer returned null", location);
                     continue;
                 }
-                entries.put(i.getKey(), tab);
+                tabs.put(i.getKey(), tab);
+                Runology.LOGGER.info("Successfully added tab {}", location);
             } catch (IllegalArgumentException | JsonParseException e) {
-                Runology.LOGGER.error("Parsing error loading entry {}", location, e);
+                Runology.LOGGER.error("Parsing error loading tab {}", location, e);
             }
         }
-        Runology.LOGGER.info("Loaded {} entries", entries.size());
+        Runology.LOGGER.info("Loaded {} Runology Tabs", tabs.size());
     }
-    public static EntrySerializer serializer = new EntrySerializer();
-    protected Entry deserializeEntry(ResourceLocation id, JsonObject json) {
-        EntrySerializer serializer = this.serializer;
+    public static EntryTabSerializer serializer = new EntryTabSerializer();
+    protected EntryTab deserializeTab(ResourceLocation id, JsonObject json) {
+        EntryTabSerializer serializer = this.serializer;
         if (serializer != null) {
             return serializer.read(id, json);
         }

@@ -1,6 +1,8 @@
 package com.cmdpro.runology.entity;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.data.entries.Entry;
+import com.cmdpro.runology.data.entries.EntryManager;
 import com.cmdpro.runology.particle.ShatterParticle;
 import com.cmdpro.runology.registry.EntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
@@ -13,6 +15,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -28,15 +31,25 @@ import java.util.List;
 
 public class RunicCodexEntry extends Entity {
     public RunicCodex codex;
+    public ResourceLocation id;
     public ItemStack icon;
     public List<RunicCodexEntry> parentEntities = new ArrayList<>();
     public List<Vec3> parentEntityLocations = new ArrayList<>();
+    private Entry entry;
     public RunicCodexEntry(EntityType<?> entityType, Level level) {
         super(entityType, level);
         noCulling = true;
     }
-    public RunicCodexEntry(Level level) {
+    public RunicCodexEntry(Level level, ResourceLocation id) {
         this(EntityRegistry.RUNIC_CODEX_ENTRY.get(), level);
+        this.id = id;
+        icon = EntryManager.entries.get(id).icon;
+    }
+    public Entry getEntry() {
+        if (entry == null) {
+            entry = EntryManager.entries.get(id);
+        }
+        return entry;
     }
     @Override
     public boolean isPickable() {
@@ -98,7 +111,7 @@ public class RunicCodexEntry extends Entity {
             entryPositions.add(pos);
         }
         tag.put("entryPositions", entryPositions);
-        tag.put("icon", icon.save(level().registryAccess()));
+        tag.putString("id", id.toString());
         return tag;
     }
     public void parseEntryData(CompoundTag tag) {
@@ -108,7 +121,8 @@ public class RunicCodexEntry extends Entity {
             CompoundTag compound = (CompoundTag)i;
             parentEntityLocations.add(new Vec3(compound.getDouble("x"), compound.getDouble("y"), compound.getDouble("z")));
         }
-        ItemStack.parse(level().registryAccess(), tag.get("icon")).ifPresent((stack) -> icon = stack);
+        id = ResourceLocation.tryParse(tag.getString("id"));
+        icon = EntryManager.entries.get(id).icon;
     }
     public static final EntityDataAccessor<CompoundTag> ENTRY_DATA = SynchedEntityData.defineId(RunicCodexEntry.class, EntityDataSerializers.COMPOUND_TAG);
     @Override

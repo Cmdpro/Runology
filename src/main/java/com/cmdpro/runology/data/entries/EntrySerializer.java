@@ -43,10 +43,7 @@ public class EntrySerializer {
     ).apply(instance, (tab, icon, x, y, z, pages, parents, name, advancement) -> new Entry(null, tab, icon, x, y, z, pages, parents, name, advancement)));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, Entry> STREAM_CODEC = StreamCodec.of((pBuffer, pValue) -> {
-        pBuffer.writeBoolean(pValue.id != null);
-        if (pValue.id != null) {
-            pBuffer.writeResourceLocation(pValue.id);
-        }
+        pBuffer.writeResourceLocation(pValue.id);
         pBuffer.writeResourceLocation(pValue.tab);
         ItemStack.STREAM_CODEC.encode(pBuffer, pValue.icon);
         pBuffer.writeVec3(pValue.pos);
@@ -58,11 +55,7 @@ public class EntrySerializer {
         ComponentSerialization.STREAM_CODEC.encode(pBuffer, pValue.name);
         pBuffer.writeOptional(pValue.advancement, FriendlyByteBuf::writeResourceLocation);
     }, (pBuffer) -> {
-        boolean idExists = pBuffer.readBoolean();
-        ResourceLocation id = null;
-        if (idExists) {
-            id = pBuffer.readResourceLocation();
-        }
+        ResourceLocation id = pBuffer.readResourceLocation();
         ResourceLocation tab = pBuffer.readResourceLocation();
         ItemStack icon = ItemStack.STREAM_CODEC.decode(pBuffer);
         Vec3 pos = pBuffer.readVec3();

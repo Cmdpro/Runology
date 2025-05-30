@@ -5,6 +5,7 @@ import com.cmdpro.databank.multiblock.MultiblockRenderer;
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.components.WorldGuiComponentType;
 import com.cmdpro.databank.worldgui.components.types.WorldGuiButtonComponent;
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.registry.WorldGuiComponentRegistry;
 import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.client.Minecraft;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 
 public class MultiblockViewComponent extends WorldGuiButtonComponent {
     public ResourceLocation multiblock;
+    public static final ResourceLocation GUIDEBOOK_COMPONENTS = Runology.locate("textures/gui/guidebook_components.png");
     public MultiblockViewComponent(WorldGui gui, int x, int y, ResourceLocation multiblock) {
         super(gui, x, y, 16, 16);
         this.multiblock = multiblock;
@@ -26,24 +28,12 @@ public class MultiblockViewComponent extends WorldGuiButtonComponent {
 
     @Override
     public void renderNormal(GuiGraphics guiGraphics) {
-        int buttonColor = 0xFFaaaaaa;
-        int buttonOutlineColor = 0xFFaaaaaa;
-        int outlinePixels = 2;
-        int textOffset = -4;
-        guiGraphics.fill(x, y, x+width, y+height, buttonOutlineColor);
-        guiGraphics.fill(x+outlinePixels, y+outlinePixels, x+width-outlinePixels, y+height-outlinePixels, buttonColor);
-        guiGraphics.drawCenteredString(ClientHandler.getFont(), Component.literal("Press me!"), x+(width/2), y+(height/2)+textOffset, 0xFFFFFFFF);
+        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 0, 0, 16, 16);
     }
 
     @Override
     public void renderHovered(GuiGraphics guiGraphics) {
-        int buttonColor = 0xFFaaaaaa;
-        int buttonOutlineColor = 0xFFFFFFFF;
-        int outlinePixels = 2;
-        int textOffset = -4;
-        guiGraphics.fill(x, y, x+width, y+height, buttonOutlineColor);
-        guiGraphics.fill(x+outlinePixels, y+outlinePixels, x+width-outlinePixels, y+height-outlinePixels, buttonColor);
-        guiGraphics.drawCenteredString(ClientHandler.getFont(), Component.literal("Press me!"), x+(width/2), y+(height/2)+textOffset, 0xFFFFFFFF);
+        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 16, 0, 16, 16);
     }
 
     @Override
