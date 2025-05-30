@@ -2,6 +2,7 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.commands.RunologyCommands;
+import com.cmdpro.runology.data.entries.EntryManager;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
@@ -54,6 +55,7 @@ public class GameEvents {
         event.addListener(RuneTypeManager.getOrCreateInstance());
         event.addListener(RuneChiselingResultManager.getOrCreateInstance());
         event.addListener(ShatterUpgradeManager.getOrCreateInstance());
+        event.addListener(EntryManager.getOrCreateInstance());
     }
     @SubscribeEvent
     public static void onDatapackSync(OnDatapackSyncEvent event) {

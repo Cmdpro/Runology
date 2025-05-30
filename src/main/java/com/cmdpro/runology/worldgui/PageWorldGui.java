@@ -3,16 +3,17 @@ package com.cmdpro.runology.worldgui;
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
+import com.cmdpro.runology.api.RunologyRegistries;
+import com.cmdpro.runology.api.guidebook.Page;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
-import com.cmdpro.runology.worldgui.components.TestButtonComponent;
+import com.cmdpro.runology.worldgui.components.MultiblockViewComponent;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.phys.Vec2;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
@@ -25,20 +26,14 @@ import java.util.Random;
 
 public class PageWorldGui extends WorldGui {
     public int time = 0;
-    public TestButtonComponent testButtonComponent;
-
+    public List<Page> pages = new ArrayList<>();
     public PageWorldGui(WorldGuiEntity entity) {
         super(entity);
     }
 
     @Override
     public void addInitialComponents() {
-        int buttonCenterX = 250;
-        int buttonCenterY = 150;
-        int buttonWidth = 60;
-        int buttonHeight = 30;
-        //testButtonComponent = new TestButtonComponent(this, buttonCenterX-(buttonWidth/2), buttonCenterY-(buttonHeight/2), buttonWidth, buttonHeight);
-        //addComponent(testButtonComponent);
+
     }
 
     @Override
@@ -55,7 +50,12 @@ public class PageWorldGui extends WorldGui {
 
     @Override
     public void sendData(CompoundTag compoundTag) {
+        ListTag pages = new ListTag();
+        for (Page i : this.pages) {
+            CompoundTag page = new CompoundTag();
 
+            page.putString("serializer", RunologyRegistries.PAGE_TYPE_REGISTRY.getKey(i.getSerializer()).toString());
+        }
     }
 
     @Override
@@ -73,7 +73,7 @@ public class PageWorldGui extends WorldGui {
         int guiY = (int)(renderSize.y-guiHeight)/2;
         int horizontalSpikes = 4;
         int verticalSpikes = 6;
-        int pixelScale = 10;
+        int pixelScale = 15;
         int spikeHeight = 70;
         drawSpikes(guiGraphics, horizontalSpikes, verticalSpikes, 0, 0xFF00FF00, guiWidth, guiHeight, guiX, guiY, pixelScale, spikeHeight);
         drawSpikes(guiGraphics, horizontalSpikes, verticalSpikes, outlineSize, 0xFF000000, guiWidth, guiHeight, guiX, guiY, pixelScale, spikeHeight);
@@ -87,10 +87,13 @@ public class PageWorldGui extends WorldGui {
         int offsetBounds = 10;
         float timeScale = 1f;
         Random rand = new Random(0);
+        int shiftMin = -spikeHeight/5;
+        int shiftMax = spikeHeight/5;
         for (float x = 0; x <= horizontalSpikes-1; x += 0.5f) {
+            int spikeHeightShift = rand.nextInt(shiftMin, shiftMax);
             Vec2 pointA = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x), guiY);
             Vec2 pointB = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*((float)x+1f)), guiY);
-            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY-spikeHeight);
+            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY-(spikeHeight+spikeHeightShift));
             pointC = pointC.add(new Vec2(rand.nextInt(-offsetBounds, offsetBounds), 0));
             pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
             drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);
@@ -98,9 +101,10 @@ public class PageWorldGui extends WorldGui {
             mathOffset += rand.nextInt(-360, 360);
         }
         for (float x = 0; x <= horizontalSpikes-1; x += 0.5f) {
+            int spikeHeightShift = rand.nextInt(shiftMin, shiftMax);
             Vec2 pointA = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x), guiY+guiHeight);
             Vec2 pointB = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*((float)x+1f)), guiY+guiHeight);
-            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY+guiHeight+spikeHeight);
+            Vec2 pointC = new Vec2(guiX+(((float)guiWidth/(float)horizontalSpikes)*(float)x+0.5f), guiY+guiHeight+spikeHeight+spikeHeightShift);
             pointC = pointC.add(new Vec2(rand.nextInt(-offsetBounds, offsetBounds), 0));
             pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
             drawTriangle(guiGraphics, pointC, pointB, pointA, 0, color, shiftInward);
@@ -109,9 +113,10 @@ public class PageWorldGui extends WorldGui {
         }
 
         for (float y = 0; y <= verticalSpikes-1; y += 0.5f) {
+            int spikeHeightShift = rand.nextInt(shiftMin, shiftMax);
             Vec2 pointA = new Vec2(guiX, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y));
             Vec2 pointB = new Vec2(guiX, guiY+(((float)guiHeight/(float)verticalSpikes)*((float)y+1f)));
-            Vec2 pointC = new Vec2(guiX-spikeHeight, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
+            Vec2 pointC = new Vec2(guiX-(spikeHeight+spikeHeightShift), guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
             pointC = pointC.add(new Vec2(0, rand.nextInt(-offsetBounds, offsetBounds)));
             pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
             drawTriangle(guiGraphics, pointC, pointB, pointA, 0, color, shiftInward);
@@ -119,9 +124,10 @@ public class PageWorldGui extends WorldGui {
             mathOffset += rand.nextInt(-360, 360);
         }
         for (float y = 0; y <= verticalSpikes-1; y += 0.5f) {
+            int spikeHeightShift = rand.nextInt(shiftMin, shiftMax);
             Vec2 pointA = new Vec2(guiX+guiWidth, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y));
             Vec2 pointB = new Vec2(guiX+guiWidth, guiY+(((float)guiHeight/(float)verticalSpikes)*((float)y+1f)));
-            Vec2 pointC = new Vec2(guiX+guiWidth+spikeHeight, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
+            Vec2 pointC = new Vec2(guiX+guiWidth+spikeHeight+spikeHeightShift, guiY+(((float)guiHeight/(float)verticalSpikes)*(float)y+0.5f));
             pointC = pointC.add(new Vec2(0, rand.nextInt(-offsetBounds, offsetBounds)));
             pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians((time*timeScale)+mathOffset))).scale(pixelScale));
             drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);
@@ -130,6 +136,7 @@ public class PageWorldGui extends WorldGui {
         }
         int cornerWidth = 60;
         for (int i = 0; i < 4; i++) {
+            int spikeHeightShift = rand.nextInt(shiftMin, shiftMax);
             Vec2 pointA = new Vec2(guiX, guiY);
             Vec2 pointB = new Vec2(guiX, guiY);
             Vec2 pointC = new Vec2(guiX, guiY);
@@ -153,7 +160,7 @@ public class PageWorldGui extends WorldGui {
                 pointB = new Vec2(pointB.x, guiY+guiHeight-(cornerWidth/2));
                 pointC = new Vec2(pointC.x, guiY+guiHeight);
             }
-            Vec2 offset = new Vec2((guiX+(guiWidth/2))-pointC.x, (guiY+(guiHeight/2))-pointC.y).normalized().scale(-spikeHeight);
+            Vec2 offset = new Vec2((guiX+(guiWidth/2))-pointC.x, (guiY+(guiHeight/2))-pointC.y).normalized().scale(-(spikeHeight+spikeHeightShift));
             pointC = pointC.add(offset);
             pointC = pointC.add(new Vec2((float)Math.sin(Math.toRadians((time*timeScale)+mathOffset)), (float)Math.cos(Math.toRadians(timeScale+mathOffset))).scale(pixelScale));
             drawTriangle(guiGraphics, pointA, pointB, pointC, 0, color, shiftInward);

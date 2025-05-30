@@ -58,6 +58,7 @@ public class ModMessages {
         registrar.playToClient(RuneTypeSyncS2CPacket.TYPE, getNetworkCodec(RuneTypeSyncS2CPacket::read, RuneTypeSyncS2CPacket::write), Handler::handle);
         registrar.playToClient(StartFalseDeathS2CPacket.TYPE, getNetworkCodec(StartFalseDeathS2CPacket::read, StartFalseDeathS2CPacket::write), Handler::handle);
         registrar.playToClient(PlayerPowerModeSyncS2CPacket.TYPE, getNetworkCodec(PlayerPowerModeSyncS2CPacket::read, PlayerPowerModeSyncS2CPacket::write), Handler::handle);
+        registrar.playToClient(EntrySyncS2CPacket.TYPE, getNetworkCodec(EntrySyncS2CPacket::read, EntrySyncS2CPacket::write), Handler::handle);
         //C2S
         registrar.playToServer(BlinkC2SPacket.TYPE, getNetworkCodec(BlinkC2SPacket::read, BlinkC2SPacket::write), Handler::handle);
     }
