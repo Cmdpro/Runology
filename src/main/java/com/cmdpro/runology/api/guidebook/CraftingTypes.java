@@ -1,6 +1,7 @@
 package com.cmdpro.runology.api.guidebook;
 
-import com.cmdpro.datanessence.data.datatablet.pages.crafting.types.*;
+
+import com.cmdpro.runology.data.entries.pages.crafting.types.CraftingTableType;
 
 import java.util.ArrayList;
 import java.util.List;

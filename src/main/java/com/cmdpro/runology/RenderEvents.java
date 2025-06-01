@@ -60,21 +60,21 @@ public class RenderEvents {
         RenderSystem.depthMask(true);
         getSpecialBypassTarget().clear(Minecraft.ON_OSX);
         getSpecialBypassTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-        Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+        Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
         createShatterInsideBufferSource().endBatch();
         getShatterTarget().clear(Minecraft.ON_OSX);
         getShatterTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
         getPlayerPowerTarget().clear(Minecraft.ON_OSX);
         getPlayerPowerTarget().copyDepthFrom(Minecraft.getInstance().getMainRenderTarget());
-        getShatterTarget().bindWrite(false);
+        getShatterTarget().bindWrite(true);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.SHATTER_PARTICLE);
-        getPlayerPowerTarget().bindWrite(false);
+        getPlayerPowerTarget().bindWrite(true);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER);
         createShatterOutlineBufferSource().endBatch(RunologyRenderTypes.PLAYER_POWER_PARTICLE);
-        getSpecialBypassTarget().bindWrite(false);
+        getSpecialBypassTarget().bindWrite(true);
         createSpecialBypassBufferSource().endBatch();
-        Minecraft.getInstance().getMainRenderTarget().bindWrite(false);
+        Minecraft.getInstance().getMainRenderTarget().bindWrite(true);
         RenderSystem.depthMask(false);
     }
     private static RenderTarget shatterTarget;
