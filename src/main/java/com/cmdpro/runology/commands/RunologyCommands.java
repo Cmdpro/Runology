@@ -44,7 +44,7 @@ public class RunologyCommands {
     private static int guitest(CommandContext<CommandSourceStack> command){
         if(command.getSource().getEntity() instanceof Player) {
             Player player = (Player) command.getSource().getEntity();
-            WorldGuiEntity entity = new WorldGuiEntity(player.level(), player.getEyePosition(), WorldGuiRegistry.TEST.get());
+            WorldGuiEntity entity = new WorldGuiEntity(player.level(), player.getEyePosition(), WorldGuiRegistry.PAGE.get());
             player.level().addFreshEntity(entity);
         }
         return Command.SINGLE_SUCCESS;

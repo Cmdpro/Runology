@@ -1,5 +1,7 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.databank.worldgui.WorldGui;
+import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.runology.data.entries.Entry;
 import com.cmdpro.runology.data.entries.EntryManager;
 import com.cmdpro.runology.data.entries.EntryTab;
@@ -7,6 +9,8 @@ import com.cmdpro.runology.data.entries.EntryTabManager;
 import com.cmdpro.runology.registry.BlockRegistry;
 import com.cmdpro.runology.registry.EntityRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
+import com.cmdpro.runology.registry.WorldGuiRegistry;
+import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +44,7 @@ public class RunicCodex extends Entity {
         this.owner = owner;
         updateUnlocked(owner);
     }
+    public WorldGuiEntity entryGui;
     public EntryTab tab;
     public List<EntryTab> avaliableTabs = new ArrayList<>();
     public List<Entry> avaliableEntries = new ArrayList<>();
@@ -62,6 +67,7 @@ public class RunicCodex extends Entity {
             i.remove(reason);
         }
         entryEntities.clear();
+        entryGui.remove(reason);
     }
 
     @Override
@@ -80,17 +86,19 @@ public class RunicCodex extends Entity {
                 }
                 entryEntities.clear();
             } else if (entryEntities.isEmpty()) {
-                for (Entry i : avaliableEntries) {
-                    createEntryEntity(position().add(i.pos), i.id);
-                }
-                for (RunicCodexEntry i : entryEntities.values()) {
-                    for (ResourceLocation j : i.getEntry().parents) {
-                        RunicCodexEntry entryEntity = entryEntities.get(j);
-                        if (entryEntity != null) {
-                            i.parentEntities.add(entryEntity);
-                        }
+                if (entryGui == null) {
+                    for (Entry i : avaliableEntries) {
+                        createEntryEntity(position().add(0, 1.5f, 0).add(i.pos), i.id);
                     }
-                    level().addFreshEntity(i);
+                    for (RunicCodexEntry i : entryEntities.values()) {
+                        for (ResourceLocation j : i.getEntry().parents) {
+                            RunicCodexEntry entryEntity = entryEntities.get(j);
+                            if (entryEntity != null) {
+                                i.parentEntities.add(entryEntity);
+                            }
+                        }
+                        level().addFreshEntity(i);
+                    }
                 }
             }
         }
@@ -102,6 +110,19 @@ public class RunicCodex extends Entity {
         entity.entryDataDirty = true;
         entryEntities.put(id, entity);
         return entity;
+    }
+    public void openEntry(RunicCodexEntry entry) {
+        WorldGuiEntity worldGui = new WorldGuiEntity(level(), position().add(0, 2f, 0), WorldGuiRegistry.PAGE.get());
+        level().addFreshEntity(worldGui);
+        if (worldGui.gui instanceof PageWorldGui pageWorldGui) {
+            pageWorldGui.pages = new ArrayList<>(entry.getEntry().pages);
+            worldGui.syncData();
+        }
+        entryGui = worldGui;
+        for (RunicCodexEntry i : entryEntities.values().stream().toList()) {
+            i.remove(RemovalReason.DISCARDED);
+        }
+        entryEntities.clear();
     }
 
     @Override

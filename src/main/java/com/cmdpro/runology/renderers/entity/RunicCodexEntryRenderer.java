@@ -38,11 +38,13 @@ public class RunicCodexEntryRenderer extends EntityRenderer<RunicCodexEntry> {
             renderLine(Vec3.ZERO, new Vec3(0, entity.getBoundingBox().getCenter().distanceTo(i), 0), 0.05f, partialTick, poseStack, RenderEvents.createShatterInsideBufferSource().getBuffer(RunologyRenderTypes.SHATTER));
             poseStack.popPose();
         }
-        poseStack.pushPose();
-        poseStack.translate(0, entity.getBoundingBox().getYsize()/2, 0);
-        poseStack.scale(0.2f, 0.2f, 0.2f);
-        Minecraft.getInstance().getItemRenderer().renderStatic(entity.icon, ItemDisplayContext.GUI, packedLight, OverlayTexture.NO_OVERLAY, poseStack, RenderEvents.createSpecialBypassBufferSource(), entity.level(), 0);
-        poseStack.popPose();
+        if (entity.icon != null) {
+            poseStack.pushPose();
+            poseStack.translate(0, entity.getBoundingBox().getYsize() / 2, 0);
+            poseStack.scale(0.2f, 0.2f, 0.2f);
+            Minecraft.getInstance().getItemRenderer().renderStatic(entity.icon, ItemDisplayContext.FIXED, packedLight, OverlayTexture.NO_OVERLAY, poseStack, RenderEvents.createSpecialBypassBufferSource(), entity.level(), 0);
+            poseStack.popPose();
+        }
     }
     private void renderLine(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer) {
         Vector3f diff = end.toVector3f().sub(start.toVector3f()).normalize().mul(thickness, thickness, thickness);

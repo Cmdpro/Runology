@@ -5,6 +5,7 @@ import com.cmdpro.runology.registry.EntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -49,19 +50,10 @@ public class RunicCodexItem extends Item {
                     blockpos1 = blockpos.relative(direction);
                 }
 
-                if (entitytype.spawn(
-                        (ServerLevel)level,
-                        itemstack,
-                        context.getPlayer(),
-                        blockpos1,
-                        MobSpawnType.SPAWN_EGG,
-                        true,
-                        !Objects.equals(blockpos, blockpos1) && direction == Direction.UP
-                )
-                        != null) {
-                    itemstack.shrink(1);
-                    level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
-                }
+                RunicCodex runicCodex = new RunicCodex(level, (ServerPlayer)context.getPlayer());
+                runicCodex.setPos(blockpos1.getBottomCenter());
+                level.addFreshEntity(runicCodex);
+                itemstack.shrink(1);
 
                 return InteractionResult.CONSUME;
             }

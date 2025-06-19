@@ -1,30 +1,30 @@
 package com.cmdpro.runology.entity;
 
-import com.cmdpro.runology.Runology;
+import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.runology.data.entries.Entry;
 import com.cmdpro.runology.data.entries.EntryManager;
-import com.cmdpro.runology.particle.ShatterParticle;
 import com.cmdpro.runology.registry.EntityRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
+import com.cmdpro.runology.registry.WorldGuiRegistry;
+import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.RandomUtils;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +100,15 @@ public class RunicCodexEntry extends Entity {
             }
         }
     }
+
+    @Override
+    public InteractionResult interact(Player player, InteractionHand hand) {
+        if (!level().isClientSide) {
+            codex.openEntry(this);
+        }
+        return InteractionResult.sidedSuccess(level().isClientSide);
+    }
+
     public CompoundTag getEntryData() {
         CompoundTag tag = new CompoundTag();
         ListTag entryPositions = new ListTag();
@@ -121,7 +130,11 @@ public class RunicCodexEntry extends Entity {
             CompoundTag compound = (CompoundTag)i;
             parentEntityLocations.add(new Vec3(compound.getDouble("x"), compound.getDouble("y"), compound.getDouble("z")));
         }
-        id = ResourceLocation.tryParse(tag.getString("id"));
+        ResourceLocation id = ResourceLocation.tryParse(tag.getString("id"));
+        if (id != this.id) {
+            entry = EntryManager.entries.get(id);
+        }
+        this.id = id;
         icon = EntryManager.entries.get(id).icon;
     }
     public static final EntityDataAccessor<CompoundTag> ENTRY_DATA = SynchedEntityData.defineId(RunicCodexEntry.class, EntityDataSerializers.COMPOUND_TAG);

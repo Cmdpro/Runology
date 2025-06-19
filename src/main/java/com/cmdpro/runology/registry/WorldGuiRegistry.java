@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class WorldGuiRegistry {
     public static final DeferredRegister<WorldGuiType> WORLD_GUI_TYPES = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath(Databank.MOD_ID, "world_gui_types"),
             Runology.MODID);
-    public static final Supplier<WorldGuiType> TEST = register("test", PageWorldGuiType::new);
+    public static final Supplier<WorldGuiType> PAGE = register("page", PageWorldGuiType::new);
     private static <T extends WorldGuiType> Supplier<T> register(final String name, final Supplier<T> gui) {
         return WORLD_GUI_TYPES.register(name, gui);
     }

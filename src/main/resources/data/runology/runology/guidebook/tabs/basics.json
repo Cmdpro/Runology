@@ -1,0 +1,9 @@
+{
+  "icon": {
+    "id": "runology:guidebook"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.tabs.basics.name"
+  },
+  "priority": 10
+}

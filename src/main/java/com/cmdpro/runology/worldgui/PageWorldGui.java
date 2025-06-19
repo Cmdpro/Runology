@@ -3,17 +3,25 @@ package com.cmdpro.runology.worldgui;
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
+import com.cmdpro.databank.worldgui.components.WorldGuiComponent;
 import com.cmdpro.runology.api.RunologyRegistries;
 import com.cmdpro.runology.api.guidebook.Page;
+import com.cmdpro.runology.api.guidebook.PageSerializer;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
-import com.cmdpro.runology.worldgui.components.MultiblockViewComponent;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.ComponentSerialization;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec2;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
@@ -26,19 +34,20 @@ import java.util.Random;
 
 public class PageWorldGui extends WorldGui {
     public int time = 0;
+    public int page;
     public List<Page> pages = new ArrayList<>();
+    public List<WorldGuiComponent> pageComponents = new ArrayList<>();
     public PageWorldGui(WorldGuiEntity entity) {
         super(entity);
     }
 
     @Override
     public void addInitialComponents() {
-
     }
 
     @Override
     public WorldGuiType getType() {
-        return WorldGuiRegistry.TEST.get();
+        return WorldGuiRegistry.PAGE.get();
     }
 
     @Override
@@ -53,14 +62,56 @@ public class PageWorldGui extends WorldGui {
         ListTag pages = new ListTag();
         for (Page i : this.pages) {
             CompoundTag page = new CompoundTag();
-
+            var result = i.getSerializer().getCodec().codec().encodeStart(NbtOps.INSTANCE, i);
+            if (result.result().orElse(null) instanceof Tag tag) {
+                page.put("pageData", tag);
+            }
             page.putString("serializer", RunologyRegistries.PAGE_TYPE_REGISTRY.getKey(i.getSerializer()).toString());
+            pages.add(page);
         }
+        compoundTag.put("pages", pages);
     }
 
     @Override
     public void recieveData(CompoundTag compoundTag) {
+        List<Page> finalPages = new ArrayList<>();
+        ListTag pages = (ListTag)compoundTag.get("pages");
+        for (Tag i : pages) {
+            if (i instanceof CompoundTag tag) {
+                ResourceLocation serializer = ResourceLocation.tryParse(tag.getString("serializer"));
+                PageSerializer type = RunologyRegistries.PAGE_TYPE_REGISTRY.get(serializer);
+                if (type.getCodec().codec().decode(NbtOps.INSTANCE, tag.get("pageData")).result().orElse(null) instanceof Page page) {
+                    finalPages.add(page);
+                }
+            }
+        }
+        this.pages.clear();
+        this.pages.addAll(finalPages);
+        if (this.pages.size() > this.page) {
+            Page page = this.pages.get(this.page);
+            pageComponents.forEach(this::removeComponent);
+            pageComponents.clear();
+            List<WorldGuiComponent> components = page.addComponents(this, getMiddleX(), getMiddleY());
+            pageComponents.addAll(components);
+            components.forEach(this::addComponent);
+        }
+    }
 
+    @Override
+    public void rightClick(boolean isClient, Player player, int x, int y) {
+        if (pages.size() > this.page) {
+            Page page = pages.get(this.page);
+            page.onClick(this, isClient, player, x, y, Page.ClickType.RIGHT, getMiddleX(), getMiddleY());
+        }
+        super.rightClick(isClient, player, x, y);
+    }
+    @Override
+    public void leftClick(boolean isClient, Player player, int x, int y) {
+        if (pages.size() > this.page) {
+            Page page = pages.get(this.page);
+            page.onClick(this, isClient, player, x, y, Page.ClickType.LEFT, getMiddleX(), getMiddleY());
+        }
+        super.rightClick(isClient, player, x, y);
     }
 
     @Override
@@ -80,7 +131,31 @@ public class PageWorldGui extends WorldGui {
 
         guiGraphics.fill(guiX-outlineSize, guiY-outlineSize, guiX+guiWidth+outlineSize, guiY+guiHeight+outlineSize, 0xFF000000);
 
+        Vec2 clientTargetNormal = getClientTargetNormal();
+        int mouseX = -1;
+        int mouseY = -1;
+        if (clientTargetNormal != null) {
+            mouseX = normalXIntoGuiX(clientTargetNormal.x);
+            mouseY = normalYIntoGuiY(clientTargetNormal.y);
+        }
+
+        if (pages.size() > this.page) {
+            Page page = pages.get(this.page);
+            page.render(this, guiGraphics, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), mouseX, mouseY, getMiddleX(), getMiddleY());
+        }
         renderComponents(guiGraphics);
+        if (pages.size() > this.page) {
+            Page page = pages.get(this.page);
+            page.renderPost(this, guiGraphics, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), mouseX, mouseY, getMiddleX(), getMiddleY());
+        }
+    }
+    private int getMiddleX() {
+        Vec2 renderSize = getType().getRenderSize();
+        return (int)(renderSize.x/2f);
+    }
+    private int getMiddleY() {
+        Vec2 renderSize = getType().getRenderSize();
+        return (int)(renderSize.y/2f);
     }
     private void drawSpikes(GuiGraphics guiGraphics, int horizontalSpikes, int verticalSpikes, int shiftInward, int color, int guiWidth, int guiHeight, int guiX, int guiY, int pixelScale, int spikeHeight) {
         int mathOffset = 0;

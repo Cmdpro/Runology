@@ -19,7 +19,7 @@ public class GoldPillarRenderer implements BlockEntityRenderer<GoldPillarBlockEn
             pPoseStack.translate(0.5D, 1.5D, 0.5D);
             pPoseStack.mulPose(Axis.YP.rotationDegrees(pBlockEntity.getLevel().getLevelData().getGameTime() % 360));
             pPoseStack.scale(0.75F, 0.75F, 0.75F);
-            Minecraft.getInstance().getItemRenderer().renderStatic(pBlockEntity.item, ItemDisplayContext.GUI, pPackedLight, pPackedOverlay, pPoseStack, pBuffer, pBlockEntity.getLevel(), 0);
+            Minecraft.getInstance().getItemRenderer().renderStatic(pBlockEntity.item, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, pPoseStack, pBuffer, pBlockEntity.getLevel(), 0);
             pPoseStack.popPose();
         }
     }

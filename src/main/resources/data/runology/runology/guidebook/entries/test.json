@@ -1,0 +1,29 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:shatter"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.test.name"
+  },
+  "x": 0,
+  "y": 0,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.test.text1"
+      }
+    },
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.test.text2"
+      }
+    }
+  ],
+  "parents": [
+
+  ]
+}
