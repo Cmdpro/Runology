@@ -4,6 +4,7 @@ import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.databank.worldgui.WorldGuiType;
 import com.cmdpro.databank.worldgui.components.WorldGuiComponent;
+import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.RunologyRegistries;
 import com.cmdpro.runology.api.guidebook.Page;
 import com.cmdpro.runology.api.guidebook.PageSerializer;
@@ -24,6 +25,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -38,6 +40,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PageWorldGui extends WorldGui {
+    public static final ResourceLocation GUIDEBOOK_MISC = Runology.locate("textures/gui/guidebook_misc.png");
     public RunicCodex codex;
     public int time = 0;
     public int page;
@@ -170,7 +173,14 @@ public class PageWorldGui extends WorldGui {
         }
         renderComponents(guiGraphics);
         if (entry != null) {
-            guiGraphics.drawCenteredString(ClientHandler.getFont(), EntryManager.entries.get(entry).name.copy().withStyle(ChatFormatting.BOLD), getMiddleX(), guiY-32, 0xFFFFFFFF);
+            Component text = EntryManager.entries.get(entry).name.copy().withStyle(ChatFormatting.BOLD);
+            int padding = 16;
+            int width = ClientHandler.getFont().width(text)+padding;
+            int height = ClientHandler.getFont().lineHeight+padding;
+            int x = getMiddleX();
+            int y = guiY-32;
+            guiGraphics.blitWithBorder(GUIDEBOOK_MISC, x-(width/2), y-(padding/2), 0, 0, width, height, 10, 10, 2);
+            guiGraphics.drawCenteredString(ClientHandler.getFont(), text, x, y, 0xFFFFFFFF);
         }
         if (pages.size() > this.page) {
             Page page = pages.get(this.page);
