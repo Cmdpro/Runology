@@ -33,18 +33,20 @@ public class CraftingPage extends TextPage {
     public List<ResourceLocation> recipes;
     @Override
     public int textYOffset() {
-        int x = 4;
-        int y = 4;
-        int o = 0;
+        int y = getYStart();
         for (ResourceLocation i : recipes) {
-            x += 125;
-            if (o >= 2) {
-                x = 4;
-                y += 62;
+            int shift = 0;
+            Optional<? extends RecipeHolder<?>> optional = Minecraft.getInstance().level.getRecipeManager().byKey(i);
+            if (optional.isPresent()) {
+                for (CraftingType o : CraftingTypes.types) {
+                    if (o.isRecipeType(optional.get().value())) {
+                        shift = o.getYHeight();
+                    }
+                }
             }
-            o++;
+            y += shift+10;
         }
-        return y+58;
+        return y;
     }
     public List<FormattedCharSequence> tooltipToShow = new ArrayList<>();
     public boolean showTooltip;
@@ -52,26 +54,38 @@ public class CraftingPage extends TextPage {
     public void render(PageWorldGui gui, GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY, int middleX, int middleY) {
         super.render(gui, pGuiGraphics, pPartialTick, pMouseX, pMouseY, middleX, middleY);
         int x = 4;
-        int y = 4;
-        int p = 0;
+        int y = getYStart();
         for (ResourceLocation i : recipes) {
+            int shift = 0;
             Optional<? extends RecipeHolder<?>> optional = Minecraft.getInstance().level.getRecipeManager().byKey(i);
             if (optional.isPresent()) {
                 for (CraftingType o : CraftingTypes.types) {
                     if (o.isRecipeType(optional.get().value())) {
+                        shift = o.getYHeight();
                         o.render(this, gui, pGuiGraphics, middleX, x, middleY, y, optional.get().value(), pMouseX, pMouseY);
                         break;
                     }
                 }
             }
-            x += 125;
-            p++;
-            if (p >= 2) {
-                x = 4;
-                y += 62;
-                p = 0;
-            }
+            y += shift+10;
         }
+    }
+    public int getYStart() {
+        int y = 4;
+        for (ResourceLocation i : recipes) {
+            int shift = 0;
+            Optional<? extends RecipeHolder<?>> optional = Minecraft.getInstance().level.getRecipeManager().byKey(i);
+            if (optional.isPresent()) {
+                for (CraftingType o : CraftingTypes.types) {
+                    if (o.isRecipeType(optional.get().value())) {
+                        shift = o.getYHeight();
+                        break;
+                    }
+                }
+            }
+            y -= (shift + 10)/2;
+        }
+        return y;
     }
     @Override
     public void renderPost(PageWorldGui gui, GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY, int middleX, int middleY) {

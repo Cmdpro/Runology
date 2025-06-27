@@ -32,10 +32,22 @@
     {
       "type": "runology:crafting",
       "recipes": [
-        "minecraft:flint_and_steel"
+        "minecraft:flint_and_steel",
+        "minecraft:diamond_hoe"
       ],
       "text": {
         "translate": "runology.guidebook.runology.basics.entries.test.text3"
+      }
+    },
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:shatter_infusion/guidebook",
+        "runology:shatter_infusion/runic_chisel",
+        "runology:shatter_infusion/shatterstone"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.test.text4"
       }
     }
   ],

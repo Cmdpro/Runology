@@ -8,4 +8,5 @@ import net.minecraft.world.item.crafting.Recipe;
 public abstract class CraftingType {
     public abstract void render(CraftingPage page, PageWorldGui gui, GuiGraphics pGuiGraphics, int xOffset, int x, int yOffset, int y, Recipe recipe, int pMouseX, int pMouseY);
     public abstract boolean isRecipeType(Recipe recipe);
+    public abstract int getYHeight();
 }

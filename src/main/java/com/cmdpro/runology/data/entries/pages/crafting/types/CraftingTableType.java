@@ -7,6 +7,7 @@ import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 
@@ -16,8 +17,9 @@ public class CraftingTableType extends CraftingType {
     public void render(CraftingPage page, PageWorldGui gui, GuiGraphics pGuiGraphics, int middleX, int x, int middleY, int y, Recipe recipe, int pMouseX, int pMouseY) {
         if (recipe instanceof CraftingRecipe recipe2) {
             int recipeX = middleX + x - (98/2);
-            int recipeY = middleY + y - (52/2);
+            int recipeY = middleY + y;
             pGuiGraphics.blit(GUIDEBOOK_CRAFTING, recipeX, recipeY, 0, 0, 98, 52);
+            page.renderItemWithTooltip(pGuiGraphics, new ItemStack(Items.CRAFTING_TABLE), recipeX+58, recipeY+3, pMouseX, pMouseY);
             page.renderItemWithTooltip(pGuiGraphics, recipe.getResultItem(RegistryAccess.EMPTY), recipeX + 81, recipeY + 18, pMouseX, pMouseY);
             if (recipe2 instanceof ShapelessRecipe) {
                 pGuiGraphics.blit(GUIDEBOOK_CRAFTING, recipeX + 62, recipeY + 35, 0, 54, 8, 6);
@@ -45,5 +47,10 @@ public class CraftingTableType extends CraftingType {
     @Override
     public boolean isRecipeType(Recipe recipe) {
         return recipe.getType().equals(RecipeType.CRAFTING);
+    }
+
+    @Override
+    public int getYHeight() {
+        return 52;
     }
 }
