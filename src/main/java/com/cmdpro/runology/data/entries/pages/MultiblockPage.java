@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Rotation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultiblockPage extends Page {
@@ -57,8 +58,8 @@ public class MultiblockPage extends Page {
 
     @Override
     public List<WorldGuiComponent> addComponents(PageWorldGui gui, int middleX, int middleY) {
-        List<WorldGuiComponent> components = super.addComponents(gui, middleX, middleY);
-        components.add(new MultiblockViewComponent(gui, 150, 150, multiblock));
+        List<WorldGuiComponent> components = new ArrayList<>(super.addComponents(gui, middleX, middleY));
+        components.add(new MultiblockViewComponent(gui, middleX+50, middleY+50, multiblock));
         return components;
     }
 

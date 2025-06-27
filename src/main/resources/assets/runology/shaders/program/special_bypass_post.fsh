@@ -9,6 +9,5 @@ out vec4 fragColor;
 
 void main() {
     vec4 color = texture(SpecialBypassSampler, texCoord);
-    fragColor = mix(texture(DiffuseSampler, texCoord), vec4(color.rgb, 1.0), color.a);
-    //fragColor = vec4(mix(color.rgb, vec3(1.0, 0.0, 1.0), color.a), 1.0);
+    fragColor = vec4(mix(texture(DiffuseSampler, texCoord).rgb, vec3(color.rgb), color.a), 1.0);
 }

@@ -1,5 +1,8 @@
 package com.cmdpro.runology.entity;
 
+import com.cmdpro.databank.model.animation.DatabankAnimationReference;
+import com.cmdpro.databank.model.animation.DatabankAnimationState;
+import com.cmdpro.databank.model.animation.DatabankEntityAnimationState;
 import com.cmdpro.databank.worldgui.WorldGui;
 import com.cmdpro.databank.worldgui.WorldGuiEntity;
 import com.cmdpro.runology.data.entries.Entry;
@@ -12,6 +15,10 @@ import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
 import com.cmdpro.runology.worldgui.PageWorldGui;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,17 +33,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class RunicCodex extends Entity {
-    public AnimationState animState = new AnimationState();
+    public DatabankAnimationState animState = new DatabankEntityAnimationState("idle", this)
+            .addAnim(new DatabankAnimationReference("idle", (state, definition) -> {}, (state, definition) -> {}))
+            .addAnim(new DatabankAnimationReference("page_turn", (state, definition) -> {}, (state, definition) -> state.setAnim("idle")));
     public HashMap<ResourceLocation, RunicCodexEntry> entryEntities = new HashMap<>();
 
     public RunicCodex(EntityType<?> entityType, Level level) {
         super(entityType, level);
+        animState.setLevel(level);
     }
     public ServerPlayer owner;
     public RunicCodex(Level level, ServerPlayer owner) {
@@ -44,16 +51,31 @@ public class RunicCodex extends Entity {
         this.owner = owner;
         updateUnlocked(owner);
     }
+
+    @Override
+    protected void setLevel(Level level) {
+        super.setLevel(level);
+        animState.setLevel(level);
+    }
+
+    public boolean entryOpen;
     public WorldGuiEntity entryGui;
-    public EntryTab tab;
-    public List<EntryTab> avaliableTabs = new ArrayList<>();
-    public List<Entry> avaliableEntries = new ArrayList<>();
+    public ResourceLocation tab;
+    public List<ResourceLocation> avaliableTabs = new ArrayList<>();
+    public List<ResourceLocation> avaliableEntries = new ArrayList<>();
     public void updateUnlocked(ServerPlayer owner) {
-        avaliableTabs = EntryTabManager.tabs.values().stream().filter((i) -> i.isUnlocked(owner)).toList();
-        avaliableEntries = EntryManager.entries.values().stream().filter((i) -> i.isUnlocked(owner)).toList();
+        Comparator<EntryTab> tabComparator = Comparator.comparing((i) -> i.priority);
+        avaliableTabs = EntryTabManager.tabs.values().stream().filter((i) -> i.isUnlocked(owner)).sorted(tabComparator.reversed()).map((i) -> i.id).toList();
+        avaliableEntries = EntryManager.entries.values().stream().filter((i) -> i.isUnlocked(owner)).map((i) -> i.id).toList();
         if (tab == null || !avaliableTabs.contains(tab)) {
-            avaliableTabs.stream().findFirst().ifPresent(entryTab -> this.tab = entryTab);
+            avaliableTabs.stream().findFirst().ifPresent(entryTab -> {
+                this.tab = entryTab;
+                syncData();
+            });
         }
+    }
+    public void syncData() {
+        entityData.set(DATA, createData());
     }
     @Override
     public boolean isPickable() {
@@ -67,7 +89,9 @@ public class RunicCodex extends Entity {
             i.remove(reason);
         }
         entryEntities.clear();
-        entryGui.remove(reason);
+        if (entryGui != null) {
+            entryGui.remove(reason);
+        }
     }
 
     @Override
@@ -80,15 +104,24 @@ public class RunicCodex extends Entity {
                     anyoneNearby = true;
                 }
             }
+            for (RunicCodexEntry i : entryEntities.values().stream().toList()) {
+                if (!getEntry(i.id).tab.equals(tab)) {
+                    i.remove(RemovalReason.DISCARDED);
+                    entryEntities.remove(i.id);
+                }
+            }
             if (!anyoneNearby) {
                 for (RunicCodexEntry i : entryEntities.values().stream().toList()) {
                     i.remove(RemovalReason.DISCARDED);
                 }
                 entryEntities.clear();
             } else if (entryEntities.isEmpty()) {
-                if (entryGui == null) {
-                    for (Entry i : avaliableEntries) {
-                        createEntryEntity(position().add(0, 1.5f, 0).add(i.pos), i.id);
+                if (entryGui == null && tab != null) {
+                    for (ResourceLocation i : avaliableEntries) {
+                        Entry entry = getEntry(i);
+                        if (entry.tab.equals(tab)) {
+                            createEntryEntity(position().add(0, 1.5f, 0).add(entry.pos), i);
+                        }
                     }
                     for (RunicCodexEntry i : entryEntities.values()) {
                         for (ResourceLocation j : i.getEntry().parents) {
@@ -103,6 +136,12 @@ public class RunicCodex extends Entity {
             }
         }
     }
+    public Entry getEntry(ResourceLocation id) {
+        return EntryManager.entries.get(id);
+    }
+    public EntryTab getTab() {
+        return EntryTabManager.tabs.get(tab);
+    }
     public RunicCodexEntry createEntryEntity(Vec3 position, ResourceLocation id) {
         RunicCodexEntry entity = new RunicCodexEntry(level(), id);
         entity.setPos(position);
@@ -112,10 +151,12 @@ public class RunicCodex extends Entity {
         return entity;
     }
     public void openEntry(RunicCodexEntry entry) {
-        WorldGuiEntity worldGui = new WorldGuiEntity(level(), position().add(0, 2f, 0), WorldGuiRegistry.PAGE.get());
+        WorldGuiEntity worldGui = new WorldGuiEntity(level(), position().add(0, 2.25f, 0), WorldGuiRegistry.PAGE.get());
         level().addFreshEntity(worldGui);
         if (worldGui.gui instanceof PageWorldGui pageWorldGui) {
             pageWorldGui.pages = new ArrayList<>(entry.getEntry().pages);
+            pageWorldGui.codex = this;
+            pageWorldGui.entry = entry.id;
             worldGui.syncData();
         }
         entryGui = worldGui;
@@ -123,6 +164,14 @@ public class RunicCodex extends Entity {
             i.remove(RemovalReason.DISCARDED);
         }
         entryEntities.clear();
+        entryOpen = true;
+        syncData();
+    }
+    public void exitEntry() {
+        entryGui.remove(RemovalReason.DISCARDED);
+        entryGui = null;
+        entryOpen = false;
+        syncData();
     }
 
     @Override
@@ -132,23 +181,90 @@ public class RunicCodex extends Entity {
                 ItemEntity item = new ItemEntity(level(), position().x, position().y, position().z, new ItemStack(ItemRegistry.GUIDEBOOK.get()));
                 level().addFreshEntity(item);
                 remove(RemovalReason.DISCARDED);
+            } else {
+                if (entryGui == null) {
+                    entityData.set(ANIMATION, "page_turn", true);
+                    tab = avaliableTabs.get((avaliableTabs.indexOf(tab)+1) % avaliableTabs.size());
+                    syncData();
+                }
             }
         }
         return InteractionResult.sidedSuccess(level().isClientSide);
     }
-
+    public CompoundTag createData() {
+        CompoundTag tag = new CompoundTag();
+        if (tab != null) {
+            tag.putString("tab", tab.toString());
+        }
+        tag.putBoolean("entryOpen", entryOpen);
+        return tag;
+    }
+    public void readData(CompoundTag data) {
+        if (data.contains("tab")) {
+            tab = ResourceLocation.tryParse(data.getString("tab"));
+        }
+        entryOpen = data.getBoolean("entryOpen");
+    }
+    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(RunicCodex.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<CompoundTag> DATA = SynchedEntityData.defineId(RunicCodex.class, EntityDataSerializers.COMPOUND_TAG);
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-
+        builder.define(ANIMATION, "idle");
+        builder.define(DATA, new CompoundTag());
+    }
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+        if (ANIMATION.equals(key)) {
+            animState.setAnim(entityData.get(ANIMATION));
+            animState.resetAnim();
+        }
+        if (DATA.equals(key)) {
+            readData(entityData.get(DATA));
+        }
+        super.onSyncedDataUpdated(key);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
-
+        avaliableEntries.clear();
+        ListTag entries = (ListTag)compound.get("entries");
+        for (Tag i : entries) {
+            if (i instanceof CompoundTag tag) {
+                ResourceLocation id = ResourceLocation.tryParse(tag.getString("id"));
+                avaliableEntries.add(id);
+            }
+        }
+        avaliableTabs.clear();
+        ListTag tabs = (ListTag)compound.get("tabs");
+        for (Tag i : tabs) {
+            if (i instanceof CompoundTag tag) {
+                ResourceLocation id = ResourceLocation.tryParse(tag.getString("id"));
+                avaliableTabs.add(id);
+            }
+        }
+        if (tab == null || !avaliableTabs.contains(tab)) {
+            avaliableTabs.stream().findFirst().ifPresent(entryTab -> {
+                this.tab = entryTab;
+                syncData();
+            });
+        }
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compound) {
-
+        ListTag entries = new ListTag();
+        for (ResourceLocation i : avaliableEntries) {
+            CompoundTag tag = new CompoundTag();
+            tag.putString("id", i.toString());
+            entries.add(tag);
+        }
+        compound.put("entries", entries);
+        ListTag tabs = new ListTag();
+        for (ResourceLocation i : avaliableTabs) {
+            CompoundTag tag = new CompoundTag();
+            tag.putString("id", i.toString());
+            tabs.add(tag);
+        }
+        compound.put("tabs", tabs);
     }
 }

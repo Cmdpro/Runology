@@ -113,5 +113,5 @@ void main() {
     vec4 color = getColorForPos(insideColor, outlineColor);
     blend = color.a;
 
-    fragColor = mix(texture(DiffuseSampler, texCoord), vec4(color.rgb, 1), blend);
+    fragColor = vec4(mix(texture(DiffuseSampler, texCoord).rgb, vec3(color.rgb), blend), 1.0);
 }

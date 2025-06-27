@@ -1,6 +1,7 @@
 package com.cmdpro.runology;
 
 import com.cmdpro.databank.mixin.client.BufferSourceMixin;
+import com.cmdpro.databank.mixin.client.RenderBuffersMixin;
 import com.cmdpro.databank.multiblock.MultiblockRenderer;
 import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.databank.rendering.ShaderHelper;
@@ -18,10 +19,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
-import net.minecraft.client.renderer.FogRenderer;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -128,7 +126,9 @@ public class RenderEvents {
     static MultiBufferSource.BufferSource specialBypassBufferSource = null;
     public static MultiBufferSource.BufferSource createSpecialBypassBufferSource() {
         if (specialBypassBufferSource == null) {
-            specialBypassBufferSource = new SpecialBypassBuffers(((BufferSourceMixin)Minecraft.getInstance().renderBuffers().bufferSource()).getSharedBuffer());
+            RenderBuffers renderBuffers = Minecraft.getInstance().renderBuffers();
+            MultiBufferSource.BufferSource source = ShaderHelper.needsBufferWorkaround() ? ((RenderBuffersMixin)renderBuffers).getBufferSource() : renderBuffers.bufferSource();
+            specialBypassBufferSource = new SpecialBypassBuffers(((BufferSourceMixin)source).getSharedBuffer());
         }
         return specialBypassBufferSource;
     }

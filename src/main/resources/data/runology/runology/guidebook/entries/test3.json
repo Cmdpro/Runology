@@ -1,0 +1,35 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "minecraft:shield"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.test3.name"
+  },
+  "x": 0,
+  "y": 0,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:item",
+      "item": {
+        "id": "minecraft:shield"
+      },
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.test3.text1"
+      }
+    },
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "minecraft:shield"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.test3.text2"
+      }
+    }
+  ],
+  "parents": [
+
+  ]
+}

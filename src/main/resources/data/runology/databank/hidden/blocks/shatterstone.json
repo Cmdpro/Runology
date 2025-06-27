@@ -1,0 +1,11 @@
+{
+  "condition": {
+    "type": "databank:advancement",
+    "advancement": "runology:shatter"
+  },
+  "type": {
+    "type": "databank:block",
+    "hidden_as": "minecraft:tuff",
+    "original": "runology:shatterstone"
+  }
+}

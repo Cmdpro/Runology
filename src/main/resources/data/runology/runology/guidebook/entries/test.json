@@ -1,10 +1,10 @@
 {
   "tab": "runology:basics",
   "icon": {
-    "id": "runology:shatter"
+    "id": "minecraft:flint_and_steel"
   },
   "name": {
-    "translate": "runology.guidebook.runology.test.name"
+    "translate": "runology.guidebook.runology.basics.entries.test.name"
   },
   "x": 0,
   "y": 0,
@@ -13,13 +13,29 @@
     {
       "type": "runology:text",
       "text": {
-        "translate": "runology.guidebook.runology.test.text1"
+        "translate": "runology.guidebook.runology.basics.entries.test.text1"
       }
     },
     {
-      "type": "runology:text",
+      "type": "runology:item",
+      "item": {
+        "id": "minecraft:ender_pearl"
+      },
       "text": {
-        "translate": "runology.guidebook.runology.test.text2"
+        "translate": "runology.guidebook.runology.basics.entries.test.text2"
+      }
+    },
+    {
+      "type": "runology:multiblock",
+      "multiblock": "runology:test"
+    },
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "minecraft:flint_and_steel"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.test.text3"
       }
     }
   ],

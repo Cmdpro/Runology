@@ -1,8 +1,0 @@
-{
-  "condition": "databank:advancement",
-  "conditionData": {
-    "advancement": "runology:shatter"
-  },
-  "hiddenAs": "minecraft:tuff",
-  "originalBlock": "runology:shatterstone"
-}

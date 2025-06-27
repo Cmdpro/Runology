@@ -1,0 +1,11 @@
+{
+  "condition": {
+    "type": "databank:advancement",
+    "advancement": "runology:shattered_shard"
+  },
+  "type": {
+    "type": "databank:block",
+    "hidden_as": "minecraft:amethyst_cluster",
+    "original": "runology:shattered_crystal_cluster"
+  }
+}

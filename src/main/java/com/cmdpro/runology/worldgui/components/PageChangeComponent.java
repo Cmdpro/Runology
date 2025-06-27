@@ -13,61 +13,83 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 
-public class MultiblockViewComponent extends WorldGuiButtonComponent {
-    public ResourceLocation multiblock;
+public class PageChangeComponent extends WorldGuiButtonComponent {
+    public boolean isLeft;
     public static final ResourceLocation GUIDEBOOK_COMPONENTS = Runology.locate("textures/gui/guidebook_components.png");
-    public MultiblockViewComponent(WorldGui gui, int x, int y, ResourceLocation multiblock) {
-        super(gui, x, y, 16, 16);
-        this.multiblock = multiblock;
+    public PageChangeComponent(WorldGui gui, int x, int y, boolean isLeft) {
+        super(gui, x-16, y-32, 32, 64);
+        this.isLeft = isLeft;
     }
 
+    public boolean shouldRender() {
+        if (gui instanceof PageWorldGui gui) {
+            if (isLeft) {
+                return gui.page - 1 >= 0;
+            } else {
+                return gui.page + 1 < gui.pages.size();
+            }
+        }
+        return false;
+    }
     @Override
     public void renderNormal(GuiGraphics guiGraphics) {
-        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 0, 0, 16, 16);
+        if (shouldRender()) {
+            guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 32 + (isLeft ? 64 : 0), 0, 32, 64);
+        }
     }
 
     @Override
     public void renderHovered(GuiGraphics guiGraphics) {
-        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 16, 0, 16, 16);
+        if (shouldRender()) {
+            guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 64 + (isLeft ? 64 : 0), 0, 32, 64);
+        }
     }
 
     @Override
-    public void leftClickButton(boolean b, Player player, int i, int i1) {
-
+    public void leftClickButton(boolean isClient, Player player, int i, int i1) {
     }
 
     @Override
     public void rightClickButton(boolean isClient, Player player, int i, int i1) {
         if (gui instanceof PageWorldGui gui) {
-            if (isClient) {
-                MultiblockRenderer.multiblockPos = null;
-                MultiblockRenderer.multiblockRotation = null;
-                MultiblockRenderer.multiblock = MultiblockRenderer.multiblock == null ? MultiblockManager.multiblocks.get(multiblock) : null;
-                ClientHandler.playClick();
+            if (shouldRender()) {
+                if (isClient) {
+                    ClientHandler.playClick();
+                } else {
+                    if (isLeft) {
+                        if (gui.page - 1 >= 0) {
+                            gui.setPage(gui.page-1);
+                        }
+                    } else {
+                        if (gui.page + 1 < gui.pages.size()) {
+                            gui.setPage(gui.page+1);
+                        }
+                    }
+                    gui.sync();
+                }
             }
         }
     }
 
     @Override
     public WorldGuiComponentType getType() {
-        return WorldGuiComponentRegistry.MULTIBLOCK_VIEW.get();
+        return WorldGuiComponentRegistry.PAGE_CHANGE.get();
     }
 
     @Override
     public void sendData(CompoundTag tag) {
         super.sendData(tag);
-        tag.putString("multiblock", multiblock.toString());
+        tag.putBoolean("isLeft", isLeft);
     }
 
     @Override
     public void recieveData(CompoundTag tag) {
         super.recieveData(tag);
-        multiblock = ResourceLocation.tryParse(tag.getString("multiblock"));
+        isLeft = tag.getBoolean("isLeft");
     }
 
     private static class ClientHandler {

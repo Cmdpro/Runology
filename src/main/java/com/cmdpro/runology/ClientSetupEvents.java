@@ -43,10 +43,6 @@ public class ClientSetupEvents {
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event)
     {
-        event.enqueueWork(() -> {
-            ClientHooks.registerLayerDefinition(RunicCodexRenderer.runicCodexLocation, RunicCodexRenderer.Model::createLayer);
-        });
-
         shatterShader = new ShatterShader();
         PostShaderManager.addShader(shatterShader);
         shatterShader.setActive(true);

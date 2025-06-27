@@ -1,8 +1,0 @@
-{
-  "condition": "databank:advancement",
-  "conditionData": {
-    "advancement": "runology:shattered_shard"
-  },
-  "hiddenAs": "minecraft:amethyst_cluster",
-  "originalBlock": "runology:shattered_crystal_cluster"
-}

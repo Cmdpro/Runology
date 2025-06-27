@@ -1,35 +1,31 @@
 package com.cmdpro.runology.renderers.entity;
 
-import com.cmdpro.databank.model.DatabankEntityModel;
+import com.cmdpro.databank.model.DatabankModel;
 import com.cmdpro.databank.model.DatabankModels;
+import com.cmdpro.databank.model.entity.DatabankEntityModel;
+import com.cmdpro.databank.model.entity.DatabankEntityRenderer;
+import com.cmdpro.databank.rendering.RenderHandler;
+import com.cmdpro.databank.rendering.RenderProjectionUtil;
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.data.entries.EntryTab;
 import com.cmdpro.runology.entity.RunicCodex;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.model.HierarchicalModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
 
-import javax.annotation.Nullable;
 
-
-public class RunicCodexRenderer extends EntityRenderer<RunicCodex> {
-    public static final ModelLayerLocation runicCodexLocation = new ModelLayerLocation(Runology.locate("runic_codex"), "main");
-    Model model;
-    public RunicCodexRenderer(EntityRendererProvider.Context p_272933_) {
-        super(p_272933_);
-        model = new Model<>(p_272933_.bakeLayer(runicCodexLocation));
+public class RunicCodexRenderer extends DatabankEntityRenderer<RunicCodex> {
+    public static final ResourceLocation GUIDEBOOK_MISC = Runology.locate("textures/gui/guidebook_misc.png");
+    public RunicCodexRenderer(EntityRendererProvider.Context context) {
+        super(context, new Model(), 0.5F);
     }
     @Override
     public ResourceLocation getTextureLocation(RunicCodex instance) {
@@ -37,59 +33,75 @@ public class RunicCodexRenderer extends EntityRenderer<RunicCodex> {
     }
 
     @Override
-    public void render(RunicCodex entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
-        model.setupAnim(entity, 0, 0, entity.tickCount+partialTick, 0, 0);
-        boolean bodyVisible = !entity.isInvisible();
-        boolean translucent = !bodyVisible && !entity.isInvisibleTo(Minecraft.getInstance().player);
-        boolean glowing = Minecraft.getInstance().shouldEntityAppearGlowing(entity);
-        VertexConsumer vertexconsumer = bufferSource.getBuffer(getRenderType(entity, bodyVisible, translucent, glowing));
-        poseStack.pushPose();
-        poseStack.scale(-1.0F, -1.0F, 1.0F);
-        poseStack.translate(0.0F, -1.501F, 0.0F);
-        model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
-        poseStack.popPose();
-    }
-    @Nullable
-    protected RenderType getRenderType(RunicCodex entity, boolean bodyVisible, boolean translucent, boolean glowing) {
-        ResourceLocation resourcelocation = this.getTextureLocation(entity);
-        if (translucent) {
-            return RenderType.itemEntityTranslucentCull(resourcelocation);
-        } else if (bodyVisible) {
-            return this.model.renderType(resourcelocation);
-        } else {
-            return glowing ? RenderType.outline(resourcelocation) : null;
+    public void render(RunicCodex pEntity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        super.render(pEntity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+        MultiBufferSource.BufferSource buffer = RenderHandler.createBufferSource();
+        if (pEntity.tab != null && !pEntity.entryOpen) {
+            EntryTab tab = pEntity.getTab();
+            Component name = tab.name.copy().withStyle(ChatFormatting.BOLD);
+            int width = (Math.max(20, Minecraft.getInstance().font.width(name)) + 8);
+            int height = (24 + Minecraft.getInstance().font.lineHeight + 8);
+            float worldWidth = width / 128f;
+            float worldHeight = height / 128f;
+            Vec3 center = pEntity.getBoundingBox().getCenter();
+            RenderProjectionUtil.project((graphics) -> {
+                graphics.blitWithBorder(GUIDEBOOK_MISC, 0, 0, 0, 0, width, height, 10, 10, 2);
+                float itemScale = 2;
+                graphics.pose().pushPose();
+                graphics.pose().scale(itemScale, itemScale, itemScale);
+                graphics.renderItem(tab.icon, (int)(((width/2f)-(8f*itemScale))/itemScale), 0);
+                graphics.pose().popPose();
+                graphics.drawCenteredString(Minecraft.getInstance().font, name, width/2, 28, 0xFFFFFFFF);
+            }, (stack) -> {
+                stack.pushPose();
+                stack.translate(center.x, center.y, center.z);
+                stack.pushPose();
+                Vec2 angle = angleToClient(pEntity);
+                stack.translate(0, 0.75, 0);
+                stack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(-angle.y + 180)));
+                stack.translate(0, 0, -0.25);
+                stack.pushPose();
+            }, (stack) -> {
+                stack.popPose();
+                stack.popPose();
+                stack.popPose();
+            }, buffer, poseStack, new Vec3(-worldWidth / 2f, worldHeight / 2f, 0), new Vec3(worldWidth / 2f, worldHeight / 2f, 0), new Vec3(worldWidth / 2f, -worldHeight / 2f, 0), new Vec3(-worldWidth / 2f, -worldHeight / 2f, 0), width, height, 3f);
         }
     }
+    public static Vec2 angleToClient(RunicCodex entity) {
+        Vec3 pointA = entity.position();
+        Vec3 pointB = Minecraft.getInstance().player.getEyePosition();
+        return calculateRotationVector(pointA, pointB);
+    }
+    private static Vec2 calculateRotationVector(Vec3 pVec, Vec3 pTarget) {
+        double d0 = pTarget.x - pVec.x;
+        double d1 = pTarget.y - pVec.y;
+        double d2 = pTarget.z - pVec.z;
+        double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+        return new Vec2(
+                Mth.wrapDegrees((float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)))),
+                Mth.wrapDegrees((float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F)
+        );
+    }
 
-    public static class Model<T extends RunicCodex> extends HierarchicalModel<T> {
-        public static AnimationDefinition idle;
-        private final ModelPart root;
-
-        public Model(ModelPart pRoot) {
-            this.root = pRoot.getChild("root");
-        }
-        public static DatabankEntityModel model;
-        public static DatabankEntityModel getModel() {
+    public static class Model extends DatabankEntityModel<RunicCodex> {
+        public DatabankModel model;
+        public DatabankModel getModel() {
             if (model == null) {
                 model = DatabankModels.models.get(Runology.locate("runic_codex"));
-                idle = model.animations.get("idle").createAnimationDefinition();
             }
             return model;
         }
 
-        public static LayerDefinition createLayer() {
-            return getModel().createLayerDefinition();
-        }
-        public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-            this.root().getAllParts().forEach(ModelPart::resetPose);
-            pEntity.animState.startIfStopped(pEntity.tickCount);
-            this.animate(pEntity.animState, idle, pAgeInTicks, 1.0f);
-        }
-
         @Override
-        public ModelPart root() {
-            return root;
+        public ResourceLocation getTextureLocation() {
+            return Runology.locate("textures/item/guidebook.png");
+        }
+        @Override
+        public void setupModelPose(RunicCodex pEntity, float partialTick) {
+            pEntity.animState.updateAnimDefinitions(getModel());
+            animate(pEntity.animState);
+            modelPose.stringToPart.get("root").pos.y += (float)Math.sin(Math.toRadians((pEntity.animState.getTime() % 1f)*360))-0.5f;
         }
     }
 }

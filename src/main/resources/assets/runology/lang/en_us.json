@@ -50,6 +50,23 @@
 
   "modonomicon.runology.guidebook.discover": "I feel a strange and mysterious force... For whatever reason, I feel as if I should imbue a book with this power.",
 
+  "runology.guidebook.runology.tabs.basics.name": "Basics",
+  "runology.guidebook.runology.tabs.shards.name": "Longer Tab Name Where I Have No Idea Why I Would Ever Need One This Long",
+
+
+  "runology.guidebook.runology.basics.entries.test.name": "Test",
+  "runology.guidebook.runology.basics.entries.test.text1": "This is some random text of the random, i dont know what to type so uh just typing random stuff lol",
+  "runology.guidebook.runology.basics.entries.test.text2": "And this... is an ender pearl.",
+  "runology.guidebook.runology.basics.entries.test.text3": "FLINT AND STEEEELLLLL",
+
+  "runology.guidebook.runology.basics.entries.test2.name": "Test 2",
+  "runology.guidebook.runology.basics.entries.test2.text": "diamond pickaxe recipe, not sure what to say, this is just for testing",
+
+  "runology.guidebook.runology.basics.entries.test3.name": "Test 3",
+  "runology.guidebook.runology.basics.entries.test3.text1": "wow shield item display",
+  "runology.guidebook.runology.basics.entries.test3.text2": "wow shield recipe display",
+
+
   "modonomicon.runology.guidebook.basics.name": "Basics",
   "modonomicon.runology.guidebook.shards.name": "Shards",
 

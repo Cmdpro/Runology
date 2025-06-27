@@ -1,0 +1,9 @@
+{
+  "icon": {
+    "id": "runology:shattered_shard"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.tabs.shards.name"
+  },
+  "priority": 5
+}

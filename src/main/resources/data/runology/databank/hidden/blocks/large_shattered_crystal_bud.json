@@ -1,0 +1,11 @@
+{
+  "condition": {
+    "type": "databank:advancement",
+    "advancement": "runology:shattered_shard"
+  },
+  "type": {
+    "type": "databank:block",
+    "hidden_as": "minecraft:large_amethyst_bud",
+    "original": "runology:large_shattered_crystal_bud"
+  }
+}

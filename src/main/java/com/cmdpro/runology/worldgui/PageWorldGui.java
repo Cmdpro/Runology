@@ -7,10 +7,15 @@ import com.cmdpro.databank.worldgui.components.WorldGuiComponent;
 import com.cmdpro.runology.api.RunologyRegistries;
 import com.cmdpro.runology.api.guidebook.Page;
 import com.cmdpro.runology.api.guidebook.PageSerializer;
+import com.cmdpro.runology.data.entries.EntryManager;
+import com.cmdpro.runology.entity.RunicCodex;
 import com.cmdpro.runology.registry.WorldGuiRegistry;
+import com.cmdpro.runology.worldgui.components.ExitPageComponent;
+import com.cmdpro.runology.worldgui.components.PageChangeComponent;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -33,8 +38,10 @@ import java.util.List;
 import java.util.Random;
 
 public class PageWorldGui extends WorldGui {
+    public RunicCodex codex;
     public int time = 0;
     public int page;
+    public ResourceLocation entry;
     public List<Page> pages = new ArrayList<>();
     public List<WorldGuiComponent> pageComponents = new ArrayList<>();
     public PageWorldGui(WorldGuiEntity entity) {
@@ -43,6 +50,9 @@ public class PageWorldGui extends WorldGui {
 
     @Override
     public void addInitialComponents() {
+        addComponent(new PageChangeComponent(this, getMiddleX()-150, getMiddleY(), true));
+        addComponent(new PageChangeComponent(this, getMiddleX()+150, getMiddleY(), false));
+        addComponent(new ExitPageComponent(this, getMiddleX(), getMiddleY()+125));
     }
 
     @Override
@@ -60,43 +70,58 @@ public class PageWorldGui extends WorldGui {
     @Override
     public void sendData(CompoundTag compoundTag) {
         ListTag pages = new ListTag();
-        for (Page i : this.pages) {
-            CompoundTag page = new CompoundTag();
-            var result = i.getSerializer().getCodec().codec().encodeStart(NbtOps.INSTANCE, i);
-            if (result.result().orElse(null) instanceof Tag tag) {
-                page.put("pageData", tag);
+        if (!this.pages.isEmpty()) {
+            for (Page i : this.pages) {
+                CompoundTag page = new CompoundTag();
+                var result = i.getSerializer().getCodec().codec().encodeStart(NbtOps.INSTANCE, i);
+                if (result.result().orElse(null) instanceof Tag tag) {
+                    page.put("pageData", tag);
+                }
+                page.putString("serializer", RunologyRegistries.PAGE_TYPE_REGISTRY.getKey(i.getSerializer()).toString());
+                pages.add(page);
             }
-            page.putString("serializer", RunologyRegistries.PAGE_TYPE_REGISTRY.getKey(i.getSerializer()).toString());
-            pages.add(page);
+            compoundTag.put("pages", pages);
         }
-        compoundTag.put("pages", pages);
+        compoundTag.putInt("page", page);
+        if (entry != null) {
+            compoundTag.putString("entry", entry.toString());
+        }
     }
 
     @Override
     public void recieveData(CompoundTag compoundTag) {
-        List<Page> finalPages = new ArrayList<>();
-        ListTag pages = (ListTag)compoundTag.get("pages");
-        for (Tag i : pages) {
-            if (i instanceof CompoundTag tag) {
-                ResourceLocation serializer = ResourceLocation.tryParse(tag.getString("serializer"));
-                PageSerializer type = RunologyRegistries.PAGE_TYPE_REGISTRY.get(serializer);
-                if (type.getCodec().codec().decode(NbtOps.INSTANCE, tag.get("pageData")).result().orElse(null) instanceof Page page) {
-                    finalPages.add(page);
+        this.page = compoundTag.getInt("page");
+        if (compoundTag.contains("pages")) {
+            List<Page> finalPages = new ArrayList<>();
+            ListTag pages = (ListTag) compoundTag.get("pages");
+            for (Tag i : pages) {
+                if (i instanceof CompoundTag tag) {
+                    ResourceLocation serializer = ResourceLocation.tryParse(tag.getString("serializer"));
+                    PageSerializer type = RunologyRegistries.PAGE_TYPE_REGISTRY.get(serializer);
+                    var obj = type.getCodec().codec().parse(NbtOps.INSTANCE, tag.get("pageData")).result().orElse(null);
+                    if (obj instanceof Page page) {
+                        finalPages.add(page);
+                    }
                 }
             }
+            this.pages.clear();
+            this.pages.addAll(finalPages);
         }
-        this.pages.clear();
-        this.pages.addAll(finalPages);
+        if (compoundTag.contains("entry")) {
+            entry = ResourceLocation.tryParse(compoundTag.getString("entry"));
+        }
+    }
+    public void setPage(int page) {
         if (this.pages.size() > this.page) {
-            Page page = this.pages.get(this.page);
+            this.page = page;
             pageComponents.forEach(this::removeComponent);
             pageComponents.clear();
-            List<WorldGuiComponent> components = page.addComponents(this, getMiddleX(), getMiddleY());
+            Page pageObj = this.pages.get(this.page);
+            List<WorldGuiComponent> components = pageObj.addComponents(this, getMiddleX(), getMiddleY());
             pageComponents.addAll(components);
             components.forEach(this::addComponent);
         }
     }
-
     @Override
     public void rightClick(boolean isClient, Player player, int x, int y) {
         if (pages.size() > this.page) {
@@ -118,8 +143,8 @@ public class PageWorldGui extends WorldGui {
     public void renderGui(GuiGraphics guiGraphics) {
         Vec2 renderSize = getType().getRenderSize();
         int outlineSize = 5;
-        int guiWidth = 200;
-        int guiHeight = 300;
+        int guiWidth = 175;
+        int guiHeight = 200;
         int guiX = (int)(renderSize.x-guiWidth)/2;
         int guiY = (int)(renderSize.y-guiHeight)/2;
         int horizontalSpikes = 4;
@@ -144,16 +169,19 @@ public class PageWorldGui extends WorldGui {
             page.render(this, guiGraphics, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), mouseX, mouseY, getMiddleX(), getMiddleY());
         }
         renderComponents(guiGraphics);
+        if (entry != null) {
+            guiGraphics.drawCenteredString(ClientHandler.getFont(), EntryManager.entries.get(entry).name.copy().withStyle(ChatFormatting.BOLD), getMiddleX(), guiY-32, 0xFFFFFFFF);
+        }
         if (pages.size() > this.page) {
             Page page = pages.get(this.page);
             page.renderPost(this, guiGraphics, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false), mouseX, mouseY, getMiddleX(), getMiddleY());
         }
     }
-    private int getMiddleX() {
+    public int getMiddleX() {
         Vec2 renderSize = getType().getRenderSize();
         return (int)(renderSize.x/2f);
     }
-    private int getMiddleY() {
+    public int getMiddleY() {
         Vec2 renderSize = getType().getRenderSize();
         return (int)(renderSize.y/2f);
     }
@@ -265,18 +293,6 @@ public class PageWorldGui extends WorldGui {
     private static class ClientHandler {
         public static Font getFont() {
             return Minecraft.getInstance().font;
-        }
-        public static List<String> getText() {
-            List<String> text = new ArrayList<>();
-            Path path = Minecraft.getInstance().gameDirectory.toPath();
-            path = path.resolve("silly_test.txt");
-            try {
-                if (!Files.exists(path)) {
-                    Files.createFile(path);
-                }
-                text = Files.readAllLines(path);
-            } catch (Exception ignored) {}
-            return text;
         }
     }
 }

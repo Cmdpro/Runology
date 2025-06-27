@@ -1,0 +1,26 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "minecraft:diamond_pickaxe"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.test2.name"
+  },
+  "x": 2,
+  "y": 1,
+  "z": -1,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "minecraft:diamond_pickaxe"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.test2.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:test"
+  ]
+}
