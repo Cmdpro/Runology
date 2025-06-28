@@ -1,0 +1,27 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:shattered_infuser"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.shattered_infuser.name"
+  },
+  "x": 1,
+  "y": 1,
+  "z": -1,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/shattered_infuser",
+        "runology:shatter_infusion/shatterstone"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.shattered_infuser.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:shards/shattered_shard"
+  ]
+}

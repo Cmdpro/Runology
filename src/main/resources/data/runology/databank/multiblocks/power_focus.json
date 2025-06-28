@@ -1,0 +1,50 @@
+{
+  "layers": [
+    [
+      "**SSS**",
+      "***S***",
+      "S**S**S",
+      "SSSsSSS",
+      "S**S**S",
+      "***S***",
+      "**SSS**"
+    ],
+    [
+      "***S***",
+      "*******",
+      "*******",
+      "S*****S",
+      "*******",
+      "*******",
+      "***S***"
+    ],
+    [
+      "***s***",
+      "*******",
+      "*******",
+      "s**0**s",
+      "*******",
+      "*******",
+      "***s***"
+    ]
+  ],
+  "key": {
+    "s": {
+      "type": "databank:blockstate",
+      "state": "runology:shattered_block"
+    },
+    "S": {
+      "type": "databank:blockstate",
+      "state": "runology:shatterstone"
+    },
+    "0": {
+      "type": "databank:blockstate",
+      "state": "runology:shatter"
+    }
+  },
+  "center": [
+    -3,
+    -1,
+    -3
+  ]
+}

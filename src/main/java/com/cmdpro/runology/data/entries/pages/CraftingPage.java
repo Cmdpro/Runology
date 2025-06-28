@@ -44,7 +44,7 @@ public class CraftingPage extends TextPage {
                     }
                 }
             }
-            y += shift+10;
+            y += shift+6;
         }
         return middleY+y;
     }
@@ -67,7 +67,7 @@ public class CraftingPage extends TextPage {
                     }
                 }
             }
-            y += shift+10;
+            y += shift+6;
         }
     }
     public int getYStart() {

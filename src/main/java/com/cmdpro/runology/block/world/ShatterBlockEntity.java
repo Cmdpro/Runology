@@ -1,12 +1,13 @@
 package com.cmdpro.runology.block.world;
 
+import com.cmdpro.databank.multiblock.Multiblock;
+import com.cmdpro.databank.multiblock.MultiblockManager;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.entity.ShatterZap;
 import com.cmdpro.runology.recipe.RecipeUtil;
 import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import com.cmdpro.runology.registry.*;
-import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -48,12 +49,9 @@ public class ShatterBlockEntity extends BlockEntity {
     private void calculatePower() {
         power = 3;
         for (var i : ShatterUpgradeManager.types.values()) {
-            Multiblock multiblock = MultiblockDataManager.get().getMultiblock(i.multiblock);
+            Multiblock multiblock = MultiblockManager.multiblocks.get(i.multiblock);
             if (multiblock != null) {
-                if (multiblock.validate(level, getBlockPos(), Rotation.NONE) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.CLOCKWISE_90) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.CLOCKWISE_180) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.COUNTERCLOCKWISE_90)) {
+                if (multiblock.checkMultiblockAll(level, getBlockPos().below())) {
                     power += i.power;
                 }
             }
@@ -62,12 +60,9 @@ public class ShatterBlockEntity extends BlockEntity {
     private void calculateStability() {
         stability = 3-power;
         for (var i : ShatterUpgradeManager.types.values()) {
-            Multiblock multiblock = MultiblockDataManager.get().getMultiblock(i.multiblock);
+            Multiblock multiblock = MultiblockManager.multiblocks.get(i.multiblock);
             if (multiblock != null) {
-                if (multiblock.validate(level, getBlockPos(), Rotation.NONE) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.CLOCKWISE_90) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.CLOCKWISE_180) ||
-                        multiblock.validate(level, getBlockPos(), Rotation.COUNTERCLOCKWISE_90)) {
+                if (multiblock.checkMultiblockAll(level, getBlockPos().below())) {
                     stability += i.stability;
                 }
             }

@@ -1,0 +1,44 @@
+{
+  "layers": [
+    [
+      "*SSS*",
+      "SSSSS",
+      "SSSSS",
+      "SSSSS",
+      "*SSS*"
+    ],
+    [
+      "**S**",
+      "*****",
+      "S*0*S",
+      "*****",
+      "**S**"
+    ],
+    [
+      "**R**",
+      "*****",
+      "R***R",
+      "*****",
+      "**R**"
+    ]
+  ],
+  "key": {
+    "0": {
+      "type": "databank:blockstate",
+      "state": "runology:heat_focus"
+    },
+    "S": {
+      "type": "databank:blockstate",
+      "state": "runology:shatterstone"
+    },
+    "R": {
+      "type": "databank:blockstate",
+      "state": "runology:rune_heat_shatterstone"
+    }
+  },
+  "center": [
+    -2,
+    -1,
+    -2
+  ]
+}

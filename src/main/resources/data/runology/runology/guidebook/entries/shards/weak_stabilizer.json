@@ -1,0 +1,28 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:shattered_block"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.weak_stabilizer.name"
+  },
+  "x": 1.5,
+  "y": 1.5,
+  "z": -2.5,
+  "pages": [
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.weak_stabilizer.page1.text"
+      }
+    },
+    {
+      "type": "runology:multiblock",
+      "multiblock": "runology:weak_stabilizer"
+    }
+  ],
+  "parents": [
+    "runology:shards/greater_power_focus"
+  ],
+  "advancement": "runology:surge"
+}

@@ -1,0 +1,53 @@
+{
+  "layers": [
+    [
+      "*****S*****",
+      "***S***S***",
+      "***********",
+      "*S*******S*",
+      "***********",
+      "S*********S",
+      "***********",
+      "*S*******S*",
+      "***********",
+      "***S***S***",
+      "*****S*****"
+    ],
+    [
+      "*****g*****",
+      "***a***a***",
+      "***********",
+      "*a*******a*",
+      "***********",
+      "g****0****g",
+      "***********",
+      "*a*******a*",
+      "***********",
+      "***a***a***",
+      "*****g*****"
+    ]
+  ],
+  "key": {
+    "g": {
+      "type": "databank:blockstate",
+      "state": "minecraft:gold_block"
+    },
+    "a": {
+      "type": "databank:blockstate",
+      "state": "minecraft:amethyst_block"
+    },
+    "S": {
+      "type": "databank:blockstate",
+      "state": "runology:shatterstone"
+    },
+    "0": {
+      "type": "databank:blockstate",
+      "state": "runology:shatter"
+    }
+  },
+  "center": [
+    -5,
+    0,
+    -5
+  ]
+}

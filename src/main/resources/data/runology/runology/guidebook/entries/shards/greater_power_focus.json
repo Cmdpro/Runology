@@ -1,0 +1,27 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:shattered_block"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.greater_power_focus.name"
+  },
+  "x": 2.5,
+  "y": 1.5,
+  "z": -1.5,
+  "pages": [
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.greater_power_focus.page1.text"
+      }
+    },
+    {
+      "type": "runology:multiblock",
+      "multiblock": "runology:greater_power_focus"
+    }
+  ],
+  "parents": [
+    "runology:shards/power_focus"
+  ]
+}

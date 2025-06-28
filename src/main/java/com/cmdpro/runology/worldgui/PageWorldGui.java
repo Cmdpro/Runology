@@ -55,7 +55,7 @@ public class PageWorldGui extends WorldGui {
     public void addInitialComponents() {
         addComponent(new PageChangeComponent(this, getMiddleX()-150, getMiddleY(), true));
         addComponent(new PageChangeComponent(this, getMiddleX()+150, getMiddleY(), false));
-        addComponent(new ExitPageComponent(this, getMiddleX(), getMiddleY()+125));
+        addComponent(new ExitPageComponent(this, getMiddleX(), getMiddleY()+150));
     }
 
     @Override
@@ -147,7 +147,7 @@ public class PageWorldGui extends WorldGui {
         Vec2 renderSize = getType().getRenderSize();
         int outlineSize = 5;
         int guiWidth = 175;
-        int guiHeight = 200;
+        int guiHeight = 225;
         int guiX = (int)(renderSize.x-guiWidth)/2;
         int guiY = (int)(renderSize.y-guiHeight)/2;
         int horizontalSpikes = 4;

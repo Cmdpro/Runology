@@ -1,0 +1,34 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:shattered_ingot"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.shattered_ingot.name"
+  },
+  "x": 1.5,
+  "y": 0.5,
+  "z": -1.5,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:shatter_infusion/shattered_ingot",
+        "runology:shatter_infusion/shattered_block"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.shattered_ingot.page1.text"
+      }
+    },
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/shattered_block_from_ingots",
+        "runology:crafting/shattered_ingots_from_block"
+      ]
+    }
+  ],
+  "parents": [
+    "runology:shards/shattered_shard"
+  ]
+}

@@ -1,11 +1,12 @@
 package com.cmdpro.runology.block.machines;
 
+import com.cmdpro.databank.multiblock.Multiblock;
+import com.cmdpro.databank.multiblock.MultiblockManager;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
-import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -59,8 +60,8 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                 }
             }
         } else {
-            Multiblock heatFocusMultiblock = MultiblockDataManager.get().getMultiblock(heatFocusId);
-            if (heatFocusMultiblock.validate(pLevel, pPos, Rotation.NONE) && path != null && hasEnergy(level, 50) <= 0) {
+            Multiblock heatFocusMultiblock = MultiblockManager.multiblocks.get(heatFocusId);
+            if (heatFocusMultiblock.checkMultiblock(pLevel, pPos, Rotation.NONE) && path != null && hasEnergy(level, 50) <= 0) {
                 if (!hasEnergy) {
                     hasEnergy = true;
                     updateBlock();

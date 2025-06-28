@@ -1,0 +1,26 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:shatter_coil"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.shatter_coil.name"
+  },
+  "x": -1,
+  "y": 1,
+  "z": -1,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/shatter_coil"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.shatter_coil.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:shards/shattered_shard"
+  ]
+}

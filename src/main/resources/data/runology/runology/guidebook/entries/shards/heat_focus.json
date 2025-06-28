@@ -1,0 +1,30 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:heat_focus"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.heat_focus.name"
+  },
+  "x": 0,
+  "y": 1,
+  "z": 1,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/heat_focus"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.heat_focus.page1.text"
+      }
+    },
+    {
+      "type": "runology:multiblock",
+      "multiblock": "runology:heat_focus"
+    }
+  ],
+  "parents": [
+    "runology:shards/shattered_shard"
+  ]
+}

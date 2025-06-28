@@ -1,0 +1,26 @@
+{
+  "tab": "runology:shards",
+  "icon": {
+    "id": "runology:blink_boots"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shards.entries.blink_boots.name"
+  },
+  "x": 1,
+  "y": 0,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/blink_boots"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shards.entries.blink_boots.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:shards/shattered_shard"
+  ]
+}
