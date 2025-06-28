@@ -7,6 +7,7 @@ import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
+import com.cmdpro.runology.registry.SoundRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
@@ -79,14 +80,14 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                     if (recipe.isPresent()) {
                         i.setData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER, i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER)+1);
                         if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) % 10 == 0) {
-                            i.playSound(SoundEvents.FURNACE_FIRE_CRACKLE);
+                            i.playSound(SoundRegistry.HEAT_FOCUS_WORKING.value());
                             ((ServerLevel)i.level()).sendParticles(ParticleTypes.FLAME, i.position().x, i.position().y, i.position().z, 15, 0, 0, 0, 0.2f);
                         }
                         if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) >= recipe.get().value().getCookingTime()) {
                             ItemStack stack = recipe.get().value().assemble(input, level.registryAccess());
                             stack.setCount(i.getItem().getCount());
                             i.setItem(stack);
-                            i.playSound(SoundEvents.GENERIC_EXTINGUISH_FIRE);
+                            i.playSound(SoundRegistry.HEAT_FOCUS_FINISH.value());
                         }
                     } else {
                         if (i.hasData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER)) {

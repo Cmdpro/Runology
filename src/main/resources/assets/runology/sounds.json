@@ -1,0 +1,54 @@
+{
+    "item.runic_chisel.use": {
+        "sounds": [
+            {
+                "name": "block/grindstone/grindstone1",
+                "volume": 0.5
+            },
+            {
+                "name": "block/grindstone/grindstone2",
+                "volume": 0.5
+            },
+            {
+                "name": "block/grindstone/grindstone3",
+                "volume": 0.5
+            }
+        ],
+        "subtitle": "subtitle.runology.item.runic_chisel.use"
+    },
+    "item.blink_boots.teleport": {
+        "sounds": [
+            "mob/endermen/portal",
+            "mob/endermen/portal2"
+        ],
+        "subtitle": "subtitle.runology.item.blink_boots.teleport"
+    },
+    "block.heat_focus.working": {
+        "sounds": [
+            "block/furnace/fire_crackle1",
+            "block/furnace/fire_crackle2",
+            "block/furnace/fire_crackle3",
+            "block/furnace/fire_crackle4",
+            "block/furnace/fire_crackle5"
+        ],
+        "subtitle": "subtitle.runology.block.heat_focus.working"
+    },
+    "block.heat_focus.finish": {
+        "sounds": [
+            "random/fizz"
+        ],
+        "subtitle": "subtitle.runology.block.heat_focus.finish"
+    },
+    "shattered_flow_network.surge.start": {
+        "sounds": [
+            "block/beacon/deactivate"
+        ],
+        "subtitle": "subtitle.runology.shattered_flow_network.surge.start"
+    },
+    "shattered_flow_network.surge.end": {
+        "sounds": [
+            "block/beacon/activate"
+        ],
+        "subtitle": "subtitle.runology.shattered_flow_network.surge.end"
+    }
+}

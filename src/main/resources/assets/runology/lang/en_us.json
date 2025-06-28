@@ -119,5 +119,12 @@
 
   "death.attack.shatter_zap": "%1$s was zapped",
   "death.attack.shatter_zap.player": "%2$s zapped %1$s",
-  "death.attack.shatter_zap.item": "%1$s got zapped by %2$s's %3$s"
+  "death.attack.shatter_zap.item": "%1$s got zapped by %2$s's %3$s",
+
+  "subtitle.runology.item.runic_chisel.use": "Runic chisel chisels",
+  "subtitle.runology.item.blink_boots.teleport": "Blink boots teleport",
+  "subtitle.runology.block.heat_focus.working": "Heat focus crackles",
+  "subtitle.runology.block.heat_focus.finish": "Heat focus finishes",
+  "subtitle.runology.shattered_flow_network.surge.start": "Surge starts",
+  "subtitle.runology.shattered_flow_network.surge.end": "Surge ends"
 }

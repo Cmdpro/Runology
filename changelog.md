@@ -7,3 +7,4 @@
 
 ### Fixes
 - Adapted to databank
+- Changed sounds to be handled properly

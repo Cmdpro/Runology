@@ -6,6 +6,7 @@ import com.cmdpro.runology.data.runechiseling.RuneChiselingResult;
 import com.cmdpro.runology.data.runechiseling.RuneChiselingResultManager;
 import com.cmdpro.runology.data.runetypes.RuneType;
 import com.cmdpro.runology.data.runetypes.RuneTypeManager;
+import com.cmdpro.runology.registry.SoundRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -86,7 +87,7 @@ public class RunicChisel extends Item {
                     }
                 }
                 context.getLevel().setBlock(context.getClickedPos(), state, Block.UPDATE_ALL);
-                context.getLevel().playSound(null, context.getClickedPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS);
+                context.getLevel().playSound(null, context.getClickedPos(), SoundRegistry.RUNIC_CHISEL_USE.value(), SoundSource.BLOCKS);
                 context.getItemInHand().hurtAndBreak(1, (ServerLevel) context.getLevel(), (ServerPlayer) context.getPlayer(), (item) -> { context.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND); });
             }
         }

@@ -5,6 +5,7 @@ import com.cmdpro.runology.networking.Message;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
+import com.cmdpro.runology.registry.SoundRegistry;
 import com.cmdpro.runology.screen.FalseDeathScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -38,9 +39,9 @@ public record BlinkC2SPacket() implements Message {
                 ((ServerLevel)player.level()).sendParticles(ParticleRegistry.SHATTER.get(), pos.x, pos.y, pos.z, 10, 0.25, 0.1, 0.25, 0.05);
                 offset = offset.add(player.getLookAngle().multiply(0.25, 0.25, 0.25));
             }
-            player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
+            player.level().playSound(null, player.blockPosition(), SoundRegistry.BLINK_TELEPORT.value(), SoundSource.PLAYERS);
             player.teleportRelative(offset.x, offset.y+0.1, offset.z);
-            player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
+            player.level().playSound(null, player.blockPosition(), SoundRegistry.BLINK_TELEPORT.value(), SoundSource.PLAYERS);
             player.setData(AttachmentTypeRegistry.BLINK_COOLDOWN, 30);
         }
     }

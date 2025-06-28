@@ -5,6 +5,7 @@ import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.CriteriaTriggerRegistry;
+import com.cmdpro.runology.registry.SoundRegistry;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -83,7 +84,7 @@ public class ShatteredFlowNetwork {
         for (BlockPos i : nodes) {
             ChunkPos chunkPos = new ChunkPos(i);
             if (level.hasChunk(chunkPos.x, chunkPos.z)) {
-                level.playSound(null, i, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS);
+                level.playSound(null, i, SoundRegistry.SHATTERED_FLOW_NETWORK_SURGE_START.value(), SoundSource.BLOCKS);
                 for (Player j : level.players()) {
                     if (j.position().distanceTo(i.getCenter()) <= 30) {
                         CriteriaTriggerRegistry.NEARBY_SURGE.get().trigger((ServerPlayer)j);
@@ -96,7 +97,7 @@ public class ShatteredFlowNetwork {
         for (BlockPos i : nodes) {
             ChunkPos chunkPos = new ChunkPos(i);
             if (level.hasChunk(chunkPos.x, chunkPos.z)) {
-                level.playSound(null, i, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS);
+                level.playSound(null, i, SoundRegistry.SHATTERED_FLOW_NETWORK_SURGE_END.value(), SoundSource.BLOCKS);
             }
         }
     }
