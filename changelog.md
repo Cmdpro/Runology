@@ -4,7 +4,7 @@
 ### Changes
 - Overhauled the guidebook
 - Improved shaders
-- Made machines, shattered relays and shattered focuses be kept in the same area
+- Made machines, shattered relays and shattered focuses work on the same code
 
 ### Fixes
 - Adapted to databank
