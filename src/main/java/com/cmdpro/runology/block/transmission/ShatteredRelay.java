@@ -94,25 +94,27 @@ public class ShatteredRelay extends Block implements EntityBlock {
     }
     @Override
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-        if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
-            pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).remove(ent);
-        }
-        if (pState.getBlock() != pNewState.getBlock()) {
+        if (!pLevel.isClientSide) {
             if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
-                if (ent.path != null) {
-                    ent.path.disconnectFromNetwork(pLevel, pPos);
-                }
-                for (BlockPos i : ent.connectedTo.stream().toList()) {
-                    if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
-                        ent2.connectedTo.remove(pPos);
-                        ent2.updateBlock();
+                pLevel.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).remove(ent);
+            }
+            if (pState.getBlock() != pNewState.getBlock()) {
+                if (pLevel.getBlockEntity(pPos) instanceof ShatteredRelayBlockEntity ent) {
+                    if (ent.path != null) {
+                        ent.path.disconnectFromNetwork(pLevel, pPos);
                     }
-                    if (pLevel.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
-                        ent2.connectedTo.remove(pPos);
-                        ent2.updateBlock();
+                    for (BlockPos i : ent.connectedTo.stream().toList()) {
+                        if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                            ent2.connectedTo.remove(pPos);
+                            ent2.updateBlock();
+                        }
+                        if (pLevel.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
+                            ent2.connectedTo.remove(pPos);
+                            ent2.updateBlock();
+                        }
                     }
+                    ent.connectedTo.clear();
                 }
-                ent.connectedTo.clear();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

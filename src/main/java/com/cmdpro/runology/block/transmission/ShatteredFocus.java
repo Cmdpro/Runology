@@ -62,22 +62,24 @@ public class ShatteredFocus extends Block implements EntityBlock {
 
     @Override
     protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-        if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
-            pLevel.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES).remove(ent);
-        }
-        if (pState.getBlock() != pNewState.getBlock()) {
+        if (!pLevel.isClientSide) {
             if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
-                if (ent.path != null) {
-                    ent.path.disconnectFromNetwork(pLevel, pPos);
-                }
-                for (BlockPos i : ent.connectedTo) {
-                    if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
-                        ent2.connectedTo.remove(pPos);
-                        ent2.updateBlock();
+                pLevel.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).remove(ent);
+            }
+            if (pState.getBlock() != pNewState.getBlock()) {
+                if (pLevel.getBlockEntity(pPos) instanceof ShatteredFocusBlockEntity ent) {
+                    if (ent.path != null) {
+                        ent.path.disconnectFromNetwork(pLevel, pPos);
                     }
+                    for (BlockPos i : ent.connectedTo) {
+                        if (pLevel.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
+                            ent2.connectedTo.remove(pPos);
+                            ent2.updateBlock();
+                        }
+                    }
+                    ent.connectedTo.clear();
+                    ent.updateBlock();
                 }
-                ent.connectedTo.clear();
-                ent.updateBlock();
             }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

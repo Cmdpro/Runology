@@ -2,10 +2,7 @@ package com.cmdpro.runology.block.transmission;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.RunologyUtil;
-import com.cmdpro.runology.api.shatteredflow.ContainsShatteredFlow;
-import com.cmdpro.runology.api.shatteredflow.NormalShatteredFlowStorage;
-import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
-import com.cmdpro.runology.api.shatteredflow.SmartShatteredFlowStorage;
+import com.cmdpro.runology.api.shatteredflow.*;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import com.cmdpro.runology.chunkloading.ChunkloadingEventHandler;
 import com.cmdpro.runology.registry.*;
@@ -43,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsShatteredFlow {
+public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsShatteredFlow, ShatteredFlowConnectable {
     public SmartShatteredFlowStorage storage = new SmartShatteredFlowStorage();
     @Override
     public SmartShatteredFlowStorage getShatteredFlowStorage() {
@@ -73,16 +70,6 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
         }
     }
     public boolean isPowered;
-    @Override
-    public void setLevel(Level pLevel) {
-        if (level != null) {
-            level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES).remove(this);
-        }
-        super.setLevel(pLevel);
-        if (!pLevel.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES).contains(this)) {
-            pLevel.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES).add(this);
-        }
-    }
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(tag, pRegistries);
@@ -129,7 +116,7 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
                     ChunkloadingEventHandler.shatterController.forceChunk(level, getBlockPos(), chunk.getPos().x, chunk.getPos().z, true, true);
                 }
                 if (path.surgeTime <= 0) {
-                storage.addShatteredFlow(shatter.getOutputShatteredFlow());
+                    storage.addShatteredFlow(shatter.getOutputShatteredFlow());
                 }
             }
         } else {
@@ -173,26 +160,36 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
     @Override
     public void onLoad() {
         super.onLoad();
-        for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
-            if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
-                if (!connectedTo.contains(i.getBlockPos())) {
-                    connectedTo.add(i.getBlockPos());
+        if (!level.isClientSide) {
+            if (!level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).contains(this)) {
+                level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).add(this);
+            }
+            for (ShatteredFlowConnectable i : level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES)) {
+                if (i == this) {
+                    continue;
                 }
-                if (!i.connectedTo.contains(getBlockPos())) {
-                    i.connectedTo.add(getBlockPos());
-                    if (i.path != null) {
-                        i.path.connectToNetwork(level, getBlockPos());
-                    } else if (path != null) {
-                        path.connectToNetwork(level, i.getBlockPos());
+                if (i instanceof BlockEntity entity && !(entity instanceof ShatteredFocusBlockEntity)) {
+                    if (entity.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                        if (!connectedTo.contains(entity.getBlockPos())) {
+                            connectedTo.add(entity.getBlockPos());
+                        }
+                        if (!i.getConnectedTo().contains(getBlockPos())) {
+                            i.getConnectedTo().add(getBlockPos());
+                            if (i.getNetwork() != null) {
+                                i.getNetwork().connectToNetwork(level, getBlockPos());
+                            } else if (path != null) {
+                                path.connectToNetwork(level, entity.getBlockPos());
+                            }
+                            ShatteredFlowConnectable.updateBlock(entity);
+                        }
                     }
-                    i.updateBlock();
                 }
             }
+            if (path == null) {
+                path = ShatteredFlowNetwork.generateNetwork(level, getBlockPos());
+            }
+            updateBlock();
         }
-        if (path == null) {
-            path = ShatteredFlowNetwork.generateNetwork(level, getBlockPos());
-        }
-        updateBlock();
     }
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
@@ -227,5 +224,20 @@ public class ShatteredFocusBlockEntity extends BlockEntity implements ContainsSh
             connectedTo.add(new BlockPos(blockpos.getInt("linkX"), blockpos.getInt("linkY"), blockpos.getInt("linkZ")));
         }
         isPowered = tag.getBoolean("isPowered");
+    }
+
+    @Override
+    public List<BlockPos> getConnectedTo() {
+        return connectedTo;
+    }
+
+    @Override
+    public void setNetwork(ShatteredFlowNetwork network) {
+        path = network;
+    }
+
+    @Override
+    public ShatteredFlowNetwork getNetwork() {
+        return path;
     }
 }

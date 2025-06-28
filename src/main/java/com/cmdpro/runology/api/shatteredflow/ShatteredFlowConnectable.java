@@ -33,57 +33,60 @@ public interface ShatteredFlowConnectable {
     List<BlockPos> getConnectedTo();
     void setNetwork(ShatteredFlowNetwork network);
     ShatteredFlowNetwork getNetwork();
-    default void onRemove(Level level, BlockPos pos) {
-        if (getNetwork() != null) {
-            getNetwork().disconnectFromNetwork(level, pos);
-        }
-        for (BlockPos i : getConnectedTo()) {
-            if (level.getBlockEntity(i) instanceof ShatteredRelayBlockEntity ent2) {
-                ent2.connectedTo.remove(pos);
-                ent2.updateBlock();
+    default void onRemove(Level level, BlockPos pos, boolean isNew) {
+        if (!level.isClientSide) {
+            level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).remove(this);
+            if (isNew) {
+                if (getNetwork() != null) {
+                    getNetwork().disconnectFromNetwork(level, pos);
+                }
+                for (BlockPos i : getConnectedTo()) {
+                    BlockEntity ent = level.getBlockEntity(i);
+                    if (ent instanceof ShatteredFlowConnectable ent2) {
+                        ent2.getConnectedTo().remove(pos);
+                        updateBlock(ent);
+                    }
+                }
+                getConnectedTo().clear();
             }
-            if (level.getBlockEntity(i) instanceof ShatteredFocusBlockEntity ent2) {
-                ent2.connectedTo.remove(pos);
-                ent2.updateBlock();
-            }
         }
-        getConnectedTo().clear();
     }
     default void onLoad(Level level, BlockPos pos) {
-        for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
-            if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
-                if (!getConnectedTo().contains(i.getBlockPos())) {
-                    getConnectedTo().add(i.getBlockPos());
-                }
-                if (!i.connectedTo.contains(pos)) {
-                    i.connectedTo.add(pos);
-                    if (i.path != null) {
-                        i.path.connectToNetwork(level, pos);
-                    } else if (getNetwork() != null) {
-                        getNetwork().connectToNetwork(level, i.getBlockPos());
+        if (!level.isClientSide) {
+            var connectable = level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES);
+            if (!level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).contains(this)) {
+                level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).add(this);
+            }
+            for (ShatteredFlowConnectable i : level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES)) {
+                if (i instanceof BlockEntity entity && (entity instanceof ShatteredRelayBlockEntity || entity instanceof ShatteredFocusBlockEntity)) {
+                    if (entity.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
+                        if (!getConnectedTo().contains(entity.getBlockPos())) {
+                            getConnectedTo().add(entity.getBlockPos());
+                        }
+                        if (!i.getConnectedTo().contains(pos)) {
+                            i.getConnectedTo().add(pos);
+                            if (i.getNetwork() != null) {
+                                i.getNetwork().connectToNetwork(level, pos);
+                            } else if (getNetwork() != null) {
+                                getNetwork().connectToNetwork(level, entity.getBlockPos());
+                            }
+                            updateBlock(entity);
+                        }
                     }
-                    i.updateBlock();
                 }
             }
-        }
-        for (ShatteredFocusBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES)) {
-            if (i.getBlockPos().getCenter().distanceTo(pos.getCenter()) <= 20) {
-                if (!i.connectedTo.contains(pos)) {
-                    i.connectedTo.add(pos);
-                    if (i.path != null) {
-                        i.path.connectToNetwork(level, pos);
-                    }
-                    i.updateBlock();
-                }
-                if (!getConnectedTo().contains(i.getBlockPos())) {
-                    getConnectedTo().add(i.getBlockPos());
-                }
+            BlockState blockState = level.getBlockState(pos);
+            level.sendBlockUpdated(pos, blockState, blockState, 3);
+            if (this instanceof BlockEntity ent) {
+                ent.setChanged();
             }
         }
-        BlockState blockState = level.getBlockState(pos);
-        level.sendBlockUpdated(pos, blockState, blockState, 3);
-        if (this instanceof BlockEntity ent) {
-            ent.setChanged();
+    }
+    static void updateBlock(BlockEntity entity) {
+        if (entity.hasLevel()) {
+            BlockState blockState = entity.getLevel().getBlockState(entity.getBlockPos());
+            entity.getLevel().sendBlockUpdated(entity.getBlockPos(), blockState, blockState, 3);
+            entity.setChanged();
         }
     }
     default void addToTag(Level level, CompoundTag tag) {

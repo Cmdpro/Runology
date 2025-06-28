@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
@@ -29,10 +30,8 @@ public class AttachmentTypeRegistry {
             register("player_power_invincibility", () -> AttachmentType.builder(() -> 0).build());
     public static final Supplier<AttachmentType<ArrayList<ShatterBlockEntity>>> SHATTERS =
             register("shatters", () -> AttachmentType.builder(() -> new ArrayList<ShatterBlockEntity>()).build());
-    public static final Supplier<AttachmentType<ArrayList<ShatteredRelayBlockEntity>>> SHATTERED_RELAYS =
-            register("shattered_relays", () -> AttachmentType.builder(() -> new ArrayList<ShatteredRelayBlockEntity>()).build());
-    public static final Supplier<AttachmentType<ArrayList<ShatteredFocusBlockEntity>>> SHATTERED_FOCUSES =
-            register("shattered_focuses", () -> AttachmentType.builder(() -> new ArrayList<ShatteredFocusBlockEntity>()).build());
+    public static final Supplier<AttachmentType<ArrayList<ShatteredFlowConnectable>>> SHATTERED_FLOW_CONNECTABLES =
+            register("shattered_flow_connectables", () -> AttachmentType.builder(() -> new ArrayList<ShatteredFlowConnectable>()).build());
     public static final Supplier<AttachmentType<ArrayList<ShatteredFlowNetwork>>> SHATTERED_FLOW_NETWORKS =
             register("shattered_flow_networks", () -> AttachmentType.builder(() -> new ArrayList<ShatteredFlowNetwork>()).serialize(ShatteredFlowNetwork.CODEC.listOf().xmap((a) -> {
                 if (a instanceof ArrayList<ShatteredFlowNetwork> array) {

@@ -1,6 +1,7 @@
 package com.cmdpro.runology.block.transmission;
 
 import com.cmdpro.runology.api.RunologyUtil;
+import com.cmdpro.runology.api.shatteredflow.ShatteredFlowConnectable;
 import com.cmdpro.runology.api.shatteredflow.ShatteredFlowNetwork;
 import com.cmdpro.runology.registry.*;
 import net.minecraft.core.BlockPos;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShatteredRelayBlockEntity extends BlockEntity {
+public class ShatteredRelayBlockEntity extends BlockEntity implements ShatteredFlowConnectable {
     public ShatteredRelayBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHATTERED_RELAY.get(), pos, state);
         connectedTo = new ArrayList<>();
@@ -78,42 +79,33 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
     @Override
     public void onLoad() {
         super.onLoad();
-        for (ShatteredRelayBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS)) {
-            if (i == this) {
-                continue;
+        if (!level.isClientSide) {
+            if (!level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).contains(this)) {
+                level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES).add(this);
             }
-            if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
-                if (!this.connectedTo.contains(i.getBlockPos())) {
-                    this.connectedTo.add(i.getBlockPos());
+            for (ShatteredFlowConnectable i : level.getData(AttachmentTypeRegistry.SHATTERED_FLOW_CONNECTABLES)) {
+                if (i == this) {
+                    continue;
                 }
-                if (!i.connectedTo.contains(getBlockPos())) {
-                    i.connectedTo.add(getBlockPos());
-                    if (i.path != null) {
-                        i.path.connectToNetwork(level, getBlockPos());
-                    } else if (path != null) {
-                        path.connectToNetwork(level, i.getBlockPos());
+                if (i instanceof BlockEntity entity) {
+                    if (entity.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
+                        if (!this.connectedTo.contains(entity.getBlockPos())) {
+                            this.connectedTo.add(entity.getBlockPos());
+                        }
+                        if (!i.getConnectedTo().contains(getBlockPos())) {
+                            i.getConnectedTo().add(getBlockPos());
+                            if (i.getNetwork() != null) {
+                                i.getNetwork().connectToNetwork(level, getBlockPos());
+                            } else if (path != null) {
+                                path.connectToNetwork(level, entity.getBlockPos());
+                            }
+                            ShatteredFlowConnectable.updateBlock(entity);
+                        }
                     }
-                    i.updateBlock();
                 }
             }
+            updateBlock();
         }
-        for (ShatteredFocusBlockEntity i : level.getData(AttachmentTypeRegistry.SHATTERED_FOCUSES)) {
-            if (i.getBlockPos().getCenter().distanceTo(getBlockPos().getCenter()) <= 20) {
-                if (!this.connectedTo.contains(i.getBlockPos())) {
-                    this.connectedTo.add(i.getBlockPos());
-                }
-                if (!i.connectedTo.contains(getBlockPos())) {
-                    i.connectedTo.add(getBlockPos());
-                    if (i.path != null) {
-                        i.path.connectToNetwork(level, getBlockPos());
-                    } else if (path != null) {
-                        path.connectToNetwork(level, i.getBlockPos());
-                    }
-                    i.updateBlock();
-                }
-            }
-        }
-        updateBlock();
     }
     public void updateBlock() {
         BlockState blockState = level.getBlockState(this.getBlockPos());
@@ -121,16 +113,6 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
         this.setChanged();
     }
     public List<BlockPos> connectedTo;
-    @Override
-    public void setLevel(Level pLevel) {
-        if (level != null) {
-            level.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).remove(this);
-        }
-        super.setLevel(pLevel);
-        if (!pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).contains(this)) {
-            pLevel.getData(AttachmentTypeRegistry.SHATTERED_RELAYS).add(this);
-        }
-    }
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (pLevel.isClientSide) {
             if (isPowered) {
@@ -192,5 +174,19 @@ public class ShatteredRelayBlockEntity extends BlockEntity {
         tag.put("link", list);
         tag.putBoolean("isPowered", isPowered);
         return tag;
+    }
+    @Override
+    public List<BlockPos> getConnectedTo() {
+        return connectedTo;
+    }
+
+    @Override
+    public void setNetwork(ShatteredFlowNetwork network) {
+        path = network;
+    }
+
+    @Override
+    public ShatteredFlowNetwork getNetwork() {
+        return path;
     }
 }
