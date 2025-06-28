@@ -1,5 +1,6 @@
 {
   "block.runology.shatter": "Shatter",
+  "block.runology.shatter.discover": "I feel a strange and mysterious force... For whatever reason, I feel as if I should imbue a book with this power.",
   "block.runology.shatterstone": "Shatterstone",
   "block.runology.shatterstone_bricks": "Shatterstone Bricks",
   "block.runology.shatterstone_brick_slab": "Shatterstone Brick Slab",
@@ -48,11 +49,8 @@
 
   "book.runology.guidebook.name": "Runic Codex",
 
-  "modonomicon.runology.guidebook.discover": "I feel a strange and mysterious force... For whatever reason, I feel as if I should imbue a book with this power.",
-
   "runology.guidebook.runology.tabs.basics.name": "Basics",
   "runology.guidebook.runology.tabs.shards.name": "Shards",
-
 
   "runology.guidebook.runology.basics.entries.guidebook.name": "Knowledge",
   "runology.guidebook.runology.basics.entries.guidebook.page1.text": "After imbuing that strange power into a book, I have obtained powerful knowledge. This path may lead me to power! However... I can't help but wonder... What is that voice in my head telling me all of this?",
@@ -94,22 +92,6 @@
   "runology.guidebook.runology.shards.entries.greater_power_focus.page1.text": "While the Power Focus is good, it can be better. With the Greater Power Focus, I can extract even more power. I feel like it is rather inefficient but I don't know what will go wrong.",
   "runology.guidebook.runology.shards.entries.weak_stabilizer.name": "Weak Stabilizer",
   "runology.guidebook.runology.shards.entries.weak_stabilizer.page1.text": "It appears I have attempted to extract too much power from a shatter leading to a Power Surge, I will need a structure to stabilize the shatter.",
-
-  "modonomicon.runology.guidebook.basics.name": "Basics",
-  "modonomicon.runology.guidebook.shards.name": "Shards",
-
-  "modonomicon.runology.guidebook.shards.shattered_ingot.name": "Shattered Ingot",
-  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.title": "Shattered Ingot",
-  "modonomicon.runology.guidebook.shards.shattered_ingot.page0.text": "Gold, while it is a good material, it is not quite as good as it can be. I can make gold channel Shattered Flow better by imbuing it into the gold.",
-  "modonomicon.runology.guidebook.shards.power_focus.name": "Power Focus",
-  "modonomicon.runology.guidebook.shards.power_focus.page0.title": "Power Focus",
-  "modonomicon.runology.guidebook.shards.power_focus.page0.text": "Now that I have a material better than gold for harnessing Shattered Flow, I can create a structure to extract more power from a shatter!",
-  "modonomicon.runology.guidebook.shards.greater_power_focus.name": "Greater Power Focus",
-  "modonomicon.runology.guidebook.shards.greater_power_focus.page0.title": "Greater Power Focus",
-  "modonomicon.runology.guidebook.shards.greater_power_focus.page0.text": "While the Power Focus is good, it can be better. With the Greater Power Focus, I can extract even more power. I feel like it is rather inefficient but I don't know what will go wrong.",
-  "modonomicon.runology.guidebook.shards.weak_stabilizer.name": "Weak Stabilizer",
-  "modonomicon.runology.guidebook.shards.weak_stabilizer.page0.title": "Weak Stabilizer",
-  "modonomicon.runology.guidebook.shards.weak_stabilizer.page0.text": "It appears I have attempted to extract too much power from a shatter leading to a Power Surge, I will need a structure to stabilize the shatter.",
 
   "advancements.runology.runology.title": "Runology",
   "advancements.runology.runology.description": "Runes powered by another world...",

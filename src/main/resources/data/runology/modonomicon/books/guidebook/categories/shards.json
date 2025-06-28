@@ -1,9 +1,0 @@
-{
-  "icon": "runology:shattered_shard",
-  "name": "modonomicon.runology.guidebook.shards.name",
-  "sort_number": -1,
-  "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "runology:shattered_shard"
-  }
-}

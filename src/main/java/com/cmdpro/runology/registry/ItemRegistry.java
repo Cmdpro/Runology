@@ -5,8 +5,6 @@ import com.cmdpro.runology.item.BlinkBoots;
 import com.cmdpro.runology.item.RunicChisel;
 import com.cmdpro.runology.item.RunicCodexItem;
 import com.cmdpro.runology.item.ShatterReader;
-import com.klikli_dev.modonomicon.item.ModonomiconItem;
-import com.klikli_dev.modonomicon.registry.DataComponentRegistry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

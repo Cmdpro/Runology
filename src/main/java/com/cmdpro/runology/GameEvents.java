@@ -49,7 +49,7 @@ public class GameEvents {
     @SubscribeEvent
     public static void onAdvancementEarn(AdvancementEvent.AdvancementEarnEvent event) {
         if (event.getAdvancement().id().equals(Runology.locate("shatter"))) {
-            event.getEntity().sendSystemMessage(Component.translatable("modonomicon.runology.guidebook.discover").withStyle(ChatFormatting.DARK_PURPLE));
+            event.getEntity().sendSystemMessage(Component.translatable("block.runology.shatter.discover").withStyle(ChatFormatting.DARK_PURPLE));
         }
     }
     @SubscribeEvent

@@ -10,8 +10,6 @@ import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import com.cmdpro.runology.chunkloading.ChunkloadingEventHandler;
 import com.cmdpro.runology.registry.*;
 import com.ibm.icu.impl.coll.CollationKeys;
-import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
-import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;

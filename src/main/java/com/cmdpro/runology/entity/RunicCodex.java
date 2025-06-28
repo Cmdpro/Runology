@@ -46,9 +46,11 @@ public class RunicCodex extends Entity {
         animState.setLevel(level);
     }
     public ServerPlayer owner;
+    public UUID ownerUUID;
     public RunicCodex(Level level, ServerPlayer owner) {
         this(EntityRegistry.RUNIC_CODEX.get(), level);
         this.owner = owner;
+        this.ownerUUID = owner.getUUID();
         updateUnlocked(owner);
     }
 
@@ -64,6 +66,9 @@ public class RunicCodex extends Entity {
     public List<ResourceLocation> avaliableTabs = new ArrayList<>();
     public List<ResourceLocation> avaliableEntries = new ArrayList<>();
     public void updateUnlocked(ServerPlayer owner) {
+        for (RunicCodexEntry i : entryEntities.values().stream().toList()) {
+            i.remove(RemovalReason.DISCARDED);
+        }
         Comparator<EntryTab> tabComparator = Comparator.comparing((i) -> i.priority);
         avaliableTabs = EntryTabManager.tabs.values().stream().filter((i) -> i.isUnlocked(owner)).sorted(tabComparator.reversed()).map((i) -> i.id).toList();
         avaliableEntries = EntryManager.entries.values().stream().filter((i) -> i.isUnlocked(owner)).map((i) -> i.id).toList();
@@ -117,6 +122,15 @@ public class RunicCodex extends Entity {
                 entryEntities.clear();
             } else if (entryEntities.isEmpty()) {
                 if (entryGui == null && tab != null) {
+                    if (ownerUUID != null && owner == null) {
+                        Player player = level().getPlayerByUUID(ownerUUID);
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            owner = serverPlayer;
+                        }
+                    }
+                    if (owner != null) {
+                        updateUnlocked(owner);
+                    }
                     for (ResourceLocation i : avaliableEntries) {
                         Entry entry = getEntry(i);
                         if (entry != null) {
@@ -250,6 +264,9 @@ public class RunicCodex extends Entity {
                 syncData();
             });
         }
+        if (compound.contains("owner")) {
+            ownerUUID = compound.getUUID("owner");
+        }
     }
 
     @Override
@@ -268,5 +285,8 @@ public class RunicCodex extends Entity {
             tabs.add(tag);
         }
         compound.put("tabs", tabs);
+        if (ownerUUID != null) {
+            compound.putUUID("owner", ownerUUID);
+        }
     }
 }

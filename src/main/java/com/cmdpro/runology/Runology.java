@@ -1,9 +1,6 @@
 package com.cmdpro.runology;
 
-import com.cmdpro.runology.integration.modonomicon.page.ShatterInfusionRecipePage;
 import com.cmdpro.runology.registry.*;
-import com.klikli_dev.modonomicon.data.BookPageJsonLoader;
-import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -33,7 +30,6 @@ public class Runology
     {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
-        modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerCapabilities);
 
         SoundRegistry.SOUND_EVENTS.register(modEventBus);
@@ -63,9 +59,6 @@ public class Runology
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.SHATTERED_INFUSER.get(), (o, direction) -> o.getItemHandler());
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BlockEntityRegistry.GOLD_PILLAR.get(), (o, direction) -> o.getItemHandler());
-    }
-    private void commonSetup(FMLCommonSetupEvent event) {
-        LoaderRegistry.registerPageLoader(ShatterInfusionRecipePage.ID, (BookPageJsonLoader<?>) ShatterInfusionRecipePage::fromJson, ShatterInfusionRecipePage::fromNetwork);
     }
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {

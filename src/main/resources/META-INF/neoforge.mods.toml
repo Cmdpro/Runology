@@ -85,13 +85,6 @@ config="${mod_id}.mixins.json"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${mod_id}]]
-    modId="modonomicon"
-    type="required"
-    # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.110.1,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.${mod_id}]]
     modId="databank"
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version

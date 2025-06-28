@@ -14,7 +14,6 @@ import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -55,7 +54,8 @@ public class RealityFocusBlockEntity extends BlockEntity {
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         ResourceLocation realityReshaperId = Runology.locate("reality_reshaper");
         if (pLevel.isClientSide) {
-            pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getCenter().y, pPos.getCenter().z, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1, (level.random.nextFloat() * 0.2) - 0.1);
+            Vec3 centerDiff = pPos.above().getCenter().subtract(pPos.getBottomCenter()).multiply(0.2f, 0.2f, 0.2f);
+            pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getBottomCenter().y, pPos.getCenter().z, centerDiff.x, centerDiff.y, centerDiff.z);
             if (realityReshaperProgress >= 0) {
                 BlockPos[] runes = new BlockPos[] {
                         getBlockPos().above().offset(3, 0, 0),
