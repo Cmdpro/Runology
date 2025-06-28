@@ -1,0 +1,36 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:basic_runes_icon"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.basic_runes.name"
+  },
+  "x": 1,
+  "y": 0.5,
+  "z": 0.5,
+  "pages": [
+    {
+      "type": "runology:image",
+      "image": "runology:textures/gui/basic_runes.png",
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.basic_runes.page1.text"
+      }
+    },
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.basic_runes.page2.text"
+      }
+    },
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.basic_runes.page3.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:basics/shatters"
+  ]
+}

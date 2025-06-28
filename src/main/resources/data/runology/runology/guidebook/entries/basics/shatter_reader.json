@@ -1,0 +1,26 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:shatter_reader"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.shatter_reader.name"
+  },
+  "x": 0,
+  "y": 2,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/shatter_reader"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.shatter_reader.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:basics/shatters"
+  ]
+}

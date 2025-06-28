@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -156,10 +157,25 @@ public class RunicCodexEntry extends Entity {
     private static class ClientHandler {
         public static void spawnParticles(Level level, Vec3 position) {
             if (Minecraft.getInstance().level == level) {
-                for (int i = 0; i < 3; i++) {
-                    Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.y + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, position.z + RandomUtils.nextFloat(0f, 0.2f) - 0.1f, RandomUtils.nextFloat(0, 0.1f) - 0.05f, RandomUtils.nextFloat(0.05f, 0.1f), RandomUtils.nextFloat(0, 0.1f) - 0.05f);
+                for (int i = 0; i < 5; i++) {
+                    Vec3 offset = new Vec3(
+                            Mth.nextFloat(Minecraft.getInstance().level.random, -0.1f, 0.1f),
+                            Mth.nextFloat(Minecraft.getInstance().level.random, -0.1f, 0.1f),
+                            Mth.nextFloat(Minecraft.getInstance().level.random, -0.1f, 0.1f)
+                    );
+                    Vec3 speed = new Vec3(
+                            Mth.nextFloat(Minecraft.getInstance().level.random, -0.05f, 0.05f),
+                            Mth.nextFloat(Minecraft.getInstance().level.random, 0.05f, 0.1f),
+                            Mth.nextFloat(Minecraft.getInstance().level.random, -0.05f, 0.05f)
+                    );
+                    Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SMALL_SHATTER.get(), position.x + offset.x, position.y + offset.y, position.z + offset.z, speed.x, speed.y, speed.z);
                 }
-                Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x, position.y, position.z, RandomUtils.nextFloat(0, 0.1f) - 0.05f, RandomUtils.nextFloat(0.1f, 0.2f), RandomUtils.nextFloat(0, 0.1f) - 0.05f);
+                Vec3 speed = new Vec3(
+                        Mth.nextFloat(Minecraft.getInstance().level.random, -0.05f, 0.05f),
+                        Mth.nextFloat(Minecraft.getInstance().level.random, 0.05f, 0.1f),
+                        Mth.nextFloat(Minecraft.getInstance().level.random, -0.05f, 0.05f)
+                );
+                Minecraft.getInstance().particleEngine.createParticle(ParticleRegistry.SHATTER.get(), position.x, position.y, position.z, speed.x, speed.y, speed.z);
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.cmdpro.runology.block.misc;
 
+import com.cmdpro.databank.multiblock.Multiblock;
+import com.cmdpro.databank.multiblock.MultiblockManager;
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.api.RunologyUtil;
 import com.cmdpro.runology.api.shatteredflow.ContainsShatteredFlow;
@@ -12,7 +14,6 @@ import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.BlockEntityRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
-import com.klikli_dev.modonomicon.api.multiblock.Multiblock;
 import com.klikli_dev.modonomicon.data.MultiblockDataManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -85,15 +86,15 @@ public class RealityFocusBlockEntity extends BlockEntity {
                 }
             }
         } else {
-            Multiblock realityReshaperMultiblock = MultiblockDataManager.get().getMultiblock(realityReshaperId);
-            if (realityReshaperMultiblock.validate(pLevel, pPos.below(), Rotation.NONE)) {
+            Multiblock realityReshaperMultiblock = MultiblockManager.multiblocks.get(realityReshaperId);
+            if (realityReshaperMultiblock.checkMultiblock(pLevel, pPos.below())) {
                 if (realityReshaperProgress < 0) {
                     realityReshaperProgress = 0;
                 }
             }
             if (realityReshaperProgress >= 0) {
                 realityReshaperProgress++;
-                if (!realityReshaperMultiblock.validate(pLevel, pPos.below(), Rotation.NONE)) {
+                if (!realityReshaperMultiblock.checkMultiblock(pLevel, pPos.below())) {
                     realityReshaperProgress = -1;
                 }
                 if (realityReshaperProgress >= 170) {

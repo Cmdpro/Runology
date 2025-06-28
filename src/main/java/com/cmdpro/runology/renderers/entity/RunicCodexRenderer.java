@@ -57,7 +57,7 @@ public class RunicCodexRenderer extends DatabankEntityRenderer<RunicCodex> {
                 stack.translate(center.x, center.y, center.z);
                 stack.pushPose();
                 Vec2 angle = angleToClient(pEntity);
-                stack.translate(0, 0.75, 0);
+                stack.translate(0, 0.5, 0);
                 stack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(-angle.y + 180)));
                 stack.translate(0, 0, -0.25);
                 stack.pushPose();

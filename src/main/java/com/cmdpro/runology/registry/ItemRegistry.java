@@ -28,6 +28,7 @@ public class ItemRegistry {
     public static final Supplier<Item> SHATTERED_INGOT = register("shattered_ingot", () -> new Item(new Item.Properties()));
 
     public static final Supplier<Item> SHATTERED_FLOW_ICON = register("shattered_flow_icon", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> BASIC_RUNES_ICON = register("basic_runes_icon", () -> new Item(new Item.Properties()));
     private static <T extends Item> Supplier<T> register(final String name, final Supplier<T> item) {
         return ITEMS.register(name, item);
     }

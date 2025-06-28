@@ -32,7 +32,7 @@ public class CraftingPage extends TextPage {
     }
     public List<ResourceLocation> recipes;
     @Override
-    public int textYOffset() {
+    public int textYMin(int middleX, int middleY) {
         int y = getYStart();
         for (ResourceLocation i : recipes) {
             int shift = 0;
@@ -46,7 +46,7 @@ public class CraftingPage extends TextPage {
             }
             y += shift+10;
         }
-        return y;
+        return middleY+y;
     }
     public List<FormattedCharSequence> tooltipToShow = new ArrayList<>();
     public boolean showTooltip;
@@ -71,21 +71,7 @@ public class CraftingPage extends TextPage {
         }
     }
     public int getYStart() {
-        int y = 4;
-        for (ResourceLocation i : recipes) {
-            int shift = 0;
-            Optional<? extends RecipeHolder<?>> optional = Minecraft.getInstance().level.getRecipeManager().byKey(i);
-            if (optional.isPresent()) {
-                for (CraftingType o : CraftingTypes.types) {
-                    if (o.isRecipeType(optional.get().value())) {
-                        shift = o.getYHeight();
-                        break;
-                    }
-                }
-            }
-            y -= (shift + 10)/2;
-        }
-        return y;
+        return -100;
     }
     @Override
     public void renderPost(PageWorldGui gui, GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY, int middleX, int middleY) {

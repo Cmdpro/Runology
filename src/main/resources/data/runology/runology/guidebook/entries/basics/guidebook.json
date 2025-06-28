@@ -1,0 +1,26 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:guidebook"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.guidebook.name"
+  },
+  "x": 0,
+  "y": 0,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:shatter_infusion/guidebook"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.guidebook.page1.text"
+      }
+    }
+  ],
+  "parents": [
+
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:gold_pillar"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.gold_pillar.name"
+  },
+  "x": -1,
+  "y": 0.5,
+  "z": 0.5,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/gold_pillar"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.gold_pillar.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:basics/shatters"
+  ]
+}

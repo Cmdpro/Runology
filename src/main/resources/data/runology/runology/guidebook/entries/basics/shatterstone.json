@@ -1,0 +1,24 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:shatterstone"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.shatterstone.name"
+  },
+  "x": -1,
+  "y": 1,
+  "z": -1,
+  "pages": [
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.shatterstone.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:basics/shatters"
+  ],
+  "advancement": "runology:shatterstone"
+}

@@ -119,8 +119,10 @@ public class RunicCodex extends Entity {
                 if (entryGui == null && tab != null) {
                     for (ResourceLocation i : avaliableEntries) {
                         Entry entry = getEntry(i);
-                        if (entry.tab.equals(tab)) {
-                            createEntryEntity(position().add(0, 1.5f, 0).add(entry.pos), i);
+                        if (entry != null) {
+                            if (entry.tab.equals(tab)) {
+                                createEntryEntity(position().add(0, 1f, 0).add(entry.pos), i);
+                            }
                         }
                     }
                     for (RunicCodexEntry i : entryEntities.values()) {

@@ -40,8 +40,8 @@ public class ItemPage extends TextPage {
     }
 
     @Override
-    public int textYOffset() {
-        return 10;
+    public int textYMin(int middleX, int middleY) {
+        return middleY;
     }
 
     public void renderItemWithTooltip(GuiGraphics graphics, ItemStack item, int x, int y, int mouseX, int mouseY) {

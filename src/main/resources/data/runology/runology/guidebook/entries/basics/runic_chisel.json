@@ -1,0 +1,27 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:runic_chisel"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.runic_chisel.name"
+  },
+  "x": 1,
+  "y": 1,
+  "z": -1,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:crafting/gold_chisel",
+        "runology:shatter_infusion/runic_chisel"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.runic_chisel.page1.text"
+      }
+    }
+  ],
+  "parents": [
+    "runology:basics/shatters"
+  ]
+}

@@ -24,11 +24,11 @@ public class ShatterInfusionType extends CraftingType {
         if (recipe instanceof ShatterInfusionRecipe recipe2) {
             int recipeX = middleX + x - (63/2);
             int recipeY = middleY + y;
-            pGuiGraphics.blit(GUIDEBOOK_CRAFTING, recipeX, recipeY, 98, 0, 64, 18);
-            page.renderItemWithTooltip(pGuiGraphics, new ItemStack(BlockRegistry.SHATTER.get()), recipeX + 24, recipeY - 16, pMouseX, pMouseY);
-            page.renderIngredientWithTooltip(gui, pGuiGraphics, recipe2.getIngredients().getFirst(), recipeX + 1, recipeY + 1, pMouseX, pMouseY);
-            page.renderItemWithTooltip(pGuiGraphics, recipe.getResultItem(RegistryAccess.EMPTY), recipeX + 47, recipeY + 1, pMouseX, pMouseY);
-            pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable("emi.category.runology.shatter_infusion.cost", recipe2.getShatteredFlowCost()), recipeX+32, recipeY+20, 0xFFFFFFFF);
+            pGuiGraphics.blit(GUIDEBOOK_CRAFTING, recipeX, recipeY+16, 98, 0, 64, 18);
+            page.renderItemWithTooltip(pGuiGraphics, new ItemStack(BlockRegistry.SHATTER.get()), recipeX + 24, recipeY, pMouseX, pMouseY);
+            page.renderIngredientWithTooltip(gui, pGuiGraphics, recipe2.getIngredients().getFirst(), recipeX + 1, recipeY + 17, pMouseX, pMouseY);
+            page.renderItemWithTooltip(pGuiGraphics, recipe.getResultItem(RegistryAccess.EMPTY), recipeX + 47, recipeY + 17, pMouseX, pMouseY);
+            pGuiGraphics.drawCenteredString(Minecraft.getInstance().font, Component.translatable("emi.category.runology.shatter_infusion.cost", recipe2.getShatteredFlowCost()), recipeX+32, recipeY+36, 0xFFFFFFFF);
         }
     }
 
@@ -39,6 +39,6 @@ public class ShatterInfusionType extends CraftingType {
 
     @Override
     public int getYHeight() {
-        return 36 + Minecraft.getInstance().font.lineHeight;
+        return 26 + (Minecraft.getInstance().font.lineHeight*2);
     }
 }
