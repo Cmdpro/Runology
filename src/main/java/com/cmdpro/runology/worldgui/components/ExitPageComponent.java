@@ -18,16 +18,19 @@ import net.minecraft.world.entity.player.Player;
 public class ExitPageComponent extends WorldGuiButtonComponent {
     public static final ResourceLocation GUIDEBOOK_COMPONENTS = Runology.locate("textures/gui/guidebook_components.png");
     public ExitPageComponent(WorldGui gui, int x, int y) {
-        super(gui, x-12, y-10, 24, 20);
+        super(gui, x-(12+getHitboxExtra()), y-(10+getHitboxExtra()), 24+(getHitboxExtra()*2), 20+(getHitboxExtra()*2));
+    }
+    public static int getHitboxExtra() {
+        return 6;
     }
     @Override
     public void renderNormal(GuiGraphics guiGraphics) {
-        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 160, 0, 24, 20);
+        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x+getHitboxExtra(), y+getHitboxExtra(), 160, 0, 24, 20);
     }
 
     @Override
     public void renderHovered(GuiGraphics guiGraphics) {
-        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x, y, 184, 0, 24, 20);
+        guiGraphics.blit(GUIDEBOOK_COMPONENTS, x+getHitboxExtra(), y+getHitboxExtra(), 184, 0, 24, 20);
     }
 
     @Override
