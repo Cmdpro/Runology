@@ -23,7 +23,6 @@ public class Entry {
         this.name = name;
         this.tab = tab;
         this.advancement = advancement;
-        updateParentEntries();
     }
     public Entry(ResourceLocation id, ResourceLocation tab, ItemStack icon, double x, double y, double z, List<Page> pages, List<ResourceLocation> parents, Component name, Optional<ResourceLocation> advancement) {
         this.id = id;
@@ -34,7 +33,6 @@ public class Entry {
         this.name = name;
         this.tab = tab;
         this.advancement = advancement;
-        updateParentEntries();
     }
     public boolean isUnlocked(ServerPlayer player) {
         boolean unlocked = false;

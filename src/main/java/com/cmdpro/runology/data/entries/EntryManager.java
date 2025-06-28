@@ -47,6 +47,9 @@ public class EntryManager extends SimpleJsonResourceReloadListener {
                 Runology.LOGGER.error("Parsing error loading entry {}", location, e);
             }
         }
+        for (Entry i : entries.values()) {
+            i.updateParentEntries();
+        }
         Runology.LOGGER.info("Loaded {} entries", entries.size());
     }
     public static EntrySerializer serializer = new EntrySerializer();

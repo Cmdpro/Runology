@@ -54,9 +54,9 @@ public class RealityFocusBlockEntity extends BlockEntity {
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         ResourceLocation realityReshaperId = Runology.locate("reality_reshaper");
         if (pLevel.isClientSide) {
-            Vec3 centerDiff = pPos.above().getCenter().subtract(pPos.getBottomCenter()).multiply(0.2f, 0.2f, 0.2f);
-            pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getBottomCenter().y, pPos.getCenter().z, centerDiff.x, centerDiff.y, centerDiff.z);
             if (realityReshaperProgress >= 0) {
+                Vec3 centerDiff = pPos.above().getCenter().subtract(pPos.getBottomCenter()).multiply(0.2f, 0.2f, 0.2f);
+                pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getBottomCenter().y, pPos.getCenter().z, centerDiff.x, centerDiff.y, centerDiff.z);
                 BlockPos[] runes = new BlockPos[] {
                         getBlockPos().above().offset(3, 0, 0),
                         getBlockPos().above().offset(-3, 0, 0),

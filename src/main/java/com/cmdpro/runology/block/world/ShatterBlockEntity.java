@@ -57,7 +57,7 @@ public class ShatterBlockEntity extends BlockEntity {
         }
     }
     private void calculateStability() {
-        stability = 3-power;
+        stability = 5-power;
         for (var i : ShatterUpgradeManager.types.values()) {
             Multiblock multiblock = MultiblockManager.multiblocks.get(i.multiblock);
             if (multiblock != null) {
@@ -131,7 +131,7 @@ public class ShatterBlockEntity extends BlockEntity {
             for (Player i : players) {
                 CriteriaTriggerRegistry.FIND_SHATTER.get().trigger((ServerPlayer)i);
             }
-            if (stability <= -2) {
+            if (stability <= -3) {
                 for (LivingEntity i : level.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(pPos.getCenter(), 30, 30, 30))) {
                     if (i.position().distanceTo(pPos.getCenter()) <= 15) {
                         if (i.hurt(i.damageSources().source(DamageTypeRegistry.shatterZap), 2)) {
