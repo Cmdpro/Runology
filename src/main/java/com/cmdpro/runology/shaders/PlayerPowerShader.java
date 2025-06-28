@@ -16,5 +16,6 @@ public class PlayerPowerShader extends PostShaderInstance {
     public void setUniforms(PostPass instance) {
         super.setUniforms(instance);
         instance.getEffect().setSampler("PlayerPowerSampler", RenderEvents.getPlayerPowerTarget()::getColorTextureId);
+        instance.getEffect().setSampler("PlayerPowerDepthSampler", RenderEvents.getPlayerPowerTarget()::getDepthTextureId);
     }
 }

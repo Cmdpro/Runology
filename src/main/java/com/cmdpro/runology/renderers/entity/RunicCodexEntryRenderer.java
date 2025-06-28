@@ -8,6 +8,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -42,7 +43,7 @@ public class RunicCodexEntryRenderer extends EntityRenderer<RunicCodexEntry> {
             poseStack.pushPose();
             poseStack.translate(0, entity.getBoundingBox().getYsize() / 2, 0);
             poseStack.scale(0.2f, 0.2f, 0.2f);
-            Minecraft.getInstance().getItemRenderer().renderStatic(entity.icon, ItemDisplayContext.FIXED, packedLight, OverlayTexture.NO_OVERLAY, poseStack, RenderEvents.createSpecialBypassBufferSource(), entity.level(), 0);
+            Minecraft.getInstance().getItemRenderer().renderStatic(entity.icon, ItemDisplayContext.FIXED, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, poseStack, RenderEvents.createSpecialBypassBufferSource(), entity.level(), 0);
             poseStack.popPose();
         }
     }

@@ -15,5 +15,8 @@ public class SpecialBypassShader extends PostShaderInstance {
     public void setUniforms(PostPass instance) {
         super.setUniforms(instance);
         instance.getEffect().setSampler("SpecialBypassSampler", RenderEvents.getSpecialBypassTarget()::getColorTextureId);
+        instance.getEffect().setSampler("SpecialBypassDepthSampler", RenderEvents.getSpecialBypassTarget()::getDepthTextureId);
+        instance.getEffect().setSampler("ShatterDepthSampler", RenderEvents.getShatterTarget()::getDepthTextureId);
+        instance.getEffect().setSampler("PlayerPowerDepthSampler", RenderEvents.getPlayerPowerTarget()::getDepthTextureId);
     }
 }

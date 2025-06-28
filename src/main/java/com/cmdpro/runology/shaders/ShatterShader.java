@@ -19,5 +19,6 @@ public class ShatterShader extends PostShaderInstance {
     public void setUniforms(PostPass instance) {
         super.setUniforms(instance);
         instance.getEffect().setSampler("ShatterSampler", RenderEvents.getShatterTarget()::getColorTextureId);
+        instance.getEffect().setSampler("ShatterDepthSampler", RenderEvents.getShatterTarget()::getDepthTextureId);
     }
 }
