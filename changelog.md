@@ -8,3 +8,4 @@
 
 ### Fixes
 - Fixed a shader not properly compiling on macos
+- Fixed runic codex entries showing their details in jade
