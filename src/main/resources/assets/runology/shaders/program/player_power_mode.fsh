@@ -37,13 +37,17 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
     vec2(change.x, -change.y)
     );
 
-    vec2[3] triangles[24];
+    vec2[24] triangles1;
+    vec2[24] triangles2;
+    vec2[24] triangles3;
     vec2 pos = vec2(-0.1, 0.0);
     vec2 offset = vec2(0.0, 1.0/5.0);
     for (int i = 0; i < 6; i++) {
         vec2 target = vec2(0.5, 0.5);
         target += normalize(pos-target)*(0.4);
-        triangles[i] = vec2[](vec2(pos-offset), vec2(pos+offset), target);
+        triangles1[i] = vec2(pos-offset);
+        triangles2[i] = vec2(pos+offset);
+        triangles3[i] = target;
         pos += offset;
     }
     pos = vec2(0.0, 1.1);
@@ -51,7 +55,9 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
     for (int i = 6; i < 12; i++) {
         vec2 target = vec2(0.5, 0.5);
         target += normalize(pos-target)*(0.4);
-        triangles[i] = vec2[](vec2(pos-offset), vec2(pos+offset), target);
+        triangles1[i] = vec2(pos-offset);
+        triangles2[i] = vec2(pos+offset);
+        triangles3[i] = target;
         pos += offset;
     }
     pos = vec2(1.1, 0.0);
@@ -59,7 +65,9 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
     for (int i = 12; i < 18; i++) {
         vec2 target = vec2(0.5, 0.5);
         target += normalize(pos-target)*(0.4);
-        triangles[i] = vec2[](vec2(pos-offset), vec2(pos+offset), target);
+        triangles1[i] = vec2(pos-offset);
+        triangles2[i] = vec2(pos+offset);
+        triangles3[i] = target;
         pos += offset;
     }
     pos = vec2(0.0, -0.1);
@@ -67,7 +75,9 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
     for (int i = 18; i < 24; i++) {
         vec2 target = vec2(0.5, 0.5);
         target += normalize(pos-target)*(0.4);
-        triangles[i] = vec2[](vec2(pos-offset), vec2(pos+offset), target);
+        triangles1[i] = vec2(pos-offset);
+        triangles2[i] = vec2(pos+offset);
+        triangles3[i] = target;
         pos += offset;
     }
     float blend = 0.0;
@@ -76,12 +86,14 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
     for (int i = 0; i < 8; i++) {
         bool maybeOutline = true;
         float rot = time*10.0;
-        for (int j = 0; j < triangles.length(); j++) {
+        for (int j = 0; j < triangles1.length(); j++) {
             vec2 coord = texCoord + offsets[i];
             coord.x = clamp(coord.x, 0, 1);
             coord.y = clamp(coord.y, 0, 1);
-            vec2 triangle[] = triangles[j];
-            if (pointInTriangle(coord, triangle[0], triangle[1], triangle[2]+(vec2(sin(radians(rot)), cos(radians(rot)))*0.025))) {
+            vec2 triangle1 = triangles1[j];
+            vec2 triangle2 = triangles2[j];
+            vec2 triangle3 = triangles3[j];
+            if (pointInTriangle(coord, triangle1, triangle2, triangle3+(vec2(sin(radians(rot)), cos(radians(rot)))*0.025))) {
                 maybeOutline = false;
             }
             rot += triangleRot;
@@ -91,9 +103,11 @@ vec4 getColorForPos(vec3 color, vec3 outlineColor) {
         }
     }
     float rot2 = time*10.0;
-    for (int j = 0; j < triangles.length(); j++) {
-        vec2 triangle[] = triangles[j];
-        float alpha = pointInTriangle(texCoord, triangle[0], triangle[1], triangle[2]+(vec2(sin(radians(rot2)), cos(radians(rot2)))*0.025)) ? 1.0 : 0.0;
+    for (int j = 0; j < triangles1.length(); j++) {
+        vec2 triangle1 = triangles1[j];
+        vec2 triangle2 = triangles2[j];
+        vec2 triangle3 = triangles3[j];
+        float alpha = pointInTriangle(texCoord, triangle1, triangle2, triangle3+(vec2(sin(radians(rot2)), cos(radians(rot2)))*0.025)) ? 1.0 : 0.0;
         if (blend < alpha) {
             blend = alpha;
         }
