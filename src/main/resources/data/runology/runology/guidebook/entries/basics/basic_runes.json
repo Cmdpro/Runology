@@ -18,13 +18,19 @@
       }
     },
     {
-      "type": "runology:text",
+      "type": "runology:image",
+      "image": "runology:textures/gui/heat_and_frost.png",
+      "scale": 0.5,
+      "vertical_offset": -16,
       "text": {
         "translate": "runology.guidebook.runology.basics.entries.basic_runes.page2.text"
       }
     },
     {
-      "type": "runology:text",
+      "type": "runology:image",
+      "image": "runology:textures/gui/shape_and_motion.png",
+      "scale": 0.5,
+      "vertical_offset": -16,
       "text": {
         "translate": "runology.guidebook.runology.basics.entries.basic_runes.page3.text"
       }
