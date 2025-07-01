@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:blink_boots"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.blink_boots.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.blink_boots.name"
   },
   "x": 1,
   "y": 0,
@@ -16,11 +16,11 @@
         "runology:crafting/blink_boots"
       ],
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.blink_boots.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.blink_boots.page1.text"
       }
     }
   ],
   "parents": [
-    "runology:shards/shattered_shard"
+    "runology:shattered_flow/shattered_shard"
   ]
 }

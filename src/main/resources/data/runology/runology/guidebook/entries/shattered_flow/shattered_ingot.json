@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:shattered_ingot"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.shattered_ingot.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_ingot.name"
   },
   "x": 1.5,
   "y": 0.5,
@@ -17,7 +17,7 @@
         "runology:shatter_infusion/shattered_block"
       ],
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.shattered_ingot.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_ingot.page1.text"
       }
     },
     {
@@ -29,6 +29,6 @@
     }
   ],
   "parents": [
-    "runology:shards/shattered_infuser"
+    "runology:shattered_flow/shattered_infuser"
   ]
 }

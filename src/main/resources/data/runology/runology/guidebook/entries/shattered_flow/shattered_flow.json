@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:shattered_flow_icon"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.shattered_flow.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_flow.name"
   },
   "x": 0,
   "y": 1,
@@ -17,11 +17,11 @@
         "runology:crafting/shattered_relay"
       ],
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.shattered_flow.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_flow.page1.text"
       }
     }
   ],
   "parents": [
-    "runology:shards/shattered_shard"
+    "runology:shattered_flow/shattered_shard"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "type": "runology:shatter_infusion",
+  "input": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "runology:shattered_shard"
+  },
+  "shatteredFlow": 20
+}

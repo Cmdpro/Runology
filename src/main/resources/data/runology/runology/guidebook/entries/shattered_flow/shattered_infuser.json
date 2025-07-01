@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:shattered_infuser"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.shattered_infuser.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_infuser.name"
   },
   "x": 1,
   "y": 1,
@@ -17,11 +17,11 @@
         "runology:shatter_infusion/shatterstone"
       ],
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.shattered_infuser.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_infuser.page1.text"
       }
     }
   ],
   "parents": [
-    "runology:shards/shattered_shard"
+    "runology:shattered_flow/shattered_shard"
   ]
 }

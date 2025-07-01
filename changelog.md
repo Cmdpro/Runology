@@ -1,11 +1,7 @@
-### Additions
-- Added the "scale" field to image pages to allow for freely changing how large the image renders
-- Added the "vertical_offset" field to image pages to allow for easily shifting the vertical position if needed
-
 ### Changes
-- Redid rune shapes
-- Changed the basic runes entry to now show the rune images on their pages
+- Renamed the Shards tab to Shattered Flow
+- Made Shattered Shards crafted instead of created from exploding a shatter
+- Changed the Shattered Shard advancements parent
 
 ### Fixes
-- Fixed a shader not properly compiling on macos
-- Fixed runic codex entries showing their details in jade
+- Fixed shatters breaking recipes once crafted

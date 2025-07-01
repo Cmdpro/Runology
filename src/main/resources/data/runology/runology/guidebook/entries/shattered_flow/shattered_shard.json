@@ -1,0 +1,27 @@
+{
+  "tab": "runology:shattered_flow",
+  "icon": {
+    "id": "runology:shattered_shard"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_shard.name"
+  },
+  "x": 0,
+  "y": 0,
+  "z": 0,
+  "pages": [
+    {
+      "type": "runology:crafting",
+      "recipes": [
+        "runology:shatter_infusion/shattered_shard"
+      ],
+      "text": {
+        "translate": "runology.guidebook.runology.shattered_flow.entries.shattered_shard.page1.text"
+      }
+    }
+  ],
+  "parents": [
+
+  ],
+  "advancement": "runology:shattered_shard"
+}

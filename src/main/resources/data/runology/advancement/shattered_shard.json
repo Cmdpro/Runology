@@ -14,7 +14,7 @@
     "announce_to_chat": true,
     "hidden": true
   },
-  "parent": "runology:shatterstone",
+  "parent": "runology:shatter",
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",

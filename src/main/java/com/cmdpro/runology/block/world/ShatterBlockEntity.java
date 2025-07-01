@@ -112,7 +112,8 @@ public class ShatterBlockEntity extends BlockEntity {
                 if (!i.onGround()) {
                     continue;
                 }
-                Optional<RecipeHolder<ShatterInfusionRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, 20, new SingleRecipeInput(i.getItem()));
+                SingleRecipeInput input = new SingleRecipeInput(i.getItem());
+                Optional<RecipeHolder<ShatterInfusionRecipe>> recipe = RecipeUtil.getShatterImbuementRecipe(level, 20, input);
                 if (recipe.isPresent()) {
                     i.setData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER, i.getData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER)+1);
                     if (i.getData(AttachmentTypeRegistry.SHATTER_ITEM_CONVERSION_TIMER) >= 100) {
@@ -121,7 +122,7 @@ public class ShatterBlockEntity extends BlockEntity {
                         if (i.getItem().isEmpty()) {
                             i.remove(Entity.RemovalReason.KILLED);
                         }
-                        ItemStack book = recipe.get().value().getResultItem(level.registryAccess());
+                        ItemStack book = recipe.get().value().assemble(input, level.registryAccess());
                         ItemEntity item = new ItemEntity(pLevel, i.position().x, i.position().y, i.position().z, book);
                         pLevel.addFreshEntity(item);
                     }

@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:shattered_block"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.power_focus.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.power_focus.name"
   },
   "x": 2.5,
   "y": 0.5,
@@ -13,7 +13,7 @@
     {
       "type": "runology:text",
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.power_focus.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.power_focus.page1.text"
       }
     },
     {
@@ -22,6 +22,6 @@
     }
   ],
   "parents": [
-    "runology:shards/shattered_ingot"
+    "runology:shattered_flow/shattered_ingot"
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "tab": "runology:shards",
+  "tab": "runology:shattered_flow",
   "icon": {
     "id": "runology:shattered_block"
   },
   "name": {
-    "translate": "runology.guidebook.runology.shards.entries.weak_stabilizer.name"
+    "translate": "runology.guidebook.runology.shattered_flow.entries.weak_stabilizer.name"
   },
   "x": 1.5,
   "y": 1.5,
@@ -13,7 +13,7 @@
     {
       "type": "runology:text",
       "text": {
-        "translate": "runology.guidebook.runology.shards.entries.weak_stabilizer.page1.text"
+        "translate": "runology.guidebook.runology.shattered_flow.entries.weak_stabilizer.page1.text"
       }
     },
     {
@@ -22,7 +22,7 @@
     }
   ],
   "parents": [
-    "runology:shards/greater_power_focus"
+    "runology:shattered_flow/greater_power_focus"
   ],
   "advancement": "runology:surge"
 }

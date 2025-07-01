@@ -100,12 +100,6 @@ public class RealityFocusBlockEntity extends BlockEntity {
                 if (realityReshaperProgress >= 170) {
                     level.setBlockAndUpdate(pPos.above(), Blocks.AIR.defaultBlockState());
                     level.explode(null, pPos.above().getCenter().x, pPos.above().getCenter().y, pPos.above().getCenter().z, 8, true, Level.ExplosionInteraction.TNT);
-                    for (int i = 0; i < 8; i++) {
-                        Vec3 dir = Vec3.directionFromRotation(level.getRandom().nextFloat()*-90, level.getRandom().nextFloat()*360);
-                        ItemEntity entity = new ItemEntity(level, pPos.above().getCenter().x+dir.x, pPos.above().getCenter().y+dir.y, pPos.above().getCenter().z+dir.z, new ItemStack(ItemRegistry.SHATTERED_SHARD.get()));
-                        entity.setDeltaMovement(dir);
-                        level.addFreshEntity(entity);
-                    }
                     realityReshaperProgress = 0;
                 }
                 updateBlock();

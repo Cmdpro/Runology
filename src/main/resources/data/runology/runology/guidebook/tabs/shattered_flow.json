@@ -1,0 +1,9 @@
+{
+  "icon": {
+    "id": "runology:shattered_flow_icon"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.tabs.shattered_flow.name"
+  },
+  "priority": 5
+}
