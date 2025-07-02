@@ -7,4 +7,4 @@
 - Fixed shatters breaking recipes once crafted
 
 ### Removals
-- Removed shattered shard geodes
+- Removed shattered shard geodes along with its related blocks

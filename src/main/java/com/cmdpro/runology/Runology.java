@@ -84,12 +84,6 @@ public class Runology
             event.accept(ItemRegistry.SHATTERED_SHARD.get());
             event.accept(ItemRegistry.BLINK_BOOTS.get());
             event.accept(BlockRegistry.SHATTER_COIL.get());
-            event.accept(BlockRegistry.SHATTERED_CRYSTAL_BLOCK.get());
-            event.accept(BlockRegistry.BUDDING_SHATTERED_CRYSTAL.get());
-            event.accept(BlockRegistry.SHATTERED_CRYSTAL_CLUSTER.get());
-            event.accept(BlockRegistry.LARGE_SHATTERED_CRYSTAL_BUD.get());
-            event.accept(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD.get());
-            event.accept(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get());
             event.accept(BlockRegistry.HEAT_FOCUS.get());
             event.accept(ItemRegistry.SHATTERED_INGOT.get());
             event.accept(BlockRegistry.SHATTERED_BLOCK.get());

@@ -29,12 +29,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.RUNE_MOTION_SHATTERSTONE.get());
         dropSelf(BlockRegistry.GOLD_PILLAR.get());
         dropSelf(BlockRegistry.SHATTERED_INFUSER.get());
-        add(BlockRegistry.SHATTERED_CRYSTAL_CLUSTER.get(), (block) -> createOreDrop(block, ItemRegistry.SHATTERED_SHARD.get()));
-        add(BlockRegistry.SMALL_SHATTERED_CRYSTAL_BUD.get(), (block) -> noDrop());
-        add(BlockRegistry.MEDIUM_SHATTERED_CRYSTAL_BUD.get(), (block) -> noDrop());
-        add(BlockRegistry.LARGE_SHATTERED_CRYSTAL_BUD.get(), (block) -> noDrop());
-        dropSelf(BlockRegistry.SHATTERED_CRYSTAL_BLOCK.get());
-        add(BlockRegistry.BUDDING_SHATTERED_CRYSTAL.get(), (block) -> noDrop());
         dropSelf(BlockRegistry.SHATTER_COIL.get());
         add(BlockRegistry.SHATTER_COIL_FILLER.get(), (block) -> noDrop());
         dropSelf(BlockRegistry.HEAT_FOCUS.get());
