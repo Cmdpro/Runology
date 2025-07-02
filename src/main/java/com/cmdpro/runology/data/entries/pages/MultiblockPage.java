@@ -32,8 +32,8 @@ public class MultiblockPage extends Page {
         int sizeX = multiblock.multiblockLayers[0][0].length();
         int sizeY = multiblock.multiblockLayers.length;
         int sizeZ = multiblock.multiblockLayers[0].length;
-        float maxX = 90;
-        float maxY = 90;
+        float maxX = 180;
+        float maxY = 180;
         float diag = (float) Math.sqrt(sizeX * sizeX + sizeZ * sizeZ);
         float scaleX = maxX / diag;
         float scaleY = maxY / sizeY;
