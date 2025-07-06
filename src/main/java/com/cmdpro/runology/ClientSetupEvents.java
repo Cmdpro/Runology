@@ -47,7 +47,6 @@ public class ClientSetupEvents {
         playerPowerShader.setActive(true);
         playerPowerModeShader = new PlayerPowerModeShader();
         PostShaderManager.addShader(playerPowerModeShader);
-        playerPowerModeShader.setActive(true);
         specialBypassShader = new SpecialBypassShader();
         PostShaderManager.addShader(specialBypassShader);
         specialBypassShader.setActive(true);
