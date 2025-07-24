@@ -115,7 +115,7 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "blank:databank-1.1.5.1"
+    implementation "blank:databank-1.1.10.2"
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
     localRuntime "dev.emi:emi-neoforge:${emi_version}"
     implementation "maven.modrinth:iris:1.8.1+1.21.1-neoforge"
