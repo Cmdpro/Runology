@@ -98,8 +98,9 @@ public class RealityFocusBlockEntity extends BlockEntity {
                     realityReshaperProgress = -1;
                 }
                 if (realityReshaperProgress >= 170) {
-                    level.setBlockAndUpdate(pPos.above(), Blocks.AIR.defaultBlockState());
-                    level.explode(null, pPos.above().getCenter().x, pPos.above().getCenter().y, pPos.above().getCenter().z, 8, true, Level.ExplosionInteraction.TNT);
+                    if (pLevel.getBlockEntity(pPos.above()) instanceof ShatterBlockEntity shatter) {
+                        shatter.explard(pLevel, pPos.above());
+                    }
                     realityReshaperProgress = 0;
                 }
                 updateBlock();

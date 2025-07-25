@@ -58,6 +58,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemRegistry.BLINK_BOOTS);
         simpleItem(ItemRegistry.SHATTERED_INGOT);
         simpleItem(ItemRegistry.BASIC_RUNES_ICON);
+        simpleItem(ItemRegistry.SHATTER_EXPLARDER);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

@@ -2,6 +2,7 @@ package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
 import com.cmdpro.runology.registry.BlockRegistry;
+import com.cmdpro.runology.registry.TagRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -36,7 +37,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SHATTER_COIL_FILLER.get())
                 .add(BlockRegistry.HEAT_FOCUS.get())
                 .add(BlockRegistry.SHATTERED_BLOCK.get())
-                .add(BlockRegistry.REALITY_FOCUS.get());
+                .add(BlockRegistry.REALITY_FOCUS.get())
+                .add(BlockRegistry.OTHERWORLDLY_STONE.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
@@ -47,5 +49,13 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.SHATTERED_BLOCK.get());
         this.tag(BlockTags.WALLS)
                 .add(BlockRegistry.SHATTERSTONE_BRICK_WALL.get());
+        this.tag(BlockTags.DIRT)
+                .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get())
+                .add(BlockRegistry.OTHERWORLDLY_DIRT.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get())
+                .add(BlockRegistry.OTHERWORLDLY_DIRT.get());
+        this.tag(TagRegistry.Blocks.SHATTER_GROW_PLANTS_ON)
+                .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get());
     }
 }

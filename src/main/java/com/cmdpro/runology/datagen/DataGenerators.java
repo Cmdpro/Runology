@@ -1,6 +1,7 @@
 package com.cmdpro.runology.datagen;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.datagen.datamap.ShatterConversionProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -29,5 +30,6 @@ public class DataGenerators {
                 new ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new ModEntityTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ShatterConversionProvider(packOutput, lookupProvider));
     }
 }

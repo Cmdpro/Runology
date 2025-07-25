@@ -1,6 +1,9 @@
-// 1.21.1	2025-07-02T14:32:08.3106859	Loot Tables
+// 1.21.1	2025-07-25T10:09:05.6293461	Loot Tables
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 4689b04add47930d1bf76d92fbcdf1c1f228cd5a data/runology/loot_table/blocks/heat_focus.json
+a0ad8f335cd9221d0474f550aa37ae74d9bd1160 data/runology/loot_table/blocks/otherworldly_dirt.json
+5befec62404bf05f00c5c4d8e6d4666e73c79b13 data/runology/loot_table/blocks/otherworldly_grass_block.json
+09d80a0cdd8367959a27c15f4ce31d5801539391 data/runology/loot_table/blocks/otherworldly_stone.json
 dacf5672787b28f39cf0bb8a62706f8c6455edb8 data/runology/loot_table/blocks/reality_focus.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
 925f0a1ac30ffba489d4d1eedf2ae307e17c7de8 data/runology/loot_table/blocks/rune_heat_shatterstone.json
@@ -17,3 +20,5 @@ c7e02b096edfa381d49fadeaf225e8815e210cd1 data/runology/loot_table/blocks/shatter
 3819dd825b0c95da7e6fe23dd05a61418f219255 data/runology/loot_table/blocks/shatterstone_brick_wall.json
 5233c61d55fd74a9e6af142684e63de42b1561ae data/runology/loot_table/blocks/shatter_coil.json
 2ccb29df239735faec0a89e8ab500cb7624d5ac5 data/runology/loot_table/blocks/shatter_coil_filler.json
+51571524e60fd17bce6ad0163d733f6a42a270a7 data/runology/loot_table/blocks/short_otherworldly_grass.json
+c59938d86f8dae016fe0fc5cb9afb76033b4f9f5 data/runology/loot_table/blocks/tall_otherworldly_grass.json

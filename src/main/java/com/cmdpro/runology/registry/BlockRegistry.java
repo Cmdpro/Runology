@@ -87,6 +87,21 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTERED_BLOCK = register("shattered_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_DIRT = register("otherworldly_dirt",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_GRASS_BLOCK = register("otherworldly_grass_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE = register("otherworldly_stone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.AMETHYST)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> TALL_OTHERWORLDLY_GRASS = register("tall_otherworldly_grass",
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).lightLevel((state) -> 2)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHORT_OTHERWORLDLY_GRASS = register("short_otherworldly_grass",
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 2)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 
     private static <T extends Block> Supplier<T> registerBlock(final String name,

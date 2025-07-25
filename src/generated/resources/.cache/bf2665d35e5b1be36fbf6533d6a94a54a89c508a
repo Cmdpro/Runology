@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-27T20:46:38.7512283	Item Models: runology
+// 1.21.1	2025-07-25T12:38:12.7900216	Item Models: runology
 c1e489038f347acf690748a4146d2fa7cbf7c66b assets/runology/models/item/basic_runes_icon.json
 88ef814429d5bf31ec57219502ee9cabacf33f5b assets/runology/models/item/blink_boots.json
 b023d12fe3881921e365f367d7526735b5c42e11 assets/runology/models/item/gold_chisel.json
@@ -17,4 +17,5 @@ b4a5172774ec4bd664374bd460d342e7c775aaee assets/runology/models/item/shattered_f
 e8b3bf0376d3f3f72348f3922d9ab98a477ef7e0 assets/runology/models/item/shatterstone_brick_stairs.json
 b00905096374f502cb8db8b5bc8034a98ece637a assets/runology/models/item/shatterstone_brick_wall.json
 fb16187ea0cbc9d1cd0261ed12ee0ac07e6e3ccb assets/runology/models/item/shatter_coil.json
+99ab9f3c01750ce8c0fcf2bc1a1e3194da174a7a assets/runology/models/item/shatter_explarder.json
 4f8810c83eeffae94e0ba51a677af8e9f497f135 assets/runology/models/item/shatter_reader.json

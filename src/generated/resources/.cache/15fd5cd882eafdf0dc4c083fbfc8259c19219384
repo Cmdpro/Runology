@@ -1,5 +1,8 @@
-// 1.21.1	2025-07-02T14:32:08.3086887	Tags for minecraft:block mod id runology
-e658f54705ab59c9f918e09ce418d0ed73e07ebd data/minecraft/tags/block/mineable/pickaxe.json
+// 1.21.1	2025-07-25T12:57:58.5123386	Tags for minecraft:block mod id runology
+cc3230a83fbe73f9cebf63eda3ca9a3b4a509190 data/minecraft/tags/block/dirt.json
+0a5aaa6ec91ff6e3dec92dd003a5774999dc8bfd data/minecraft/tags/block/mineable/pickaxe.json
+cc3230a83fbe73f9cebf63eda3ca9a3b4a509190 data/minecraft/tags/block/mineable/shovel.json
 0f5da292480a87d5ab91304c3a767681ec429407 data/minecraft/tags/block/needs_diamond_tool.json
 99a0cfc2ac0aa8c337f2401768c340be90335a98 data/minecraft/tags/block/needs_iron_tool.json
 126463c97e8c5156199ed5186ab0535df069c81d data/minecraft/tags/block/walls.json
+1fbb3117f5b9e14b4e7072be884d26e32e8f670f data/runology/tags/block/shatter_grow_plants_on.json
