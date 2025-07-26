@@ -86,7 +86,7 @@ public record ShatterExplodeS2CPacket(BlockPos pos) implements Message {
                         renderLine(dir.scale(Math.clamp(scaleAddition-2.5f, 0, scaleAddition)), dir.scale(scaleAddition), 0.05f, poseStack, buffer.getBuffer(RunologyRenderTypes.SHATTER));
                     }
                     poseStack.popPose();
-                }, FloatGradient.singleValue(1f).fade(1, 0.7f, 0f, 1f));
+                }, FloatGradient.singleValue(1f).fade(1, 0.65f, 0f, 1f));
                 ScreenshakeHandler.addScreenshake(12, 3f);
             });
             Vec3 center = pos.getCenter();
