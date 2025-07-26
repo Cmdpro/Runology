@@ -2,7 +2,9 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.registry.*;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import org.slf4j.Logger;
@@ -50,8 +52,11 @@ public class Runology
         WorldGuiComponentRegistry.WORLD_GUI_COMPONENTS.register(modEventBus);
         PageTypeRegistry.PAGE_TYPES.register(modEventBus);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            RunologyClient.register();
+        }
     }
     public static ResourceLocation locate(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
