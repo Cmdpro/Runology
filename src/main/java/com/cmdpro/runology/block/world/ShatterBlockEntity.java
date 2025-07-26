@@ -8,6 +8,8 @@ import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.datamaps.RunologyDatamaps;
 import com.cmdpro.runology.datamaps.ShatterConversionMap;
 import com.cmdpro.runology.entity.ShatterZap;
+import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.ShatterExplodeS2CPacket;
 import com.cmdpro.runology.recipe.RecipeUtil;
 import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import com.cmdpro.runology.registry.*;
@@ -15,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -172,6 +175,7 @@ public class ShatterBlockEntity extends BlockEntity {
         }
     }
     public void explard(Level level, BlockPos blockPos) {
+        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), 24);
         Vec3 center = blockPos.getCenter();
         level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
         level.explode(null, blockPos.getCenter().x, blockPos.getCenter().y, blockPos.getCenter().z, 6, false, Level.ExplosionInteraction.TNT);

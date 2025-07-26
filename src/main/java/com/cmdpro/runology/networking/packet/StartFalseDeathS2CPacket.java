@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implements Message {
     public static StartFalseDeathS2CPacket read(RegistryFriendlyByteBuf buf) {
@@ -18,7 +19,7 @@ public record StartFalseDeathS2CPacket(Component cause, boolean hardcore) implem
     }
 
     @Override
-    public void handleClient(Minecraft minecraft, Player player) {
+    public void handleClient(Minecraft minecraft, Player player, IPayloadContext ctx) {
         ClientPacketHandler.openScreen(minecraft, player, this);
     }
 

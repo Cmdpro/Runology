@@ -31,25 +31,28 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
         poseStack.popPose();
     }
 
-    private class SpikeData {
+    public static class SpikeData {
         public Vec3 rotOffset;
         public float size;
-        public SpikeData(Vec3 rotOffset, float size) {
+        protected SpikeData(Vec3 rotOffset, float size) {
             this.rotOffset = rotOffset;
             this.size = size;
         }
     }
-    public List<SpikeData> rotOffsets = new ArrayList<>();
+    public static List<SpikeData> rotOffsets = new ArrayList<>();
+
+    static {
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+            rotOffsets.add(new SpikeData(new Vec3((rand.nextFloat() * 6f) - 3f, (rand.nextFloat() * 6f) - 3f, (rand.nextFloat() * 6f) - 3f), (rand.nextFloat() * 0.15f) + 0.1f));
+        }
+    }
 
     EntityRenderDispatcher renderDispatcher;
     public ShatterRenderer(BlockEntityRendererProvider.Context rendererProvider) {
         renderDispatcher = rendererProvider.getEntityRenderer();
-        Random rand = new Random();
-        for (int i = 0; i < 10; i++) {
-            rotOffsets.add(new SpikeData(new Vec3((rand.nextFloat()*6f)-3f, (rand.nextFloat()*6f)-3f, (rand.nextFloat()*6f)-3f), (rand.nextFloat()*0.15f)+0.1f));
-        }
     }
-    private void renderSpikes(float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer, float scaled) {
+    public static void renderSpikes(float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer, float scaled) {
         float rotatyThing = Math.toRadians(Minecraft.getInstance().level.getGameTime() + partialTick)*10f;
         int ind = 0;
         for (SpikeData i : rotOffsets) {
@@ -67,7 +70,7 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
             ind++;
         }
     }
-    private void renderSpike(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer) {
+    private static void renderSpike(Vec3 start, Vec3 end, float thickness, float partialTick, PoseStack poseStack, VertexConsumer vertexConsumer) {
         Vector3f diff = end.toVector3f().sub(start.toVector3f()).normalize().mul(thickness, thickness, thickness);
         Vector3f diffRotated = new Vector3f(diff).rotateX(Math.toRadians(90));
         for (int i = 0; i < 4; i++) {

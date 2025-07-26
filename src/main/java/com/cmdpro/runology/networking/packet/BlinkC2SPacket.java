@@ -21,6 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record BlinkC2SPacket() implements Message {
     public static BlinkC2SPacket read(RegistryFriendlyByteBuf buf) {
@@ -28,7 +29,7 @@ public record BlinkC2SPacket() implements Message {
     }
 
     @Override
-    public void handleServer(MinecraftServer server, ServerPlayer player) {
+    public void handleServer(MinecraftServer server, ServerPlayer player, IPayloadContext ctx) {
         if (player.getInventory().armor.stream().anyMatch((a) -> a.is(ItemRegistry.BLINK_BOOTS.get())) && player.getData(AttachmentTypeRegistry.BLINK_COOLDOWN) <= 0) {
             Vec3 offset = new Vec3(0, player.getEyeHeight(), 0);
             for (int i = 0; i < 25 * 4; i++) {
