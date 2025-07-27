@@ -1,0 +1,28 @@
+{
+  "layers": [
+    [
+      "s"
+    ],
+    [
+      "*"
+    ],
+    [
+      "0"
+    ]
+  ],
+  "key": {
+    "s": {
+      "type": "databank:blockstate",
+      "state": "minecraft:barrier"
+    },
+    "0": {
+      "type": "databank:blockstate",
+      "state": "runology:shatter"
+    }
+  },
+  "center": [
+    0,
+    -1,
+    0
+  ]
+}

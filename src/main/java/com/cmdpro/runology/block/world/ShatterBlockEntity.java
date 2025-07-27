@@ -17,6 +17,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -46,6 +50,7 @@ import java.util.Optional;
 public class ShatterBlockEntity extends BlockEntity {
     public ShatterBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHATTER.get(), pos, state);
+        instabilityExplardTimer = INSTABILITY_EXPLARD_TIME;
     }
     private float power;
     private float stability;
@@ -169,11 +174,48 @@ public class ShatterBlockEntity extends BlockEntity {
             } else {
                 surgeCooldown = 20*20;
             }
-            if (stability <= -8) {
-                // TODO : make shatter explard
+            if (stability <= -10) {
+                instabilityExplardTimer--;
+                updateBlock();
+                if (instabilityExplardTimer <= 0) {
+                    explard(pLevel, getBlockPos());
+                }
+            } else {
+                if (instabilityExplardTimer < INSTABILITY_EXPLARD_TIME) {
+                    instabilityExplardTimer = INSTABILITY_EXPLARD_TIME;
+                    updateBlock();
+                }
             }
         }
     }
+    public void updateBlock() {
+        BlockState blockState = level.getBlockState(this.getBlockPos());
+        this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
+        this.setChanged();
+    }
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket(){
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        if (!pkt.getTag().isEmpty()) {
+            CompoundTag tag = pkt.getTag();
+            instabilityExplardTimer = tag.getInt("instabilityExplardTimer");
+        }
+    }
+    public void decodeUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+
+    }
+    public boolean isPowered;
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("instabilityExplardTimer", instabilityExplardTimer);
+        return tag;
+    }
+    public int instabilityExplardTimer;
+    public static final int INSTABILITY_EXPLARD_TIME = 200;
     public void explard(Level level, BlockPos blockPos) {
         ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), 24);
         Vec3 center = blockPos.getCenter();
