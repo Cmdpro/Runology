@@ -1,5 +1,8 @@
 package com.cmdpro.runology.renderers.block;
 
+import com.cmdpro.databank.ClientDatabankUtils;
+import com.cmdpro.databank.misc.DebugHelper;
+import com.cmdpro.databank.multiblock.MultiblockRenderer;
 import com.cmdpro.databank.rendering.RenderHandler;
 import com.cmdpro.runology.RenderEvents;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
@@ -24,6 +27,9 @@ import java.util.List;
 public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> {
     @Override
     public void render(ShatterBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+        if (!ClientDatabankUtils.isDrawRenderTarget(Minecraft.getInstance().getMainRenderTarget())) {
+            return;
+        }
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
         renderSpikes(partialTick, poseStack, RenderEvents.createShatterOutlineBufferSource().getBuffer(RunologyRenderTypes.SHATTER), 1.5f);
