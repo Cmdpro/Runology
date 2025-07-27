@@ -217,7 +217,7 @@ public class ShatterBlockEntity extends BlockEntity {
     public int instabilityExplardTimer;
     public static final int INSTABILITY_EXPLARD_TIME = 200;
     public void explard(Level level, BlockPos blockPos) {
-        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), 24);
+        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), 32);
         Vec3 center = blockPos.getCenter();
         level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
         level.explode(null, blockPos.getCenter().x, blockPos.getCenter().y, blockPos.getCenter().z, 6, false, Level.ExplosionInteraction.TNT);
