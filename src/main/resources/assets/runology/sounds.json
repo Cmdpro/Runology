@@ -50,5 +50,11 @@
             "block/beacon/activate"
         ],
         "subtitle": "subtitle.runology.shattered_flow_network.surge.end"
+    },
+    "block.shatter.unstable": {
+        "sounds": [
+            "runology:shatter_unstable"
+        ],
+        "subtitle": "subtitle.runology.block.shatter.unstable"
     }
 }
