@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "runology:block/otherworldly_dirt"
-    }
+    "": [
+      {
+        "model": "runology:block/otherworldly_dirt_1"
+      },
+      {
+        "model": "runology:block/otherworldly_dirt_2"
+      },
+      {
+        "model": "runology:block/otherworldly_dirt_3"
+      },
+      {
+        "model": "runology:block/otherworldly_dirt_4"
+      }
+    ]
   }
 }

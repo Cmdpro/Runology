@@ -8,18 +8,19 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.BlockModelProvider;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, Runology.MODID, exFileHelper);
     }
+
+    private static final int OTHERWORLDLY_DIRT_VARIANTS = 4;
 
     @Override
     protected void registerStatesAndModels() {
@@ -36,12 +37,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         wallBlock((WallBlock) BlockRegistry.SHATTERSTONE_BRICK_WALL.get(), Runology.locate("block/shatterstone_bricks"));
 
         grassBlock(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK);
-        blockWithItem(BlockRegistry.OTHERWORLDLY_DIRT);
+        blockVariantsWithItem(BlockRegistry.OTHERWORLDLY_DIRT, OTHERWORLDLY_DIRT_VARIANTS);
         blockWithItem(BlockRegistry.OTHERWORLDLY_STONE);
         blockWithItem(BlockRegistry.OTHERWORLDLY_SAND);
         blockWithItem(BlockRegistry.OTHERWORLDLY_SANDSTONE);
         tallGrass(BlockRegistry.TALL_OTHERWORLDLY_GRASS);
         grass(BlockRegistry.SHORT_OTHERWORLDLY_GRASS);
+    }
+    private void blockVariantsWithItem(Supplier<Block> blockRegistryObject, int variants) {
+        ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get());
+        BlockModelBuilder itemModel = null;
+        List<ConfiguredModel> models = new ArrayList<>();
+        for (int i = 1; i <= variants; i++) {
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + loc.getPath() + "_" + i);
+            BlockModelBuilder model = models().cubeAll(loc.getPath() + "_" + i, texture);
+            if (itemModel == null) {
+                itemModel = model;
+            }
+            models.add(new ConfiguredModel(model));
+        }
+        getVariantBuilder(blockRegistryObject.get())
+                .partialState().addModels(models.toArray(new ConfiguredModel[0]));
+        if (itemModel != null) {
+            simpleBlockItem(blockRegistryObject.get(), itemModel);
+        }
     }
     private void tallGrass(Supplier<Block> blockRegistryObject) {
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get());
@@ -74,18 +93,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     private void grassBlock(Supplier<Block> blockRegistryObject) {
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get());
-        ResourceLocation side = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + loc.getPath() + "_side");
         ResourceLocation top = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + loc.getPath() + "_top");
-        ResourceLocation bottom = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/otherworldly_dirt");
-        BlockModelBuilder model = models().withExistingParent(loc.getPath(), ModelProvider.BLOCK_FOLDER + "/cube")
-                .texture("west", side)
-                .texture("east", side)
-                .texture("north", side)
-                .texture("down", bottom)
-                .texture("up", top)
-                .texture("south", side)
-                .texture("particle", top);
-        simpleBlock(blockRegistryObject.get(), model);
-        simpleBlockItem(blockRegistryObject.get(), model);
+        BlockModelBuilder itemModel = null;
+        List<ConfiguredModel> models = new ArrayList<>();
+        for (int i = 1; i <= OTHERWORLDLY_DIRT_VARIANTS; i++) {
+            ResourceLocation bottom = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/otherworldly_dirt" + "_" + i);
+            ResourceLocation side = ResourceLocation.fromNamespaceAndPath(loc.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + loc.getPath() + "_side" + "_" + i);
+            BlockModelBuilder model = models().withExistingParent(loc.getPath() + "_" + i, ModelProvider.BLOCK_FOLDER + "/cube")
+                    .texture("west", side)
+                    .texture("east", side)
+                    .texture("north", side)
+                    .texture("down", bottom)
+                    .texture("up", top)
+                    .texture("south", side)
+                    .texture("particle", top);
+            if (itemModel == null) {
+                itemModel = model;
+            }
+            models.add(new ConfiguredModel(model));
+        }
+        getVariantBuilder(blockRegistryObject.get())
+                .partialState().addModels(models.toArray(new ConfiguredModel[0]));
+        simpleBlockItem(blockRegistryObject.get(), itemModel);
     }
 }

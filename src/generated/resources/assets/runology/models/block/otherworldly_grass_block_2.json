@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "runology:block/otherworldly_dirt_2",
+    "east": "runology:block/otherworldly_grass_block_side_2",
+    "north": "runology:block/otherworldly_grass_block_side_2",
+    "particle": "runology:block/otherworldly_grass_block_top",
+    "south": "runology:block/otherworldly_grass_block_side_2",
+    "up": "runology:block/otherworldly_grass_block_top",
+    "west": "runology:block/otherworldly_grass_block_side_2"
+  }
+}
