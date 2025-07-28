@@ -13,6 +13,7 @@ import com.cmdpro.runology.block.transmission.ShatteredRelay;
 import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -103,7 +104,7 @@ public class BlockRegistry {
             () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 2)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> OTHERWORLDLY_SAND = register("otherworldly_sand",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)),
+            () -> new ColoredFallingBlock(new ColorRGBA(0xf2b6a4), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> OTHERWORLDLY_SANDSTONE = register("otherworldly_sandstone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)),
