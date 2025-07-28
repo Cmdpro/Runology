@@ -57,8 +57,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get())
                 .add(BlockRegistry.OTHERWORLDLY_DIRT.get())
                 .add(BlockRegistry.OTHERWORLDLY_SAND.get());
-        this.tag(TagRegistry.Blocks.SHATTER_GROW_PLANTS_ON)
-                .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get());
         this.tag(BlockTags.SAND)
                 .add(BlockRegistry.OTHERWORLDLY_SAND.get());
     }

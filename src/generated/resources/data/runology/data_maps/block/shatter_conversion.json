@@ -13,7 +13,14 @@
     "minecraft:grass_block": {
       "convert_to": [
         "runology:otherworldly_grass_block"
-      ]
+      ],
+      "place_above": {
+        "blocks": [
+          "runology:short_otherworldly_grass",
+          "runology:tall_otherworldly_grass"
+        ],
+        "rarity": 3
+      }
     },
     "minecraft:sand": {
       "convert_to": [

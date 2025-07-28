@@ -43,9 +43,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ShatterBlockEntity extends BlockEntity {
     public ShatterBlockEntity(BlockPos pos, BlockState state) {
@@ -226,6 +224,7 @@ public class ShatterBlockEntity extends BlockEntity {
         BlockState tallGrassTop = Blocks.TALL_GRASS.defaultBlockState().setValue(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER);
         ShatterConversionMap shortGrassConversion = shortGrass.getBlockHolder().getData(RunologyDatamaps.SHATTER_CONVERSION);
         ShatterConversionMap tallGrassConversion = tallGrassBottom.getBlockHolder().getData(RunologyDatamaps.SHATTER_CONVERSION);
+        HashMap<BlockPos, Block> toPlace = new HashMap<>();
         for (int x = -10; x <= 10; x++) {
             for (int y = -10; y <= 10; y++) {
                 for (int z = -10; z <= 10; z++) {
@@ -239,32 +238,25 @@ public class ShatterBlockEntity extends BlockEntity {
                             Block block = blocks.get(Mth.randomBetweenInclusive(level.random, 0, blocks.size()-1));
                             BlockState newState = DatabankUtils.changeBlockType(state, block);
                             level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
-                            if (newState.is(TagRegistry.Blocks.SHATTER_GROW_PLANTS_ON) && level.random.nextIntBetweenInclusive(0, 3) == 0) {
-                                List<ShatterConversionMap> maps = new ArrayList<>();
-                                if (shortGrass.canSurvive(level, pos.above())) {
-                                    maps.add(shortGrassConversion);
-                                }
-                                if (tallGrassBottom.canSurvive(level, pos.above()) && level.getBlockState(pos.above(2)).canBeReplaced()) {
-                                    maps.add(tallGrassConversion);
-                                }
-                                if (!maps.isEmpty()) {
-                                    ShatterConversionMap map = maps.get(Mth.randomBetweenInclusive(level.random, 0, maps.size() - 1));
-                                    Block block2 = map.convertTo().get(Mth.randomBetweenInclusive(level.random, 0, map.convertTo().size() - 1));
-                                    BlockState aboveState = level.getBlockState(pos.above());
-                                    BlockState newState2 = DatabankUtils.changeBlockType(map == tallGrassConversion ? tallGrassBottom : shortGrass, block2);
-                                    if (aboveState.canBeReplaced()) {
-                                        level.setBlock(pos.above(), newState2, Block.UPDATE_CLIENTS);
-                                        if (map == tallGrassConversion) {
-                                            BlockState aboveState2 = level.getBlockState(pos.above(2));
-                                            if (aboveState2.canBeReplaced()) {
-                                                level.setBlock(pos.above(2), DatabankUtils.changeBlockType(tallGrassTop, block2), Block.UPDATE_CLIENTS);
-                                            }
-                                        }
+                            data.placeAbove().ifPresent((config) -> {
+                                if (!config.blocks().isEmpty()) {
+                                    if (config.rarity() <= 0 || level.random.nextIntBetweenInclusive(0, config.rarity()) == 0) {
+                                        Block place = config.blocks().get(Mth.randomBetweenInclusive(level.random, 0, config.blocks().size() - 1));
+                                        toPlace.put(pos.above(), place);
                                     }
                                 }
-                            }
+                            });
                         }
                     }
+                }
+            }
+        }
+        for (Map.Entry<BlockPos, Block> i : toPlace.entrySet()) {
+            if (level.getBlockState(i.getKey()).canBeReplaced()) {
+                BlockState state = i.getValue().defaultBlockState();
+                level.setBlock(i.getKey(), state, Block.UPDATE_CLIENTS);
+                if (i.getValue() instanceof DoublePlantBlock) {
+                    DoublePlantBlock.placeAt(level, state, i.getKey(), Block.UPDATE_CLIENTS);
                 }
             }
         }
