@@ -102,6 +102,12 @@ public class BlockRegistry {
     public static final Supplier<Block> SHORT_OTHERWORLDLY_GRASS = register("short_otherworldly_grass",
             () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 2)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_SAND = register("otherworldly_sand",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_SANDSTONE = register("otherworldly_sandstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 
     private static <T extends Block> Supplier<T> registerBlock(final String name,

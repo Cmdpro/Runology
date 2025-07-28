@@ -15,6 +15,16 @@
         "runology:otherworldly_grass_block"
       ]
     },
+    "minecraft:sand": {
+      "convert_to": [
+        "runology:otherworldly_sand"
+      ]
+    },
+    "minecraft:sandstone": {
+      "convert_to": [
+        "runology:otherworldly_sandstone"
+      ]
+    },
     "minecraft:short_grass": {
       "convert_to": [
         "runology:short_otherworldly_grass"

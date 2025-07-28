@@ -46,6 +46,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.REALITY_FOCUS.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_DIRT.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_STONE.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_SAND.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
         otherWhenSilkTouch(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get(), BlockRegistry.OTHERWORLDLY_DIRT.get());
         this.add(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get(),
                 block -> createSpecialGrassDrops(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get(), Items.AIR));

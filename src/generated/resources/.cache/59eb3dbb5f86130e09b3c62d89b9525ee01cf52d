@@ -1,8 +1,10 @@
-// 1.21.1	2025-07-25T10:09:05.6293461	Loot Tables
+// 1.21.1	2025-07-27T23:35:33.6660831	Loot Tables
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 4689b04add47930d1bf76d92fbcdf1c1f228cd5a data/runology/loot_table/blocks/heat_focus.json
 a0ad8f335cd9221d0474f550aa37ae74d9bd1160 data/runology/loot_table/blocks/otherworldly_dirt.json
 5befec62404bf05f00c5c4d8e6d4666e73c79b13 data/runology/loot_table/blocks/otherworldly_grass_block.json
+b8343f9a4e0b862c14c7cdee0b8bd30464ac0ebb data/runology/loot_table/blocks/otherworldly_sand.json
+f59c031f01c86c9e6d9acb7d83d8d298754b799a data/runology/loot_table/blocks/otherworldly_sandstone.json
 09d80a0cdd8367959a27c15f4ce31d5801539391 data/runology/loot_table/blocks/otherworldly_stone.json
 dacf5672787b28f39cf0bb8a62706f8c6455edb8 data/runology/loot_table/blocks/reality_focus.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json

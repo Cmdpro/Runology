@@ -38,6 +38,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         grassBlock(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK);
         blockWithItem(BlockRegistry.OTHERWORLDLY_DIRT);
         blockWithItem(BlockRegistry.OTHERWORLDLY_STONE);
+        blockWithItem(BlockRegistry.OTHERWORLDLY_SAND);
+        blockWithItem(BlockRegistry.OTHERWORLDLY_SANDSTONE);
         tallGrass(BlockRegistry.TALL_OTHERWORLDLY_GRASS);
         grass(BlockRegistry.SHORT_OTHERWORLDLY_GRASS);
     }

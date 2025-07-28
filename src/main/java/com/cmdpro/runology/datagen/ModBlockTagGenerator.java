@@ -38,7 +38,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.HEAT_FOCUS.get())
                 .add(BlockRegistry.SHATTERED_BLOCK.get())
                 .add(BlockRegistry.REALITY_FOCUS.get())
-                .add(BlockRegistry.OTHERWORLDLY_STONE.get());
+                .add(BlockRegistry.OTHERWORLDLY_STONE.get())
+                .add(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(BlockRegistry.SHATTERSTONE.get())
                 .add(BlockRegistry.SHATTERSTONE_BRICKS.get())
@@ -54,8 +55,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(BlockRegistry.OTHERWORLDLY_DIRT.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get())
-                .add(BlockRegistry.OTHERWORLDLY_DIRT.get());
+                .add(BlockRegistry.OTHERWORLDLY_DIRT.get())
+                .add(BlockRegistry.OTHERWORLDLY_SAND.get());
         this.tag(TagRegistry.Blocks.SHATTER_GROW_PLANTS_ON)
                 .add(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get());
+        this.tag(BlockTags.SAND)
+                .add(BlockRegistry.OTHERWORLDLY_SAND.get());
     }
 }

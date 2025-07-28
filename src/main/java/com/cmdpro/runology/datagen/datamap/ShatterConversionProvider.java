@@ -33,7 +33,9 @@ public class ShatterConversionProvider extends DataMapProvider {
                 .add(getHolder(Blocks.GRASS_BLOCK), new ShatterConversionMap(List.of(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get())), false)
                 .add(BlockTags.BASE_STONE_OVERWORLD, new ShatterConversionMap(List.of(BlockRegistry.OTHERWORLDLY_STONE.get())), false)
                 .add(getHolder(Blocks.SHORT_GRASS), new ShatterConversionMap(List.of(BlockRegistry.SHORT_OTHERWORLDLY_GRASS.get())), false)
-                .add(getHolder(Blocks.TALL_GRASS), new ShatterConversionMap(List.of(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get())), false);
+                .add(getHolder(Blocks.TALL_GRASS), new ShatterConversionMap(List.of(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get())), false)
+                .add(getHolder(Blocks.SAND), new ShatterConversionMap(List.of(BlockRegistry.OTHERWORLDLY_SAND.get())), false)
+                .add(getHolder(Blocks.SANDSTONE), new ShatterConversionMap(List.of(BlockRegistry.OTHERWORLDLY_SANDSTONE.get())), false);
     }
     private Holder<Block> getHolder(Block block) {
         return BuiltInRegistries.BLOCK.wrapAsHolder(block);
