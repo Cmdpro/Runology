@@ -50,7 +50,7 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
             int lineCount = 20;
             Random random = new Random(0);
             for (int i = 0; i < lineCount; i++) {
-                float explardProgress = 1f - ((float) blockEntity.instabilityExplardTimer / (float) ShatterBlockEntity.INSTABILITY_EXPLARD_TIME);
+                float explardProgress = 1f - (((float)blockEntity.instabilityExplardTimer-partialTick) / (float) ShatterBlockEntity.INSTABILITY_EXPLARD_TIME);
                 float distance = Math.clamp(0f, 4f, 6f * explardProgress) * explardProgress;
                 float time = (float) (Blaze3D.getTime() * 360f);
                 float rotationPitch = (time / 3) * Math.sin(random.nextFloat()*360f);

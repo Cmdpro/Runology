@@ -43,97 +43,17 @@ import java.util.List;
 public class RealityFocusBlockEntity extends BlockEntity {
     public RealityFocusBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.REALITY_FOCUS.get(), pos, state);
-        realityReshaperProgress = -1;
     }
-    public ShatteredFlowNetwork path;
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider pRegistries) {
         super.saveAdditional(tag, pRegistries);
     }
-    public int realityReshaperProgress;
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        ResourceLocation realityReshaperId = Runology.locate("reality_reshaper");
         if (pLevel.isClientSide) {
-            if (realityReshaperProgress >= 0) {
+            if (pLevel.getBlockEntity(pPos.above()) instanceof ShatterBlockEntity) {
                 Vec3 centerDiff = pPos.above().getCenter().subtract(pPos.getBottomCenter()).multiply(0.2f, 0.2f, 0.2f);
                 pLevel.addParticle(ParticleRegistry.SHATTER.get(), pPos.getCenter().x, pPos.getBottomCenter().y, pPos.getCenter().z, centerDiff.x, centerDiff.y, centerDiff.z);
-                BlockPos[] runes = new BlockPos[] {
-                        getBlockPos().above().offset(3, 0, 0),
-                        getBlockPos().above().offset(-3, 0, 0),
-                        getBlockPos().above().offset(0, 0, 3),
-                        getBlockPos().above().offset(0, 0, -3),
-                        getBlockPos().above().offset(2, 0, 2),
-                        getBlockPos().above().offset(-2, 0, 2),
-                        getBlockPos().above().offset(-2, 0, -2),
-                        getBlockPos().above().offset(2, 0, -2)
-                };
-                int[] bursts = new int[] { 0, 20, 40, 60, 75, 85, 95, 105, 115, 125 };
-                for (int i : bursts) {
-                    if (realityReshaperProgress >= i && realityReshaperProgress <= i+5) {
-                        for (BlockPos j : runes) {
-                            Vec3 center = j.getCenter();
-                            Vec3 diff = pPos.above().getCenter().subtract(center).multiply(0.2f, 0.2f, 0.2f);
-                            pLevel.addParticle(ParticleRegistry.SHATTER.get(), center.x, center.y, center.z, diff.x, diff.y, diff.z);
-                        }
-                    }
-                }
-                if (realityReshaperProgress >= 90 && realityReshaperProgress <= 140) {
-                    for (BlockPos j : runes) {
-                        Vec3 center = pPos.above().getCenter().add(j.getCenter().subtract(pPos.above().getCenter()).yRot((float)Math.toRadians((realityReshaperProgress-90)*5)));
-                        Vec3 diff = pPos.above().getCenter().subtract(center).multiply(0.2f, 0.2f, 0.2f);
-                        pLevel.addParticle(ParticleRegistry.SHATTER.get(), center.x, center.y, center.z, diff.x, diff.y, diff.z);
-                    }
-                }
-            }
-        } else {
-            Multiblock realityReshaperMultiblock = MultiblockManager.multiblocks.get(realityReshaperId);
-            if (realityReshaperMultiblock.checkMultiblock(pLevel, pPos.below())) {
-                if (realityReshaperProgress < 0) {
-                    realityReshaperProgress = 0;
-                }
-            }
-            if (realityReshaperProgress >= 0) {
-                realityReshaperProgress++;
-                if (!realityReshaperMultiblock.checkMultiblock(pLevel, pPos.below())) {
-                    realityReshaperProgress = -1;
-                }
-                if (realityReshaperProgress >= 170) {
-                    if (pLevel.getBlockEntity(pPos.above()) instanceof ShatterBlockEntity shatter) {
-                        shatter.explard(pLevel, pPos.above());
-                    }
-                    realityReshaperProgress = 0;
-                }
-                updateBlock();
             }
         }
-    }
-    public void updateBlock() {
-        BlockState blockState = level.getBlockState(this.getBlockPos());
-        this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
-        this.setChanged();
-    }
-    @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket(){
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
-        if (!pkt.getTag().isEmpty()) {
-            decodeUpdateTag(pkt.getTag(), lookupProvider);
-        }
-    }
-    @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
-        decodeUpdateTag(tag, lookupProvider);
-    }
-    @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-        CompoundTag tag = new CompoundTag();
-        tag.putInt("realityReshaperProgress", realityReshaperProgress);
-        return tag;
-    }
-    public void decodeUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
-        realityReshaperProgress = tag.getInt("realityReshaperProgress");
     }
 }
