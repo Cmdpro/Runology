@@ -1,3 +1,7 @@
+Runology has two licenses
+1. All original files within `src/main/resources/assets` are (c) 2025 **All Rights Reserved**
+2. All original files within `src/main/java` and `src/main/resources/data` are (c) 2024 **MIT License** as stated below
+
 MIT License
 
 Copyright (c) 2024 Cmdpro
