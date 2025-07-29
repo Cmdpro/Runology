@@ -95,7 +95,7 @@ public class BlockRegistry {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> OTHERWORLDLY_STONE = register("otherworldly_stone",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).sound(SoundType.AMETHYST)),
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> TALL_OTHERWORLDLY_GRASS = register("tall_otherworldly_grass",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).lightLevel((state) -> 2)),
