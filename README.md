@@ -1,4 +1,6 @@
 # Credits
 Cmdpro - Owner
 
-EsetKalenko - recipe and book edits
+EsetKalenko - Recipe and Book edits
+
+K King - Sounds (block/shatter/explode.ogg, block/shatter/unstable.ogg)

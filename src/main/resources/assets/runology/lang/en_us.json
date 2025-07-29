@@ -135,5 +135,6 @@
   "subtitle.runology.block.heat_focus.finish": "Heat focus finishes",
   "subtitle.runology.shattered_flow_network.surge.start": "Surge starts",
   "subtitle.runology.shattered_flow_network.surge.end": "Surge ends",
-  "subtitle.runology.block.shatter.unstable": "Shatter destabilizing"
+  "subtitle.runology.block.shatter.unstable": "Shatter destabilizing",
+  "subtitle.runology.block.shatter.explode": "Shatter explodes"
 }

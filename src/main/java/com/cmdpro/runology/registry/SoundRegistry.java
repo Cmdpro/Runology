@@ -21,6 +21,7 @@ public class SoundRegistry {
     public static final Holder<SoundEvent> HEAT_FOCUS_WORKING = createBasicSound("block.heat_focus.working");
     public static final Holder<SoundEvent> HEAT_FOCUS_FINISH = createBasicSound("block.heat_focus.finish");
     public static final Holder<SoundEvent> SHATTER_UNSTABLE = createBasicSound("block.shatter.unstable");
+    public static final Holder<SoundEvent> SHATTER_EXPLODE = createBasicSound("block.shatter.explode");
 
     //Misc
     public static final Holder<SoundEvent> SHATTERED_FLOW_NETWORK_SURGE_START = createBasicSound("shattered_flow_network.surge.start");

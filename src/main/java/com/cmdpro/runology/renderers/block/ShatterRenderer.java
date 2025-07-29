@@ -31,17 +31,21 @@ public class ShatterRenderer implements BlockEntityRenderer<ShatterBlockEntity> 
         if (!ClientDatabankUtils.isDrawRenderTarget(Minecraft.getInstance().getMainRenderTarget())) {
             return;
         }
+        poseStack.pushPose();
+        poseStack.translate(0.5, 0.5, 0.5);
         Vec3 offset = Vec3.ZERO;
         if (blockEntity.instabilityExplardTimer < ShatterBlockEntity.INSTABILITY_EXPLARD_TIME) {
-            float explardProgress = 1f-((float)blockEntity.instabilityExplardTimer/(float)ShatterBlockEntity.INSTABILITY_EXPLARD_TIME);
+            float explardProgress = 1f-(((float)blockEntity.instabilityExplardTimer-partialTick)/(float)ShatterBlockEntity.INSTABILITY_EXPLARD_TIME);
             float distance = 0.3f*explardProgress;
             float ySpeed = 20;
             float xSpeed = (ySpeed*1.5f);
             float time = (float)(Blaze3D.getTime()*360f);
             offset = Vec3.directionFromRotation(Math.cos(time*ySpeed)*180, Math.sin(time*xSpeed)*180).scale(distance);
+            if (explardProgress >= 0.9) {
+                float scale = 1f-Math.clamp(0f, 1f, (explardProgress-0.9f)*20f);
+                poseStack.scale(scale, scale, scale);
+            }
         }
-        poseStack.pushPose();
-        poseStack.translate(0.5, 0.5, 0.5);
         if (blockEntity.instabilityExplardTimer < ShatterBlockEntity.INSTABILITY_EXPLARD_TIME) {
             int lineCount = 20;
             Random random = new Random(0);

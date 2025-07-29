@@ -53,8 +53,14 @@
     },
     "block.shatter.unstable": {
         "sounds": [
-            "runology:shatter_unstable"
+            "runology:block/shatter/unstable"
         ],
         "subtitle": "subtitle.runology.block.shatter.unstable"
+    },
+    "block.shatter.explode": {
+        "sounds": [
+            "runology:block/shatter/explode"
+        ],
+        "subtitle": "subtitle.runology.block.shatter.explode"
     }
 }
