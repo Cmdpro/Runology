@@ -293,27 +293,27 @@ public class ShatterBlockEntity extends BlockEntity {
             }
         }
     }
-    public SoundInstance getUnstableSound() {
-        if (unstableSound == null) {
-            Vec3 pos = getBlockPos().getCenter();
-            unstableSound = new SimpleSoundInstance(
-                    SoundRegistry.SHATTER_UNSTABLE.value(), SoundSource.BLOCKS, 1, 1, RandomSource.create(0), pos.x, pos.y, pos.z
-            );
-        }
-        return unstableSound;
-    }
     public SoundInstance unstableSound;
     private static class ClientHandler {
         public static void startSound(ShatterBlockEntity entity) {
             float startTime = (float)(INSTABILITY_EXPLARD_TIME-entity.instabilityExplardTimer)/20f;
-            Minecraft.getInstance().getSoundManager().play(entity.getUnstableSound());
-            SoundUtil.setTime(entity.getUnstableSound(), startTime);
+            Minecraft.getInstance().getSoundManager().play(getUnstableSound(entity));
+            SoundUtil.setTime(getUnstableSound(entity), startTime);
         }
         public static void stopSound(ShatterBlockEntity entity) {
-            Minecraft.getInstance().getSoundManager().stop(entity.getUnstableSound());
+            Minecraft.getInstance().getSoundManager().stop(getUnstableSound(entity));
         }
         public static boolean isPlayingSound(ShatterBlockEntity entity) {
-            return Minecraft.getInstance().getSoundManager().isActive(entity.getUnstableSound());
+            return Minecraft.getInstance().getSoundManager().isActive(getUnstableSound(entity));
+        }
+        public static SoundInstance getUnstableSound(ShatterBlockEntity entity) {
+            if (entity.unstableSound == null) {
+                Vec3 pos = entity.getBlockPos().getCenter();
+                entity.unstableSound = new SimpleSoundInstance(
+                        SoundRegistry.SHATTER_UNSTABLE.value(), SoundSource.BLOCKS, 1, 1, RandomSource.create(0), pos.x, pos.y, pos.z
+                );
+            }
+            return entity.unstableSound;
         }
     }
 }
