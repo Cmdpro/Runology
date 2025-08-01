@@ -96,6 +96,7 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                             }
                             stack.setCount(count);
                             i.setItem(stack);
+                            i.removeData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER);
                             i.playSound(SoundRegistry.HEAT_FOCUS_FINISH.value());
                         }
                     } else {
