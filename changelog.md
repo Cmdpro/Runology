@@ -1,2 +1,2 @@
-### Changes
-- Finished up resprites (excluding reality focus since its planned to be replaced)
+### Fixes
+- Fixed Heat Focus not considering the count of the result from smelting if its higher than 1

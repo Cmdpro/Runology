@@ -85,7 +85,16 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                         }
                         if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) >= recipe.get().value().getCookingTime()) {
                             ItemStack stack = recipe.get().value().assemble(input, level.registryAccess());
-                            stack.setCount(i.getItem().getCount());
+                            int count = stack.getCount()*i.getItem().getCount();
+                            while (count > 64) {
+                                ItemStack stack2 = stack.copy();
+                                stack2.setCount(64);
+                                Vec3 pos = i.position();
+                                ItemEntity entity = new ItemEntity(pLevel, pos.x, pos.y, pos.z, stack2);
+                                pLevel.addFreshEntity(entity);
+                                count -= 64;
+                            }
+                            stack.setCount(count);
                             i.setItem(stack);
                             i.playSound(SoundRegistry.HEAT_FOCUS_FINISH.value());
                         }
