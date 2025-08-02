@@ -78,7 +78,7 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                     SingleRecipeInput input = new SingleRecipeInput(i.getItem());
                     Optional<RecipeHolder<SmeltingRecipe>> recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, input, level);
                     if (recipe.isPresent()) {
-                        int cookTime = recipe.get().value().getCookingTime()/4;
+                        int cookTime = recipe.get().value().getCookingTime()/2;
                         i.setData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER, i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER)+1);
                         if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) % 10 == 0) {
                             i.playSound(SoundRegistry.HEAT_FOCUS_WORKING.value());
