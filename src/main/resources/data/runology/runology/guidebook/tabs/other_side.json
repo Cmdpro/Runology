@@ -1,0 +1,10 @@
+{
+  "icon": {
+    "id": "runology:otherworldly_grass_block"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.tabs.other_side.name"
+  },
+  "priority": 0,
+  "advancement": "runology:explode_shatter"
+}

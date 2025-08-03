@@ -48,7 +48,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(BlockRegistry.SHATTERED_INFUSER);
         evenSimplerBlockItem(BlockRegistry.SHATTER_COIL);
         evenSimplerBlockItem(BlockRegistry.HEAT_FOCUS);
-        evenSimplerBlockItem(BlockRegistry.REALITY_FOCUS);
         simpleItem(ItemRegistry.SHATTERED_FLOW_ICON);
         simpleItem(ItemRegistry.SHATTER_READER);
         evenSimplerBlockItem(BlockRegistry.SHATTERSTONE_BRICK_STAIRS);
@@ -59,6 +58,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemRegistry.SHATTERED_INGOT);
         simpleItem(ItemRegistry.BASIC_RUNES_ICON);
         simpleItem(ItemRegistry.SHATTER_EXPLARDER);
+        simpleItem(ItemRegistry.EMPTY_OTHERWORLD_BOMB);
+        simpleItem(ItemRegistry.OTHERWORLD_BOMB);
+        flatBlockItemWithTexture(BlockRegistry.OTHERWORLDLY_ENERGY, Runology.locate("item/otherworldly_energy"));
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

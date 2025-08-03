@@ -92,7 +92,6 @@ public class Runology
             event.accept(BlockRegistry.HEAT_FOCUS.get());
             event.accept(ItemRegistry.SHATTERED_INGOT.get());
             event.accept(BlockRegistry.SHATTERED_BLOCK.get());
-            event.accept(BlockRegistry.REALITY_FOCUS.get());
             event.accept(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get());
             event.accept(BlockRegistry.SHORT_OTHERWORLDLY_GRASS.get());
             event.accept(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get());
@@ -100,6 +99,9 @@ public class Runology
             event.accept(BlockRegistry.OTHERWORLDLY_STONE.get());
             event.accept(BlockRegistry.OTHERWORLDLY_SAND.get());
             event.accept(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
+            event.accept(ItemRegistry.EMPTY_OTHERWORLD_BOMB.get());
+            event.accept(ItemRegistry.OTHERWORLD_BOMB.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_ENERGY.get());
         }
     }
 }

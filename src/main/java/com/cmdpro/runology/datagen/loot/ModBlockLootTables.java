@@ -43,7 +43,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         add(BlockRegistry.SHATTER_COIL_FILLER.get(), (block) -> noDrop());
         dropSelf(BlockRegistry.HEAT_FOCUS.get());
         dropSelf(BlockRegistry.SHATTERED_BLOCK.get());
-        dropSelf(BlockRegistry.REALITY_FOCUS.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_DIRT.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_STONE.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_SAND.get());

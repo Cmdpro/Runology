@@ -62,5 +62,11 @@
             "runology:block/shatter/explode"
         ],
         "subtitle": "subtitle.runology.block.shatter.explode"
+    },
+    "item.otherworld_bomb.throw": {
+        "sounds": [
+            "random/bow"
+        ],
+        "subtitle": "subtitle.runology.item.otherworld_bomb.throw"
     }
 }

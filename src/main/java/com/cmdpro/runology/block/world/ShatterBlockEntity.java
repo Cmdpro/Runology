@@ -7,7 +7,7 @@ import com.cmdpro.databank.multiblock.MultiblockManager;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.datamaps.RunologyDatamaps;
-import com.cmdpro.runology.datamaps.ShatterConversionMap;
+import com.cmdpro.runology.datamaps.BlockShatterConversionMap;
 import com.cmdpro.runology.entity.ShatterZap;
 import com.cmdpro.runology.networking.ModMessages;
 import com.cmdpro.runology.networking.packet.ShatterExplodeS2CPacket;
@@ -18,13 +18,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
@@ -45,13 +42,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.*;
 
@@ -59,6 +53,7 @@ public class ShatterBlockEntity extends BlockEntity {
     public ShatterBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHATTER.get(), pos, state);
         instabilityExplardTimer = INSTABILITY_EXPLARD_TIME;
+        surgeCooldown = 20*20;
     }
     private float power;
     private float stability;
@@ -240,9 +235,18 @@ public class ShatterBlockEntity extends BlockEntity {
     public int instabilityExplardTimer;
     public static final int INSTABILITY_EXPLARD_TIME = 200;
     public void explard(Level level, BlockPos blockPos) {
-        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), 32);
-        Vec3 center = blockPos.getCenter();
         level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
+        createExplosion(level, blockPos, 32);
+        for (Player j : level.players()) {
+            if (j.position().distanceTo(blockPos.getCenter()) <= 30) {
+                CriteriaTriggerRegistry.EXPLODE_SHATTER.get().trigger((ServerPlayer)j);
+            }
+        }
+        level.setBlockAndUpdate(blockPos, BlockRegistry.OTHERWORLDLY_ENERGY.get().defaultBlockState());
+    }
+    public static void createExplosion(Level level, BlockPos blockPos, float effectRadius) {
+        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), effectRadius);
+        Vec3 center = blockPos.getCenter();
         level.explode(null,
                 Explosion.getDefaultDamageSource(level, null),
                 null,
@@ -255,7 +259,8 @@ public class ShatterBlockEntity extends BlockEntity {
                 ParticleTypes.EXPLOSION,
                 ParticleTypes.EXPLOSION_EMITTER,
                 Holder.direct(SoundEvents.EMPTY));
-        level.playSound(null, getBlockPos(), SoundRegistry.SHATTER_EXPLODE.value(), SoundSource.BLOCKS, 1.0f, 1.0f);
+        level.playSound(null, blockPos, SoundRegistry.SHATTER_EXPLODE.value(), SoundSource.BLOCKS, 1.0f, 1.0f);
+        float range = SoundRegistry.SHATTER_EXPLODE.value().getRange(1f);
         HashMap<BlockPos, Block> toPlace = new HashMap<>();
         for (int x = -10; x <= 10; x++) {
             for (int y = -10; y <= 10; y++) {
@@ -264,7 +269,7 @@ public class ShatterBlockEntity extends BlockEntity {
                     Vec3 vec = pos.getCenter();
                     if (vec.distanceTo(center) <= 10) {
                         BlockState state = level.getBlockState(pos);
-                        ShatterConversionMap data = state.getBlockHolder().getData(RunologyDatamaps.SHATTER_CONVERSION);
+                        BlockShatterConversionMap data = state.getBlockHolder().getData(RunologyDatamaps.BLOCK_SHATTER_CONVERSION);
                         if (data != null) {
                             List<Block> blocks = data.convertTo();
                             Block block = blocks.get(Mth.randomBetweenInclusive(level.random, 0, blocks.size()-1));

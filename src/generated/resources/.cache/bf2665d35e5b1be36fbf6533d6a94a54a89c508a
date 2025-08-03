@@ -1,10 +1,12 @@
-// 1.21.1	2025-07-25T12:38:12.7900216	Item Models: runology
+// 1.21.1	2025-08-03T00:50:21.0264639	Item Models: runology
 c1e489038f347acf690748a4146d2fa7cbf7c66b assets/runology/models/item/basic_runes_icon.json
 88ef814429d5bf31ec57219502ee9cabacf33f5b assets/runology/models/item/blink_boots.json
+01b78ca1b3686ff34adcb3c4ddd63d4ca70f6119 assets/runology/models/item/empty_otherworld_bomb.json
 b023d12fe3881921e365f367d7526735b5c42e11 assets/runology/models/item/gold_chisel.json
 8fadb551d5e100f7c6765d239bfa13cd0fcc46d0 assets/runology/models/item/gold_pillar.json
 8503b23879d16448a10bf03b8fb80fe9a2b1ddb3 assets/runology/models/item/heat_focus.json
-eebd3e3f4df3958a337ce2b894c16c59352eb34c assets/runology/models/item/reality_focus.json
+e9aff9be9d424a74dbed73d638cdf718b513580c assets/runology/models/item/otherworldly_energy.json
+a267c5ee232c2bef22f801592d715f4ae0728ef9 assets/runology/models/item/otherworld_bomb.json
 08a7abf874f07ce2ee9903ac771a4f8ec9fbff1d assets/runology/models/item/runic_chisel.json
 add32390b1af7640bfdcf90532328f54194d1343 assets/runology/models/item/shatter.json
 7a3816a6f8bdf7169bb2aec28ec31ebf98594e0f assets/runology/models/item/shattered_flow_icon.json

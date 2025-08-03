@@ -11,13 +11,13 @@ import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 @EventBusSubscriber(modid = Runology.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class RunologyDatamaps {
-    public static final DataMapType<Block, ShatterConversionMap> SHATTER_CONVERSION = DataMapType.builder(
+    public static final DataMapType<Block, BlockShatterConversionMap> BLOCK_SHATTER_CONVERSION = DataMapType.builder(
             Runology.locate("shatter_conversion"),
             Registries.BLOCK,
-            ShatterConversionMap.CODEC
-    ).synced(ShatterConversionMap.CODEC, true).build();
+            BlockShatterConversionMap.CODEC
+    ).synced(BlockShatterConversionMap.CODEC, true).build();
     @SubscribeEvent
     public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
-        event.register(SHATTER_CONVERSION);
+        event.register(BLOCK_SHATTER_CONVERSION);
     }
 }

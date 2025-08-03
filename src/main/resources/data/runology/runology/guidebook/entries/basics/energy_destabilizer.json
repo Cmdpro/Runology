@@ -1,0 +1,27 @@
+{
+  "tab": "runology:basics",
+  "icon": {
+    "id": "runology:shattered_block"
+  },
+  "name": {
+    "translate": "runology.guidebook.runology.basics.entries.energy_destabilizer.name"
+  },
+  "x": 0,
+  "y": 0.5,
+  "z": -3,
+  "pages": [
+    {
+      "type": "runology:text",
+      "text": {
+        "translate": "runology.guidebook.runology.basics.entries.energy_destabilizer.page1.text"
+      }
+    },
+    {
+      "type": "runology:multiblock",
+      "multiblock": "runology:energy_destabilizer"
+    }
+  ],
+  "parents": [
+    "runology:basics/shatterstone_runes"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "runology:otherworldly_energy",
+  "input": {
+    "item": "runology:empty_otherworld_bomb"
+  },
+  "result": {
+    "id": "runology:otherworld_bomb"
+  }
+}

@@ -2,6 +2,7 @@ package com.cmdpro.runology.api.guidebook;
 
 
 import com.cmdpro.runology.data.entries.pages.crafting.types.CraftingTableType;
+import com.cmdpro.runology.data.entries.pages.crafting.types.OtherworldlyEnergyType;
 import com.cmdpro.runology.data.entries.pages.crafting.types.ShatterInfusionType;
 
 import java.util.ArrayList;
@@ -12,5 +13,6 @@ public class CraftingTypes {
     static {
         types.add(new CraftingTableType());
         types.add(new ShatterInfusionType());
+        types.add(new OtherworldlyEnergyType());
     }
 }

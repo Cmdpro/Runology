@@ -5,9 +5,9 @@ import com.cmdpro.runology.block.machines.HeatFocusBlockEntity;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockEntity;
 import com.cmdpro.runology.block.machines.ShatteredInfuserBlockEntity;
 import com.cmdpro.runology.block.misc.GoldPillarBlockEntity;
-import com.cmdpro.runology.block.misc.RealityFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.block.transmission.ShatteredRelayBlockEntity;
+import com.cmdpro.runology.block.world.OtherworldlyEnergyBlockEntity;
 import com.cmdpro.runology.block.world.ShatterBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -46,10 +46,10 @@ public class BlockEntityRegistry {
             register("heat_focus", () ->
                     BlockEntityType.Builder.of(HeatFocusBlockEntity::new,
                             BlockRegistry.HEAT_FOCUS.get()).build(null));
-    public static final Supplier<BlockEntityType<RealityFocusBlockEntity>> REALITY_FOCUS =
-            register("reality_focus", () ->
-                    BlockEntityType.Builder.of(RealityFocusBlockEntity::new,
-                            BlockRegistry.REALITY_FOCUS.get()).build(null));
+    public static final Supplier<BlockEntityType<OtherworldlyEnergyBlockEntity>> OTHERWORLDLY_ENERGY =
+            register("otherworldly_energy", () ->
+                    BlockEntityType.Builder.of(OtherworldlyEnergyBlockEntity::new,
+                            BlockRegistry.OTHERWORLDLY_ENERGY.get()).build(null));
 
 
     private static <T extends BlockEntityType<?>> Supplier<T> register(final String name, final Supplier<T> blockentity) {

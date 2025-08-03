@@ -22,6 +22,8 @@ public class ItemRegistry {
     public static final Supplier<Item> BLINK_BOOTS = register("blink_boots", () -> new BlinkBoots(new Item.Properties().stacksTo(1).durability(ArmorItem.Type.BOOTS.getDurability(15))));
     public static final Supplier<Item> SHATTERED_INGOT = register("shattered_ingot", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> SHATTER_EXPLARDER = register("shatter_explarder", () -> new ShatterExplarder(new Item.Properties()));
+    public static final Supplier<Item> EMPTY_OTHERWORLD_BOMB = register("empty_otherworld_bomb", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final Supplier<Item> OTHERWORLD_BOMB = register("otherworld_bomb", () -> new OtherworldBombItem(new Item.Properties().stacksTo(16)));
 
     public static final Supplier<Item> SHATTERED_FLOW_ICON = register("shattered_flow_icon", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> BASIC_RUNES_ICON = register("basic_runes_icon", () -> new Item(new Item.Properties()));

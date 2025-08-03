@@ -16,6 +16,7 @@ public class SoundRegistry {
     //Items
     public static final Holder<SoundEvent> RUNIC_CHISEL_USE = createBasicSound("item.runic_chisel.use");
     public static final Holder<SoundEvent> BLINK_TELEPORT = createBasicSound("item.blink_boots.teleport");
+    public static final Holder<SoundEvent> OTHERWORLD_BOMB_THROW = createBasicSound("item.otherworld_bomb.throw");
 
     //Blocks
     public static final Holder<SoundEvent> HEAT_FOCUS_WORKING = createBasicSound("block.heat_focus.working");

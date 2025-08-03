@@ -7,9 +7,9 @@ import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockItem;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilFiller;
 import com.cmdpro.runology.block.machines.ShatteredInfuser;
 import com.cmdpro.runology.block.misc.GoldPillar;
-import com.cmdpro.runology.block.misc.RealityFocus;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
 import com.cmdpro.runology.block.transmission.ShatteredRelay;
+import com.cmdpro.runology.block.world.OtherworldlyEnergy;
 import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -34,6 +34,9 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTER = register("shatter",
             () -> new Shatter(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_ENERGY = register("otherworldly_energy",
+            () -> new OtherworldlyEnergy(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERED_FOCUS = register("shattered_focus",
             () -> new ShatteredFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
@@ -53,9 +56,6 @@ public class BlockRegistry {
             () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
     public static final Supplier<Block> HEAT_FOCUS = register("heat_focus",
             () -> new HeatFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
-            object -> () -> new BlockItem(object.get(), new Item.Properties()));
-    public static final Supplier<Block> REALITY_FOCUS = register("reality_focus",
-            () -> new RealityFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
