@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -56,7 +58,10 @@ public class OtherworldlyEnergyBlockEntity extends BlockEntity {
                 Vec3 vel = Vec3.directionFromRotation(level.getRandom().nextIntBetweenInclusive(-75, -45), level.getRandom().nextIntBetweenInclusive(0, 360)).scale(0.375f);
                 Vec3 pos = blockPos.getCenter();
                 ItemEntity entity = new ItemEntity(level, pos.x, pos.y, pos.z, output, vel.x, vel.y, vel.z);
+                entity.setDefaultPickUpDelay();
                 level.addFreshEntity(entity);
+                level.playSound(null, blockPos, SoundRegistry.OTHERWORLDLY_ENERGY_INFUSE.value(), SoundSource.BLOCKS);
+                ((ServerLevel)level).sendParticles(ParticleRegistry.SMALL_SHATTER.get(), blockPos.getCenter().x, blockPos.getCenter().y, blockPos.getCenter().z, 25, 0, 0, 0, 0.1);
             }
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide);
@@ -80,12 +85,16 @@ public class OtherworldlyEnergyBlockEntity extends BlockEntity {
                         ItemStack stack2 = output.copy();
                         stack2.setCount(64);
                         ItemEntity entity = new ItemEntity(pLevel, pos.x, pos.y, pos.z, stack2, vel.x, vel.y, vel.z);
+                        entity.setDefaultPickUpDelay();
                         pLevel.addFreshEntity(entity);
                         count -= 64;
                     }
                     output.setCount(count);
                     ItemEntity entity = new ItemEntity(pLevel, pos.x, pos.y, pos.z, output, vel.x, vel.y, vel.z);
+                    entity.setDefaultPickUpDelay();
                     pLevel.addFreshEntity(entity);
+                    pLevel.playSound(null, entity.blockPosition(), SoundRegistry.OTHERWORLDLY_ENERGY_INFUSE.value(), SoundSource.BLOCKS);
+                    ((ServerLevel)level).sendParticles(ParticleRegistry.SMALL_SHATTER.get(), entity.position().x, entity.position().y, entity.position().z, 25, 0, 0, 0, 0.2);
                     i.remove(Entity.RemovalReason.DISCARDED);
                 }
             }

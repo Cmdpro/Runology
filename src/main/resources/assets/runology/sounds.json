@@ -68,5 +68,11 @@
             "random/bow"
         ],
         "subtitle": "subtitle.runology.item.otherworld_bomb.throw"
+    },
+    "block.otherworldly_energy.infuse": {
+        "sounds": [
+            "runology:block/otherworldly_energy/infuse"
+        ],
+        "subtitle": "subtitle.runology.block.otherworldly_energy.infuse"
     }
 }
