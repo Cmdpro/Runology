@@ -1,15 +1,18 @@
 package com.cmdpro.runology.data.runechiseling;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.registry.DataComponentRegistry;
 import com.google.gson.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class RuneChiselingResultManager extends SimpleJsonResourceReloadListener {
     protected static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
@@ -56,5 +59,8 @@ public class RuneChiselingResultManager extends SimpleJsonResourceReloadListener
             return serializer.read(id, json);
         }
         return null;
+    }
+    public static Optional<RuneChiselingResult> getResult(Block input, ResourceLocation rune) {
+        return RuneChiselingResultManager.types.values().stream().filter((a) -> input.equals(a.input) && a.rune.equals(rune)).findFirst();
     }
 }

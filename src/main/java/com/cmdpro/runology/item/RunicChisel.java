@@ -76,7 +76,7 @@ public class RunicChisel extends Item {
         }
         if (!context.getLevel().isClientSide) {
             BlockState clickedBlock = context.getLevel().getBlockState(context.getClickedPos());
-            Optional<RuneChiselingResult> result = RuneChiselingResultManager.types.values().stream().filter((a) -> clickedBlock.is(a.input) && a.rune.equals(context.getItemInHand().get(DataComponentRegistry.RUNE))).findFirst();
+            Optional<RuneChiselingResult> result = RuneChiselingResultManager.getResult(clickedBlock.getBlock(), context.getItemInHand().get(DataComponentRegistry.RUNE));
             if (result.isPresent()) {
                 Vec3 center = context.getClickedPos().getCenter();
                 ((ServerLevel)context.getLevel()).sendParticles(ParticleRegistry.SHATTER.get(), center.x, center.y, center.z, 25, 0.25f, 0.25f, 0.25f, 0.25f);

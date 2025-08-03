@@ -4,6 +4,7 @@
 - Added a new tab in the runic codex
 - Added Otherworldly Bombs
 - Replaced the Reality Reshaper with the Energy Destabilizer
+- Added a visual that shows a preview of the result for rune chiseling
 
 ### Changes
 - Made the heat focus only able to smelt up to 16 items at a time in a single stack

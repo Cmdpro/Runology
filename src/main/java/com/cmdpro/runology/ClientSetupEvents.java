@@ -3,6 +3,7 @@ package com.cmdpro.runology;
 import com.cmdpro.databank.shaders.PostShaderInstance;
 import com.cmdpro.databank.shaders.PostShaderManager;
 import com.cmdpro.runology.block.machines.ShatteredInfuserBlockEntity;
+import com.cmdpro.runology.client.RunePreviewGuiLayer;
 import com.cmdpro.runology.particle.PlayerPowerParticle;
 import com.cmdpro.runology.particle.PlayerPowerPunchParticle;
 import com.cmdpro.runology.particle.ShatterParticle;
@@ -36,6 +37,10 @@ import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD, modid = Runology.MODID)
 public class ClientSetupEvents {
+    @SubscribeEvent
+    public static void registerGuiLayers(RegisterGuiLayersEvent event) {
+        event.registerAboveAll(Runology.locate("rune_preview"), new RunePreviewGuiLayer());
+    }
     @SubscribeEvent
     public static void onClientSetup(final FMLClientSetupEvent event)
     {

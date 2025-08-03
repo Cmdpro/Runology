@@ -6,10 +6,7 @@ import com.cmdpro.runology.data.entries.EntryManager;
 import com.cmdpro.runology.data.entries.EntryTabManager;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
 import com.cmdpro.runology.networking.ModMessages;
-import com.cmdpro.runology.networking.packet.EntrySyncS2CPacket;
-import com.cmdpro.runology.networking.packet.PlayerPowerModeSyncS2CPacket;
-import com.cmdpro.runology.networking.packet.RuneTypeSyncS2CPacket;
-import com.cmdpro.runology.networking.packet.StartFalseDeathS2CPacket;
+import com.cmdpro.runology.networking.packet.*;
 import com.cmdpro.runology.registry.AttachmentTypeRegistry;
 import com.cmdpro.runology.registry.ItemRegistry;
 import com.cmdpro.runology.registry.ParticleRegistry;
@@ -95,6 +92,7 @@ public class GameEvents {
     }
     protected static void syncToPlayer(ServerPlayer player) {
         ModMessages.sendToPlayer(new RuneTypeSyncS2CPacket(RuneTypeManager.types), player);
+        ModMessages.sendToPlayer(new RuneChiselingSyncS2CPacket(RuneChiselingResultManager.types), player);
         ModMessages.sendToPlayer(new EntrySyncS2CPacket(EntryManager.entries, EntryTabManager.tabs), player);
     }
     public static final ResourceLocation PLAYER_POWER_SPEED_UUID = Runology.locate("player_power_speed");
