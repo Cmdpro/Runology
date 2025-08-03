@@ -14,6 +14,7 @@
 ### Fixes
 - Fixed Heat Focus not considering the count of the result from smelting if its higher than 1
 - Fixed Heat Focus instantly smelting if the result can be smelted
+- Fixed Shattered Relays only being placeable on full blocks
 
 ### Removals
 - Removed Reality Focus

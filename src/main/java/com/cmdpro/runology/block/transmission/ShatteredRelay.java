@@ -73,7 +73,7 @@ public class ShatteredRelay extends Block implements EntityBlock {
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         Direction direction = pState.getValue(FACING);
         BlockPos blockpos = pPos.relative(direction.getOpposite());
-        return pLevel.getBlockState(blockpos).isFaceSturdy(pLevel, blockpos, direction);
+        return pLevel.getBlockState(blockpos).isFaceSturdy(pLevel, blockpos, direction, SupportType.CENTER);
     }
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
