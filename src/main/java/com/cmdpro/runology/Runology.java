@@ -2,7 +2,9 @@ package com.cmdpro.runology;
 
 import com.cmdpro.runology.registry.*;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import org.slf4j.Logger;
@@ -50,8 +52,11 @@ public class Runology
         WorldGuiComponentRegistry.WORLD_GUI_COMPONENTS.register(modEventBus);
         PageTypeRegistry.PAGE_TYPES.register(modEventBus);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            RunologyClient.register();
+        }
     }
     public static ResourceLocation locate(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
@@ -87,7 +92,16 @@ public class Runology
             event.accept(BlockRegistry.HEAT_FOCUS.get());
             event.accept(ItemRegistry.SHATTERED_INGOT.get());
             event.accept(BlockRegistry.SHATTERED_BLOCK.get());
-            event.accept(BlockRegistry.REALITY_FOCUS.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get());
+            event.accept(BlockRegistry.SHORT_OTHERWORLDLY_GRASS.get());
+            event.accept(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_DIRT.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_STONE.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_SAND.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
+            event.accept(ItemRegistry.EMPTY_OTHERWORLD_BOMB.get());
+            event.accept(ItemRegistry.OTHERWORLD_BOMB.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_ENERGY.get());
         }
     }
 }

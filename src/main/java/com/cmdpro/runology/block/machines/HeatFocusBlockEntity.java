@@ -78,17 +78,34 @@ public class HeatFocusBlockEntity extends BlockEntity implements ShatteredFlowCo
                     SingleRecipeInput input = new SingleRecipeInput(i.getItem());
                     Optional<RecipeHolder<SmeltingRecipe>> recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, input, level);
                     if (recipe.isPresent()) {
+                        int cookTime = recipe.get().value().getCookingTime()/2;
                         i.setData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER, i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER)+1);
                         if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) % 10 == 0) {
                             i.playSound(SoundRegistry.HEAT_FOCUS_WORKING.value());
                             ((ServerLevel)i.level()).sendParticles(ParticleTypes.FLAME, i.position().x, i.position().y, i.position().z, 15, 0, 0, 0, 0.2f);
                         }
-                        if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) >= recipe.get().value().getCookingTime()) {
+                        int smelting = Math.min(i.getItem().getCount(), 16);
+                        if (i.getData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER) >= cookTime) {
                             ItemStack stack = recipe.get().value().assemble(input, level.registryAccess());
-                            stack.setCount(i.getItem().getCount());
-                            i.setItem(stack);
+                            int count = stack.getCount()*smelting;
+                            Vec3 pos = i.position();
+                            while (count > 64) {
+                                ItemStack stack2 = stack.copy();
+                                stack2.setCount(64);
+                                ItemEntity entity = new ItemEntity(pLevel, pos.x, pos.y, pos.z, stack2);
+                                pLevel.addFreshEntity(entity);
+                                count -= 64;
+                            }
+                            stack.setCount(count);
+                            ItemEntity entity = new ItemEntity(pLevel, pos.x, pos.y, pos.z, stack);
+                            pLevel.addFreshEntity(entity);
+                            ItemStack entityStack = i.getItem().copy();
+                            entityStack.shrink(smelting);
+                            i.setItem(entityStack);
+                            i.removeData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER);
                             i.playSound(SoundRegistry.HEAT_FOCUS_FINISH.value());
                         }
+                        break;
                     } else {
                         if (i.hasData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER)) {
                             i.removeData(AttachmentTypeRegistry.HEAT_FOCUS_SMELT_TIMER);

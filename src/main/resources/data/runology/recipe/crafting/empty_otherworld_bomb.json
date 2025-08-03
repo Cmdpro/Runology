@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GgG",
+    " G "
+  ],
+  "key": {
+    "G": { "tag": "c:ingots/gold" },
+    "g": { "item": "minecraft:gunpowder" }
+  },
+  "result": { "id": "runology:empty_otherworld_bomb" }
+}

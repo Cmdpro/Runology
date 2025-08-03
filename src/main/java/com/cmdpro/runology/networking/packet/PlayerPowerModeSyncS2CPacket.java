@@ -8,10 +8,11 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record PlayerPowerModeSyncS2CPacket(int id, boolean active) implements Message {
     @Override
-    public void handleClient(Minecraft minecraft, Player player) {
+    public void handleClient(Minecraft minecraft, Player player, IPayloadContext ctx) {
         if (player.level().getEntity(id) instanceof Player target) {
             target.setData(AttachmentTypeRegistry.PLAYER_POWER_MODE, active);
         }

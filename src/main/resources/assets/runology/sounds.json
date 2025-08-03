@@ -50,5 +50,23 @@
             "block/beacon/activate"
         ],
         "subtitle": "subtitle.runology.shattered_flow_network.surge.end"
+    },
+    "block.shatter.unstable": {
+        "sounds": [
+            "runology:block/shatter/unstable"
+        ],
+        "subtitle": "subtitle.runology.block.shatter.unstable"
+    },
+    "block.shatter.explode": {
+        "sounds": [
+            "runology:block/shatter/explode"
+        ],
+        "subtitle": "subtitle.runology.block.shatter.explode"
+    },
+    "item.otherworld_bomb.throw": {
+        "sounds": [
+            "random/bow"
+        ],
+        "subtitle": "subtitle.runology.item.otherworld_bomb.throw"
     }
 }

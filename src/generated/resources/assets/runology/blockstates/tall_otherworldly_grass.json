@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "runology:block/tall_otherworldly_grass_lower"
+    },
+    "half=upper": {
+      "model": "runology:block/tall_otherworldly_grass_upper"
+    }
+  }
+}

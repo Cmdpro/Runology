@@ -9,6 +9,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import org.apache.commons.lang3.RandomUtils;
 
 public class ShatterParticle extends TextureSheetParticle {
@@ -22,7 +23,7 @@ public class ShatterParticle extends TextureSheetParticle {
         this.xd = xd;
         this.yd = yd;
         this.zd = zd;
-        this.quadSize *= 1.25F;
+        this.quadSize *= Mth.nextFloat(level.random, 1.5f, 1.75f);
         startQuadSize = this.quadSize;
         this.lifetime = 20;
         this.setSpriteFromAge(spriteSet);

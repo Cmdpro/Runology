@@ -1,0 +1,46 @@
+{
+  "values": {
+    "#minecraft:base_stone_overworld": {
+      "convert_to": [
+        "runology:otherworldly_stone"
+      ]
+    },
+    "minecraft:dirt": {
+      "convert_to": [
+        "runology:otherworldly_dirt"
+      ]
+    },
+    "minecraft:grass_block": {
+      "convert_to": [
+        "runology:otherworldly_grass_block"
+      ],
+      "place_above": {
+        "blocks": [
+          "runology:short_otherworldly_grass",
+          "runology:tall_otherworldly_grass"
+        ],
+        "rarity": 3
+      }
+    },
+    "minecraft:sand": {
+      "convert_to": [
+        "runology:otherworldly_sand"
+      ]
+    },
+    "minecraft:sandstone": {
+      "convert_to": [
+        "runology:otherworldly_sandstone"
+      ]
+    },
+    "minecraft:short_grass": {
+      "convert_to": [
+        "runology:short_otherworldly_grass"
+      ]
+    },
+    "minecraft:tall_grass": {
+      "convert_to": [
+        "runology:tall_otherworldly_grass"
+      ]
+    }
+  }
+}

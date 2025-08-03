@@ -1,0 +1,90 @@
+{
+  "layers": [
+    [
+      "****s****",
+      "****s****",
+      "**s*s*s**",
+      "***sss***",
+      "sssssssss",
+      "***sss***",
+      "**s*s*s**",
+      "****s****",
+      "****s****"
+    ],
+    [
+      "****M****",
+      "*********",
+      "**s***s**",
+      "*********",
+      "M***f***M",
+      "*********",
+      "**s***s**",
+      "*********",
+      "****M****"
+    ],
+    [
+      "*********",
+      "*********",
+      "**S***S**",
+      "*********",
+      "****0****",
+      "*********",
+      "**S***S**",
+      "*********",
+      "*********"
+    ],
+    [
+      "****M****",
+      "*********",
+      "**s***s**",
+      "*********",
+      "M*******M",
+      "*********",
+      "**s***s**",
+      "*********",
+      "****M****"
+    ],
+    [
+      "****s****",
+      "****s****",
+      "**bsssb**",
+      "**s***s**",
+      "sss***sss",
+      "**s***s**",
+      "**bsssb**",
+      "****s****",
+      "****s****"
+    ]
+  ],
+  "key": {
+    "s": {
+      "type": "databank:blockstate",
+      "state": "runology:shatterstone"
+    },
+    "f": {
+      "type": "databank:blockstate",
+      "state": "runology:shattered_focus"
+    },
+    "b": {
+      "type": "databank:blockstate",
+      "state": "runology:shattered_block"
+    },
+    "S": {
+      "type": "databank:blockstate",
+      "state": "runology:rune_shape_shatterstone"
+    },
+    "M": {
+      "type": "databank:blockstate",
+      "state": "runology:rune_motion_shatterstone"
+    },
+    "0": {
+      "type": "databank:blockstate",
+      "state": "runology:shatter"
+    }
+  },
+  "center": [
+    -4,
+    -1,
+    -4
+  ]
+}

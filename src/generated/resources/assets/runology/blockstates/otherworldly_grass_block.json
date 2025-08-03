@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "runology:block/otherworldly_grass_block_1"
+      },
+      {
+        "model": "runology:block/otherworldly_grass_block_2"
+      },
+      {
+        "model": "runology:block/otherworldly_grass_block_3"
+      },
+      {
+        "model": "runology:block/otherworldly_grass_block_4"
+      }
+    ]
+  }
+}

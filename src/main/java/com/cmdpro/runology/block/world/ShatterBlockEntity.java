@@ -1,18 +1,35 @@
 package com.cmdpro.runology.block.world;
 
+import com.cmdpro.databank.DatabankUtils;
+import com.cmdpro.databank.misc.SoundUtil;
 import com.cmdpro.databank.multiblock.Multiblock;
 import com.cmdpro.databank.multiblock.MultiblockManager;
 import com.cmdpro.runology.block.transmission.ShatteredFocusBlockEntity;
 import com.cmdpro.runology.data.shatterupgrades.ShatterUpgradeManager;
+import com.cmdpro.runology.datamaps.RunologyDatamaps;
+import com.cmdpro.runology.datamaps.BlockShatterConversionMap;
 import com.cmdpro.runology.entity.ShatterZap;
+import com.cmdpro.runology.networking.ModMessages;
+import com.cmdpro.runology.networking.packet.ShatterExplodeS2CPacket;
 import com.cmdpro.runology.recipe.RecipeUtil;
 import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import com.cmdpro.runology.registry.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -20,19 +37,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ShatterBlockEntity extends BlockEntity {
     public ShatterBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegistry.SHATTER.get(), pos, state);
+        instabilityExplardTimer = INSTABILITY_EXPLARD_TIME;
+        surgeCooldown = 20*20;
     }
     private float power;
     private float stability;
@@ -90,6 +111,14 @@ public class ShatterBlockEntity extends BlockEntity {
         surgeCooldown = tag.getInt("surgeCooldown");
     }
 
+    @Override
+    public void setRemoved() {
+        if (level != null && level.isClientSide) {
+            ClientHandler.stopSound(this);
+        }
+        super.setRemoved();
+    }
+
     public int surgeCooldown;
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         Vec3 center = getBlockPos().getCenter();
@@ -104,6 +133,13 @@ public class ShatterBlockEntity extends BlockEntity {
                     Vec3 diff = i.position().add(0, 0.25, 0).subtract(center).multiply(0.2f, 0.2f, 0.2f);
                     pLevel.addParticle(ParticleRegistry.SHATTER.get(), center.x, center.y, center.z, diff.x, diff.y, diff.z);
                 }
+            }
+            boolean soundPlaying = instabilityExplardTimer < INSTABILITY_EXPLARD_TIME;
+            if (soundPlaying && !ClientHandler.isPlayingSound(this)) {
+                ClientHandler.startSound(this);
+            }
+            if (!soundPlaying && ClientHandler.isPlayingSound(this)) {
+                ClientHandler.stopSound(this);
             }
         } else {
             calculatePower();
@@ -156,9 +192,133 @@ public class ShatterBlockEntity extends BlockEntity {
             } else {
                 surgeCooldown = 20*20;
             }
-            if (stability <= -8) {
-                // TODO : make shatter explard
+            if (stability <= -10) {
+                instabilityExplardTimer--;
+                updateBlock();
+                if (instabilityExplardTimer <= 0) {
+                    explard(pLevel, getBlockPos());
+                }
+            } else {
+                if (instabilityExplardTimer < INSTABILITY_EXPLARD_TIME) {
+                    instabilityExplardTimer = INSTABILITY_EXPLARD_TIME;
+                    updateBlock();
+                }
             }
+        }
+    }
+    public void updateBlock() {
+        BlockState blockState = level.getBlockState(this.getBlockPos());
+        this.level.sendBlockUpdated(this.getBlockPos(), blockState, blockState, 3);
+        this.setChanged();
+    }
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket(){
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        if (!pkt.getTag().isEmpty()) {
+            CompoundTag tag = pkt.getTag();
+            instabilityExplardTimer = tag.getInt("instabilityExplardTimer");
+        }
+    }
+    public void decodeUpdateTag(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+
+    }
+    public boolean isPowered;
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("instabilityExplardTimer", instabilityExplardTimer);
+        return tag;
+    }
+    public int instabilityExplardTimer;
+    public static final int INSTABILITY_EXPLARD_TIME = 200;
+    public void explard(Level level, BlockPos blockPos) {
+        level.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
+        createExplosion(level, blockPos, 32);
+        for (Player j : level.players()) {
+            if (j.position().distanceTo(blockPos.getCenter()) <= 30) {
+                CriteriaTriggerRegistry.EXPLODE_SHATTER.get().trigger((ServerPlayer)j);
+            }
+        }
+        level.setBlockAndUpdate(blockPos, BlockRegistry.OTHERWORLDLY_ENERGY.get().defaultBlockState());
+    }
+    public static void createExplosion(Level level, BlockPos blockPos, float effectRadius) {
+        ModMessages.sendToPlayersNear(new ShatterExplodeS2CPacket(blockPos), (ServerLevel)level, blockPos.getCenter(), effectRadius);
+        Vec3 center = blockPos.getCenter();
+        level.explode(null,
+                Explosion.getDefaultDamageSource(level, null),
+                null,
+                blockPos.getCenter().x,
+                blockPos.getCenter().y,
+                blockPos.getCenter().z,
+                6,
+                false,
+                Level.ExplosionInteraction.TNT,
+                ParticleTypes.EXPLOSION,
+                ParticleTypes.EXPLOSION_EMITTER,
+                Holder.direct(SoundEvents.EMPTY));
+        level.playSound(null, blockPos, SoundRegistry.SHATTER_EXPLODE.value(), SoundSource.BLOCKS, 1.0f, 1.0f);
+        float range = SoundRegistry.SHATTER_EXPLODE.value().getRange(1f);
+        HashMap<BlockPos, Block> toPlace = new HashMap<>();
+        for (int x = -10; x <= 10; x++) {
+            for (int y = -10; y <= 10; y++) {
+                for (int z = -10; z <= 10; z++) {
+                    BlockPos pos = blockPos.offset(x, y, z);
+                    Vec3 vec = pos.getCenter();
+                    if (vec.distanceTo(center) <= 10) {
+                        BlockState state = level.getBlockState(pos);
+                        BlockShatterConversionMap data = state.getBlockHolder().getData(RunologyDatamaps.BLOCK_SHATTER_CONVERSION);
+                        if (data != null) {
+                            List<Block> blocks = data.convertTo();
+                            Block block = blocks.get(Mth.randomBetweenInclusive(level.random, 0, blocks.size()-1));
+                            BlockState newState = DatabankUtils.changeBlockType(state, block);
+                            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+                            data.placeAbove().ifPresent((config) -> {
+                                if (!config.blocks().isEmpty()) {
+                                    if (config.rarity() <= 0 || level.random.nextIntBetweenInclusive(0, config.rarity()) == 0) {
+                                        Block place = config.blocks().get(Mth.randomBetweenInclusive(level.random, 0, config.blocks().size() - 1));
+                                        toPlace.put(pos.above(), place);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        for (Map.Entry<BlockPos, Block> i : toPlace.entrySet()) {
+            if (level.getBlockState(i.getKey()).canBeReplaced()) {
+                BlockState state = i.getValue().defaultBlockState();
+                level.setBlock(i.getKey(), state, Block.UPDATE_CLIENTS);
+                if (i.getValue() instanceof DoublePlantBlock) {
+                    DoublePlantBlock.placeAt(level, state, i.getKey(), Block.UPDATE_CLIENTS);
+                }
+            }
+        }
+    }
+    public SoundInstance unstableSound;
+    private static class ClientHandler {
+        public static void startSound(ShatterBlockEntity entity) {
+            float startTime = (float)(INSTABILITY_EXPLARD_TIME-entity.instabilityExplardTimer)/20f;
+            Minecraft.getInstance().getSoundManager().play(getUnstableSound(entity));
+            SoundUtil.setTime(getUnstableSound(entity), startTime);
+        }
+        public static void stopSound(ShatterBlockEntity entity) {
+            Minecraft.getInstance().getSoundManager().stop(getUnstableSound(entity));
+        }
+        public static boolean isPlayingSound(ShatterBlockEntity entity) {
+            return Minecraft.getInstance().getSoundManager().isActive(getUnstableSound(entity));
+        }
+        public static SoundInstance getUnstableSound(ShatterBlockEntity entity) {
+            if (entity.unstableSound == null) {
+                Vec3 pos = entity.getBlockPos().getCenter();
+                entity.unstableSound = new SimpleSoundInstance(
+                        SoundRegistry.SHATTER_UNSTABLE.value(), SoundSource.BLOCKS, 1, 1, RandomSource.create(0), pos.x, pos.y, pos.z
+                );
+            }
+            return entity.unstableSound;
         }
     }
 }

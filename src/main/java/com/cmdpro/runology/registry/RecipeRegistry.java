@@ -1,6 +1,7 @@
 package com.cmdpro.runology.registry;
 
 import com.cmdpro.runology.Runology;
+import com.cmdpro.runology.recipe.OtherworldlyEnergyRecipe;
 import com.cmdpro.runology.recipe.ShatterInfusionRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.Recipe;
@@ -16,9 +17,13 @@ public class RecipeRegistry {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, Runology.MODID);
     public static final Supplier<RecipeSerializer<ShatterInfusionRecipe>> SHATTER_INFUSION =
             registerSerializer("shatter_infusion", () -> ShatterInfusionRecipe.Serializer.INSTANCE);
+    public static final Supplier<RecipeSerializer<OtherworldlyEnergyRecipe>> OTHERWORLDLY_ENERGY =
+            registerSerializer("otherworldly_energy", () -> OtherworldlyEnergyRecipe.Serializer.INSTANCE);
 
     public static final Supplier<RecipeType<ShatterInfusionRecipe>> SHATTER_INFUSION_TYPE =
             registerBasicRecipeType("shatter_infusion");
+    public static final Supplier<RecipeType<OtherworldlyEnergyRecipe>> OTHERWORLDLY_ENERGY_TYPE =
+            registerBasicRecipeType("otherworldly_energy");
     private static <T extends RecipeType<?>> Supplier<T> registerType(final String name, final Supplier<T> recipe) {
         return RECIPE_TYPES.register(name, recipe);
     }

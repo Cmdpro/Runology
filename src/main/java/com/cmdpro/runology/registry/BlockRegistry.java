@@ -7,12 +7,13 @@ import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilBlockItem;
 import com.cmdpro.runology.block.machines.shattercoil.ShatterCoilFiller;
 import com.cmdpro.runology.block.machines.ShatteredInfuser;
 import com.cmdpro.runology.block.misc.GoldPillar;
-import com.cmdpro.runology.block.misc.RealityFocus;
 import com.cmdpro.runology.block.transmission.ShatteredFocus;
 import com.cmdpro.runology.block.transmission.ShatteredRelay;
+import com.cmdpro.runology.block.world.OtherworldlyEnergy;
 import com.cmdpro.runology.block.world.Shatter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -33,6 +34,9 @@ public class BlockRegistry {
     public static final Supplier<Block> SHATTER = register("shatter",
             () -> new Shatter(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_ENERGY = register("otherworldly_energy",
+            () -> new OtherworldlyEnergy(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).noOcclusion().noCollission().noTerrainParticles()),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERED_FOCUS = register("shattered_focus",
             () -> new ShatteredFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
@@ -52,9 +56,6 @@ public class BlockRegistry {
             () -> new ShatterCoilFiller(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()));
     public static final Supplier<Block> HEAT_FOCUS = register("heat_focus",
             () -> new HeatFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
-            object -> () -> new BlockItem(object.get(), new Item.Properties()));
-    public static final Supplier<Block> REALITY_FOCUS = register("reality_focus",
-            () -> new RealityFocus(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK).noOcclusion()),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
     public static final Supplier<Block> SHATTERSTONE = register("shatterstone",
@@ -86,6 +87,27 @@ public class BlockRegistry {
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> SHATTERED_BLOCK = register("shattered_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_DIRT = register("otherworldly_dirt",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_GRASS_BLOCK = register("otherworldly_grass_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE = register("otherworldly_stone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> TALL_OTHERWORLDLY_GRASS = register("tall_otherworldly_grass",
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).lightLevel((state) -> 2)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> SHORT_OTHERWORLDLY_GRASS = register("short_otherworldly_grass",
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).lightLevel((state) -> 2)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_SAND = register("otherworldly_sand",
+            () -> new ColoredFallingBlock(new ColorRGBA(0xf2b6a4), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_SANDSTONE = register("otherworldly_sandstone",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
 
 
