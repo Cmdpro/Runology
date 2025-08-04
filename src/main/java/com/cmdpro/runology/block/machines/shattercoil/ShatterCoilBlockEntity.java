@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,10 +29,16 @@ public class ShatterCoilBlockEntity extends BlockEntity implements ShatteredFlow
             if (tryUseEnergy(level, 10) <= 0) {
                 for (LivingEntity i : level.getEntitiesOfClass(LivingEntity.class, AABB.ofSize(pPos.getCenter(), 30, 30, 30))) {
                     if (!(i instanceof Player)) {
-                        if (i.position().distanceTo(pPos.getCenter()) <= 15) {
-                            if (i.hurt(i.damageSources().source(DamageTypeRegistry.shatterZap), 5)) {
-                                ShatterZap attack = new ShatterZap(EntityRegistry.SHATTER_ZAP.get(), pPos.getCenter().add(0, 0.5f, 0), pLevel, i);
-                                pLevel.addFreshEntity(attack);
+                        boolean tamed = false;
+                        if (i instanceof TamableAnimal tamableAnimal) {
+                            tamed = tamableAnimal.isTame();
+                        }
+                        if (!tamed) {
+                            if (i.position().distanceTo(pPos.getCenter()) <= 15) {
+                                if (i.hurt(i.damageSources().source(DamageTypeRegistry.shatterZap), 5)) {
+                                    ShatterZap attack = new ShatterZap(EntityRegistry.SHATTER_ZAP.get(), pPos.getCenter().add(0, 0.5f, 0), pLevel, i);
+                                    pLevel.addFreshEntity(attack);
+                                }
                             }
                         }
                     }
