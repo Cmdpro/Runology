@@ -97,6 +97,18 @@ public class BlockRegistry {
     public static final Supplier<Block> OTHERWORLDLY_STONE = register("otherworldly_stone",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE_BRICKS = register("otherworldly_stone_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE_BRICK_STAIRS = register("otherworldly_stone_brick_stairs",
+            () -> new StairBlock(OTHERWORLDLY_STONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_STAIRS)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE_BRICK_SLAB = register("otherworldly_stone_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_SLAB)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
+    public static final Supplier<Block> OTHERWORLDLY_STONE_BRICK_WALL = register("otherworldly_stone_brick_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)),
+            object -> () -> new BlockItem(object.get(), new Item.Properties()));
     public static final Supplier<Block> TALL_OTHERWORLDLY_GRASS = register("tall_otherworldly_grass",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).lightLevel((state) -> 2)),
             object -> () -> new BlockItem(object.get(), new Item.Properties()));

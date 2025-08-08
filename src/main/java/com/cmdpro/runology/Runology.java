@@ -97,6 +97,10 @@ public class Runology
             event.accept(BlockRegistry.TALL_OTHERWORLDLY_GRASS.get());
             event.accept(BlockRegistry.OTHERWORLDLY_DIRT.get());
             event.accept(BlockRegistry.OTHERWORLDLY_STONE.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_STONE_BRICKS.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_STONE_BRICK_STAIRS.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_STONE_BRICK_SLAB.get());
+            event.accept(BlockRegistry.OTHERWORLDLY_STONE_BRICK_WALL.get());
             event.accept(BlockRegistry.OTHERWORLDLY_SAND.get());
             event.accept(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
             event.accept(ItemRegistry.EMPTY_OTHERWORLD_BOMB.get());

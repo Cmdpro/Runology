@@ -36,6 +36,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock((SlabBlock) BlockRegistry.SHATTERSTONE_BRICK_SLAB.get(), Runology.locate("block/shatterstone_bricks"), Runology.locate("block/shatterstone_bricks"));
         wallBlock((WallBlock) BlockRegistry.SHATTERSTONE_BRICK_WALL.get(), Runology.locate("block/shatterstone_bricks"));
 
+        blockWithItem(BlockRegistry.OTHERWORLDLY_STONE_BRICKS);
+        stairsBlock((StairBlock) BlockRegistry.OTHERWORLDLY_STONE_BRICK_STAIRS.get(), Runology.locate("block/otherworldly_stone_bricks"));
+        slabBlock((SlabBlock) BlockRegistry.OTHERWORLDLY_STONE_BRICK_SLAB.get(), Runology.locate("block/otherworldly_stone_bricks"), Runology.locate("block/otherworldly_stone_bricks"));
+        wallBlock((WallBlock) BlockRegistry.OTHERWORLDLY_STONE_BRICK_WALL.get(), Runology.locate("block/otherworldly_stone_bricks"));
+
         grassBlock(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK);
         blockVariantsWithItem(BlockRegistry.OTHERWORLDLY_DIRT, OTHERWORLDLY_DIRT_VARIANTS);
         blockWithItem(BlockRegistry.OTHERWORLDLY_STONE);

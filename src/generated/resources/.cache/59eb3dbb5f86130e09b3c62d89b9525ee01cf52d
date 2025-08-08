@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-03T00:50:21.0254626	Loot Tables
+// 1.21.1	2025-08-07T22:29:48.1572978	Loot Tables
 44eba96003892e7000018dfd68c9c7ffe35c7bdb data/runology/loot_table/blocks/gold_pillar.json
 4689b04add47930d1bf76d92fbcdf1c1f228cd5a data/runology/loot_table/blocks/heat_focus.json
 a0ad8f335cd9221d0474f550aa37ae74d9bd1160 data/runology/loot_table/blocks/otherworldly_dirt.json
@@ -6,6 +6,10 @@ a0ad8f335cd9221d0474f550aa37ae74d9bd1160 data/runology/loot_table/blocks/otherwo
 b8343f9a4e0b862c14c7cdee0b8bd30464ac0ebb data/runology/loot_table/blocks/otherworldly_sand.json
 f59c031f01c86c9e6d9acb7d83d8d298754b799a data/runology/loot_table/blocks/otherworldly_sandstone.json
 09d80a0cdd8367959a27c15f4ce31d5801539391 data/runology/loot_table/blocks/otherworldly_stone.json
+444f8627c5a6ec96242941c27c70ecfcd5a90bd1 data/runology/loot_table/blocks/otherworldly_stone_bricks.json
+4731fb587b8ae07e7c2642eb686bca6ca9ba88d0 data/runology/loot_table/blocks/otherworldly_stone_brick_slab.json
+3c3184d90273177bfce29ec6415b2bc36500d7ce data/runology/loot_table/blocks/otherworldly_stone_brick_stairs.json
+9412a0e87e75f90c38e64ea5aedd415acb96fada data/runology/loot_table/blocks/otherworldly_stone_brick_wall.json
 6a35827f33427a6363bacbecd0726f3d7e64f42d data/runology/loot_table/blocks/rune_frost_shatterstone.json
 925f0a1ac30ffba489d4d1eedf2ae307e17c7de8 data/runology/loot_table/blocks/rune_heat_shatterstone.json
 f20d45f6fdf2b0b8b54894ca7b2a63d4671aad98 data/runology/loot_table/blocks/rune_motion_shatterstone.json

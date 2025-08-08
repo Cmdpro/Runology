@@ -88,7 +88,7 @@ public class RunicChisel extends Item {
                 }
                 context.getLevel().setBlock(context.getClickedPos(), state, Block.UPDATE_ALL);
                 context.getLevel().playSound(null, context.getClickedPos(), SoundRegistry.RUNIC_CHISEL_USE.value(), SoundSource.BLOCKS);
-                context.getItemInHand().hurtAndBreak(1, (ServerLevel) context.getLevel(), (ServerPlayer) context.getPlayer(), (item) -> { context.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND); });
+                context.getItemInHand().hurtAndBreak(1, context.getPlayer(), context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             }
         }
         return InteractionResult.sidedSuccess(context.getLevel().isClientSide);

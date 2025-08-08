@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S  ",
+    "SS ",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "runology:otherworldly_stone_bricks" }
+  },
+  "result": { "id": "runology:otherworldly_stone_brick_stairs", "count": 4 }
+}

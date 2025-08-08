@@ -61,6 +61,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ItemRegistry.EMPTY_OTHERWORLD_BOMB);
         simpleItem(ItemRegistry.OTHERWORLD_BOMB);
         flatBlockItemWithTexture(BlockRegistry.OTHERWORLDLY_ENERGY, Runology.locate("item/otherworldly_energy"));
+        evenSimplerBlockItem(BlockRegistry.OTHERWORLDLY_STONE_BRICK_STAIRS);
+        evenSimplerBlockItem(BlockRegistry.OTHERWORLDLY_STONE_BRICK_SLAB);
+        wallItem(BlockRegistry.OTHERWORLDLY_STONE_BRICK_WALL, BlockRegistry.OTHERWORLDLY_STONE_BRICKS);
     }
     private ItemModelBuilder simpleItem(Supplier<Item> item) {
         return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(),

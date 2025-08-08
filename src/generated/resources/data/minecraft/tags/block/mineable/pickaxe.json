@@ -18,6 +18,10 @@
     "runology:heat_focus",
     "runology:shattered_block",
     "runology:otherworldly_stone",
+    "runology:otherworldly_stone_bricks",
+    "runology:otherworldly_stone_brick_stairs",
+    "runology:otherworldly_stone_brick_slab",
+    "runology:otherworldly_stone_brick_wall",
     "runology:otherworldly_sandstone"
   ]
 }

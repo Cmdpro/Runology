@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "runology:block/otherworldly_stone_brick_slab"
+    },
+    "type=double": {
+      "model": "runology:block/otherworldly_stone_bricks"
+    },
+    "type=top": {
+      "model": "runology:block/otherworldly_stone_brick_slab_top"
+    }
+  }
+}

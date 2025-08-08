@@ -45,6 +45,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(BlockRegistry.SHATTERED_BLOCK.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_DIRT.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_STONE.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_STONE_BRICKS.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_STONE_BRICK_SLAB.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_STONE_BRICK_WALL.get());
+        dropSelf(BlockRegistry.OTHERWORLDLY_STONE_BRICK_STAIRS.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_SAND.get());
         dropSelf(BlockRegistry.OTHERWORLDLY_SANDSTONE.get());
         otherWhenSilkTouch(BlockRegistry.OTHERWORLDLY_GRASS_BLOCK.get(), BlockRegistry.OTHERWORLDLY_DIRT.get());
