@@ -2,3 +2,5 @@ if i end up without the ability to ever work on runology again and there is too 
 
 please fork it
 it doesnt matter if the mods progression isnt how i imagined, if I cannot ever work on it, its better forked
+
+if you can be trusted, a google doc containing some information on current plans exists in the dev chat, im unsure who would give it if I cannot but someone likely can
